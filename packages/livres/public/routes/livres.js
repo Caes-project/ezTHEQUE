@@ -34,6 +34,13 @@ angular.module('mean.livres').config(['$stateProvider',
             resolve: {
                     loggedin: checkLoggedin
                 }
+        })
+        .state('livre by id', {
+            url: '/livres/:livreId',
+            templateUrl: 'livres/views/index.html',
+            resolve: {
+                loggedin: checkLoggedin
+            }
         });
     }
 ]);

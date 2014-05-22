@@ -8,20 +8,20 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Create an aivre
+ * Create a livre
  */
 exports.create = function(req, res) {
-    var aivre = new Livre(req.body);
-    aivre.user = req.user;
+    var livre = new Livre(req.body);
+    livre.user = req.user;
 
-    aivre.save(function(err) {
+    livre.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                aivre: aivre
+                livre: livre
             });
         } else {
-            res.jsonp(aivre);
+            res.jsonp(livre);
         }
     });
 };

@@ -9,10 +9,10 @@ var mongoose = require('mongoose'),
 /**
  * Validations
  */
-var validatePresenceOf = function(value) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    return (this.prodiver && this.provider !== 'local') || value.length;
-};
+// var validatePresenceOf = function(value) {
+//     // If you are authenticating by any of the oauth strategies, don't validate.
+//     return (this.prodiver && this.provider !== 'local') || value.length;
+// };
 
 /**
  * User Schema
@@ -20,13 +20,11 @@ var validatePresenceOf = function(value) {
 var LivreSchema = new Schema({
 	name: {
         type: String,
-        required: true,
-        validate: [validatePresenceOf, 'Name cannot be blank']
+        required: true
     },
     genre: {
         type: String,
-        required: true,
-        validate: [validatePresenceOf, 'genre cannot be blank']
+        required: true
     },
     user: {
         type: Schema.ObjectId,

@@ -10,6 +10,7 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
         };
 
         $scope.create = function() {
+            console.log('lol');
             var article = new Articles({
                 title: this.title,
                 content: this.content
@@ -17,7 +18,6 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             article.$save(function(response) {
                 $location.path('articles/' + response._id);
             });
-
             this.title = '';
             this.content = '';
         };

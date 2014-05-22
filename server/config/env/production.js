@@ -21,8 +21,8 @@ module.exports = {
         callbackURL: 'http://localhost:3000/auth/github/callback'
     },
     google: {
-        clientID: 'APP_ID',
-        clientSecret: 'APP_SECRET',
+        clientID: '856357196278-17ttmtm09rp2dooc8mmr788br2o7tt88.apps.googleusercontent.com',
+        clientSecret: 'nf7xPcB7vrgWyY3T2N5-tHrN',
         callbackURL: 'http://localhost:3000/auth/google/callback'
     },
     linkedin: {
