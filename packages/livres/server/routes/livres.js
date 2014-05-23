@@ -1,14 +1,14 @@
 'use strict';
 
 var livres = require('../controllers/livres');
-/*
+
 var hasAuthorization = function(req, res, next) {
     if (!req.user.isAdmin && req.livre.user.id !== req.user.id) {
         return res.send(401, 'User is not authorized');
     }
     next();
 };
-*/
+
 // The Package is past automatically as first parameter
 module.exports = function(Livres, app, auth, database) {
 
@@ -35,14 +35,16 @@ module.exports = function(Livres, app, auth, database) {
     });
 
     app.route('/livres')
-        // .get(livres.all)
+        .get(livres.all)
         .post(auth.requiresLogin, livres.create);
-    app.route('/livres/:livreId');
-        // .get(livres.show)
-        // .put(auth.requiresLogin, hasAuthorization, livres.update)
-        // .delete(auth.requiresLogin, hasAuthorization, livres.destroy);
+    app.route('/livres/:livreId')
+        .get(livres.show)
+        .put(auth.requiresLogin, hasAuthorization, livres.update)
+        .delete(auth.requiresLogin, hasAuthorization, livres.destroy);
+    app.route('/livres/list')
+        .get(livres.all);
 
     // Finish with setting up the livreId param
-    // app.param('livreId', livres.livre);
+    app.param('livreId', livres.livre);
 
 };

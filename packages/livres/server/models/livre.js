@@ -18,7 +18,7 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var LivreSchema = new Schema({
-	name: {
+	title: {
         type: String,
         required: true
     },
