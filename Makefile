@@ -10,7 +10,12 @@ nodejs:
 
 	@if which node > /dev/null; \
 	then echo 'nodejs déjà installé'; \
-	else sudo apt-get install nodejs & echo 'installation de node ...'; fi
+	else sudo apt-get install nodejs & echo 'installation de node ...'; \
+	fi
+	@if which node > /dev/null; \
+	then echo ''; \
+	else sudo ln -s /usr/bin/nodejs /usr/bin/node & echo 'création lien symbolique ...'; \
+	fi
 
 npm:
 	
