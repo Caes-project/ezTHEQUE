@@ -4,6 +4,7 @@
 .bower-*/
 .idea/
 node_modules/
+public/system/lib
 mean.iml
 test/coverage/
 modules/public/
