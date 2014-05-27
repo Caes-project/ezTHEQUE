@@ -26,6 +26,7 @@ exports.livre = function(req, res, next, id) {
 exports.create = function(req, res) {
     var livre = new Livre(req.body);
     livre.user = req.user;
+    console.dir(req.files);
 
     livre.save(function(err) {
         if (err) {

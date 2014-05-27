@@ -6,6 +6,7 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
         $scope.package = {
             name: 'livres'
         };
+        $scope.date = new Date().toISOString().substring(0, 10);
 
         $scope.hasAuthorization = function(article) {
             if (!article || !article.user) return false;
@@ -13,17 +14,24 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
         };
 
         $scope.create = function() {
-            console.log(Livres);
+            console.dir($stateParams);
+            console.dir(this.image);
             var livre = new Livres({
                 title: this.title,
-                genre: this.genre
+                auteur: this.auteur,
+                dewey: this.dewey,
+                date_acquis: this.date,
+                lien_image: this.image
             });
             console.log(livre);
             livre.$save(function(response) {
                 $location.path('livres/' + response._id);
             });
             this.title = '';
-            this.genre = '';
+            this.auteur = '';
+            this.dewey = '';
+            this.date_acquis = '';
+            this.lien_image = '';
         };
 
 

@@ -1,7 +1,7 @@
 <section data-ng-controller="LivresController" data-ng-init="findOne()">
-    <span>{{livre.created | date:'medium'}}</span> /
-    <span>{{livre.user.name}}</span>
-    <h2>{{livre.title}}</h2>
+    <span>{{livre.created | date:'medium'}}</span> 
+    <h2>{{livre.title}} écrit par : {{livre.auteur}}</h2>
+    <h2></h2>
     <div data-ng-if="hasAuthorization(livre)">
         <a class="btn" href="/#!/livre/{{livre._id}}/edit">
             <i class="glyphicon glyphicon-edit"></i>
@@ -10,5 +10,9 @@
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <div>{{livre.genre}}</div>
+    <div>{{livre.dewey}}</div>
+    <br/>
+    <div>{{livre.date_acquis}}</div>
+    <br/>
+    <div>{{livre.lien_image}}</div>
 </section>

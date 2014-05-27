@@ -1,20 +1,38 @@
 <section data-ng-controller="LivresController">
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
+    <form class="form-horizontal col-md-6" role="form" data-ng-submit="create()" enctype="multipart/form-data">
         <div class="form-group">
-            <label mean-token="'create-title'" class="col-md-3 control-label">Title</label>
+            <label mean-token="'create-auteur'" for="auteur" class="col-md-3 control-label">Auteur</label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="auteur" id="auteur" placeholder="Auteur" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-title'" class="col-md-3 control-label">Titre</label>
             <div class="col-md-9">
                 <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" required>
             </div>
         </div>
         <div class="form-group">
-            <label mean-token="'create-genre'" for="genre" class="col-md-3 control-label">Genre</label>
+            <label mean-token="'create-dewey'" for="dewey" class="col-md-3 control-label">Genre</label>
             <div class="col-md-9">
-                <textarea data-ng-model="genre" id="genre" cols="30" rows="10" placeholder="genre" class="form-control" required></textarea>
+                <input type='text' data-ng-model="dewey" id="dewey" placeholder="Dewey" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-date'" for="date" class="col-md-3 control-label">Date achat</label>
+            <div class="col-md-9">
+                <input type='date' data-ng-model="date" id="date" placeholder="date" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-image'" for="image" class="col-md-3 control-label">Genre</label>
+            <div class="col-md-9">
+                <input type='file' data-ng-model="image" id="image" placeholder="image" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-info" >Submit</button>
             </div>
         </div>
     </form>

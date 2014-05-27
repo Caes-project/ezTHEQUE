@@ -22,13 +22,25 @@ var LivreSchema = new Schema({
         type: String,
         required: true
     },
-    genre: {
+    auteur: {
         type: String,
         required: true
     },
     user: {
         type: Schema.ObjectId,
         ref: 'User'
+    },
+    dewey: {
+        type: String,
+        required: false
+    },
+    date_acquis: {
+        type: Date,
+        required: false
+    },
+    lien_image: {
+        type: String,
+        required: false
     }
 });
 

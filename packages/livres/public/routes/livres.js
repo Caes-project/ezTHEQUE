@@ -26,7 +26,7 @@ angular.module('mean.livres').config(['$stateProvider',
         $stateProvider
         .state('livres', {
             url: '/livres/',
-            templateUrl: 'livres/views/index.html'
+            templateUrl: 'livres/views/list.html'
         })
         .state('create livres', {
             url: '/livres/create',
