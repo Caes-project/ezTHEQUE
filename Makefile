@@ -4,14 +4,19 @@ SHELL:=/bin/bash
 
 
 #install all you need
-all: nodejs npm bower mongodb mean npm-install
+all: nvm nodejs npm bower mongodb mean npm-install
+
+nvm:
+
+	curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
 
 nodejs: 
 
 	@if which node > /dev/null; \
 	then echo 'nodejs déjà installé'; \
-	else sudo apt-get install nodejs & echo 'installation de node ...'; \
-	fi
+	else echo 'installation de node ...'; \
+	nvm install 0.10.28 & nvm use 0.10.28; \
+	fi 
 	@if which node > /dev/null; \
 	then echo ''; \
 	else sudo ln -s /usr/bin/nodejs /usr/bin/node & echo 'création lien symbolique ...'; \
