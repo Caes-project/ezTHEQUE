@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Livre = mongoose.model('Livre'),
+    fs = require('fs'),
     _ = require('lodash');
 
 
@@ -26,7 +27,8 @@ exports.livre = function(req, res, next, id) {
 exports.create = function(req, res) {
     var livre = new Livre(req.body);
     livre.user = req.user;
-    console.dir(req.files);
+    console.log(req.files);
+    console.log(req.body);
 
     livre.save(function(err) {
         if (err) {
@@ -38,6 +40,38 @@ exports.create = function(req, res) {
             res.jsonp(livre);
         }
     });
+};
+
+exports.saveImage = function(req, res) {
+    var livre = new Livre(req.body);
+    livre.user = req.user;
+   console.log(req.body.dewey);
+   console.log(req.files);
+    livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
+  
+    livre.save(function(err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                livre: livre
+            });
+        } else {
+            console.log('livre saved',livre._id);
+            // set where the file should actually exists - in this case it is in the "images" directory
+            var target_path = __dirname +'/../../../../public/upload/livres/' +req.files.image.originalname;
+            //ERR 34 file doesn"t find ...
+            fs.rename(req.files.image.path, target_path, function (err) {
+              /*fs.writeFile(target_path, data, function (err) {*/
+                if(err){console.log(err);}
+                res.setHeader('Content-Type', 'text/html');
+                
+                res.redirect('/#!/livres/'+ livre._id);
+              /*});*/
+            });
+        }
+    });
+   
+            
 };
 
 /**

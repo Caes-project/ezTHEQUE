@@ -14,9 +14,7 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
         };
 
         $scope.create = function() {
-            console.dir($stateParams);
-            console.dir(this.image);
-            var livre = new Livres({
+           var livre = new Livres({
                 title: this.title,
                 auteur: this.auteur,
                 dewey: this.dewey,

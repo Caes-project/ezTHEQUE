@@ -1,3 +1,19 @@
 .livres-example h1: {
 	background-color: purple
 }
+
+.sectionLivre {
+	background-color:white;
+	box-shadow: 1px 1px 1px 1px #000000;
+    border: 1px solid black;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 1%;
+}
+
+.articleLivre {
+    border: 1px solid black;
+    margin: 1%;
+    padding-left: 1%;
+
+}

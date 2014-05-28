@@ -5,24 +5,21 @@
  */
 var Module = require('meanio').Module;
 
-var Livres = new Module('livres');
+var Cd = new Module('cd');
 
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Livres.register(function(app, auth, database) {
-
-
-     Livres.aggregateAsset('css', 'livres.css');
+Cd.register(function(app, auth, database) {
 
     //We enable routing. By default the Package Object is passed to the routes
-    Livres.routes(app, auth, database);
+    Cd.routes(app, auth, database);
 
     //We are adding a link to the main menu for all authenticated users
-    Livres.menus.add({
-        title: 'livres',
-        link: 'livres',
+    Cd.menus.add({
+        title: 'cd example page',
+        link: 'cd example page',
         roles: ['authenticated'],
         menu: 'main'
     });
@@ -31,7 +28,7 @@ Livres.register(function(app, auth, database) {
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
     // Use this for saving data from administration pages
-    Livres.settings({
+    Cd.settings({
         'someSetting': 'some value'
     }, function(err, settings) {
         //you now have the settings object
@@ -39,15 +36,15 @@ Livres.register(function(app, auth, database) {
 
     // Another save settings example this time with no callback
     // This writes over the last settings.
-    Livres.settings({
+    Cd.settings({
         'anotherSettings': 'some value'
     });
 
     // Get settings. Retrieves latest saved settigns
-    Livres.settings(function(err, settings) {
+    Cd.settings(function(err, settings) {
         //you now have the settings object
     });
     */
 
-    return Livres;
+    return Cd;
 });

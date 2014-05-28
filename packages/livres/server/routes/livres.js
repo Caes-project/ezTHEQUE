@@ -34,6 +34,9 @@ module.exports = function(Livres, app, auth, database) {
         });
     });
 
+    app.route('/livres/upload')
+        .post(livres.saveImage);
+
     app.route('/livres')
         .get(livres.all)
         .post(auth.requiresLogin, livres.create);

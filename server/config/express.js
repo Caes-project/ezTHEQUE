@@ -23,6 +23,7 @@ var express = require('express'),
     util = require('./util'),
     assetmanager = require('assetmanager'),
     fs = require('fs'),
+    multer  = require('multer'),
     Grid = require('gridfs-stream');
 
 module.exports = function(app, passport, db) {
@@ -69,6 +70,7 @@ module.exports = function(app, passport, db) {
     app.use(expressValidator());
     app.use(bodyParser());
     app.use(methodOverride());
+    app.use(multer({ dest: __dirname + '/../../uploads/'}));
 
     // Import your asset file
     var assets = require('./assets.json');

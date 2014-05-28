@@ -1,18 +1,19 @@
-<section data-ng-controller="LivresController" data-ng-init="findOne()">
-    <span>{{livre.created | date:'medium'}}</span> 
-    <h2>{{livre.title}} écrit par : {{livre.auteur}}</h2>
-    <h2></h2>
-    <div data-ng-if="hasAuthorization(livre)">
-        <a class="btn" href="/#!/livre/{{livre._id}}/edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn" data-ng-click="remove(livre);">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
+<section data-ng-controller="LivresController" data-ng-init="findOne()" class="sectionLivre">
+    <div class='container'> 
+        <h2>{{livre.title}} écrit par : {{livre.auteur}}</h2>
+        <h2></h2>
+        <div data-ng-if="hasAuthorization(livre)">
+            <a class="btn" href="/#!/livre/{{livre._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn" data-ng-click="remove(livre);">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+        <article class="articleLivre"><img src="{{livre.lien_image}}"  border="0" align="center" width=130 height=200> </article>
+        <br/>
+        <article class="articleLivre">{{livre.dewey}}</article>
+        <br/>
+        <article class="articleLivre">{{livre.date_acquis}}</article>
     </div>
-    <div>{{livre.dewey}}</div>
-    <br/>
-    <div>{{livre.date_acquis}}</div>
-    <br/>
-    <div>{{livre.lien_image}}</div>
 </section>
