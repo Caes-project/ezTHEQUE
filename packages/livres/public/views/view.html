@@ -10,10 +10,10 @@
                 <i class="glyphicon glyphicon-trash"></i>
             </a>
         </div>
-        <article class="articleLivre"><img src="{{livre.lien_image}}"  border="0" align="center" width=130 height=200> </article>
+        <article class="articleLivre"><img ng-src="{{livre.lien_image}}"  border="0" align="center" width=130 height=200> </article>
         <br/>
-        <article class="articleLivre">{{livre.dewey}}</article>
+        <article class="articleLivre">code dewey : {{livre.dewey}}</article>
         <br/>
-        <article class="articleLivre">{{livre.date_acquis}}</article>
+        <article class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
     </div>
 </section>

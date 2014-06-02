@@ -4,17 +4,9 @@
         <li data-ng-repeat="livre in livres">
            <h2>
                 <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
-                <span data-ng-if="hasAuthorization(livre)">
-                    <a class="btn" href="/#!/livres/{{livre._id}}/edit">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <a class="btn" data-ng-click="remove(livre);">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </span>
             </h2>
             <h4> Auteur : {{livre.auteur}} </h4>  
-             <div><img ng-src="{{livre.lien_image}}" border="0" align="center" width=130 height=200> </div>
+             <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=130 height=200> </div>
             <div>catégorie Dewey : {{livre.dewey}}</div>
         </li>
     </ul>
