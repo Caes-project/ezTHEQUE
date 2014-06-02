@@ -36,10 +36,10 @@ module.exports = function(Livres, app, auth, database) {
 
     app.route('/livres/upload')
         .post(livres.saveImage);
-
     app.route('/livres')
-        .get(livres.all)
-        .post(auth.requiresLogin, livres.create);
+        .get(livres.all);
+    app.route('livres/create')
+        .post(auth.requiresLogin, auth.requiresAdmin, livres.create);
     app.route('/livres/:livreId')
         .get(livres.show)
         .put(auth.requiresLogin, hasAuthorization, livres.update)

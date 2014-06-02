@@ -1,14 +1,12 @@
 <section data-ng-controller="LivresController" data-ng-init="find()" class="sectionLivre">
-    <h3 data-ng-hide="!livres" align="center"><a href="/#!/livres/create">Ajouter un livre </a></h3>
+    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/livres/create">Ajouter un livre </a></h3>
     <ul class="livres unstyled">
         <li data-ng-repeat="livre in livres">
-           <h2>
+           <h3>
                 <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
-            </h2>
-            <h4> Auteur : {{livre.auteur}} </h4>  
-             <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=130 height=200> </div>
-            <div>catégorie Dewey : {{livre.dewey}}</div>
+            </h3> 
+             <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> </div>
+            <div> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</div>
         </li>
     </ul>
-    <h1 data-ng-hide="!livres || livres.length">No livres yet. <br> Why don't you <a href="/#!/livres/create">Create One</a>?</h1>
 </section>

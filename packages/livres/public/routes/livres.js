@@ -22,6 +22,26 @@ angular.module('mean.livres').config(['$stateProvider',
 
             return deferred.promise;
         };
+
+        var checkAdmin = function($q, $timeout, $http, $location) {
+            // Initialize a new promise
+            var deferred = $q.defer();
+
+            // Make an AJAX call to check if the user is logged in
+            $http.get('/loggedin').success(function(user) {
+                // Authenticated
+                console.log(user.roles);
+                if (user.roles.indexOf('admin') !== -1) $timeout(deferred.resolve);
+
+                // Not Authenticated
+                else {
+                    $timeout(deferred.reject);
+                    $location.url('/login');
+                }
+            });
+
+            return deferred.promise;
+        };
     	
         $stateProvider
         .state('livres', {
@@ -32,7 +52,7 @@ angular.module('mean.livres').config(['$stateProvider',
             url: '/livres/create',
             templateUrl: 'livres/views/create.html',
             resolve: {
-                    loggedin: checkLoggedin
+                    loggedin: checkAdmin
                 }
         })
         .state('view livres', {

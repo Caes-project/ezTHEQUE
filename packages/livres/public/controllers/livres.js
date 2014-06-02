@@ -8,9 +8,13 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
         };
         $scope.date = new Date().toISOString().substring(0, 10);
 
-        $scope.hasAuthorization = function(article) {
-            if (!article || !article.user) return false;
-            return $scope.global.isAdmin || article.user._id === $scope.global.user._id;
+        $scope.hasAuthorization = function(livre) {
+            if (!livre || !livre.user) return false;
+            return $scope.global.isAdmin || livre.user._id === $scope.global.user._id;
+        };
+
+        $scope.isAdmin = function() {
+            return $scope.global.isAdmin;
         };
 
         $scope.create = function() {
