@@ -9,6 +9,13 @@ var hasAuthorization = function(req, res, next) {
     next();
 };
 
+var isAdmin = function(req, res, next) {
+    if (!req.user.isAdmin) {
+        return res.send(401, 'User is not authorized');
+    }
+    next();
+};
+
 // The Package is past automatically as first parameter
 module.exports = function(Livres, app, auth, database) {
 
@@ -37,9 +44,8 @@ module.exports = function(Livres, app, auth, database) {
     app.route('/livres/upload')
         .post(livres.saveImage);
     app.route('/livres')
-        .get(livres.all);
-    app.route('livres/create')
-        .post(auth.requiresLogin, auth.requiresAdmin, livres.create);
+        .get(livres.all)
+        .post(auth.requiresLogin, isAdmin, livres.create);
     app.route('/livres/:livreId')
         .get(livres.show)
         .put(auth.requiresLogin, hasAuthorization, livres.update)
