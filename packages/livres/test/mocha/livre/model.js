@@ -14,7 +14,7 @@ var should = require('should'),
 //Globals
 var user;
 var livre;
-
+var livreExistant;
 //The tests
 describe('<Unit Test>', function() {
     describe('Model Livre:', function() {
@@ -29,12 +29,19 @@ describe('<Unit Test>', function() {
             user.save(function() {
                 livre = new Livre({
                     title: 'Livre Title',
-                    auteur: 'Livre Content',
+                    auteur: 'new Mike',
                     user: user,
                     ref: -1
                 });
-
-                done();
+                livreExistant = new Livre({
+                    title: 'Livre Title existant',
+                    auteur: 'Mike here',
+                    user: user,
+                    ref: -666
+                });
+                livreExistant.save(function(){
+                    done();
+                });
             });
         });
 
@@ -42,6 +49,14 @@ describe('<Unit Test>', function() {
             it('should be able to save without problems', function(done) {
                 return livre.save(function(err) {
                     should.not.exist(err);
+                    done();
+                });
+            });
+
+            it('should be able to show an error when try to save a ref that already exist', function(done) {
+                livre.ref = -666;
+                return livre.save(function(err) {
+                    should.exist(err);
                     done();
                 });
             });
@@ -54,10 +69,12 @@ describe('<Unit Test>', function() {
                     done();
                 });
             });
+
         });
 
         afterEach(function(done) {
             livre.remove();
+            livreExistant.remove();
             user.remove();
             done();
         });
