@@ -31,7 +31,7 @@ describe('<Unit Test>', function() {
                     title: 'Livre Title',
                     auteur: 'new Mike',
                     user: user,
-                    ref: -1
+                    ref: 1
                 });
                 livreExistant = new Livre({
                     title: 'Livre Title existant',

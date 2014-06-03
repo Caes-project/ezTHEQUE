@@ -45,7 +45,7 @@ exports.create = function(req, res) {
 exports.saveImage = function(req, res) {
     var livre = new Livre(req.body);
     livre.user = req.user;
-    // console.log(req.body.dewey);
+    console.log(req.body.date_acquis);
     // console.log(req.files);
     if(req.files.image.originalname !== null){
          livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
@@ -68,6 +68,7 @@ exports.saveImage = function(req, res) {
                             console.log(err);
                             res.send(500, 'Répertoire d\'upload indisponible');
                         }else{
+                            // res.jsonp(livre);
                             res.setHeader('Content-Type', 'text/html');
                             res.status(200);
                             res.redirect('/#!/livres/'+ livre._id);
@@ -75,6 +76,7 @@ exports.saveImage = function(req, res) {
                       /*});*/
                     });
                 }else{
+                    // res.jsonp(livre);
                     res.setHeader('Content-Type', 'text/html');
                     res.redirect('/#!/livres/'+ livre._id);
                 }
