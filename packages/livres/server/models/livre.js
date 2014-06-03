@@ -41,6 +41,11 @@ var LivreSchema = new Schema({
     lien_image: {
         type: String,
         required: false
+    },
+    ref:{
+        type: Number,
+        required: true,
+        unique : true
     }
 });
 
