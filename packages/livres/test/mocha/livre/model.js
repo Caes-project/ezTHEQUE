@@ -14,7 +14,15 @@ var should = require('should'),
 //Globals
 var user;
 var livre;
+/**
+    Livre emprunté
+**/
 var livreExistant;
+/**
+    Livre disponible
+**/
+var livreExistant2;
+
 //The tests
 describe('<Unit Test>', function() {
     describe('Model Livre:', function() {
@@ -30,17 +38,32 @@ describe('<Unit Test>', function() {
                 livre = new Livre({
                     title: 'Livre Title',
                     auteur: 'new Mike',
-                    user: user,
-                    ref: 1
+                    emprunt : {
+                        user: user,
+                        date_debut : '2014-06-12',
+                        date_fin : '2014-06-26'
+                    },
+                    ref: -1
                 });
                 livreExistant = new Livre({
                     title: 'Livre Title existant',
                     auteur: 'Mike here',
-                    user: user,
+                    emprunt : {
+                        user: user,
+                        date_debut : '2014-06-12',
+                        date_fin : '2014-06-26'
+                    },
                     ref: -666
                 });
+                livreExistant2 = new Livre({
+                    title: 'Livre Title existant2',
+                    auteur: 'Mikey here',
+                    ref: -667
+                });
                 livreExistant.save(function(){
-                    done();
+                    livreExistant2.save(function(){
+                        done();
+                    });
                 });
             });
         });
@@ -72,9 +95,41 @@ describe('<Unit Test>', function() {
 
         });
 
+        describe('Method read', function(){
+            it('should be able to read the begining date of a borrowing', function(done){
+                Livre.find({ref: -666}, function(err, livres){
+                    livres.should.have.length(1);
+                    should.exist(livres[0].emprunt.date_debut);
+                    done();
+                });
+            });
+
+            it('should be able to read a book without borrowing', function(done){
+                Livre.find({ref: -667}, function(err, livres){
+                    livres.should.have.length(1);
+                    should.not.exist(livres[0].emprunt.user);
+                    done();
+                });
+            });
+        });
+
+        describe('Method update', function(){
+            it('should erase the borrowing', function(done){
+                Livre.update({'ref': -666}, { $set: { 'emprunt.user': null}}, function(err){
+                    Livre.find({ref: -666}, function(err, livres){
+                        should.not.exist(err);
+                        // console.log(livres[0].emprunt);
+                        (livres[0].emprunt.user === null).should.be.true;
+                        done();
+                    });
+                });
+            });
+        });
+
         afterEach(function(done) {
             livre.remove();
             livreExistant.remove();
+            livreExistant2.remove();
             user.remove();
             done();
         });
