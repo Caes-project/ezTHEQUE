@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
 // };
 
 /**
- * User Schema
+ * Livre Schema
  */
 var LivreSchema = new Schema({
 	title: {
@@ -26,9 +26,17 @@ var LivreSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
-        type: Schema.ObjectId,
-        ref: 'User'
+    emprunt: {
+        user: {
+            type: Schema.ObjectId,
+            ref: 'User'
+        },
+        date_debut: {
+            type: Date,
+        }, 
+        date_fin: {
+            type: Date,
+        }
     },
     dewey: {
         type: String,
@@ -41,6 +49,11 @@ var LivreSchema = new Schema({
     lien_image: {
         type: String,
         required: false
+    },
+    ref:{
+        type: Number,
+        required: true,
+        unique : true
     }
 });
 

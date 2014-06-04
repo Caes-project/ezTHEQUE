@@ -32,7 +32,7 @@ exports.create = function(req, res) {
 
     livre.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
+            return res.send(400, '/livres', {
                 errors: err.errors,
                 livre: livre
             });
@@ -45,14 +45,14 @@ exports.create = function(req, res) {
 exports.saveImage = function(req, res) {
     var livre = new Livre(req.body);
     livre.user = req.user;
-    console.log(req.body.dewey);
-    console.log(req.files);
+    console.log(req.body.date_acquis);
+    // console.log(req.files);
     if(req.files.image.originalname !== null){
          livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
     }
         livre.save(function(err) {
             if (err) {
-                return res.send('users/signup', {
+                return res.send(400, {
                     errors: err.errors,
                     livre: livre
                 });
@@ -64,13 +64,19 @@ exports.saveImage = function(req, res) {
                     //ERR 34 file doesn"t find ...
                     fs.rename(req.files.image.path, target_path, function (err) {
                       /*fs.writeFile(target_path, data, function (err) {*/
-                        if(err){console.log(err);}
-                        res.setHeader('Content-Type', 'text/html');
-                        
-                        res.redirect('/#!/livres/'+ livre._id);
+                        if(err){
+                            console.log(err);
+                            res.send(500, 'Répertoire d\'upload indisponible');
+                        }else{
+                            // res.jsonp(livre);
+                            res.setHeader('Content-Type', 'text/html');
+                            res.status(200);
+                            res.redirect('/#!/livres/'+ livre._id);
+                        }
                       /*});*/
                     });
                 }else{
+                    // res.jsonp(livre);
                     res.setHeader('Content-Type', 'text/html');
                     res.redirect('/#!/livres/'+ livre._id);
                 }
@@ -88,7 +94,7 @@ exports.update = function(req, res) {
 
     livre.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
+            return res.send(400,'users/signup', {
                 errors: err.errors,
                 livre: livre
             });
@@ -106,7 +112,7 @@ exports.destroy = function(req, res) {
 
     livre.remove(function(err) {
         if (err) {
-            return res.send('users/signup', {
+            return res.send(400,'users/signup', {
                 errors: err.errors,
                 livre: livre
             });
@@ -133,7 +139,7 @@ exports.all = function(req, res) {
                 status: 500
             });
         } else {
-            res.jsonp(livres);
+            res.jsonp(200, livres);
         }
     });
 };

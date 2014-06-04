@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.livres').config(['$stateProvider',
+angular.module('mean').config(['$stateProvider',
     function($stateProvider) {
 
     	// Check if the user is connected

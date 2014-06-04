@@ -5,7 +5,7 @@
  */
 var Module = require('meanio').Module;
 
-var Livres = new Module('livres');
+var Livres = new Module('Livres');
 
 /*
  * All MEAN packages require registration
@@ -14,7 +14,6 @@ var Livres = new Module('livres');
 Livres.register(function(app, auth, database) {
 
 
-     Livres.aggregateAsset('css', 'livres.css');
 
     //We enable routing. By default the Package Object is passed to the routes
     Livres.routes(app, auth, database);
@@ -48,6 +47,7 @@ Livres.register(function(app, auth, database) {
         //you now have the settings object
     });
     */
+    Livres.aggregateAsset('css', 'livres.css');
 
     return Livres;
 });

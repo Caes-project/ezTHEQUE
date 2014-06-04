@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.livres').controller('LivresController', ['$scope', '$stateParams','$location', 'Global', 'Livres',
+angular.module('mean').controller('LivresController', ['$scope', '$stateParams','$location', 'Global', 'Livres',
     function($scope,$stateParams, $location, Global, Livres) {
         $scope.global = Global;
         $scope.package = {
@@ -9,7 +9,7 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
         $scope.date = new Date().toISOString().substring(0, 10);
 
         $scope.hasAuthorization = function(livre) {
-            if (!livre || !livre.user) return false;
+            if (!livre) return false;
             return $scope.global.isAdmin || livre.user._id === $scope.global.user._id;
         };
 
@@ -23,6 +23,7 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
                 auteur: this.auteur,
                 dewey: this.dewey,
                 date_acquis: this.date,
+                ref: this.ref,
                 lien_image: this.image
             });
             console.log(livre);
@@ -34,6 +35,7 @@ angular.module('mean.livres').controller('LivresController', ['$scope', '$stateP
             this.dewey = '';
             this.date_acquis = '';
             this.lien_image = '';
+            this.ref= '';
         };
 
 
