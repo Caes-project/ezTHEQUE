@@ -23,7 +23,7 @@ module.exports = {
     google: {
         clientID: '856357196278-17ttmtm09rp2dooc8mmr788br2o7tt88.apps.googleusercontent.com',
         clientSecret: 'nf7xPcB7vrgWyY3T2N5-tHrN',
-        callbackURL: 'http://localhost:3000/auth/google/callback'
+        callbackURL: 'http://nancy.caes.cnrs.fr:50010/auth/google/callback'
     },
     linkedin: {
         clientID: 'API_KEY',
