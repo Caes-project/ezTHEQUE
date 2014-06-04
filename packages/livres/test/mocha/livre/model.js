@@ -68,7 +68,7 @@ describe('<Unit Test>', function() {
             });
         });
 
-        describe('Method Save', function() {
+        describe('Method Save Livre', function() {
             it('should be able to save without problems', function(done) {
                 return livre.save(function(err) {
                     should.not.exist(err);
@@ -95,9 +95,9 @@ describe('<Unit Test>', function() {
 
         });
 
-        describe('Method read', function(){
+        describe('Method read Livre', function(){
             it('should be able to read the begining date of a borrowing', function(done){
-                Livre.find({ref: -666}, function(err, livres){
+                return Livre.find({ref: -666}, function(err, livres){
                     livres.should.have.length(1);
                     should.exist(livres[0].emprunt.date_debut);
                     done();
@@ -113,14 +113,19 @@ describe('<Unit Test>', function() {
             });
         });
 
-        describe('Method update', function(){
-            it('should erase the borrowing', function(done){
+        describe('Method update Emprunt Livre', function(){
+            it('should erase the borrowing and give another one without problems', function(done){
                 Livre.update({'ref': -666}, { $set: { 'emprunt.user': null}}, function(err){
                     Livre.find({ref: -666}, function(err, livres){
                         should.not.exist(err);
                         // console.log(livres[0].emprunt);
                         (livres[0].emprunt.user === null).should.be.true;
-                        done();
+                        Livre.update({'ref': -666}, { $set: { 'emprunt.user': user}}, function(err){
+                            Livre.find({ref: -666}, function(err, livres){
+                               should.exist(livres[0].emprunt.user);
+                               done();
+                            });
+                        });
                     });
                 });
             });

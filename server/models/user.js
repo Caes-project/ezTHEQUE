@@ -47,10 +47,18 @@ var UserSchema = new Schema({
         type: String,
         default: 'local'
     },
-    emprunt: {
-        type: Schema.ObjectId,
-        ref: 'Livre'
-    },
+    emprunt: [{
+        id: {
+            type: Schema.ObjectId,
+            ref: 'Livre'
+        },
+        date_debut: {
+            type: Date,
+        }, 
+        date_fin: {
+            type: Date,
+        }
+    }],
     salt: String,
     facebook: {},
     twitter: {},
