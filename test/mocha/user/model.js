@@ -85,7 +85,6 @@ describe('<Unit Test>', function() {
                         }
                     }
                 }, function(err){
-                    console.log(err);
                     User.find({email: 'test@test.com'},function(err, users){
                         should.exist(users[0].emprunt.id);
                         done();

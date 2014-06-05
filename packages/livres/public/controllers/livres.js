@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('mean').controller('LivresController', ['$scope', '$stateParams','$location', 'Global', 'Livres',
-    function($scope,$stateParams, $location, Global, Livres) {
+angular.module('mean').controller('LivresController', ['$scope', '$stateParams','$location','Users','Global', 'Livres', 
+    function($scope,$stateParams, $location, Users, Global, Livres) {
         $scope.global = Global;
+        $scope.users = Users;
         $scope.package = {
             name: 'livres'
         };
@@ -80,5 +81,28 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                 $scope.livre = livre;
             });
         };
+
+        $scope.listeUsers = function(){
+            $scope.findOne();
+            if($global.user.isAdmin()){
+                Users.query(function(users){
+                    console.log(users);
+                    $scope.users = users;
+                });
+            }else{
+                $scope.users = global.user;
+            }
+        };
+
+        $scope.validerEmprunt = function(){
+            // console.log($scope.selectedUser);
+            if(livre.emprunt.users){
+                console.log('erreur livre déjà emprunté');
+            }else{
+                livre.emprunt.user = selectedUser._id;
+                livre.emprunt.date_début = ;
+                livre.emprunt.date_fin = ;
+            }
+        }
     }
 ]);

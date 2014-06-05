@@ -68,6 +68,20 @@ angular.module('mean').config(['$stateProvider',
             resolve: {
                 loggedin: checkLoggedin
             }
+        })
+        .state('edit livre', {
+            url: '/livre/:livreId/edit',
+            templateUrl: 'livres/views/edit.html',
+            resolve: {
+                loggedin: checkLoggedin
+            }
+        })
+        .state('emprunter livre', {
+            url: '/livre/:livreId/emprunter',
+            templateUrl: 'livres/views/emprunter.html',
+            resolve: {
+                loggedin: checkLoggedin
+            }
         });
     }
 ]);

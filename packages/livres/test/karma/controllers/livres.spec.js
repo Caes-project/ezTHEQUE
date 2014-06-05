@@ -38,6 +38,8 @@
                     $scope: scope
                 });
 
+
+
                 $stateParams = _$stateParams_;
 
                 $httpBackend = _$httpBackend_;
@@ -60,7 +62,7 @@
 
                     // run controller
                     scope.find();
-                    $httpBackend.flush();
+                    $httpBackend.flush(1);
 
                     // test scope value
                     expect(scope.livres).toEqualData([{

@@ -22,7 +22,8 @@ module.exports = function(config) {
         files: _.flatten(_.values(assets.js)).concat([
             'test/karma/unit/**/*.js',
             'packages/*/public/**/*.js',
-            'packages/*/test/karma/**/*.js'
+            'packages/*/test/karma/**/*.js',
+            'node_modules/mean-admin/public/services/users.js'
         ]),
 
         // list of files to exclude
@@ -44,6 +45,7 @@ module.exports = function(config) {
             'public/js/controllers/*.js': ['coverage'],
             'public/js/services/*.js': ['coverage'],
             'packages/*/public/*/controllers/*.js': ['coverage'],
+            'node_modules/mean-admin/public/services/users.js': ['coverage'],
             'packages/*/public/*/services/*.js': ['coverage']
         },
 
