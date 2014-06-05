@@ -85,16 +85,13 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
 
         $scope.listeUsers = function(){
             $scope.findOne();
-            console.log($scope.global);
             if($scope.global.isAdmin){
-                console.log('admin');
-                Users.query(function(users){
+               Users.query(function(users){
                     console.log(users);
                     $scope.users = users;
                 });
             }else{
-                console.log('user');
-                $scope.users = $scope.global.user;
+               $scope.users = $scope.global.user;
             }
         };
 
@@ -112,9 +109,20 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                 // console.log('livre');
                 console.log(livre);
                 livre.$update(function(response) {
-                    $location.path('livres/' + response._id + '/emprunt');
+                    $location.path('livres/' + response._id);
                 });
             }
+        };
+
+        $scope.rendreLivre = function(livre) {
+            livre.emprunt = {
+                    user: null,
+                    date_debut : null,
+                    date_fin : null
+                };
+            livre.$update(function(response) {
+                    $location.path('livres/' + response._id);
+            });
         };
     }
 ]);

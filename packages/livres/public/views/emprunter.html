@@ -6,7 +6,7 @@
         <br/>
         <article class="articleLivre">code dewey : {{livre.dewey}}</article>
         <br/>
-        <article data-ng-hide="!global.user.isadmin()" class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
+        <article class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
         <form class="form-horizontal col-md-6" role="form" data-ng-submit='validerEmprunt()' name='formulaire'>
             <div class="form-group">
                 <label for="date" class="col-md-4 control-label">Début du prêt :</label>
@@ -27,7 +27,6 @@
                 <button type='submit' class="btn btn-primary btn-large"><i class="icon-white icon-book"></i> Valider</button>
             </div>
         </form>
-        {{livre.emprunt}}
     </div>
 </section>
 
