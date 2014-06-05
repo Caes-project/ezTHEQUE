@@ -77,7 +77,7 @@ angular.module('mean').config(['$stateProvider',
             }
         })
         .state('emprunter livre', {
-            url: '/livre/:livreId/emprunter',
+            url: '/livre/:livreId/emprunt',
             templateUrl: 'livres/views/emprunter.html',
             resolve: {
                 loggedin: checkLoggedin

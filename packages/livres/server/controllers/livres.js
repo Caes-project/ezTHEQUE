@@ -26,10 +26,6 @@ exports.livre = function(req, res, next, id) {
  */
 exports.create = function(req, res) {
     var livre = new Livre(req.body);
-    livre.user = req.user;
-    console.log(req.files);
-    console.log(req.body);
-
     livre.save(function(err) {
         if (err) {
             return res.send(400, '/livres', {
@@ -44,8 +40,12 @@ exports.create = function(req, res) {
 
 exports.saveImage = function(req, res) {
     var livre = new Livre(req.body);
-    livre.user = req.user;
-    console.log(req.body.date_acquis);
+    livre.emprunt = {
+                        user: null,
+                        date_debut : null,
+                        date_fin : null
+                    };
+    // console.log(req.body.date_acquis);
     // console.log(req.files);
     if(req.files.image.originalname !== null){
          livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;

@@ -9,13 +9,13 @@
         <article data-ng-hide="!global.user.isadmin()" class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
         <form class="form-horizontal col-md-6" role="form" data-ng-submit='validerEmprunt()' name='formulaire'>
             <div class="form-group">
-                <label mean-token="'create-date'" for="date" class="col-md-4 control-label">Début du prêt :</label>
+                <label for="date" class="col-md-4 control-label">Début du prêt :</label>
                 <div class="col-md-6">
                     <input type='date' data-ng-model="date" name='date_début' placeholder="date" class="form-control" required >
                 </div>
             </div>
             <div class="form-group">
-                <label mean-token="'create-date'" for="date" class="col-md-4 control-label">Début du prêt :</label>
+                <label for="date" class="col-md-4 control-label">Début du prêt :</label>
                 <div class="col-md-6">
                     <input type='date' data-ng-model="date_fin" name='date_fin' placeholder="date" class="form-control" required>
                 </div>
@@ -27,6 +27,7 @@
                 <button type='submit' class="btn btn-primary btn-large"><i class="icon-white icon-book"></i> Valider</button>
             </div>
         </form>
+        {{livre.emprunt}}
     </div>
 </section>
 

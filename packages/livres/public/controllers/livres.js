@@ -18,6 +18,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
             return $scope.global.isAdmin;
         };
 
+        //unused
         $scope.create = function() {
            var livre = new Livres({
                 title: this.title,
@@ -84,25 +85,36 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
 
         $scope.listeUsers = function(){
             $scope.findOne();
-            if($global.user.isAdmin()){
+            console.log($scope.global);
+            if($scope.global.isAdmin){
+                console.log('admin');
                 Users.query(function(users){
                     console.log(users);
                     $scope.users = users;
                 });
             }else{
-                $scope.users = global.user;
+                console.log('user');
+                $scope.users = $scope.global.user;
             }
         };
 
         $scope.validerEmprunt = function(){
             // console.log($scope.selectedUser);
-            if(livre.emprunt.users){
+            // console.log('$scope.livre');
+            // console.log($scope.livre);
+            var livre = $scope.livre;
+            if(null){
                 console.log('erreur livre déjà emprunté');
             }else{
-                livre.emprunt.user = selectedUser._id;
-                livre.emprunt.date_début = ;
-                livre.emprunt.date_fin = ;
+                livre.emprunt.user = $scope.selectedUser._id;
+                livre.emprunt.date_debut = $scope.date;
+                livre.emprunt.date_fin = $scope.date_fin;
+                // console.log('livre');
+                console.log(livre);
+                livre.$update(function(response) {
+                    $location.path('livres/' + response._id + '/emprunt');
+                });
             }
-        }
+        };
     }
 ]);
