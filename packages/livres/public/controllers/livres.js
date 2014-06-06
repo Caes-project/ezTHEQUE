@@ -11,7 +11,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
 
         $scope.hasAuthorization = function(livre) {
             if (!livre) return false;
-            return $scope.global.isAdmin || livre.user._id === $scope.global.user._id;
+            return $scope.global.isAdmin;
         };
 
         $scope.isAdmin = function() {
@@ -91,26 +91,38 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                     $scope.users = users;
                 });
             }else{
-               $scope.users = $scope.global.user;
+                Users.me({
+                    userId: $scope.global.user._id
+                }, function(user){
+                    console.log(user);
+                    $scope.users = user;
+                });
             }
         };
 
         $scope.validerEmprunt = function(){
-            // console.log($scope.selectedUser);
-            // console.log('$scope.livre');
-            // console.log($scope.livre);
             var livre = $scope.livre;
+            var user = $scope.selectedUser;
+            var newEmprunt;
             if(null){
                 console.log('erreur livre déjà emprunté');
             }else{
                 livre.emprunt.user = $scope.selectedUser._id;
                 livre.emprunt.date_debut = $scope.date;
                 livre.emprunt.date_fin = $scope.date_fin;
-                // console.log('livre');
-                console.log(livre);
-                livre.$update(function(response) {
-                    $location.path('livres/' + response._id);
-                });
+                newEmprunt = {
+                    id : livre._id,
+                    date_debut : $scope.date,
+                    date_fin : $scope.date_fin
+                };
+                user.emprunt.push(newEmprunt);
+                console.log(user);
+                // user.$update(function(response) {
+                //     $location.path('livres/');
+                // });
+                // livre.$update(function(response) {
+                //     $location.path('livres/' + response._id);
+                // });
             }
         };
 
