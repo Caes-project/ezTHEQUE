@@ -96,6 +96,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                 }, function(user){
                     console.log(user);
                     $scope.users = user;
+                    $scope.selectedUser = user;
                 });
             }
         };
@@ -117,12 +118,11 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                 };
                 user.emprunt.push(newEmprunt);
                 console.log(user);
-                // user.$update(function(response) {
-                //     $location.path('livres/');
-                // });
-                // livre.$update(function(response) {
-                //     $location.path('livres/' + response._id);
-                // });
+                user.$update(function(response) {
+                    livre.$update(function(response) {
+                        $location.path('livres/' + response._id);
+                    });
+                });
             }
         };
 
