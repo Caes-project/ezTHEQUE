@@ -45,7 +45,6 @@ module.exports = function(config) {
             'public/js/controllers/*.js': ['coverage'],
             'public/js/services/*.js': ['coverage'],
             'packages/*/public/*/controllers/*.js': ['coverage'],
-            'node_modules/mean-admin/public/services/users.js': ['coverage'],
             'packages/*/public/*/services/*.js': ['coverage']
         },
 

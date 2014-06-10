@@ -3,7 +3,7 @@
 angular.module('mean').controller('LivresController', ['$scope', '$stateParams','$location','Users','Global', 'Livres', 
     function($scope,$stateParams, $location, Users, Global, Livres) {
         $scope.global = Global;
-        $scope.users = Users;
+        // $scope.users = Users;
         $scope.package = {
             name: 'livres'
         };
@@ -117,7 +117,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                     date_fin : $scope.date_fin
                 };
                 user.emprunt.push(newEmprunt);
-                console.log(user);
+                // console.log(user);
                 user.$update(function(response) {
                     livre.$update(function(response) {
                         $location.path('livres/' + response._id);
@@ -128,7 +128,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
 
         $scope.rendreLivre = function(livre) {
             var user;
-            console.log($scope.livre.emprunt.user);
+            // console.log($scope.livre.emprunt.user);
             Users.findById({
                     userId: $scope.livre.emprunt.user
                 },
@@ -145,7 +145,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                            user.emprunt.splice(i, 1);
                         }
                     }
-                    console.log(user);
+                    // console.log(user);
                     user.$update(function(response){
                         livre.$update(function(response) {
                             $location.path('livres/' + response._id);
