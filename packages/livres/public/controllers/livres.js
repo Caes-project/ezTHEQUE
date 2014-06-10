@@ -127,13 +127,30 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
         };
 
         $scope.rendreLivre = function(livre) {
-            livre.emprunt = {
-                    user: null,
-                    date_debut : null,
-                    date_fin : null
-                };
-            livre.$update(function(response) {
-                    $location.path('livres/' + response._id);
+            var user;
+            console.log($scope.livre.emprunt.user);
+            Users.findById({
+                    userId: $scope.livre.emprunt.user
+                },
+                 function(user_){
+                    console.log(JSON.stringify(user_));
+                    user = user_;
+                    livre.emprunt = {
+                        user: null,
+                        date_debut : null,
+                        date_fin : null
+                    };
+                    for(var i=0; i<user.emprunt.length; i++){
+                        if(user.emprunt[i].id === $scope.livre._id){
+                           user.emprunt.splice(i, 1);
+                        }
+                    }
+                    console.log(user);
+                    user.$update(function(response){
+                        livre.$update(function(response) {
+                            $location.path('livres/' + response._id);
+                        });
+                    });
             });
         };
     }
