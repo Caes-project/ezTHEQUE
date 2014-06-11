@@ -1,3 +1,9 @@
 <section data-ng-controller="IndexController">
-    <h1 mean-token="'home-default'">This is the home view</h1>
+    <h1 mean-token="'home-default'">Liste des utilisateurs</h1>
+    <input type='text' ng-model='searchUser' placeholder='Recherche' autofocus class='input_user'>
+    <ul>
+    	<li class="users_list" ng-repeat="user in users | orderBy:['-name', 'name'] | filter:searchUser">
+           <a data-ng-href="#!/admin/users/{{user._id}}">{{user.name}}</a>
+   		</li>
+	</ul>
 </section>

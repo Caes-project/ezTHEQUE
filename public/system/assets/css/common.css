@@ -40,3 +40,19 @@ footer {
 footer p {
     padding:5px 0 12px 10px
 }
+
+.users_list{
+    width: 300px;
+    padding: 10px 20px;
+    background-color: #EEE;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #888;
+}
+
+.input_user{
+    width: 170px;
+    padding: 0 10px;
+    height: 25px;
+    margin-bottom: 20px;
+}
