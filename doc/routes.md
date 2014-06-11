@@ -1,6 +1,5 @@
 # Routes #
 
-## Soumission de log ##
 La route principale d'ezThèque, elle correspond à la **racine** de l'application web. La méthode **GET** donne accès au différent menu, et la méthode **POST** permet de créer des médias. 
 ezThèque est une single-page-application, c'est à dire qu'a aucun moment elle ne se rechargera. Ceci est possible grâce à Angular.js
 
