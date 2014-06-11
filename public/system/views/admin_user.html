@@ -1,5 +1,14 @@
-<section data-ng-controller="IndexController" class="sectionLivre">
+<section data-ng-controller="UsersAdminController" class="sectionLivre">
     <div class='container'> 
-        <h2>{{user.name}} connu sous le nom de  : {{user.username}}</h2>
-        
+        <h2>{{user.name}}</h2>
+        <input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='input_user'>
+        <article>
+        	<ul>
+		    	<li class="user_list" ng-repeat="media in listeEmprunt">
+		           <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
+		            <a data-ng-href="#!/livres/{{media._id}}"><div data-ng-hide="!media.lien_image"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </div></a>
+         			<div> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+		   		</li>
+			</ul>
+        </article>
 </section>

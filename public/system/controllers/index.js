@@ -5,7 +5,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
    	 $scope.global = Global;
    	 if($scope.global.isAdmin){
        Users.query(function(users){
-            console.log(users);
             $scope.users = users;
         });
     }

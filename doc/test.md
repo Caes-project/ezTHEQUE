@@ -11,7 +11,7 @@ Ils vérifie surtout le coté serveur de l'application et la gestion de la base 
 
 Ils ne vérifie pas le comportement souhaité de l'application dans le sens où ces tests n'ont pas de contexte d'exécution.
 
-## Les tests Karma ##
+### Les tests Karma ###
 
 Les tests avec Karma permettent de vérifier le coté client de l'application, ils sont adaptés aux tests avec Angular.js
 
@@ -49,3 +49,5 @@ Ils sont assez similaires à des tests sur une application RESTful car on exécu
 
     // Ici on vérifie que la redirection suite à notre requête à fonctionner
     expect($location.path()).toBe('/livres/' + putLivreData()._id);
+
+[Doc utile](https://docs.angularjs.org/api/ngMock/service/$httpBackend)

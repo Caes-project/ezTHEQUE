@@ -41,7 +41,7 @@ module.exports = function(Livres, app, auth, database) {
         });
     });
 
-    app.route('/livre/:livreId/emprunt')
+    app.route('/livres/:livreId/emprunt')
         .post(auth.requiresLogin, livres.update);
     app.route('/livres/upload')
         .post(auth.requiresLogin, isAdmin,livres.saveImage);
