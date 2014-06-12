@@ -61,3 +61,60 @@ Nous avons d'abord deux schémas (users et livres) qui vérifie que les document
       <td>Date de début et fin de l'emprunt</td>
     </tr>
 </table>
+
+<table>
+    <tr>
+        <th style="text-align:left;width:140px;">Champ</th>
+        <th style="text-align:left;width:80px;">Type</th>
+        <th>Commentaire</th>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>String</td>
+      <td>Requis</td>
+    </tr>
+    <tr>
+      <td>auteur</td>
+      <td>String</td>
+      <td>Requis</td>
+    </tr>
+    <tr>
+      <td>dewey</td>
+      <td>String</td>
+      <td>sert à catégoriser le livre (808, policier)</td>
+    </tr>
+    <tr>
+      <td>date_acquis</td>
+      <td>Date</td>
+      <td>La date de mise en circulation / achat du livre</td>
+    </tr>
+    <tr>
+      <td>lien_image</td>
+      <td>String</td>
+      <td>Contient le path vers l'image de couverture du livre</td>
+    </tr>
+    <tr>
+      <td>ref</td>
+      <td>Number</td>
+      <td>La référence du livre, sert pour les emprunts des livres</td>
+    </tr>
+    <tr>
+      <td>emprunt</td>
+      <td>Objet</td>
+      <td>user qui contient l'id de l'emprunteur et les dates de début et fin du prêt</td>
+    </tr>
+</table>
+
+
+Comme on peux le voir on stock deux fois les informations lié au prêt. Il y a donc une duplication de donnée qu'il est important de comprendre afin de ne pas faire d'erreur. Il n'y a pas de 3ème "table" prêt par exemple qui ferait le lien entre un livre et son emprunteur.
+
+==== Pourquoi ce choix? ====
+
+J'ai choisi ceci car la duplication n'est génante que si des incohérence viennent se glisser dans la base, par contre les avantages en termes d'accès aux données sont très important !
+
+Un utilisateur dans la version actuelle de l'application peut consulter la liste des livres disponibles sur le site de la médiathèque et savoir s'ils sont empruntés et quand il seront normalement disponible. Ici avec notre schémas nous n'avons aucune requête de consultation vers la table prêt pour vérifier si le livre est disponible, nous le savons déjà.
+
+TODO autre avantages
+
+Par contre il faut vraiment faire attention à bien mettre à jours ensemble le livre et son emprunteur. Déjà l'utilisateur (Admin) ne peux pas bidouiller dans les tables et faire n'importe quoi. Il doit forcément passer par les formulaires de l'application pour gérer les emprunts. 
+Et pour être sur que les formulaires ont bien leur comportement souhaiter nous avons fait plusieurs tests avec [Karma](./test.md)
