@@ -20,7 +20,7 @@
         <article  class="col-md-8" >
         	<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
             <div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
- 			<div data-ng-hide"newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}</div>
+ 			<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}</div>
         </article>
         <article class="col-md-8">
         	<ul>

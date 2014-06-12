@@ -57,7 +57,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    };
 
 	    $scope.onChangeDate = function(){
-	    	console.log($scope.date);
 	    	$scope.date_fin = incr_date($scope.date);
 	    };
 
