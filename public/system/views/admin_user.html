@@ -1,20 +1,32 @@
 <section data-ng-controller="UsersAdminController" class="sectionLivre">
     <div class='container'> 
         <h2>{{user.name}}</h2>
-        <form role="form" data-ng-submit='validerEmprunt()' name='formulaire'>
+        <form role="form" class="form-horizontal col-md-6" data-ng-submit='validerEmprunt()' name='formulaire'>
         	<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='input_user' required ng-change="verifInput()">
+            <div class="form-group" ng-show="newlivre">
+                <label for="date" class="col-md-4 control-label">Début du prêt :</label>
+                <div class="col-md-6">
+                    <input type='date' data-ng-model="date" name='date_début' placeholder="date" class="form-control" required ng-change="onChangeDate()">
+                </div>
+            </div>
+            <div class="form-group" ng-show="newlivre">
+                <label for="date" class="col-md-4 control-label">Fin du prêt :</label>
+                <div class="col-md-6">
+                    <input type='date' data-ng-model="date_fin" name='date_fin' placeholder="date" class="form-control" required>
+                </div>
+            </div>
         	 <button type='submit' class="btn btn-primary btn-sm"><i class="icon-white icon-book"></i> Valider</button>
         </form>
-        <article>
+        <article  class="col-md-8" >
         	<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
-            <a data-ng-href="#!/livres/{{newlivre._id}}"><div data-ng-hide="!newlivre.lien_image"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </div></a>
+            <div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
  			<div data-ng-hide"newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}</div>
         </article>
-        <article>
+        <article class="col-md-8">
         	<ul>
 		    	<li class="user_list" ng-repeat="media in listeEmprunt">
 		           <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
-		            <a data-ng-href="#!/livres/{{media._id}}"><div data-ng-hide="!media.lien_image"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </div></a>
+		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
          			<div> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{media.dewey}} &nbsp Ref. {{media.ref}}</div>
 		   		</li>
 			</ul>
