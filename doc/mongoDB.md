@@ -39,7 +39,7 @@ Nous avons d'abord deux schémas (users et livres) qui vérifie que les document
       <td>Tableau</td>
       <td>Contient la liste des rôles de l'utilisateur
       	<br> (différent du SQL pour le tableau !)
-      	<br> Par défaut l'user n'est qu'authentifié<td>
+      	<br> Par défaut l'user n'est qu'authentifié</td>
     </tr>
     <tr>
       <td>hashed_password</td>
