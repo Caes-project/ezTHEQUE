@@ -133,14 +133,25 @@ exports.show = function(req, res) {
  * List of Livres
  */
 exports.all = function(req, res) {
-    console.log(req.query);
-    Livre.find({ref : req.query.ref}).sort('-created').exec(function(err, livres) {
-        if (err) {
-            res.render('error', {
-                status: 500
-            });
-        } else {
-            res.jsonp(200, livres);
-        }
-    });
+    if(req.query.ref){
+        Livre.find({ref : req.query.ref}).sort('-created').exec(function(err, livres) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp(200, livres);
+            }
+        });
+    }else{
+        Livre.find().sort('-created').exec(function(err, livres) {
+            if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp(200, livres);
+            }
+        });
+    }
 };

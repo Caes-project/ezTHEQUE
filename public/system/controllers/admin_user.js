@@ -31,16 +31,18 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    };
 
 	    $scope.validerEmprunt = function(){
-	    	console.log($scope.refMedia);
+	    	console.log($scope.newlivre);
 	    };
 
 	    $scope.verifInput = function(){
-	    	console.log(Livres);
-	    	Livres.query({
-			    ref: $scope.refMedia
-			}, function(livre){
-				console.log(livre);
-				$scope.newlivre = livre[0];
-			});
+	    	if($scope.refMedia){
+		    	Livres.query({
+				    ref: $scope.refMedia
+				}, function(livre){
+					console.log(livre);
+					if(livre[0])
+					$scope.newlivre = livre[0];
+				});
+			}
 	    };
 }]);
