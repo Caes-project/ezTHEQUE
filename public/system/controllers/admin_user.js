@@ -7,7 +7,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		
 		$scope.date = new Date().toISOString().substring(0, 10);
 		// $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
-		$scope.date_fin = $scope.date;
+		$scope.date_fin = incr_date($scope.date);
 
 		if($scope.global.isAdmin){
 	       Users.findById({
