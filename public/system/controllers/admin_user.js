@@ -61,14 +61,14 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    };
 
 	    $scope.validerEmprunt = function(){
+	    	console.log('louer');
 	    	if($scope.newlivre){
 		        var livre = $scope.newlivre;
-	            var user = $scope.user;
 	            var newEmprunt;
-	            if(null){
+	            if(livre.emprunt.user){
 	                console.log('erreur livre déjà emprunté');
 	            }else{
-	                livre.emprunt.user = user._id;
+	                livre.emprunt.user = $scope.user._id;
 	                livre.emprunt.date_debut = $scope.date;
 	                livre.emprunt.date_fin = $scope.date_fin;
 	                newEmprunt = {
@@ -76,16 +76,46 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    date_debut : $scope.date,
 	                    date_fin : $scope.date_fin
 	                };
-	                user.emprunt.push(newEmprunt);
+	                $scope.user.emprunt.push(newEmprunt);
 	                // console.log(user);
-	                user.$update(function(response) {
-	                    livre.$update(function(response) {
-	                        $location.path('livres/' + response._id);
+                    livre.$update(function(response) {
+	                	$scope.user.$update(function(response) {
+	                        // $location.path('admin/users/' + response._id);
+	                        $scope.listeEmprunt.push(livre);
+	                        $scope.newlivre = null;
+	                        $scope.refMedia = null;
 	                    });
 	                });
 	            }
 	        }else{
 	           	console.log('lol');
+	        }
+        };
+
+        $scope.rendreLivre = function(livre) {
+        	if($scope.newlivre.emprunt._id !== $scope.user._id){
+        		console.log('TODO gros message d\'erreur');
+        	}else{
+	            console.log('rendre');
+	            livre.emprunt = {
+	                user: null,
+	                date_debut : null,
+	                date_fin : null
+	            };
+	            for(var i=0; i<$scope.user.emprunt.length; i++){
+	                if($scope.user.emprunt[i].id === livre._id){
+	                   $scope.user.emprunt.splice(i, 1);
+	                   $scope.listeEmprunt.splice(i,1);
+	                }
+	            }
+	            // console.log(user);
+	            $scope.user.$update(function(response){
+	                livre.$update(function(response) {
+	                    // $location.path('livres/' + response._id);
+	                    $scope.newlivre = null;
+	                    $scope.refMedia = null;
+	                });
+	            });
 	        }
         };
 

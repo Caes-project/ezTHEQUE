@@ -88,20 +88,29 @@ exports.saveImage = function(req, res) {
  * Update an livre
  */
 exports.update = function(req, res) {
-    var livre = req.livre;
+    console.log(req.body.emprunt.user);
+    if(req.body.emprunt.user && req.livre.emprunt.user || !req.body.emprunt.user && !req.livre.emprunt.user){
+        console.log('Error : le livre à déjà un emprunt');
+        return res.send(400,'/', {
+            errors: 'Error : le livre à déjà un emprunt'
+        });
+    }else{
+        console.log('update');
+        var livre = req.livre;
 
-    livre = _.extend(livre, req.body);
+        livre = _.extend(livre, req.body);
 
-    livre.save(function(err) {
-        if (err) {
-            return res.send(400,'users/signup', {
-                errors: err.errors,
-                livre: livre
-            });
-        } else {
-            res.jsonp(livre);
-        }
-    });
+        livre.save(function(err) {
+            if (err) {
+                return res.send(400,'users/signup', {
+                    errors: err.errors,
+                    livre: livre
+                });
+            } else {
+                res.jsonp(livre);
+            }
+        });
+    }
 };
 
 /**
