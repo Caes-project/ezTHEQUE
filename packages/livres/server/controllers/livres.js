@@ -52,6 +52,7 @@ exports.saveImage = function(req, res) {
     }
         livre.save(function(err) {
             if (err) {
+                console.log(err);
                 return res.send(400, {
                     errors: err.errors,
                     livre: livre
@@ -84,6 +85,56 @@ exports.saveImage = function(req, res) {
         });     
 };
 
+exports.edit = function(req, res) {
+    console.log('edit');
+    var livre;
+    console.log(req.params);
+    Livre.load(req.params.livreId, function(err, livre_) {
+        if(err){
+            console.log(err);
+        }else{
+            livre = livre_;
+            livre = _.extend(livre, req.body);
+            if(req.files.image.originalname !== null){
+                livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
+            }
+            livre.save(function(err) {
+                if (err) {
+                    console.log(err);
+                    return res.send(400, {
+                        errors: err.errors,
+                        livre: livre
+                    });
+                } else {
+                    console.log('livre updated',livre._id);
+                    // set where the file should actually exists - in this case it is in the "images" directory
+                    if(req.files.image.originalname !== null){
+                        var target_path = __dirname +'/../../../../public/upload/livres/' +req.files.image.originalname;
+                        //ERR 34 file doesn"t find ...
+                        fs.rename(req.files.image.path, target_path, function (err) {
+                          /*fs.writeFile(target_path, data, function (err) {*/
+                            if(err){
+                                console.log(err);
+                                res.send(500, 'Répertoire d\'upload indisponible');
+                            }else{
+                                // res.jsonp(livre);
+                                res.setHeader('Content-Type', 'text/html');
+                                res.status(200);
+                                res.redirect('/#!/livres/'+ livre._id);
+                            }
+                          /*});*/
+                        });
+                    }else{
+                        // res.jsonp(livre);
+                        res.setHeader('Content-Type', 'text/html');
+                        res.redirect('/#!/livres/'+ livre._id);
+                    }
+                }
+            });
+        }
+    });     
+};
+
 /**
  * Update an livre
  */
@@ -95,7 +146,6 @@ exports.update = function(req, res) {
             errors: 'Error : le livre à déjà un emprunt'
         });
     }else{
-        console.log('update');
         var livre = req.livre;
 
         livre = _.extend(livre, req.body);

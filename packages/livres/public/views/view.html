@@ -4,19 +4,22 @@
         <h2></h2>
         <div data-ng-if="hasAuthorization(livre)">
             <a class="btn" href="/#!/livres/{{livre._id}}/edit">
-                <i class="glyphicon glyphicon-edit"></i>
+                <i class="glyphicon glyphicon-edit"></i> modifier
             </a>
             <a class="btn" data-ng-click="remove(livre);">
-                <i class="glyphicon glyphicon-trash"></i>
+                <i class="glyphicon glyphicon-trash"></i> Supprimer
             </a>
         </div>
         <article data-ng-hide="!livre.lien_image" class="articleLivre"><img ng-src="{{livre.lien_image}}"  border="0" align="center" width=130 height=200> </article>
         <br/>
         <article class="articleLivre">code dewey : {{livre.dewey}}</article>
         <article class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
-        <a data-ng-hide="livre.emprunt.user" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"><i class="icon-white icon-book"></i> Emprunter</a>
-        <p data-ng-hide="!livre.emprunt.user"> Le livre est emprunté depuis le {{livre.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{livre.emprunt.date_fin | date: 'dd/MM/yyyy'}} </p>
-        <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white icon-book"></i> Rendre</a>
-        <a href="#" class="btn btn-primary btn-large"><i class="icon-white icon-book"></i> Réserver</a>
+        <a data-ng-hide="livre.emprunt.user" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"><i class="glyphicon-book"></i> Emprunter</a>
+        <a href="#" class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Réserver</a>
+        <hr data-ng-show="livre.emprunt.user"/>
+        <p data-ng-show="livre.emprunt.user">
+               Le livre est emprunté depuis le {{livre.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{livre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+        </p>
+        <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
     </div>
 </section>

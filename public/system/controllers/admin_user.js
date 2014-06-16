@@ -5,22 +5,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		
 		$scope.global = Global;
 		
-		$scope.date = new Date().toISOString().substring(0, 10);
-		// $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
-		$scope.date_fin = incr_date($scope.date);
-
-		if($scope.global.isAdmin){
-	       Users.findById({
-	            userId: $stateParams.userId
-	        },function(user){
-	            $scope.user = user;
-				$scope.getEmprunt();	    		
-	        });
-	    }
-
-	    $scope.listeEmprunt = [];
-
-
 	    function incr_date(date_str){
 		    var parts = date_str.split('-');
 		    var dt = new Date(
@@ -40,6 +24,23 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 			}
 			return parts.join('-');
 		}
+		
+		$scope.date = new Date().toISOString().substring(0, 10);
+		// $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
+		$scope.date_fin = incr_date($scope.date);
+
+		if($scope.global.isAdmin){
+	       Users.findById({
+	            userId: $stateParams.userId
+	        },function(user){
+	            $scope.user = user;
+				$scope.getEmprunt();	    		
+	        });
+	    }
+
+	    $scope.listeEmprunt = [];
+
+
 
 		//initialiaze le scope.emprunt
 	    $scope.getEmprunt = function(){
@@ -93,7 +94,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         };
 
         $scope.rendreLivre = function(livre) {
-        	if($scope.newlivre.emprunt._id !== $scope.user._id){
+        	if(livre.emprunt.user !== $scope.user._id){
         		console.log('TODO gros message d\'erreur');
         	}else{
 	            console.log('rendre');

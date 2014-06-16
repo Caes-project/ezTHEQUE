@@ -79,8 +79,16 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
             Livres.get({
                 livreId: $stateParams.livreId
             }, function(livre) {
+                console.log(livre);
                 $scope.livre = livre;
+                $scope.ref = livre.ref;
+                $scope.auteur = livre.auteur;
+                $scope.title = livre.title;
+                $scope.dewey =  livre.dewey;
+                $scope.date_acquis = livre.date_acquis;
+
             });
+
         };
 
         $scope.listeUsers = function(){
