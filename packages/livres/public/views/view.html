@@ -6,7 +6,7 @@
             <a class="btn" href="/#!/livres/{{livre._id}}/edit">
                 <i class="glyphicon glyphicon-edit"></i> modifier
             </a>
-            <a class="btn" data-ng-click="remove(livre);">
+            <a class="btn" data-ng-click="save_suppr()">
                 <i class="glyphicon glyphicon-trash"></i> Supprimer
             </a>
         </div>
@@ -22,4 +22,12 @@
         </p>
         <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
     </div>
+    <form class="form-inline" role="form">
+        <div data-ng-show='suppr' class="form-group">
+            <h3>Voulez-vous vraiment supprimer ce livre?</h3>
+            <button type="button" class="btn btn-primary" data-ng-click="remove(livre)">Yes</button>
+            <button type="button" class="btn btn-danger" data-ng-click="save()">No</button>
+        </div>
+    </form>
 </section>
+

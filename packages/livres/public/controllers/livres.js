@@ -4,6 +4,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
     function($scope,$stateParams, $location, Users, Global, Livres) {
         $scope.global = Global;
         // $scope.users = Users;
+        $scope.suppr = false;
         $scope.package = {
             name: 'livres'
         };
@@ -41,9 +42,20 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
         };
 
 
+        $scope.save = function(){
+            $scope.suppr = false;
+        }
+
+        $scope.save_suppr = function(){
+            $scope.suppr = true;
+        }
+
         $scope.remove = function(livre) {
             if (livre) {
-                livre.$remove();
+                console.log('ici');
+                livre.$remove(function(response) {
+                    $location.path('livres');
+                });
 
                 for (var i in $scope.livres) {
                     if ($scope.livres[i] === livre) {
@@ -51,6 +63,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                     }
                 }
             } else {
+                console.log('else');
                 $scope.livre.$remove(function(response) {
                     $location.path('livres');
                 });
