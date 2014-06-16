@@ -44,11 +44,11 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
 
         $scope.save = function(){
             $scope.suppr = false;
-        }
+        };
 
         $scope.save_suppr = function(){
             $scope.suppr = true;
-        }
+        };
 
         $scope.remove = function(livre) {
             if (livre) {
