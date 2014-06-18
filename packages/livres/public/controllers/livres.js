@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean').controller('LivresController', ['$scope', '$stateParams','$location','Users','Global', 'Livres', 
-    function($scope,$stateParams, $location, Users, Global, Livres) {
+angular.module('mean').controller('LivresController', ['$scope', '$http', '$stateParams','$location','Users','Global', 'Livres', 
+    function($scope,$http, $stateParams, $location, Users, Global, Livres) {
         $scope.global = Global;
         // $scope.users = Users;
         $scope.suppr = false;
@@ -174,5 +174,22 @@ angular.module('mean').controller('LivresController', ['$scope', '$stateParams',
                     });
             });
         };
+
+        $scope.recup_google = function(){
+            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre).
+                success(function(data, status, headers, config){
+                    console.log(data);
+                    $scope.data = data;
+                    //si le livre retourné est unique alors on prérempli les champs.
+                    if(data.items.length === 1){
+                        $scope.auteur = data.items[0].volumeInfo.authors[0];
+                        $scope.title = data.items[0].volumeInfo.title;
+                    }
+                }).
+                error(function(data, status, headers, config) {
+                    console.log('error ! errror !');
+                });
+        };
+
     }
 ]);

@@ -1,4 +1,16 @@
 <section data-ng-controller="LivresController">
+
+    <form class="form-horizontal col-md-6" role="form" data-ng-submit='recup_google()' name='formulaire'>
+        <input type='text' data-ng-model="code_barre" name='code_barre' placeholder="code barre" >
+          <button type="submit" class="btn btn-info" >Submit</button>
+        <!-- Affichage des résultats de google -->
+        <li data-ng-repeat="livre in data.items">
+            <h5> {{livre.volumeInfo.title}} </h5> 
+            <div data-ng-hide="!livre.volumeInfo.imageLinks.thumbnail"><img ng-src="{{livre.volumeInfo.imageLinks.thumbnail}}" border="0" align="center" width=80 height=130> </div>
+        </li>
+    </form>
+
+    <!-- Formulaire d'ajout manuel ! -->
     <form class="form-horizontal col-md-6" role="form" enctype="multipart/form-data" action="/livres/upload" method="post">
         <div class="form-group">
             <label mean-token="'create-ref'" class="col-md-3 control-label" for="ref" >Ref : </label>

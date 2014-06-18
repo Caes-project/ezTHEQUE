@@ -111,11 +111,9 @@ Comme on peux le voir on stock deux fois les informations lié au prêt. Il y a 
 
 ==== Pourquoi ce choix? ====
 
-J'ai choisi ceci car la duplication n'est génante que si des incohérence viennent se glisser dans la base, par contre les avantages en termes d'accès aux données sont très important !
+J'ai choisi ceci car la duplication n'est génante que si des incohérence viennent se glisser dans la base, par contre les avantages en termes d'accès aux données sont très importants !
 
 Un utilisateur dans la version actuelle de l'application peut consulter la liste des livres disponibles sur le site de la médiathèque et savoir s'ils sont empruntés et quand il seront normalement disponible. Ici avec notre schémas nous n'avons aucune requête de consultation vers la table prêt pour vérifier si le livre est disponible, nous le savons déjà.
-
-TODO autre avantages
 
 Par contre il faut vraiment faire attention à bien mettre à jours ensemble le livre et son emprunteur. Déjà l'utilisateur (Admin) ne peux pas bidouiller dans les tables et faire n'importe quoi. Il doit forcément passer par les formulaires de l'application pour gérer les emprunts. 
 Et pour être sur que les formulaires ont bien leur comportement souhaiter nous avons fait plusieurs tests avec [Karma](./test.md)
