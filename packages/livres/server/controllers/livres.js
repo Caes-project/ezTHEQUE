@@ -221,8 +221,8 @@ exports.show = function(req, res) {
  * List of Livres
  */
 exports.all = function(req, res) {
-    if(req.query.ref){
-        Livre.find({ref : req.query.ref}).sort('-created').exec(function(err, livres) {
+    if(req.query){
+        Livre.find(req.query).sort('-created').exec(function(err, livres) {
             if (err) {
                 res.render('error', {
                     status: 500

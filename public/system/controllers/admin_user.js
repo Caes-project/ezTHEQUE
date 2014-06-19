@@ -124,16 +124,24 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    $scope.verifInput = function(){
 	    	if($scope.refMedia){
 		    	Livres.query({
-				    ref: $scope.refMedia
-				}, function(livre){
-					console.log(livre);
+		    		code_barre : $scope.refMedia
+		    	},
+		    	function(livre){
 					if(livre[0]){
 						$scope.newlivre = livre[0];
 					}
 					else{
 						$scope.newlivre = null;
+						Livres.query({
+		    				ref: $scope.refMedia
+					    },
+					    function(livre){
+							if(livre[0]){
+								$scope.newlivre = livre[0];
+							}
+						});
 					}
-				});
-			}
+	    		});
+	    	}
 	    };
 }]);
