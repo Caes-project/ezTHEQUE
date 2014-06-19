@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     Livre = mongoose.model('Livre'),
     fs = require('fs'),
-    http = require('http'),
+    // http = require('http'),
+    request = require('request'),
     _ = require('lodash');
 
 
@@ -48,7 +49,7 @@ exports.saveImage = function(req, res) {
                     };
    
     if(req.body.img_google){
-        livre.lien_image = '/public/upload/livres/' + req.body.title + '_' +req.body.code_barre;
+        livre.lien_image = '/public/upload/livres/' + req.body.title + '_' +req.body.code_barre+'.jpg';
     }
     if(req.files.image.originalname !== null){
         livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
@@ -79,35 +80,31 @@ exports.saveImage = function(req, res) {
                       /*});*/
                     });
                 }else if(req.body.img_google){
-                    var targetpath = __dirname +'/../../../../public/upload/livres/' + req.body.title + '_' +req.body.code_barre;
+                    var targetpath = __dirname +'/../../../../public/upload/livres/' + req.body.title + '_' +req.body.code_barre+'.jpg';
                     var file = fs.createWriteStream(targetpath);
                     console.log(req.body.img_google);
                     var options = {
-                        host: 'proxyout.inist.fr:8080',
+                        method: 'GET',
+                        uri: req.body.img_google,
                         headers : {
                             'User-Agent': 'Mozilla/5.0'
                         },
-                        path : 'http://bks7.books.google.fr/books?id=gRHMygAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+                        jar: true,
+                        proxy : 'http://proxyout.inist.fr:8080'
                     };
                     // http.get(req.body.img_google, function(response){
-                    http.get(options, function(response){
-                        console.log('rep');
-                        response.pipe(file);
-                        file.on('finish', function(){
-                            file.close(function(){
-                                res.setHeader('Content-Type', 'text/html');
-                                res.status(200);
-                                res.redirect('/#!/livres/'+ livre._id);
-                            });
-                        });
-                    }).on('error', function(err) { // Handle errors
-                        if(err){
-                            console.log(err);
-                            fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
-                            res.send(500, 'Répertoire d\'upload indisponible');
-                        }
+                    // http.get(options, function(response){
+                    request(options)
+                    .pipe(file)
+                    .on('error', function () {
+                        console.log(err);
+                        fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
+                        res.send(500, 'Répertoire d\'upload indisponible');
+                    }).on('finish', function () {
+                        res.setHeader('Content-Type', 'text/html');
+                        res.status(200);
+                        res.redirect('/#!/livres/'+ livre._id);
                     });
-
                 }else{
                     // res.jsonp(livre);
                     res.setHeader('Content-Type', 'text/html');
