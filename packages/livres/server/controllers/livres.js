@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     Livre = mongoose.model('Livre'),
     fs = require('fs'),
+    http = require('http'),
     _ = require('lodash');
 
 
@@ -45,11 +46,14 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-    // console.log(req.body.date_acquis);
-    // console.log(req.files);
-    if(req.files.image.originalname !== null){
-         livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
+   
+    if(req.body.img_google){
+        livre.lien_image = '/public/upload/livres/' + req.body.title + '_' +req.body.code_barre;
     }
+    if(req.files.image.originalname !== null){
+        livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
+    }
+    console.log(livre);
         livre.save(function(err) {
             if (err) {
                 console.log(err);
@@ -58,8 +62,6 @@ exports.saveImage = function(req, res) {
                     livre: livre
                 });
             } else {
-                console.log('livre saved',livre._id);
-                // set where the file should actually exists - in this case it is in the "images" directory
                 if(req.files.image.originalname !== null){
                     var target_path = __dirname +'/../../../../public/upload/livres/' +req.files.image.originalname;
                     //ERR 34 file doesn"t find ...
@@ -76,6 +78,36 @@ exports.saveImage = function(req, res) {
                         }
                       /*});*/
                     });
+                }else if(req.body.img_google){
+                    var targetpath = __dirname +'/../../../../public/upload/livres/' + req.body.title + '_' +req.body.code_barre;
+                    var file = fs.createWriteStream(targetpath);
+                    console.log(req.body.img_google);
+                    var options = {
+                        host: 'proxyout.inist.fr:8080',
+                        headers : {
+                            'User-Agent': 'Mozilla/5.0'
+                        },
+                        path : 'http://bks7.books.google.fr/books?id=gRHMygAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+                    };
+                    // http.get(req.body.img_google, function(response){
+                    http.get(options, function(response){
+                        console.log('rep');
+                        response.pipe(file);
+                        file.on('finish', function(){
+                            file.close(function(){
+                                res.setHeader('Content-Type', 'text/html');
+                                res.status(200);
+                                res.redirect('/#!/livres/'+ livre._id);
+                            });
+                        });
+                    }).on('error', function(err) { // Handle errors
+                        if(err){
+                            console.log(err);
+                            fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
+                            res.send(500, 'Répertoire d\'upload indisponible');
+                        }
+                    });
+
                 }else{
                     // res.jsonp(livre);
                     res.setHeader('Content-Type', 'text/html');

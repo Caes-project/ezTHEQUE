@@ -26,6 +26,10 @@ var LivreSchema = new Schema({
         type: String,
         required: true
     },
+    code_barre: {
+        type: String,
+        required: true
+    },
     emprunt: {
         user: {
             type: Schema.ObjectId,
@@ -54,7 +58,19 @@ var LivreSchema = new Schema({
         type: Number,
         required: true,
         unique : true
-    }
+    },
+    historique: [{        
+        user: {
+            type: Schema.ObjectId,
+            ref: 'Livre'
+        },
+        date_debut: {
+            type: Date,
+        }, 
+        date_fin: {
+            type: Date,
+        }
+    }]
 });
 
 

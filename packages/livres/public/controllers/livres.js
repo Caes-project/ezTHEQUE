@@ -176,7 +176,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
         };
 
         $scope.recup_google = function(){
-            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre).
+            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
                 success(function(data, status, headers, config){
                     console.log(data);
                     $scope.data = data;
@@ -184,6 +184,8 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     if(data.items.length === 1){
                         $scope.auteur = data.items[0].volumeInfo.authors[0];
                         $scope.title = data.items[0].volumeInfo.title;
+                        $scope.code_barre = $scope.code_barre_recherche;
+                        $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
                     }
                 }).
                 error(function(data, status, headers, config) {
