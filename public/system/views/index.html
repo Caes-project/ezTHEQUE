@@ -12,10 +12,24 @@
 	<div data-ng-hide='global.isAdmin'>
 		 <article>
 		 	<h1> Bienvenue sur l'application de la médiathèque du CAES</h1>
-		 	<p data-ng-hide='global.authenticated'>
+		 	<p data-ng-hide='global.authenticated' style='font-size:16px'>
 		 		<br>
 		 		Pour accèder à la liste des médias ou a votre compte, connectez vous !
 		 	</p>
 		</article>
+		<br/>
+		 <article class="col-md-8">
+		 	<h4> Liste de vos emprunts en cours : </h4>
+        	<ul>
+		    	<li class="user_list" ng-repeat="media in listeEmprunt">
+		           <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
+		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+         			<div> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+		   		</li>
+			</ul>
+            <p ng-show='listeEmprunt.length === 0'>
+                Aucun emprunt en cours
+            </p>
+        </article>
 	</div>
 </section>

@@ -28,9 +28,11 @@ module.exports = function(app, passport) {
         .post(passport.authenticate('local', {
             failureFlash: true
         }), function(req, res) {
+            console.log(req.get('referer'));
             res.send({
                 user: req.user,
-                redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
+                // redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
+                redirect: req.get('referer')
             });
         });
 
