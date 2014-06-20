@@ -92,7 +92,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
             Livres.get({
                 livreId: $stateParams.livreId
             }, function(livre) {
-                console.log(livre);
                 $scope.livre = livre;
                 $scope.ref = livre.ref;
                 $scope.auteur = livre.auteur;
@@ -112,6 +111,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     $scope.users = users;
                 });
             }else{
+                //noob way just use a query instead of doing some shit :p
                 Users.me({
                     userId: $scope.global.user._id
                 }, function(user){
@@ -120,6 +120,21 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     $scope.selectedUser = user;
                 });
             }
+        };
+
+        $scope.getInfoUser = function(){
+            Livres.get({
+                livreId: $stateParams.livreId
+            }, function(livre) {
+                $scope.livre = livre;
+                if(livre.emprunt.user){
+                    Users.findById({
+                        userId : livre.emprunt.user
+                    }, function(user){
+                        $scope.user = user;
+                    });
+                }
+            });
         };
 
         $scope.validerEmprunt = function(){

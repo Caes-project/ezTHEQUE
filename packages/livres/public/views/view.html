@@ -1,4 +1,4 @@
-<section data-ng-controller="LivresController" data-ng-init="findOne()" class="sectionLivre">
+<section data-ng-controller="LivresController" data-ng-init="getInfoUser()" class="sectionLivre">
     <div class='container'> 
         <h2>{{livre.title}} écrit par : {{livre.auteur}}</h2>
         <h2></h2>
@@ -14,14 +14,21 @@
         <br/>
         <article class="articleLivre">code dewey : {{livre.dewey}}</article>
         <article class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
-        <a data-ng-hide="livre.emprunt.user" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"><i class="glyphicon-book"></i> Emprunter</a>
-        <a href="#" class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Réserver</a>
-        <hr data-ng-show="livre.emprunt.user"/>
-        <p data-ng-show="livre.emprunt.user">
-               Le livre est emprunté depuis le {{livre.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{livre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
-        </p>
-        <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
+        <a href="#" class="btn btn-primary btn-large"> Réserver</a>
+        <a data-ng-hide="livre.emprunt.user || !global.isAdmin" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"> Emprunter</a>
+      
+        <!-- Gestion admin  -->
+        <div ng-show='global.isAdmin'>
+            <hr data-ng-show="livre.emprunt.user"/>
+            <p data-ng-show="livre.emprunt.user">
+                   Le livre est emprunté par <a href='/#!/admin/users/{{user._id}}'>{{user.name}} </a> depuis le {{livre.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{livre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+            </p>
+            <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
+        </div>
     </div>
+
+
+    <!-- formulaire pour valider suppression -->
     <form class="form-inline" role="form">
         <div data-ng-show='suppr' class="form-group">
             <h3>Voulez-vous vraiment supprimer ce livre?</h3>
