@@ -36,6 +36,7 @@ describe('<Unit Test>', function() {
 
             user.save(function() {
                 livre = new Livre({
+                    code_barre: '9782070643028',
                     title: 'Livre Title',
                     auteur: 'new Mike',
                     emprunt : {
@@ -46,6 +47,7 @@ describe('<Unit Test>', function() {
                     ref: -1
                 });
                 livreExistant = new Livre({
+                    code_barre: '9782070643026',
                     title: 'Livre Title existant',
                     auteur: 'Mike here',
                     emprunt : {
@@ -56,6 +58,7 @@ describe('<Unit Test>', function() {
                     ref: -666
                 });
                 livreExistant2 = new Livre({
+                    code_barre: '9782070643027',
                     title: 'Livre Title existant2',
                     auteur: 'Mikey here',
                     ref: -667
