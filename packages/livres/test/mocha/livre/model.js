@@ -8,6 +8,8 @@ require('../../../server/models/livre');
  */
 var should = require('should'),
     mongoose = require('mongoose'),
+    request = require('request'),
+    fs = require('fs'),
     User = mongoose.model('User'),
     Livre = mongoose.model('Livre');
 
@@ -130,6 +132,32 @@ describe('<Unit Test>', function() {
                             });
                         });
                     });
+                });
+            });
+        });
+
+        describe('it should connect to google books', function(){
+            it('connect to google books api', function(done){
+                var targetpath = __dirname +'/../../../../../public/upload/livres/lol.jpg';
+                var file = fs.createWriteStream(targetpath);
+                var options = {
+                    method: 'GET',
+                    uri: 'https://www.googleapis.com/books/v1/volumes?q=isbn:9782070643028',
+                    headers : {
+                        'User-Agent': 'Mozilla/5.0'
+                    },
+                    jar: true,
+                    proxy : 'http://proxyout.inist.fr:8080'
+                };
+                request(options)
+                .pipe(file)
+                .on('error', function (err) {
+                    console.log(err);
+                    should.not.exist(err);
+                    fs.unlink(targetpath);
+                    
+                }).on('finish', function () {
+                    done();
                 });
             });
         });

@@ -96,7 +96,7 @@ exports.saveImage = function(req, res) {
                     // http.get(options, function(response){
                     request(options)
                     .pipe(file)
-                    .on('error', function () {
+                    .on('error', function (err) {
                         console.log(err);
                         fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
                         res.send(500, 'Répertoire d\'upload indisponible');
