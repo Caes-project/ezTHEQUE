@@ -1,9 +1,21 @@
 <section data-ng-controller="IndexController">
-    <h1 mean-token="'home-default'">Liste des utilisateurs</h1>
-    <input type='text' ng-model='searchUser' placeholder='Recherche' autofocus class='input_user'>
-    <ul>
-    	<li class="users_list" ng-repeat="user in users | orderBy:['-name', 'name'] | filter:searchUser">
-           <a data-ng-href="#!/admin/users/{{user._id}}">{{user.name}}</a>
-   		</li>
-	</ul>
+	<div data-ng-show='global.isAdmin'>
+	    <h1 mean-token="'home-default'">Liste des utilisateurs</h1>
+	    <input type='text' ng-model='searchUser' placeholder='Recherche' autofocus class='input_user'>
+	    <ul>
+	    	<li class="users_list" ng-repeat="user in users | orderBy:['-name', 'name'] | filter:searchUser">
+	           <a data-ng-href="#!/admin/users/{{user._id}}">{{user.name}}</a>
+	   		</li>
+		</ul>
+	</div>
+
+	<div data-ng-hide='global.isAdmin'>
+		 <article>
+		 	<h1> Bienvenue sur l'application de la médiathèque du CAES</h1>
+		 	<p data-ng-hide='global.authenticated'>
+		 		<br>
+		 		Pour accèder à la liste des médias ou a votre compte, connectez vous !
+		 	</p>
+		</article>
+	</div>
 </section>

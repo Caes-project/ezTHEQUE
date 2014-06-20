@@ -122,6 +122,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 
 	    $scope.verifInput = function(){
+	    	$scope.newlivre = null;
 	    	if($scope.refMedia){
 		    	Livres.query({
 		    		code_barre : $scope.refMedia

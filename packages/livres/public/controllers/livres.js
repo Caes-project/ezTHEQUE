@@ -181,7 +181,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     console.log(data);
                     $scope.data = data;
                     //si le livre retourné est unique alors on prérempli les champs.
-                    if(data.items.length === 1){
+                    if(!data.items){
+                        console.log('lo');
+                        $scope.status = 'Aucun livre trouvé !';
+                    }else if(data.items.length === 1){
                         $scope.auteur = data.items[0].volumeInfo.authors[0];
                         $scope.title = data.items[0].volumeInfo.title;
                         $scope.code_barre = $scope.code_barre_recherche;

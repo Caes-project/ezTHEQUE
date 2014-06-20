@@ -8,6 +8,12 @@
             <h5> {{livre.volumeInfo.title}} </h5> 
             <div data-ng-hide="!livre.volumeInfo.imageLinks.thumbnail"><img ng-src="{{livre.volumeInfo.imageLinks.thumbnail}}" border="0" align="center" width=80 height=130> </div>
         </li>
+        <br/>
+        <br/>
+        <div data-ng-show='status' class='error_mess'>
+            <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  {{status}}
+        </div>
+
     </form>
 
     <!-- Formulaire d'ajout manuel ! -->

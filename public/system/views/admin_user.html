@@ -20,8 +20,8 @@
              <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user !== user._id' class='error_mess'>
                 <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Livre déjà emprunté jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
              </div>
-             <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user === user._id' class='error_mess'>
-                <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  vous avez déjà emprunté ce média jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+             <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user === user._id' class='info_mess'>
+               Vous avez jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
              </div>
         </form>
         <article  class="col-md-8" >
