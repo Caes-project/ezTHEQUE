@@ -13,6 +13,8 @@ Comme dit ci-dessus il n'a pas de MCD avec mongo mais je vais vous présenter l'
 
 Nous avons d'abord deux schémas (users et livres) qui vérifient que les documents que l'on crée sont corrects.
 
+Table User
+
 <table>
     <tr>
         <th style="text-align:left;width:140px;">Champ</th>
@@ -57,12 +59,18 @@ Nous avons d'abord deux schémas (users et livres) qui vérifient que les docume
       <td>L'identifiant du livre emprunté</td>
     </tr>
     <tr>
-      <td>emprunt.date_debut et emprunt.date_fin</td>
+      <td>emprunt.date_debut</td>
       <td>Date</td>
-      <td>Date de début et fin de l'emprunt</td>
+      <td>Date de début</td>
+    </tr>
+    <tr>
+      <td>emprunt.date_fin</td>
+      <td>Date</td>
+      <td>Date de fin de l'emprunt</td>
     </tr>
 </table>
 
+Table Livres
 <table>
     <tr>
         <th style="text-align:left;width:140px;">Champ</th>
