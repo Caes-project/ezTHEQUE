@@ -1,17 +1,19 @@
 ##### Introduction #####
 
-MongoDB est une base de donnée de type noSQL (Not Only SQL) et plus précisement mongoDB est une base de donnée de type document.
-C'est à dire qu'elle stock des documents dans son propre format le BSON. 
-Le BSON est très proche du JSON il a des des fonctions de mongoDB rattaché en plus, comme la méthode save qui permet de faire une requête au serveur et de sauvegarder le document (ou le mettre à jour).
+MongoDB est une base de donnée de type noSQL (Not Only SQL), plus précisement de type document.
+C'est à dire qu'elle stocke des documents dans un format : BSON, qui lui est propre. 
+Le BSON est très proche du JSON. Il a des des fonctions de mongoDB rattaché en plus, par exemple, la méthode save permet de faire une requête au serveur et de sauvegarder le document (ou le mettre à jour).
 
-Donc avec mongoDB nous n'avons pas de MCD (modèle conceptuel des donnée) comme avec les base SQL classique. il y a bien sur des tables (appelé collection)
-Mais les collections différent des tables SQL. Les documents qui compose une collection peuvent contenir contrairement à SQL des tableaux, des listes. Chose impossible en SQl.
+Donc avec mongoDB nous n'avons pas de MCD (modèle conceptuel des donnée) comme avec les base SQL classique, même si il y a bien sur des tables (appelé collection)
+Les collections différent des tables SQL. Les documents qui composent une collection peuvent contenir contrairement à SQL des tableaux, des listes. Chose impossible en SQL.
 
 ##### MongoDB sur ezTHEQUE #####
 
 Comme dit ci-dessus il n'a pas de MCD avec mongo mais je vais vous présenter l'implémentation de mongo sur ezTHEQUE.
 
-Nous avons d'abord deux schémas (users et livres) qui vérifie que les documents que l'on créer son correct.
+Nous avons d'abord deux schémas (users et livres) qui vérifient que les documents que l'on crée sont corrects.
+
+Table User
 
 <table>
     <tr>
@@ -57,12 +59,18 @@ Nous avons d'abord deux schémas (users et livres) qui vérifie que les document
       <td>L'identifiant du livre emprunté</td>
     </tr>
     <tr>
-      <td>emprunt.date_debut et emprunt.date_fin</td>
+      <td>emprunt.date_debut</td>
       <td>Date</td>
-      <td>Date de début et fin de l'emprunt</td>
+      <td>Date de début</td>
+    </tr>
+    <tr>
+      <td>emprunt.date_fin</td>
+      <td>Date</td>
+      <td>Date de fin de l'emprunt</td>
     </tr>
 </table>
 
+Table Livres
 <table>
     <tr>
         <th style="text-align:left;width:140px;">Champ</th>
@@ -107,13 +115,13 @@ Nous avons d'abord deux schémas (users et livres) qui vérifie que les document
 </table>
 
 
-Comme on peux le voir on stock deux fois les informations lié au prêt. Il y a donc une duplication de donnée qu'il est important de comprendre afin de ne pas faire d'erreur. Il n'y a pas de 3ème "table" prêt par exemple qui ferait le lien entre un livre et son emprunteur.
+Comme on peux le voir on stocke deux fois les informations liées au prêt. Il y a donc une duplication de donnée qu'il est important de comprendre afin de ne pas faire d'erreur. Il n'y a pas de 3ème "table" prêt par exemple qui ferait le lien entre un livre et son emprunteur.
 
 ==== Pourquoi ce choix? ====
 
-J'ai choisi ceci car la duplication n'est génante que si des incohérence viennent se glisser dans la base, par contre les avantages en termes d'accès aux données sont très importants !
+J'ai choisi ceci car la duplication n'est génante que si des incohérences viennent se glisser dans la base, par contre les avantages en termes d'accès aux données sont très importants !
 
-Un utilisateur dans la version actuelle de l'application peut consulter la liste des livres disponibles sur le site de la médiathèque et savoir s'ils sont empruntés et quand il seront normalement disponible. Ici avec notre schémas nous n'avons aucune requête de consultation vers la table prêt pour vérifier si le livre est disponible, nous le savons déjà.
+Un utilisateur dans la version actuelle de l'application peut consulter la liste des livres disponibles sur le site de la médiathèque et savoir s'ils sont empruntés et quand il seront normalement disponibles. Ici avec notre schéma nous n'avons aucune requête de consultation vers la table prêt pour vérifier si le livre est disponible, nous le savons déjà.
 
-Par contre il faut vraiment faire attention à bien mettre à jours ensemble le livre et son emprunteur. Déjà l'utilisateur (Admin) ne peux pas bidouiller dans les tables et faire n'importe quoi. Il doit forcément passer par les formulaires de l'application pour gérer les emprunts. 
-Et pour être sur que les formulaires ont bien leur comportement souhaiter nous avons fait plusieurs tests avec [Karma](./test.md)
+Par contre il faut vraiment faire attention à bien mettre à jour ensemble le livre et son emprunteur. Déjà l'utilisateur (Admin) ne peux pas bidouiller dans les tables et faire n'importe quoi. Il doit forcément passer par les formulaires de l'application pour gérer les emprunts. 
+Et pour être sur que les formulaires ont bien leur comportement souhaité nous avons fait plusieurs tests avec [Karma](./test.md)
