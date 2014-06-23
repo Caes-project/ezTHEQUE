@@ -11,7 +11,7 @@ Les collections différent des tables SQL. Les documents qui composent une colle
 
 Comme dit ci-dessus il n'a pas de MCD avec mongo mais je vais vous présenter l'implémentation de mongo sur ezTHEQUE.
 
-Nous avons d'abord deux schémas (users et livres) qui vérifient que les documents que l'on créer son corrects.
+Nous avons d'abord deux schémas (users et livres) qui vérifient que les documents que l'on crée sont corrects.
 
 <table>
     <tr>
