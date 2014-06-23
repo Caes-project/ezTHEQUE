@@ -211,5 +211,14 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                 });
         };
 
+        $scope.date_diff = function(livre){
+            var today = new Date();
+            var fin = new Date(livre.emprunt.date_fin);
+            var diff = fin.getTime()- today.getTime();
+            diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var mess = 'Il reste ' + diff + ' avant le retour en rayon'; 
+            return mess;
+        };
+
     }
 ]);

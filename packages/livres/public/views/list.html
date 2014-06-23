@@ -7,7 +7,8 @@
                 <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
             </h3> 
              <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> </div>
-            <div> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</div>
+            <p> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</p>
+            <p ng-show="livre.emprunt.date_fin" ng-bind='date_diff(livre)'> </p>
         </li>
     </ul>
 </section>
