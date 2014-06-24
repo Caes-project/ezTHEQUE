@@ -28,7 +28,8 @@ var LivreSchema = new Schema({
     },
     code_barre: {
         type: String,
-        required: true
+        required: true,
+        unique : true
     },
     emprunt: {
         user: {
@@ -65,12 +66,21 @@ var LivreSchema = new Schema({
             ref: 'Livre'
         },
         date_debut: {
-            type: Date,
+            type: Date
         }, 
         date_fin: {
-            type: Date,
+            type: Date
         }
-    }]
+    }],
+    cote: {
+        type: String,
+        required : false
+    },
+    resume:{
+        type: String,
+        required : false
+    }
+
 });
 
 

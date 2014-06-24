@@ -216,9 +216,13 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
             var fin = new Date(livre.emprunt.date_fin);
             var diff = fin.getTime()- today.getTime();
             diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var mess = 'Il reste ' + diff + ' avant le retour en rayon'; 
+            var mess;
+            if(mess >= 0){
+                mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+            }else{
+                mess = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+            }
             return mess;
         };
-
     }
 ]);
