@@ -1,6 +1,7 @@
 <section data-ng-controller="LivresController" data-ng-init="getInfoUser()" class="sectionLivre">
     <div class='container'> 
-        <h2>{{livre.title}} écrit par : {{livre.auteur}}</h2>
+        <h1>{{livre.title}} </h1>
+        <h2>{{livre.auteur}}</h2>
         <h2></h2>
         <div data-ng-if="hasAuthorization(livre)">
             <a class="btn" href="/#!/livres/{{livre._id}}/edit">
@@ -10,10 +11,16 @@
                 <i class="glyphicon glyphicon-trash"></i> Supprimer
             </a>
         </div>
-        <article data-ng-hide="!livre.lien_image" class="articleLivre"><img ng-src="{{livre.lien_image}}"  border="0" align="center" width=130 height=200> </article>
+        <p data-ng-hide="!livre.lien_image" class="articleLivre">
+            <img ng-src="{{livre.lien_image}}" style='float: left' border="0" align="center" width=130 height=200 alt='couverture' /> 
+            <span class='col-md-5 text-justify' style='margin-left:25px' class=''>  {{livre.resume}} </span>
+        </p>
         <br/>
-        <article class="articleLivre">code dewey : {{livre.dewey}}</article>
-        <article class="articleLivre">Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}</article>
+        <p style='clear:both'>
+            Genre : {{livre.dewey}}
+            <br/>
+            Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}
+        </p>
         <a href="#" class="btn btn-primary btn-large"> Réserver</a>
         <a data-ng-hide="livre.emprunt.user || !global.isAdmin" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"> Emprunter</a>
 

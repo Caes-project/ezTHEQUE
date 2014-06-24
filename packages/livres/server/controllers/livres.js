@@ -47,7 +47,7 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-   
+    console.log(req.body);
     if(req.body.img_google){
         livre.lien_image = '/public/upload/livres/' + req.body.title + '_' +req.body.code_barre+'.jpg';
     }

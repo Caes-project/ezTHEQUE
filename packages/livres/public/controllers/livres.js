@@ -47,7 +47,11 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
         };
 
         $scope.save_suppr = function(){
-            $scope.suppr = true;
+            if($scope.livre.emprunt.user){
+                $scope.error=true;
+            }else{
+                $scope.suppr = true;
+            }
         };
 
         $scope.remove = function(livre) {
@@ -127,6 +131,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                 livreId: $stateParams.livreId
             }, function(livre) {
                 $scope.livre = livre;
+                console.log(livre);
                 if(livre.emprunt.user){
                     Users.findById({
                         userId : livre.emprunt.user
@@ -169,7 +174,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     userId: $scope.livre.emprunt.user
                 },
                  function(user_){
-                    console.log(JSON.stringify(user_));
                     user = user_;
                     livre.emprunt = {
                         user: null,
@@ -182,6 +186,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                         }
                     }
                     // console.log(user);
+                    $scope.error=false;
                     user.$update(function(response){
                         livre.$update(function(response) {
                             $location.path('livres/' + response._id);
@@ -199,11 +204,14 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     if(!data.items){
                         console.log('lo');
                         $scope.status = 'Aucun livre trouvé !';
+                        $scope.code_barre = $scope.code_barre_recherche;
                     }else if(data.items.length === 1){
                         $scope.auteur = data.items[0].volumeInfo.authors[0];
                         $scope.title = data.items[0].volumeInfo.title;
                         $scope.code_barre = $scope.code_barre_recherche;
                         $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                        $scope.resume = data.items[0].volumeInfo.description;
+                        $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
                     }
                 }).
                 error(function(data, status, headers, config) {
@@ -217,7 +225,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
             var diff = fin.getTime()- today.getTime();
             diff = Math.floor(diff / (1000 * 60 * 60 * 24));
             var mess;
-            if(mess >= 0){
+            if(diff >= 0){
                 mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
             }else{
                 mess = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 

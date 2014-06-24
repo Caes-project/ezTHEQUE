@@ -21,39 +21,51 @@
         <input type='text' data-ng-model="code_barre" name='code_barre' style='display:none'>
         <input type='text' data-ng-model="img_google" name='img_google' style='display:none'>
         <div class="form-group">
-            <label mean-token="'create-ref'" class="col-md-3 control-label" for="ref" >Ref : </label>
+            <label class="col-md-3 control-label" for="ref" >Ref : </label>
             <div class="col-md-9">
                 <input type='text' data-ng-model="ref" id="ref" name='ref' placeholder="ref" class="form-control" required>
             </div>
         </div> 
         <div class="form-group">
-            <label mean-token="'create-auteur'" for="auteur" class="col-md-3 control-label">Auteur</label>
+            <label for="auteur" class="col-md-3 control-label">Auteur</label>
             <div class="col-md-9">
                 <input type='text' data-ng-model="auteur" id="auteur" name='auteur' placeholder="Auteur" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
-            <label mean-token="'create-title'" class="col-md-3 control-label">Titre</label>
+            <label class="col-md-3 control-label">Titre</label>
             <div class="col-md-9">
                 <input type="text" class="form-control" name='title' data-ng-model="title" id="title" placeholder="Title" required>
             </div>
         </div>
         <div class="form-group">
-            <label mean-token="'create-dewey'" for="dewey" class="col-md-3 control-label">Genre</label>
+            <label class="col-md-3 control-label">Cote</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Cote" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dewey" class="col-md-3 control-label">Genre</label>
             <div class="col-md-9">
                 <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" >
             </div>
         </div>
         <div class="form-group">
-            <label mean-token="'create-date'" for="date" class="col-md-3 control-label">Date achat</label>
+            <label for="date" class="col-md-3 control-label">Date achat</label>
             <div class="col-md-9">
                 <input type='date' data-ng-model="date" id="date" name='date_acquis' placeholder="date" class="form-control" >
             </div>
         </div>
         <div class="form-group">
-            <label mean-token="'create-image'" for="image" class="col-md-3 control-label">Genre</label>
+            <label for="image" class="col-md-3 control-label">Couverture</label>
             <div class="col-md-9">
                 <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="resume" class="col-md-3 control-label">résumé</label>
+            <div class="col-md-9">
+                <textarea data-ng-model="resume" id="resume" name='resume' cols="30" rows="7" placeholder="resume" class="form-control"/> </textarea>
             </div>
         </div>
         <div class="form-group">
