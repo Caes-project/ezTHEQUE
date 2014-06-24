@@ -17,6 +17,13 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
                 	$scope.user = user;
                 	$scope.getEmprunt();	    		
                 });
+
+            Livres.query({
+
+            }, function(livres){
+                $scope.livre_dispo = livres.length;
+            });
+
     	}
 
 

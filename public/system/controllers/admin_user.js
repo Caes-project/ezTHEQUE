@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location','Users','Global', 'Livres', 
-    function($scope,$stateParams, $location, Users, Global, Livres) {
+angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 
+    function($scope,$stateParams, $location, $timeout, Users, Global, Livres) {
 		
 		$scope.global = Global;
 		
@@ -62,7 +62,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    };
 
 	    $scope.validerEmprunt = function(){
-	    	console.log('louer');
 	    	if($scope.newlivre){
 		        var livre = $scope.newlivre;
 	            var newEmprunt;
@@ -85,11 +84,14 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                        $scope.listeEmprunt.push(livre);
 	                        $scope.newlivre = null;
 	                        $scope.refMedia = null;
+	                        $scope.message_info = livre.title + ' est bien emprunté !';
+	                        $timeout(function(){
+	                        	console.log('lol');
+	                        	$scope.message_info =null;
+	                        }, 5000);
 	                    });
 	                });
 	            }
-	        }else{
-	           	console.log('lol');
 	        }
         };
 
@@ -115,6 +117,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    // $location.path('livres/' + response._id);
 	                    $scope.newlivre = null;
 	                    $scope.refMedia = null;
+	                    $scope.message_info = livre.title + ' est rendu !';
+	                        $timeout(function(){
+	                        	$scope.message_info =null;
+	                        }, 5000);
 	                });
 	            });
 	        }
