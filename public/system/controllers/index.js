@@ -42,7 +42,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
             var diff = fin.getTime()- today.getTime();
             diff = Math.floor(diff / (1000 * 60 * 60 * 24));
             var mess;
-            if(mess >= 0){
+            if(diff >= 0){
             	mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
             }else{
             	mess = 'Il y a' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
