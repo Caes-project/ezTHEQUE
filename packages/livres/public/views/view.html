@@ -1,4 +1,12 @@
 <section data-ng-controller="LivresController" data-ng-init="getInfoUser()" class="sectionLivre">
+  
+    <!-- Message de validation  -->
+    <article>
+        <div ng-show='message_info' class='info_mess_temp'>
+                {{message_info}}
+        </div>
+    </article>
+
     <div class='container'> 
         <h1>{{livre.title}} </h1>
         <h2>{{livre.auteur}}</h2>

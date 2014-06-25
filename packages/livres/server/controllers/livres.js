@@ -103,6 +103,7 @@ exports.saveImage = function(req, res) {
                     }).on('finish', function () {
                         res.setHeader('Content-Type', 'text/html');
                         res.status(200);
+                        res.cookie('info_mess', encodeURI('Livre créé avec succès !'));
                         res.redirect('/#!/livres/'+ livre._id);
                     });
                 }else{

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean').controller('LivresController', ['$scope', '$http', '$stateParams','$location','Users','Global', 'Livres', 
-    function($scope,$http, $stateParams, $location, Users, Global, Livres) {
+angular.module('mean').controller('LivresController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Livres', 
+    function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Livres) {
         $scope.global = Global;
         // $scope.users = Users;
         $scope.suppr = false;
@@ -116,6 +116,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                 });
             }else{
                 //noob way just use a query instead of doing some shit :p
+                //Also now it's unused
                 Users.me({
                     userId: $scope.global.user._id
                 }, function(user){
@@ -127,6 +128,11 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
         };
 
         $scope.getInfoUser = function(){
+            if($cookies.info_mess){
+                $scope.message_info=decodeURI($cookies.info_mess);
+            }else{
+                $scope.message_info = null;
+            }
             Livres.get({
                 livreId: $stateParams.livreId
             }, function(livre) {
@@ -140,6 +146,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$stat
                     });
                 }
             });
+            $timeout(function(){
+                $scope.message_info =null;
+                delete $cookies.info_mess;       
+            }, 5000);
         };
 
         $scope.validerEmprunt = function(){

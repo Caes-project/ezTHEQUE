@@ -86,7 +86,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                        $scope.refMedia = null;
 	                        $scope.message_info = livre.title + ' est bien emprunté !';
 	                        $timeout(function(){
-	                        	console.log('lol');
 	                        	$scope.message_info =null;
 	                        }, 5000);
 	                    });
