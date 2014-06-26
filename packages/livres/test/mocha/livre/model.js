@@ -38,7 +38,7 @@ describe('<Unit Test>', function() {
 
             user.save(function() {
                 livre = new Livre({
-                    code_barre: '9782070643028',
+                    code_barre: '97820706430280',
                     title: 'Livre Title',
                     auteur: 'new Mike',
                     emprunt : {
@@ -49,7 +49,7 @@ describe('<Unit Test>', function() {
                     ref: -1
                 });
                 livreExistant = new Livre({
-                    code_barre: '9782070643026',
+                    code_barre: '97820706430260',
                     title: 'Livre Title existant',
                     auteur: 'Mike here',
                     emprunt : {
@@ -60,7 +60,7 @@ describe('<Unit Test>', function() {
                     ref: -666
                 });
                 livreExistant2 = new Livre({
-                    code_barre: '9782070643027',
+                    code_barre: '97820706430270',
                     title: 'Livre Title existant2',
                     auteur: 'Mikey here',
                     ref: -667
@@ -147,7 +147,7 @@ describe('<Unit Test>', function() {
                         'User-Agent': 'Mozilla/5.0'
                     },
                     jar: true,
-                    proxy : 'http://proxyout.inist.fr:8080'
+                    proxy : process.env.PROXY || null
                 };
                 request(options)
                 .pipe(file)
