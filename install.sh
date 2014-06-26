@@ -75,6 +75,7 @@ else
 	./node_modules/bower/bin/bower --allow-root install wd=./ > /dev/null 2>&1 || (echo "$(tput setaf 1)echec$(tput sgr0) : execution du gestionnaire bower" && exit 1)
 	echo "$(tput setaf 2) ✓$(tput sgr0)"
 	echo -n "=> Test de fonctionnement de l'application"
+	export PROXY="http://$proxy_name:$proxy_port"
 	npm test > /dev/null 2>&1 || (echo "$(tput setaf 1)echec$(tput sgr0) : un ou plusieurs tests ont echoue")
 	echo "$(tput setaf 2) ✓$(tput sgr0)"
 	if [ -f "data_set.sh" ]
