@@ -150,4 +150,18 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    		});
 	    	}
 	    };
+
+	    $scope.date_diff = function(livre){
+            var today = new Date();
+            var fin = new Date(livre.emprunt.date_fin);
+            var diff = fin.getTime()- today.getTime();
+            diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var mess;
+            if(diff >= 0){
+            	mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+            }else{
+            	mess = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+            }
+            return mess;
+        };
 }]);
