@@ -90,7 +90,7 @@ exports.saveImage = function(req, res) {
                             'User-Agent': 'Mozilla/5.0'
                         },
                         jar: true,
-                        proxy : 'http://proxyout.inist.fr:8080'
+                        proxy : process.env.PROXY || null
                     };
                     // http.get(req.body.img_google, function(response){
                     // http.get(options, function(response){
