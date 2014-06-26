@@ -1,7 +1,28 @@
 <section data-ng-controller="IndexController" style="margin-left:60px">
+	
+	<!-- Index de l'admin  -->
+	<form role="form" class="form-horizontal" name='formulaire'>
+		<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus autofocus class='input_user' required ng-change="verifInput()">
+		 <!-- affichage en fonction du media trouvé -->
+		<a ng-if='!newlivre.emprunt.user && newlivre' type='submit' ng-href="/#!/livres/{{newlivre._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+		<a ng-if='!newlivre.emprunt.user && !newlivre' type='submit' class="btn btn-primary btn-sm"> emprunter</a> 
+	    <button ng-if='newlivre.emprunt.user' type='submit' ng-click='rendreLivre(newlivre)' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-book"></i> Rendre</button>
+    </form>
+     <!-- affichage du livre trouvé -->
+    <article>
+    	<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
+        <div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a>
+        	<span ng-show='emprunteur'> &nbsp&nbsp&nbsp emprunté par {{emprunteur.name}} </span>
+        </div>
+			<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}
+            <hr/>
+        </div>
+    </article>
+
+
 	<div data-ng-show='global.isAdmin'>
 	    <h1 mean-token="'home-default'">Liste des utilisateurs</h1>
-	    <input type='text' ng-model='searchUser' placeholder='Recherche' autofocus class='input_user'>
+	    <input type='text' ng-model='searchUser' placeholder='Recherche' class='input_user'>
 	    <ul>
 	    	<li class="users_list" ng-repeat="user in users | orderBy:['-name', 'name'] | filter:searchUser">
 	           <a data-ng-href="#!/admin/users/{{user._id}}">{{user.name}}</a>
@@ -9,6 +30,8 @@
 		</ul>
 	</div>
 
+
+	<!-- Index utilisateur normal -->
 	<div data-ng-hide='global.isAdmin'>
 		<article>
 		 	<h1> Bienvenue sur l'application de la médiathèque du CAES</h1>

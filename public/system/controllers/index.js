@@ -57,5 +57,69 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
             return mess;
         };
 
+        //maybe make hot the callbacks
+        $scope.verifInput = function(){
+            $scope.newlivre = null;
+            if($scope.refMedia){
+                Livres.query({
+                    code_barre : $scope.refMedia
+                },
+                function(livre){
+                    if(livre[0]){
+                        $scope.newlivre = livre[0];
+                        if($scope.newlivre.emprunt.user){
+                            Users.query({
+                                '_id' : $scope.newlivre.emprunt.user
+                            },function(users){
+                                $scope.emprunteur = users[0];
+                            })
+                        }
+                    }
+                    else{
+                        $scope.newlivre = null;
+                        Livres.query({
+                            ref: $scope.refMedia
+                        },
+                        function(livre){
+                            if(livre[0]){
+                                $scope.newlivre = livre[0];
+                                if($scope.newlivre.emprunt.user){
+                                    Users.query({
+                                        '_id' : $scope.newlivre.emprunt.user
+                                    },function(users){
+                                        $scope.emprunteur = users[0];
+                                    })
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        };
+
+
+        $scope.rendreLivre = function(livre) {
+            console.log('rendre');
+            livre.emprunt = {
+                user: null,
+                date_debut : null,
+                date_fin : null
+            };
+            for(var i=0; i<$scope.emprunteur.emprunt.length; i++){
+                if($scope.emprunteur.emprunt[i].id === livre._id){
+                   $scope.emprunteur.emprunt.splice(i, 1);
+                }
+            }
+            // console.log(user);
+            livre.$update(function(response) {
+                $scope.emprunteur.$update(function(response){
+                    Global.message_info = livre.title + ' est rendu !';
+                    $location.path('admin/users/' + $scope.emprunteur._id);
+                });
+            });
+           
+        };
+
+        
 
 }]);

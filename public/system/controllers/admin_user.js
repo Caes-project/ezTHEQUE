@@ -5,6 +5,14 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		
 		$scope.global = Global;
 		
+		if($scope.global.message_info){
+			$scope.message_info = $scope.global.message_info;
+			delete $scope.global.message_info;
+			$timeout(function(){
+            	$scope.message_info =null;
+            }, 5000);
+		}
+
 	    function incr_date(date_str){
 		    var parts = date_str.split('-');
 		    var dt = new Date(
