@@ -2,7 +2,7 @@
 	
 	<!-- Index de l'admin  -->
 	<form role="form" class="form-horizontal" name='formulaire'>
-		<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus autofocus class='input_user' required ng-change="verifInput()">
+		<input type='text' ng-model='refMedia' ng-show='global.isAdmin' placeholder='CodeBarre ou ref' ng-focus autofocus class='input_user' required ng-change="verifInput()">
 		 <!-- affichage en fonction du media trouvé -->
 		<a ng-if='!newlivre.emprunt.user && newlivre' type='submit' ng-href="/#!/livres/{{newlivre._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
 		<a ng-if='!newlivre.emprunt.user && !newlivre' type='submit' class="btn btn-primary btn-sm"> emprunter</a> 
