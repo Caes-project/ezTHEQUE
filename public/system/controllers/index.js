@@ -72,7 +72,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
                                 '_id' : $scope.newlivre.emprunt.user
                             },function(users){
                                 $scope.emprunteur = users[0];
-                            })
+                            });
                         }
                     }
                     else{
@@ -88,7 +88,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
                                         '_id' : $scope.newlivre.emprunt.user
                                     },function(users){
                                         $scope.emprunteur = users[0];
-                                    })
+                                    });
                                 }
                             }
                         });
