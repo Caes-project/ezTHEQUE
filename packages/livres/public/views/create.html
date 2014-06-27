@@ -1,23 +1,22 @@
 <section data-ng-controller="LivresController">
-    <br>
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit='recup_google()' name='formulaire'>
-        <input type='text' data-ng-model="code_barre_recherche" name='code_barre_recherche' placeholder="code barre" >
-          <button type="submit" class="btn btn-info" >Submit</button>
-        <!-- Affichage des résultats de google -->
-        <li data-ng-repeat="livre in data.items">
-            <h5> {{livre.volumeInfo.title}} </h5> 
-            <div data-ng-hide="!livre.volumeInfo.imageLinks.thumbnail"><img ng-src="{{livre.volumeInfo.imageLinks.thumbnail}}" border="0" align="center" width=80 height=130> </div>
-        </li>
-        <br/>
-        <br/>
-        <div data-ng-show='status' class='error_mess'>
-            <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  {{status}}
-        </div>
-
-    </form>
-
+     <br>
     <!-- Formulaire d'ajout manuel ! -->
-    <form class="form-horizontal col-md-6" role="form" enctype="multipart/form-data" action="/livres/upload" method="post">
+    <div class="row">
+        <form class='form-horizontal col-md-9' style='margin-left:-60px'role="form" data-ng-submit='recup_google()' name='formulaire'>
+             <div class="form-group">
+                 <label class="col-md-3 control-label">Code barre :</label>
+                 <div class="col-md-6">
+                    <input class="form-control" type='text' data-ng-model="code_barre_recherche" name='code_barre_recherche' placeholder="code barre" >
+                 </div>
+                 <div class="col-md-1">
+                     <button type="submit" class="btn btn-info">Chercher</button>
+                 </div>
+             </div>
+        </form>
+        
+    </div>
+    <div class="row">
+    <form class="form-horizontal col-md-6"  role="form" enctype="multipart/form-data" action="/livres/upload" method="post">
         <input type='text' data-ng-model="code_barre" name='code_barre' style='display:none'>
         <input type='text' data-ng-model="img_google" name='img_google' style='display:none'>
         <div class="form-group">
@@ -73,8 +72,27 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
-                <button type="submit" class="btn btn-info" >Submit</button>
+                <button type="submit" class="btn btn-info" >Valider</button>
             </div>
         </div>
     </form>
+    <!-- Affichage des résultats de google -->
+        <div class='col-md-5 col-md-offset-1' style='position:relative'>
+            <li data-ng-repeat="livre in data.items">
+                <h3 class='lato-font'> {{livre.volumeInfo.title}} </h3>
+                <br> 
+                <div data-ng-hide="!livre.volumeInfo.imageLinks.thumbnail"><img ng-src="{{livre.volumeInfo.imageLinks.thumbnail}}" border="0" align="center" width=130 height=200> </div>
+            </li>
+            <div data-ng-show='status' class='error_mess'>
+                <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  {{status}}
+            </div>
+        </div>
+</div>
+    
+
+
+    
+
+
+
 </section>

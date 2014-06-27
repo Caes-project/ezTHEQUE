@@ -2,14 +2,13 @@
   
     <!-- Message de validation  -->
     <article>
-        <div ng-show='message_info' class='info_mess_temp'>
+        <div ng-show='message_info' class='info_mess_temp lato-font'>
                 {{message_info}}
         </div>
     </article>
 
-    <div class='container'> 
-        <h1>{{livre.title}} </h1>
-        <h2>{{livre.auteur}}</h2>
+    <div class='container' class='lato-font'> 
+        <h1 class='lato-font-title'>{{livre.title}} <small> {{livre.auteur}}</small></h1>
         <h2></h2>
         <div data-ng-if="hasAuthorization(livre)">
             <a class="btn" href="/#!/livres/{{livre._id}}/edit">
@@ -21,10 +20,10 @@
         </div>
         <p data-ng-hide="!livre.lien_image" class="articleLivre">
             <img ng-src="{{livre.lien_image}}" style='float: left' border="0" align="center" width=130 height=200 alt='couverture' /> 
-            <span class='col-md-5 text-justify' style='margin-left:25px' class=''>  {{livre.resume}} </span>
+            <span class='col-md-5 text-justify lato-font' style='margin-left:25px;'>  {{livre.resume}} </span>
         </p>
         <br/>
-        <p style='clear:both'>
+        <p style='clear:both' class='lato-font'>
             Genre : {{livre.dewey}}
             <br/>
             Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}
@@ -36,7 +35,7 @@
         <!-- vu du prêt par un user normal -->
         <div ng-hide='global.isAdmin'>
             <hr data-ng-show="livre.emprunt.user"/>
-            <p data-ng-show="livre.emprunt.user">
+            <p data-ng-show="livre.emprunt.user" class='lato-font'>
                    Le livre est emprunté depuis le {{livre.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{livre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
             </p>
         </div>
@@ -44,7 +43,7 @@
         <!-- Gestion admin  -->
         <div ng-show='global.isAdmin'>
             <hr data-ng-show="livre.emprunt.user"/>
-            <p data-ng-show="livre.emprunt.user">
+            <p data-ng-show="livre.emprunt.user" class='lato-font'>
                    Le livre est emprunté par <a href='/#!/admin/users/{{user._id}}'>{{user.name}} </a> depuis le {{livre.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{livre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
             </p>
             <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
