@@ -39,15 +39,18 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Cote</label>
+            <label class="col-md-3 control-label">Rayonnage</label>
             <div class="col-md-9">
-                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Cote" required>
+                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage" required>
             </div>
         </div>
         <div class="form-group">
             <label for="dewey" class="col-md-3 control-label">Genre</label>
             <div class="col-md-9">
-                <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" >
+                <!-- <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" > -->
+                <select class="form-control" ng-model='dewey' name="dewey" size="1" ng-options="genre as genre for genre in genre_liste_livre" required>
+                    <option value="" disabled selected>Choix genre</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

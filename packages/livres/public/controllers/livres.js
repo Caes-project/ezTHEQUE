@@ -10,6 +10,8 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         };
         $scope.date = new Date().toISOString().substring(0, 10);
 
+        $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
+
         $scope.hasAuthorization = function(livre) {
             if (!livre) return false;
             return $scope.global.isAdmin;
