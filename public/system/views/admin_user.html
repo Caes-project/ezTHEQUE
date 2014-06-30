@@ -1,60 +1,68 @@
 <section data-ng-controller="UsersAdminController" class="sectionLivre">
-    <div class='container'> 
-        <h2>{{user.name}}</h2>
-        <form role="form" class="form-horizontal col-md-6" name='formulaire'>
-        	<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='input_user' required ng-change="verifInput()">
-           
-            <!-- affichage en fonction du media trouvé -->
-            <div class="form-group" ng-show="newlivre && !newlivre.emprunt.user">
-                <label for="date" class="col-md-4 control-label">Début du prêt :</label>
-                <div class="col-md-6">
-                    <input type='date' data-ng-model="date" name='date_début' placeholder="date" class="form-control" required ng-change="onChangeDate()">
+    <div class="row">
+        <div class='container'> 
+            <h2>Administration de l'utilisateur : {{user.name}}</h2>
+            <br>
+            <form role="form" class="form-horizontal col-md-6" name='formulaire'>
+            	<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='input_user' required ng-change="verifInput()">
+               
+                <button ng-if='!newlivre.emprunt.user' type='submit' ng-click='validerEmprunt()' class="btn btn-primary btn-sm"> Valider</button> 
+                <button ng-if='newlivre.emprunt.user === user._id' type='submit' ng-click='rendreLivre(newlivre)' class="btn btn-primary btn-sm"><i class="icon-white icon-book"></i> Rendre</button>
+                <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user !== user._id' class='error_mess'>
+                    <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Livre déjà emprunté jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
                 </div>
-            </div>
-            <div class="form-group" ng-show="newlivre && !newlivre.emprunt.user">
-                <label for="date" class="col-md-4 control-label">Fin du prêt :</label>
-                <div class="col-md-6">
-                    <input type='date' data-ng-model="date_fin" name='date_fin' placeholder="date" class="form-control" required>
+                <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user === user._id' class='info_mess'>
+                   Vous avez jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
                 </div>
-            </div>
-        	<button ng-if='!newlivre.emprunt.user' type='submit' ng-click='validerEmprunt()' class="btn btn-primary btn-sm"> Valider</button> 
-            <button ng-if='newlivre.emprunt.user === user._id' type='submit' ng-click='rendreLivre(newlivre)' class="btn btn-primary btn-sm"><i class="icon-white icon-book"></i> Rendre</button>
-            <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user !== user._id' class='error_mess'>
-                <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Livre déjà emprunté jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
-            </div>
-            <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user === user._id' class='info_mess'>
-               Vous avez jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
-            </div>
 
-            <!-- Message de validation  -->
-            <article>
-                <div ng-show='message_info' class='info_mess_temp'>
-                        {{message_info}}
-                </div>
-            </article>
-        </form>
-
-        <!-- affichage du livre trouvé -->
-        <article  class="col-md-8" >
-        	<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
-            <div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
- 			<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}
-                <hr/>
-            </div>
-        </article>
+                <!-- Message de validation  -->
+                <article>
+                    <div ng-show='message_info' class='info_mess_temp'>
+                            {{message_info}}
+                    </div>
+                </article>
+            </form>
+        </div> 
+    </div> 
 
         <!-- liste des emprunts de l'utilisateurs  -->
-        <article class="col-md-8">
-        	<ul>
-		    	<li class="user_list" ng-repeat="media in listeEmprunt">
-		           <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
-		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-         			<div> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+        <article class="col-md-6">
+            <ul>
+                <li class="user_list" ng-repeat="media in listeEmprunt">
+                   <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
+                    <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+                    <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
                     <p ng-show="media.emprunt.date_fin" ng-bind='date_diff(media)'> </p>    
                 </li>
             </ul>
             <p ng-show='listeEmprunt.length === 0'>
                 Aucun emprunt en cours
             </p>
+        </article>
+
+        <!-- affichage du livre trouvé -->
+        <article  class="col-md-5 col-md-offset-1" >
+            <div class="row">
+
+                </div>
+                <h3><div ng-show="newlivre"> {{newlivre.auteur}}<small><br><a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a></small></h3>
+                <div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+                <div ng-show="newlivre">  Genre:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}} </div>
+            </div>
+            <div class="row">
+            <!-- affichage en fonction du media trouvé -->
+                <div class="form-group" ng-show="newlivre && !newlivre.emprunt.user">
+                    <label for="date" class="col-md-8 control-label">Début du prêt :</label>
+                    <div class="col-md-8">
+                        <input type='date' data-ng-model="date" name='date_début' placeholder="date" class="form-control" required ng-change="onChangeDate()">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="newlivre && !newlivre.emprunt.user">
+                    <label for="date" class="col-md-8 control-label">Fin du prêt :</label>
+                    <div class="col-md-8">
+                        <input type='date' data-ng-model="date_fin" name='date_fin' placeholder="date" class="form-control" required>
+                    </div>
+                </div>
+            </div>
         </article>
 </section>
