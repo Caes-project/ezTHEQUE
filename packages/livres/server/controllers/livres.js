@@ -47,14 +47,12 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-    console.log(req.body);
     if(req.body.img_google){
-        livre.lien_image = '/public/upload/livres/' + req.body.title + '_' +req.body.code_barre+'.jpg';
+        livre.lien_image = '/public/upload/livres/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
     }
     if(req.files.image.originalname !== null){
         livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
     }
-    console.log(livre);
         livre.save(function(err) {
             if (err) {
                 console.log(err);
@@ -80,9 +78,8 @@ exports.saveImage = function(req, res) {
                       /*});*/
                     });
                 }else if(req.body.img_google){
-                    var targetpath = __dirname +'/../../../../public/upload/livres/' + req.body.title + '_' +req.body.code_barre+'.jpg';
+                    var targetpath = __dirname +'/../../../../public/upload/livres/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
                     var file = fs.createWriteStream(targetpath);
-                    console.log(req.body.img_google);
                     var options = {
                         method: 'GET',
                         uri: req.body.img_google,
@@ -116,7 +113,6 @@ exports.saveImage = function(req, res) {
 };
 
 exports.edit = function(req, res) {
-    console.log('edit');
     var livre;
     console.log(req.params);
     Livre.load(req.params.livreId, function(err, livre_) {
@@ -169,7 +165,6 @@ exports.edit = function(req, res) {
  * Update an livre
  */
 exports.update = function(req, res) {
-    console.log(req.body.emprunt.user);
     if(req.body.emprunt.user && req.livre.emprunt.user || !req.body.emprunt.user && !req.livre.emprunt.user){
         console.log('Error : le livre à déjà un emprunt');
         return res.send(400,'/', {
