@@ -32,7 +32,7 @@
                    <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
                     <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
                     <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
-                    <p ng-show="media.emprunt.date_fin" ng-bind='date_diff(media)'> </p>    
+                    <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff_color(media)}' ng-bind='date_diff(media)'> </p>    
                 </li>
             </ul>
             <p ng-show='listeEmprunt.length === 0'>

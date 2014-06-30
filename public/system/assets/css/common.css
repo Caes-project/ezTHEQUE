@@ -107,6 +107,11 @@ footer p {
    font-family : Lato;
    color : grey;
 }
+
+.lato-font-retard{
+   font-family : Lato;
+   color : red;
+}
 .lato-font-title{
    font-family : Lato;
 }

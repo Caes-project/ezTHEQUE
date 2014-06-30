@@ -244,5 +244,19 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
             }
             return mess;
         };
+
+        $scope.date_diff_color = function(livre){
+            var today = new Date();
+            var fin = new Date(livre.emprunt.date_fin);
+            var diff = fin.getTime()- today.getTime();
+            diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var retard;
+            if(diff >= 0){
+                retard = 0;
+            }else{
+                retard = 1;
+            }
+            return retard;
+        };
     }
 ]);

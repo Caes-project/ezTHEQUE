@@ -8,7 +8,7 @@
             </h3> 
              <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> </div>
             <p class='lato-font-title'> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</p>
-            <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-bind='date_diff(livre)'> </p>
+            <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff_color(livre)}' ng-bind='date_diff(livre)'> </p>
         </li>
     </ul>
 </section>
