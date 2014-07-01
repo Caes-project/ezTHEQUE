@@ -221,8 +221,15 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                         $scope.auteur = data.items[0].volumeInfo.authors[0];
                         $scope.title = data.items[0].volumeInfo.title;
                         $scope.code_barre = $scope.code_barre_recherche;
-                        $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                        $scope.resume = data.items[0].volumeInfo.description;
+                        if(data.items[0].volumeInfo.imageLinks){
+                            $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                        }else{
+                            $scope.status = 'Aucune couverture dans les données renvoyées par Google';
+                        }
+                        $scope.lien_livre = data.items[0].volumeInfo;
+                        if(data.items[0].volumeInfo.description){
+                            $scope.resume = data.items[0].volumeInfo.description;
+                        }   
                         $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
                     }
                 }).
@@ -233,30 +240,28 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
         $scope.date_diff = function(livre){
             var today = new Date();
+            if(!livre.emprunt.date_fin){
+                return 1;
+            }
             var fin = new Date(livre.emprunt.date_fin);
             var diff = fin.getTime()- today.getTime();
             diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var mess;
+            var res = {};
             if(diff >= 0){
-                mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+                res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+                res.retard = 0;
             }else{
-                mess = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+                res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+                res.retard = 1;
             }
-            return mess;
+            return res;
         };
 
-        $scope.date_diff_color = function(livre){
-            var today = new Date();
-            var fin = new Date(livre.emprunt.date_fin);
-            var diff = fin.getTime()- today.getTime();
-            diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var retard;
-            if(diff >= 0){
-                retard = 0;
-            }else{
-                retard = 1;
-            }
-            return retard;
+        $scope.Initref = function(){
+            Livres.getMaxRef(function(livre){
+                console.log(livre);
+                $scope.ref = livre.ref + 1;
+            });
         };
     }
 ]);

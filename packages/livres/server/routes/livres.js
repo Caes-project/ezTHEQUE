@@ -41,6 +41,8 @@ module.exports = function(Livres, app, auth, database) {
         });
     });
 
+    app.route('/livres/getMaxRef')
+        .get(auth.requiresAdmin, livres.getMaxRef);
     app.route('/livres/:livreId/emprunt')
         .post(auth.requiresLogin, livres.update);
     app.route('/livres/upload')

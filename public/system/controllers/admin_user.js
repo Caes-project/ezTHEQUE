@@ -4,7 +4,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     function($scope,$stateParams, $location, $timeout, Users, Global, Livres) {
 		
 		$scope.global = Global;
-		
+		$scope.listeModif = [];		
 		if($scope.global.message_info){
 			$scope.message_info = $scope.global.message_info;
 			delete $scope.global.message_info;
@@ -90,9 +90,11 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                	$scope.user.$update(function(response) {
 	                        // $location.path('admin/users/' + response._id);
 	                        $scope.listeEmprunt.push(livre);
+	                        $scope.dernierlivre = $scope.newlivre;
 	                        $scope.newlivre = null;
 	                        $scope.refMedia = null;
 	                        $scope.message_info = livre.title + ' est bien emprunté !';
+	                        $scope.listeModif.push({'title' : livre.title,'type' : 'new'});
 	                        $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -106,7 +108,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	if(livre.emprunt.user !== $scope.user._id){
         		console.log('TODO gros message d\'erreur');
         	}else{
-	            console.log('rendre');
 	            livre.emprunt = {
 	                user: null,
 	                date_debut : null,
@@ -115,6 +116,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            for(var i=0; i<$scope.user.emprunt.length; i++){
 	                if($scope.user.emprunt[i].id === livre._id){
 	                   $scope.user.emprunt.splice(i, 1);
+	                }
+	                if($scope.listeEmprunt[i]._id === livre._id){  
 	                   $scope.listeEmprunt.splice(i,1);
 	                }
 	            }
@@ -122,10 +125,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            $scope.user.$update(function(response){
 	                livre.$update(function(response) {
 	                    // $location.path('livres/' + response._id);
+	                    $scope.dernierlivre = $scope.newlivre;
 	                    $scope.newlivre = null;
 	                    $scope.refMedia = null;
 	                    $scope.message_info = livre.title + ' est rendu !';
-	                        $timeout(function(){
+	                    $scope.listeModif.push({'title' : livre.title, 'type' : 'old'});
+	                    $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
 	                });
@@ -135,55 +140,56 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 
 	    $scope.verifInput = function(){
-	    	$scope.newlivre = null;
-	    	if($scope.refMedia){
-		    	Livres.query({
-		    		code_barre : $scope.refMedia
-		    	},
-		    	function(livre){
+		    $scope.newlivre = null;
+	    	if($scope.refMedia.length > 8){
+	    		if($scope.refMedia){
+			    	Livres.query({
+			    		code_barre : $scope.refMedia
+			    	},
+			    	function(livre){
+						if(livre[0]){
+							$scope.newlivre = livre[0];
+							if(livre[0].emprunt.user === $scope.user._id){
+								$scope.rendreLivre(livre[0]);
+								$scope.refMedia = null;
+							}else{
+								$scope.validerEmprunt();
+								$scope.refMedia = null;
+							}
+						}
+					});
+				}
+			}	 
+		    else{
+				$scope.newlivre = null;
+				Livres.query({
+					ref: $scope.refMedia
+			    },
+			    function(livre){
 					if(livre[0]){
 						$scope.newlivre = livre[0];
 					}
-					else{
-						$scope.newlivre = null;
-						Livres.query({
-		    				ref: $scope.refMedia
-					    },
-					    function(livre){
-							if(livre[0]){
-								$scope.newlivre = livre[0];
-							}
-						});
-					}
-	    		});
-	    	}
+				});
+			}
 	    };
 
-	    $scope.date_diff = function(livre){
+	   $scope.date_diff = function(livre){
             var today = new Date();
+            if(!livre.emprunt.date_fin){
+                return 1;
+            }
             var fin = new Date(livre.emprunt.date_fin);
             var diff = fin.getTime()- today.getTime();
             diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var mess;
+            var res = {};
             if(diff >= 0){
-            	mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+                res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+                res.retard = 0;
             }else{
-            	mess = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+                res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+                res.retard = 1;
             }
-            return mess;
+            return res;
         };
 
-        $scope.date_diff_color = function(livre){
-            var today = new Date();
-            var fin = new Date(livre.emprunt.date_fin);
-            var diff = fin.getTime()- today.getTime();
-            diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-            var retard;
-            if(diff >= 0){
-            	retard = 0;
-            }else{
-            	retard = 1;
-            }
-            return retard;
-        };
 }]);

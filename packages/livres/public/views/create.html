@@ -20,9 +20,9 @@
         <input type='text' data-ng-model="code_barre" name='code_barre' style='display:none'>
         <input type='text' data-ng-model="img_google" name='img_google' style='display:none'>
         <div class="form-group">
-            <label class="col-md-3 control-label" for="ref" >Ref : </label>
+            <label class="col-md-3 control-label" for="ref" ng-init='Initref()'>Ref : </label>
             <div class="col-md-9">
-                <input type='text' data-ng-model="ref" id="ref" name='ref' placeholder="ref" class="form-control" required>
+                <input type='text' data-ng-model="ref" id="ref" name='ref' placeholder="ref" class="form-control" readonly="readonly">
             </div>
         </div> 
         <div class="form-group">
@@ -47,8 +47,9 @@
             <label for="dewey" class="col-md-3 control-label">Genre</label>
             <div class="col-md-9">
                 <!-- <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" > -->
-                <select class="form-control" ng-model='dewey' name="dewey" size="1" ng-options="genre as genre for genre in genre_liste_livre" required>
-                    <option value="" disabled selected>Choix genre</option>
+                <select class="form-control" ng-model='dewey' name="dewey" size="1" required>
+                    <option value='' > Choix genre </option>
+                    <option value="{{genre}}" ng-repeat="genre in genre_liste_livre">{{genre}}</option>
                 </select>
             </div>
         </div>
@@ -84,7 +85,8 @@
                 <div data-ng-hide="!livre.volumeInfo.imageLinks.thumbnail"><img ng-src="{{livre.volumeInfo.imageLinks.thumbnail}}" border="0" align="center" width=130 height=200> </div>
             </li>
             <div data-ng-show='status' class='error_mess'>
-                <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  {{status}}
+                <img src="/public/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  
+                {{status}}
             </div>
         </div>
 </div>

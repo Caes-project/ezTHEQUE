@@ -42,6 +42,7 @@ exports.create = function(req, res) {
 
 exports.saveImage = function(req, res) {
     var livre = new Livre(req.body);
+    console.log(livre);
     livre.emprunt = {
                         user: null,
                         date_debut : null,
@@ -238,4 +239,16 @@ exports.all = function(req, res) {
             }
         });
     }
+};
+
+exports.getMaxRef = function(req, res){
+    Livre.find({}, {ref:1, _id:0}).sort({ref:-1}).limit(1).exec(function(err, livre){
+         if (err) {
+                res.render('error', {
+                    status: 500
+                });
+            } else {
+                res.jsonp(200, livre[0]);
+            }
+    });
 };

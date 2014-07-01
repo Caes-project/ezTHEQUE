@@ -116,6 +116,13 @@ footer p {
    font-family : Lato;
 }
 
+.divGrisClair{
+  background:rgb(255,255,255);
+  background:rgba(160,160,160,0.2);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 @-webkit-keyframes info_mess_anim {
   0%   { opacity: 1; }
   100% { opacity: 0; }
