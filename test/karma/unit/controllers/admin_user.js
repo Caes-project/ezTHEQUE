@@ -175,6 +175,9 @@
                 // mock livre in scope
                 scope.newlivre = livre;
                 scope.user = user;
+                scope.listeEmprunt = [];
+                scope.listeEmprunt.push(livre);
+
                 // test PUT happens correctly
                 // $httpBackend.expectPUT(/livres\/([0-9a-fA-F]{24})$/).respond();
                 // $httpBackend.expectPOST('livres/upload', postLivreData()).respond(responseLivreData());
