@@ -98,6 +98,7 @@ else
 	chown -R $SUDO_USER . > /dev/null 2>&1 || (echo "$(tput setaf 1)echec$(tput sgr0) : changement de proprietaire" && exit 1)
 	echo "$(tput setaf 2) ✓$(tput sgr0)"	
 	echo "L'installation et tous les tests sont reussis."
-	echo "Vous pouvez des maintenant utiliser ezTHEQUE, faites \"cd ezTHEQUE\" puis la commande \"./node_modules/.bin/grunt\" dans le dossier de l'application."
+	echo "Vous pouvez des maintenant utiliser ezTHEQUE."
+	echo "Faites \"cd ezTHEQUE\",puis la commande \"./node_modules/.bin/grunt\" dans le dossier de l'application."
 	echo "Une fois lancer vous pourrez y acceder via http://localhost:3000"
 fi				
