@@ -82,7 +82,7 @@
             <li data-ng-repeat="livre in data.items">
                 <h3 class='lato-font'> {{livre.volumeInfo.title}} </h3>
                 <br> 
-                <div data-ng-hide="!livre.volumeInfo.imageLinks.thumbnail"><img ng-src="{{livre.volumeInfo.imageLinks.thumbnail}}" border="0" align="center" width=130 height=200> </div>
+                <div data-ng-hide="!img_google"><img ng-src="{{img_google}}" border="0" align="center" width=130 height=200> </div>
             </li>
             <div data-ng-show='status' class='error_mess'>
                 <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  

@@ -238,7 +238,16 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                         if(data.items[0].volumeInfo.imageLinks){
                             $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
                         }else{
-                            $scope.status = 'Aucune couverture dans les données renvoyées par Google';
+                            console.log('2');
+                            $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
+                                success(function(data, status, headers, config){
+                                     console.log(data);
+                                     if(data.items[0].volumeInfo.imageLinks){
+                                        $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                                     }else{
+                                         $scope.status = 'Aucune couverture dans les données renvoyées par Google';
+                                     }
+                                });
                         }
                         $scope.lien_livre = data.items[0].volumeInfo;
                         if(data.items[0].volumeInfo.description){
