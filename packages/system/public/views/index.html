@@ -1,3 +1,67 @@
-<section data-ng-controller="IndexController">
-    <h1 mean-token="'home-default'">This is the home view</h1>
+<section data-ng-controller="IndexController" style="margin-left:60px">
+	
+	<!-- Index de l'admin  -->
+	<div ng-show='global.isAdmin'>
+		<form role="form" class="form-horizontal" name='formulaire'>
+			<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus autofocus class='input_user' required ng-change="verifInput()">
+			 <!-- affichage en fonction du media trouvé -->
+			<a ng-if='!newlivre.emprunt.user && newlivre' type='submit' ng-href="/#!/livres/{{newlivre._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+			<a ng-if='!newlivre.emprunt.user && !newlivre' type='submit' class="btn btn-primary btn-sm"> emprunter</a> 
+		    <button ng-if='newlivre.emprunt.user' type='submit' ng-click='rendreLivre(newlivre)' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-book"></i> Rendre</button>
+	    </form>
+	     <!-- affichage du livre trouvé -->
+	    <article>
+	    	<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
+	        <div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a>
+	        	<span ng-show='emprunteur'> &nbsp&nbsp&nbsp emprunté par {{emprunteur.name}} </span>
+	        </div>
+				<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}
+	            <hr/>
+	        </div>
+	    </article>
+	</div>
+
+	<div data-ng-show='global.isAdmin'>
+	    <h1 mean-token="'home-default'">Liste des utilisateurs</h1>
+	    <input type='text' ng-model='searchUser' placeholder='Recherche' class='input_user'>
+	    <ul>
+	    	<li class="users_list" ng-repeat="user in users | orderBy:['-name', 'name'] | filter:searchUser">
+	           <a data-ng-href="#!/admin/users/{{user._id}}">{{user.name}}</a>
+	   		</li>
+		</ul>
+	</div>
+
+
+	<!-- Index utilisateur normal -->
+	<div data-ng-hide='global.isAdmin'>
+		<article>
+		 	<h1> Bienvenue sur l'application de la médiathèque du CAES</h1>
+		 	<div data-ng-hide='global.authenticated'>
+		 		<br>
+		 		<p>
+		 		Pour accèder à la liste des médias ou a votre compte, connectez vous !
+		 		</p>
+				<br/>
+			</div>
+			<div data-ng-show='global.authenticated'>
+				 <p>
+				 	il y a {{livre_dispo}} livres disponible dans la médiathèque !
+				 </p>
+				 <article class="col-md-8">
+				 	<h4> Liste de vos emprunts en cours : </h4>
+		        	<ul>
+				    	<li class="user_list" ng-repeat="media in listeEmprunt">
+				           <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
+				            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+		         			<p> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{media.dewey}} &nbsp Ref. {{media.ref}}</p>
+		         			<p ng-show="media.emprunt.date_fin" ng-bind='date_diff(media)'> </p>
+				   		</li>
+					</ul>
+		            <p ng-show='listeEmprunt.length === 0'>
+		                Aucun emprunt en cours
+		            </p>
+		        </article>
+		    </div>
+		</article>
+	</div>
 </section>

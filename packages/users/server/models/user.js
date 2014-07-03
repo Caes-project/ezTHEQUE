@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  */
 var validatePresenceOf = function(value) {
     // If you are authenticating by any of the oauth strategies, don't validate.
-    return (this.provider && this.provider !== 'local') || (value && value.length);
+    return (this.prodiver && this.provider !== 'local') || value.length;
 };
 
 /**
@@ -21,17 +21,19 @@ var validatePresenceOf = function(value) {
 var UserSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        validate: [validatePresenceOf, 'Name cannot be blank']
     },
     email: {
         type: String,
         required: true,
-        match: [/.+\@.+\..+/, 'Please enter a valid email']
+        match: [/.+\@.+\..+/, 'Please enter a valid email'],
+        validate: [validatePresenceOf, 'Email cannot be blank']
     },
     username: {
         type: String,
         unique: true,
-        required: true
+        validate: [validatePresenceOf, 'Username cannot be blank']
     },
     roles: {
         type: Array,
@@ -45,6 +47,18 @@ var UserSchema = new Schema({
         type: String,
         default: 'local'
     },
+    emprunt: [{
+        id: {
+            type: Schema.ObjectId,
+            ref: 'Livre'
+        },
+        date_debut: {
+            type: Date,
+        }, 
+        date_fin: {
+            type: Date,
+        }
+    }],
     salt: String,
     facebook: {},
     twitter: {},
@@ -89,7 +103,7 @@ UserSchema.methods = {
         var roles = this.roles;
         return roles.indexOf('admin') !== -1 || roles.indexOf(role) !== -1;
     },
-
+	
     /**
      * IsAdmin - check if the user is an administrator
      *
@@ -99,7 +113,7 @@ UserSchema.methods = {
     isAdmin: function() {
         return this.roles.indexOf('admin') !== -1;
     },
-
+	
     /**
      * Authenticate - check if the passwords are the same
      *
