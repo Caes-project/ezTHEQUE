@@ -1,0 +1,18 @@
+<section data-ng-controller="LivresController" data-ng-init="find()" class="sectionLivre">
+    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/livres/create">Ajouter un livre </a></h3>
+    <div class='col-md-4'>
+         <input type='text' ng-model='searchUser' placeholder='Recherche livre' autofocus class='form-control'>
+    </div>
+    <br/>
+    <br/>
+    <ul class="livres unstyled">
+        <li data-ng-repeat="livre in livres | orderBy:['-title', 'title'] | filter:searchUser">
+           <h3>
+                <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
+            </h3> 
+             <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> </div>
+            <p class='lato-font-title'> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</p>
+            <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(livre).retard}' ng-bind='date_diff(livre).message'> </p>
+        </li>
+    </ul>
+</section>
