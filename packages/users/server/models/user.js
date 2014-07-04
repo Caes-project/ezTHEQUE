@@ -59,6 +59,17 @@ var UserSchema = new Schema({
             type: Date,
         }
     }],
+    abonnement:[{
+        nom : {
+            type: String
+        },
+        date_debut: {
+            type: Date,
+        }, 
+        date_fin: {
+            type: Date,
+        }
+    }],
     salt: String,
     facebook: {},
     twitter: {},

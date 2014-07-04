@@ -60,7 +60,7 @@ footer p {
     padding: 0 10px;
     height: 32px;
     margin-bottom: 20px;
-    border-radius: 7px;
+    border-radius: 5px;
     box-shadow: 0;
     border: 1px solid #ccc;
 }
@@ -92,6 +92,13 @@ footer p {
   -moz-animation:    info_mess_anim_entre 2s; 
   -o-animation:      info_mess_anim_entre 2s; 
   animation:         info_mess_anim_entre 2s;  
+}
+
+.trans_message{
+  -webkit-animation: info_mess_anim 5s 3s; 
+  -moz-animation:    info_mess_anim 5s 3s; 
+  -o-animation:      info_mess_anim 5s 3s; 
+  animation:         info_mess_anim 5s 3s; 
 }
 
 .info_mess_temp{
@@ -129,6 +136,7 @@ footer p {
   background:rgba(160,160,160,0.2);
   padding: 10px;
   margin-bottom: 10px;
+  border: 1px solid #CCC;
 }
 
 @-webkit-keyframes info_mess_anim {
