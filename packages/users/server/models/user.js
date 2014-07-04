@@ -15,6 +15,13 @@ var validatePresenceOf = function(value) {
     return (this.prodiver && this.provider !== 'local') || value.length;
 };
 
+var validateUniqueEmail = function(value, callback) {
+    var User = mongoose.model('User');
+    User.find({$and: [{email : value}, { _id: { $ne : this._id }}]}, function(err, user) {
+        callback(err || user.length === 0);
+    });
+};
+
 /**
  * User Schema
  */
@@ -28,7 +35,7 @@ var UserSchema = new Schema({
         type: String,
         required: true,
         match: [/.+\@.+\..+/, 'Please enter a valid email'],
-        validate: [validatePresenceOf, 'Email cannot be blank']
+        validate: [validateUniqueEmail, 'E-mail address is already in-use']
     },
     username: {
         type: String,
