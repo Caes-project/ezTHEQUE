@@ -18,7 +18,11 @@
             });
 
             // Load the controllers module
-            beforeEach(module('mean'));
+            beforeEach(function() {
+                module('mean');
+                module('mean.system');
+                module('mean.users');
+            });
 
             // Initialize the controller and a mock scope
             var LivresController,
@@ -38,12 +42,8 @@
                     $scope: scope
                 });
 
-
-
                 $stateParams = _$stateParams_;
-
                 $httpBackend = _$httpBackend_;
-
                 $location = _$location_;
 
             }));
