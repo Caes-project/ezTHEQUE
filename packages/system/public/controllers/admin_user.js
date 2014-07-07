@@ -1,10 +1,14 @@
 'use strict';
 
-angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 
-    function($scope,$stateParams, $location, $timeout, Users, Global, Livres) {
+angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', '$filter',
+    function($scope,$stateParams, $location, $timeout, Users, Global, Livres, $filter) {
 		
 		$scope.global = Global;
+		
 		$scope.listeModif = [];		
+		
+		$scope.option_abo = [{'name' : 'BD'}, {'name' : 'Livres' }, {'name' : 'Disque'}, {'name' : 'Magazines' }, {'name' : 'DVD'}];
+
 		if($scope.global.message_info){
 			$scope.message_info = $scope.global.message_info;
 			delete $scope.global.message_info;
@@ -12,6 +16,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             	$scope.message_info =null;
             }, 5000);
 		}
+
+		$scope.selectedAbo = function () {
+            $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
+        };
+
+        $scope.isOpen2 = false;
 
 	    function incr_date(date_str){
 		    var parts = date_str.split('-');
@@ -190,5 +200,29 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             }
             return res;
         };
+
+        function isInArray(tab,elem){
+        	for(var i in tab){
+        		if(tab[i].nom === elem.name){
+        			return true;
+        		}
+        	}
+        	return false;
+        }
+
+        $scope.majAbo = function(){
+        	var today = new Date();
+            var end = new Date();
+            end.setFullYear(today.getFullYear()+1);
+            for(var i in $scope.abo_select){
+        		if(!isInArray($scope.user.abonnement, $scope.abo_select[i])){
+	            	$scope.user.abonnement.push({
+	                    'nom' : $scope.abo_select[i].name,
+	                    'date_debut' : today,
+	                    'date_fin' : end
+	                });
+	            }
+            }
+		};
 
 }]);

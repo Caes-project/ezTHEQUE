@@ -58,18 +58,18 @@
             <div class='col-md-12'>
                 <accordion close-others="oneAtATime">
                     <accordion-group heading="Abonnement de l'utilisateur" is-open="isOpen">
-                      <!--   <li ng-repeat="abo in user.abonnement"> -->
-                               <!--  <div style="display: table;">
-                                    <div style="display: table-cell;" >
-                                        {{abo.nom}} </div>
-                                     <div style="display: table-cell;">
-                                         {{abo.date_fin | date: 'dd/MM/yyyy'}} 
-                                    </div>
-                                </div> -->
+                        <accordion-heading >
+                          Abonnement de l'utilisateur
+                            <i class="pull-right glyphicon"
+                                    ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+                          </accordion-heading>
+
                         <table class="table table-striped table-bordered table-hover">
                         <tr>
                         <th> abonnement </th>
                         <th>  Date_fin </th>
+                        <th>  Paiement </th>
+                        <th>  Caution </th>
                         </tr>
                         <tr ng-repeat="abo in user.abonnement">
                             <td>
@@ -78,9 +78,41 @@
                             <td>
                                {{abo.date_fin | date: 'dd/MM/yyyy'}} 
                             </td>
+                            <td>
+                                <!-- <span class="glyphicon glyphicon-ok" style='color:green'></span> -->
+                                <button type="button" ng-click="abo.selected=!abo.selected" class="btn btn-xs">
+                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.selected, 'glyphicon-remove':!abo.selected, 'green':abo.selected, 'red':!abo.selected}"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <!-- <span class="glyphicon glyphicon-remove" style='color:red'></span> -->
+                                <button type="button" ng-click="abo.selected=!abo.selected" class="btn btn-xs">
+                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.selected, 'glyphicon-remove':!abo.selected, 'green':abo.selected, 'red':!abo.selected}"></span>
+                                </button>
+                            </td>
                         <tr>
                         </table>
-                            <!-- </li> -->
+                        <accordion close-others="oneAtATime">
+                            <accordion-group heading="Nouveau Abonnement" is-open="isOpen2">
+                                <accordion-heading >
+                                        Nouveau Abonnement 
+                                        <i class="pull-right glyphicon"
+                                    ng-class="{'glyphicon-chevron-down': isOpen2, 'glyphicon-chevron-right': !isOpen2}"></i>
+                                </accordion-heading>
+                                <ul class='col-md-6'>
+                                    <li ng-repeat="abo in option_abo">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name='{{abo.name}}' id="{{abo.name}}" ng-model="abo.checked" ng-change='selectedAbo()'>
+                                            {{abo.name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                                <div class='col-md-6' style='text-align:right'>
+                                    <br/><br/><br/><br/><br/><br/>
+                                    <input type="button" class="btn btn-primary" data-ng-click="majAbo()" value="Valider">
+                                </div>
+                             </accordion-group>
+                        </accordion>
                     </accordion-group>
                 </accordion>
             </div>
