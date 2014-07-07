@@ -17,7 +17,8 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: _.flatten(_.values(assets.core.js)).concat([
             'packages/*/public/*.js',
-            'packages/*/public/*/*.js'
+            'packages/*/public/*/*.js',
+            'node_modules/mean-admin/public/services/users.js'
         ]),
 
         // list of files to exclude
