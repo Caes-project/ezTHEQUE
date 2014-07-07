@@ -95,7 +95,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                        $scope.newlivre = null;
 	                        $scope.refMedia = null;
 	                        $scope.message_info = livre.title + ' est bien emprunté !';
-	                        $scope.listeModif.push({'title' : livre.title,'type' : 'new'});
+	                        $scope.listeModif.push({'title' : livre.title,'type' : 'new', '_id' : livre._id});
 	                        $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -130,7 +130,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    $scope.newlivre = null;
 	                    $scope.refMedia = null;
 	                    $scope.message_info = livre.title + ' est rendu !';
-	                    $scope.listeModif.push({'title' : livre.title, 'type' : 'old'});
+	                    $scope.listeModif.push({'title' : livre.title, 'type' : 'old', '_id' : livre._id});
 	                    $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -143,23 +143,21 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    $scope.verifInput = function(){
 		    $scope.newlivre = null;
 	    	if($scope.refMedia.length > 8){
-	    		if($scope.refMedia){
-			    	Livres.query({
-			    		code_barre : $scope.refMedia
-			    	},
-			    	function(livre){
-						if(livre[0]){
-							$scope.newlivre = livre[0];
-							if(livre[0].emprunt.user === $scope.user._id){
-								$scope.rendreLivre(livre[0]);
-								$scope.refMedia = null;
-							}else{
-								$scope.validerEmprunt();
-								$scope.refMedia = null;
-							}
+		    	Livres.query({
+		    		code_barre : $scope.refMedia
+		    	},
+		    	function(livre){
+					if(livre[0]){
+						$scope.newlivre = livre[0];
+						if(livre[0].emprunt.user === $scope.user._id){
+							$scope.rendreLivre(livre[0]);
+							$scope.refMedia = null;
+						}else{
+							$scope.validerEmprunt();
+							$scope.refMedia = null;
 						}
-					});
-				}
+					}
+				});
 			}	 
 		    else{
 				$scope.newlivre = null;
