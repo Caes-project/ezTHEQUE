@@ -50,8 +50,8 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-    if(req.body.img_google){
-        livre.lien_image = '/livres/upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
+    if(req.body.lien_image){
+        livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
     }
    livre.save(function(err) {
         if (err) {
@@ -61,12 +61,12 @@ exports.saveImage = function(req, res) {
                 livre: livre
             });
         } else {
-            if(req.body.img_google){
-                var targetpath = '/livres/upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
+            if(req.body.lien_image){
+                var targetpath = __dirname + '/../../upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
                 var file = fs.createWriteStream(targetpath);
                 var options = {
                     method: 'GET',
-                    uri: req.body.img_google,
+                    uri: req.body.lien_image,
                     headers : {
                         'User-Agent': 'Mozilla/5.0'
                     },
@@ -83,7 +83,9 @@ exports.saveImage = function(req, res) {
                     res.setHeader('Content-Type', 'text/html');
                     res.status(200);
                     res.cookie('info_mess', encodeURI('Livre créé avec succès !'));
-                    res.redirect('/#!/livres/'+ livre._id);
+                    console.log('livre');
+                    console.log(livre);
+                    res.redirect('/#!/livres/');
                 });
             }else{
                 // res.jsonp(livre);

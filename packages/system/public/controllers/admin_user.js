@@ -7,7 +7,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		
 		$scope.listeModif = [];		
 		
-		$scope.option_abo = [{'name' : 'BD'}, {'name' : 'Livres' }, {'name' : 'Disque'}, {'name' : 'Magazines' }, {'name' : 'DVD'}];
+		$scope.option_abo = [{'name' : 'BD, Livres, Magazines'},{'name' : 'Disque'}, {'name' : 'DVD'}];
 
 		$scope.newAbo = {};
 
