@@ -216,24 +216,66 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	var today = new Date();
             var end = new Date();
             end.setFullYear(today.getFullYear()+1);
-    		if(!isInArray($scope.user.abonnement, newAbo.name)){
-            	$scope.user.abonnement.push({
-                    'nom' : newAbo.name,
-                    'date_debut' : today,
-                    'date_fin' : end,
-                    'paiement': false,
-                    'caution' : false
-                });
-                $scope.message_info = 'Abonnement créé !';
-                $timeout(function(){
-                	$scope.message_info =null;
-                }, 5000);
-            }else{
-            	$scope.message_info = 'Abonnement déjà effectif';
-                $timeout(function(){
-                	$scope.message_info =null;
-                }, 5000);
-            }
+            if(newAbo.name){
+            	if(!isInArray($scope.user.abonnement, newAbo.name)){
+	            	$scope.user.abonnement.push({
+	                    'nom' : newAbo.name,
+	                    'date_debut' : today,
+	                    'date_fin' : end,
+	                    'paiement': false,
+	                    'caution' : false
+	                });
+	                $scope.user.$update(function(response){
+		                if(!$scope.message_info){
+			                $scope.message_info = 'Abonnement créé !';
+			                $timeout(function(){
+			                	$scope.message_info =null;
+			                }, 5000);
+			            }
+			        });
+	            }else{
+	                if(!$scope.message_info){
+		            	$scope.message_info = 'Abonnement déjà effectif';
+		                $timeout(function(){
+		                	$scope.message_info =null;
+		                }, 5000);
+	            	}
+	            }
+	        }
+            console.log($scope.user);
 		};
 
+		$scope.aboCaution = function(abo){
+			console.log(abo);
+			for(var i in $scope.user.abonnement){
+				if($scope.user.abonnement[i].nom ===  abo.nom){
+					$scope.user.abonnement[i].caution =!$scope.user.abonnement[i].caution;
+				}
+			}
+			$scope.user.$update(function(response){
+				if(!$scope.message_info){
+	            	$scope.message_info = 'Changement validé';
+	                $timeout(function(){
+	                	$scope.message_info =null;
+	                }, 5000);
+            	}
+			});
+		};
+
+		$scope.aboPaiement = function(abo){
+			console.log(abo);
+			for(var i in $scope.user.abonnement){
+				if($scope.user.abonnement[i].nom ===  abo.nom){
+					$scope.user.abonnement[i].paiement =!$scope.user.abonnement[i].paiement;
+				}
+			}
+			$scope.user.$update(function(response){
+				if(!$scope.message_info){
+	            	$scope.message_info = 'Changement validé';
+	                $timeout(function(){
+	                	$scope.message_info =null;
+	                }, 5000);
+            	}
+			});
+		};
 }]);
