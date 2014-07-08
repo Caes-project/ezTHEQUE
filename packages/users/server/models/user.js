@@ -60,10 +60,10 @@ var UserSchema = new Schema({
             ref: 'Livre'
         },
         date_debut: {
-            type: Date,
+            type: Date
         }, 
         date_fin: {
-            type: Date,
+            type: Date
         }
     }],
     abonnement:[{
@@ -71,10 +71,18 @@ var UserSchema = new Schema({
             type: String
         },
         date_debut: {
-            type: Date,
+            type: Date
         }, 
         date_fin: {
-            type: Date,
+            type: Date
+        },
+        paiement : {
+            type: Boolean,
+            default: false
+        },
+        caution : {
+            type : Boolean,
+            default: false
         }
     }],
     salt: String,

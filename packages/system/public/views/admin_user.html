@@ -80,39 +80,29 @@
                             </td>
                             <td>
                                 <!-- <span class="glyphicon glyphicon-ok" style='color:green'></span> -->
-                                <button type="button" ng-click="abo.selected=!abo.selected" class="btn btn-xs">
-                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.selected, 'glyphicon-remove':!abo.selected, 'green':abo.selected, 'red':!abo.selected}"></span>
+                                <button type="button" ng-click="abo.paiement=!abo.paiement" class="btn btn-xs">
+                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.paiement, 'glyphicon-remove':!abo.paiement, 'green':abo.paiement, 'red':!abo.paiement}"></span>
                                 </button>
                             </td>
                             <td>
                                 <!-- <span class="glyphicon glyphicon-remove" style='color:red'></span> -->
-                                <button type="button" ng-click="abo.selected=!abo.selected" class="btn btn-xs">
-                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.selected, 'glyphicon-remove':!abo.selected, 'green':abo.selected, 'red':!abo.selected}"></span>
+                                <button type="button" ng-click="abo.caution=!abo.caution" class="btn btn-xs">
+                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.caution, 'glyphicon-remove':!abo.caution, 'green':abo.caution, 'red':!abo.caution}"></span>
                                 </button>
                             </td>
+                        </tr>
                         <tr>
+                            <td colspan="2">
+                                <select class='form-control' ng-model='newAbo' ng-options="aboption.name for aboption in option_abo">
+                                    <!-- <option value=''> Nouveau </option> -->
+                                </select>
+                            </td>
+                {{newAbo}}  lol
+                            <td style='text-align:center' colspan="2">
+                                 <button ng-click='validerNewAbo(newAbo)' class="btn btn-primary btn-md"> Valider</button> 
+                            </td>
+                        </tr>
                         </table>
-                        <accordion close-others="oneAtATime">
-                            <accordion-group heading="Nouveau Abonnement" is-open="isOpen2">
-                                <accordion-heading >
-                                        Nouveau Abonnement 
-                                        <i class="pull-right glyphicon"
-                                    ng-class="{'glyphicon-chevron-down': isOpen2, 'glyphicon-chevron-right': !isOpen2}"></i>
-                                </accordion-heading>
-                                <ul class='col-md-6'>
-                                    <li ng-repeat="abo in option_abo">
-                                        <label class="checkbox">
-                                            <input type="checkbox" name='{{abo.name}}' id="{{abo.name}}" ng-model="abo.checked" ng-change='selectedAbo()'>
-                                            {{abo.name}}
-                                        </label>
-                                    </li>
-                                </ul>
-                                <div class='col-md-6' style='text-align:right'>
-                                    <br/><br/><br/><br/><br/><br/>
-                                    <input type="button" class="btn btn-primary" data-ng-click="majAbo()" value="Valider">
-                                </div>
-                             </accordion-group>
-                        </accordion>
                     </accordion-group>
                 </accordion>
             </div>

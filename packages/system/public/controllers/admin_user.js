@@ -9,6 +9,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		
 		$scope.option_abo = [{'name' : 'BD'}, {'name' : 'Livres' }, {'name' : 'Disque'}, {'name' : 'Magazines' }, {'name' : 'DVD'}];
 
+		$scope.newAbo = {};
+
 		if($scope.global.message_info){
 			$scope.message_info = $scope.global.message_info;
 			delete $scope.global.message_info;
@@ -16,10 +18,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             	$scope.message_info =null;
             }, 5000);
 		}
-
-		$scope.selectedAbo = function () {
-            $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
-        };
 
         $scope.isOpen2 = false;
 
@@ -52,13 +50,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            userId: $stateParams.userId
 	        },function(user){
 	            $scope.user = user;
-				$scope.getEmprunt();	    		
+				$scope.getEmprunt();
+				console.log(user);
+				// $scope.user.abonnement[2].paiement = true;	    		
 	        });
 	    }
 
 	    $scope.listeEmprunt = [];
-
-
 
 		//initialiaze le scope.emprunt
 	    $scope.getEmprunt = function(){
@@ -78,6 +76,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	    $scope.onChangeDate = function(){
 	    	$scope.date_fin = incr_date($scope.date);
 	    };
+
+		$scope.selectedAbo = function () {
+            $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
+        };
 
 	    $scope.validerEmprunt = function(){
 	    	if($scope.newlivre){
@@ -139,8 +141,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    $scope.dernierlivre = $scope.newlivre;
 	                    $scope.newlivre = null;
 	                    $scope.refMedia = null;
-	                    $scope.message_info = livre.title + ' est rendu !';
 	                    $scope.listeModif.push({'title' : livre.title, 'type' : 'old', '_id' : livre._id});
+	                    $scope.message_info = livre.title + ' est rendu !';
 	                    $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -203,25 +205,34 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
         function isInArray(tab,elem){
         	for(var i in tab){
-        		if(tab[i].nom === elem.name){
+        		if(tab[i].nom === elem){
         			return true;
         		}
         	}
         	return false;
         }
 
-        $scope.majAbo = function(){
+        $scope.validerNewAbo = function(newAbo){
         	var today = new Date();
             var end = new Date();
             end.setFullYear(today.getFullYear()+1);
-            for(var i in $scope.abo_select){
-        		if(!isInArray($scope.user.abonnement, $scope.abo_select[i])){
-	            	$scope.user.abonnement.push({
-	                    'nom' : $scope.abo_select[i].name,
-	                    'date_debut' : today,
-	                    'date_fin' : end
-	                });
-	            }
+    		if(!isInArray($scope.user.abonnement, newAbo.name)){
+            	$scope.user.abonnement.push({
+                    'nom' : newAbo.name,
+                    'date_debut' : today,
+                    'date_fin' : end,
+                    'paiement': false,
+                    'caution' : false
+                });
+                $scope.message_info = 'Abonnement créé !';
+                $timeout(function(){
+                	$scope.message_info =null;
+                }, 5000);
+            }else{
+            	$scope.message_info = 'Abonnement déjà effectif';
+                $timeout(function(){
+                	$scope.message_info =null;
+                }, 5000);
             }
 		};
 
