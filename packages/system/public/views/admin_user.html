@@ -68,8 +68,8 @@
                         <tr>
                         <th> abonnement </th>
                         <th>  Date_fin </th>
-                        <th>  Paiement </th>
                         <th>  Caution </th>
+                        <th>  Paiement </th>
                         </tr>
                         <tr ng-repeat="abo in user.abonnement">
                             <td>
@@ -79,15 +79,15 @@
                                {{abo.date_fin | date: 'dd/MM/yyyy'}} 
                             </td>
                             <td>
-                                <!-- <span class="glyphicon glyphicon-ok" style='color:green'></span> -->
-                                <button type="button" ng-click="aboPaiement(abo)" class="btn btn-xs">
-                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.paiement, 'glyphicon-remove':!abo.paiement, 'green':abo.paiement, 'red':!abo.paiement}"></span>
-                                </button>
-                            </td>
-                            <td>
                                 <!-- <span class="glyphicon glyphicon-remove" style='color:red'></span> -->
                                 <button type="button" ng-click="aboCaution(abo)" class="btn btn-xs">
                                 <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.caution, 'glyphicon-remove':!abo.caution, 'green':abo.caution, 'red':!abo.caution}"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <!-- <span class="glyphicon glyphicon-ok" style='color:green'></span> -->
+                                <button type="button" ng-click="aboPaiement(abo)" class="btn btn-xs">
+                                <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.paiement, 'glyphicon-remove':!abo.paiement, 'green':abo.paiement, 'red':!abo.paiement}"></span>
                                 </button>
                             </td>
                         </tr>
