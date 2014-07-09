@@ -81,6 +81,15 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
         };
 
+        function isAboMedia(user, media){
+        	for(var i in user.abonnement){
+        		if(user.abonnement[i].nom === media.typeMedia){
+        			return true;
+        		}
+        	}
+        	return false;
+        }
+
 	    $scope.validerEmprunt = function(){
 	    	if($scope.newmedia){
 		        var media = $scope.newmedia;
@@ -88,6 +97,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            var newEmprunt;
 	            if(media.emprunt.user){
 	                console.log('erreur media déjà emprunté');
+	            }else if(!isAboMedia($scope.user, media)){
+	            	if(!$scope.message_info){
+		                $scope.message_info = 'L\'utilisateur n\'est pas abonné à ce type de media';
+		                $timeout(function(){
+		                	$scope.message_info =null;
+		                }, 5000);
+		            }
 	            }else{
 	                media.emprunt.user = $scope.user._id;
 	                media.emprunt.date_debut = $scope.date;
@@ -159,6 +175,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		    	function(media){
 					if(media[0]){
 						$scope.newmedia = media[0];
+						$scope.newmedia.typeMedia = 'livre';
 						if(media[0].emprunt.user === $scope.user._id){
 							$scope.rendreLivre(media[0]);
 							$scope.refMedia = null;
@@ -177,6 +194,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 			    function(media){
 					if(media[0]){
 						$scope.newmedia = media[0];
+						$scope.newmedia.typeMedia = 'BD, Livres, Magazines';
 					}
 				});
 			}
