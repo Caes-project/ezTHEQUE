@@ -90,6 +90,15 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	return false;
         }
 
+        function message_info(message){
+        	if(!$scope.message_info){
+                $scope.message_info = message;
+                $timeout(function(){
+                	$scope.message_info =null;
+                }, 5000);
+            }
+        }
+
 	    $scope.validerEmprunt = function(){
 	    	if($scope.newmedia){
 		        var media = $scope.newmedia;
@@ -98,12 +107,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            if(media.emprunt.user){
 	                console.log('erreur media déjà emprunté');
 	            }else if(!isAboMedia($scope.user, media)){
-	            	if(!$scope.message_info){
-		                $scope.message_info = 'L\'utilisateur n\'est pas abonné à ce type de media';
-		                $timeout(function(){
-		                	$scope.message_info =null;
-		                }, 5000);
-		            }
+	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media');
 	            }else{
 	                media.emprunt.user = $scope.user._id;
 	                media.emprunt.date_debut = $scope.date;
@@ -121,10 +125,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                        $scope.newmedia = null;
 	                        $scope.refMedia = null;
 	                        $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
-	                        $scope.message_info = media.title + ' est bien emprunté !';
-	                        $timeout(function(){
-	                        	$scope.message_info =null;
-	                        }, 5000);
+	                        message_info(media.title + ' est bien emprunté !');
 	                    });
 	                });
 	            }
@@ -156,7 +157,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    $scope.newmedia = null;
 	                    $scope.refMedia = null;
 	                    $scope.listeModif.push({'title' : media.title, 'type' : 'old', '_id' : media._id});
-	                    $scope.message_info = media.title + ' est rendu !';
+	                    message_info(media.title + ' est rendu !');
 	                    $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -242,20 +243,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    'caution' : false
 	                });
 	                $scope.user.$update(function(response){
-		                if(!$scope.message_info){
-			                $scope.message_info = 'Abonnement créé !';
-			                $timeout(function(){
-			                	$scope.message_info =null;
-			                }, 5000);
-			            }
+		                message_info('Abonnement créé !');
 			        });
 	            }else{
-	                if(!$scope.message_info){
-		            	$scope.message_info = 'Abonnement déjà effectif';
-		                $timeout(function(){
-		                	$scope.message_info =null;
-		                }, 5000);
-	            	}
+	                  message_info('Abonnement déjà en cours !');
 	            }
 	        }
             console.log($scope.user);
@@ -269,12 +260,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 				}
 			}
 			$scope.user.$update(function(response){
-				if(!$scope.message_info){
-	            	$scope.message_info = 'Changement validé';
-	                $timeout(function(){
-	                	$scope.message_info =null;
-	                }, 5000);
-            	}
+				  message_info('Changement validé !');
 			});
 		};
 
@@ -286,12 +272,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 				}
 			}
 			$scope.user.$update(function(response){
-				if(!$scope.message_info){
-	            	$scope.message_info = 'Changement validé';
-	                $timeout(function(){
-	                	$scope.message_info =null;
-	                }, 5000);
-            	}
+				message_info('Changement validé !');
 			});
 		};
 }]);
