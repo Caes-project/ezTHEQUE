@@ -53,6 +53,7 @@
 
                     // test expected GET request
                     $httpBackend.expectGET('livres').respond([{
+                        code_barre : '978120322514014',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',
                         ref: 1,
@@ -66,6 +67,7 @@
 
                     // test scope value
                     expect(scope.livres).toEqualData([{
+                        code_barre : '978120322514014',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',
                         ref: 1,
@@ -83,11 +85,12 @@
                     // fixture response object
                     var testLivreData = function() {
                         return {
-                        title: 'An Livre about MEAN',
-                        auteur: 'MEAN rocks!',
-                        ref: 1,
-                        dewey: 808,
-                        date_acquis: '2014-06-03'
+                            code_barre : '978120322514014',
+                            title: 'An Livre about MEAN',
+                            auteur: 'MEAN rocks!',
+                            ref: 1,
+                            dewey: 808,
+                            date_acquis: '2014-06-03'
                         };
                     };
 
@@ -110,6 +113,7 @@
                     // fixture expected POST data
                     var postLivreData = function() {
                         return {
+                            code_barre : '978120322514014',
                             title: 'An Livre about MEAN',
                             auteur: 'MEAN rocks!',
                             ref: 1,
@@ -121,6 +125,7 @@
                     // fixture expected response data
                     var responseLivreData = function() {
                         return {
+                            code_barre : '978120322514014',
                             _id: '525cf20451979dea2c000001',
                             title: 'An Livre about MEAN',
                             auteur: 'MEAN rocks!',
@@ -160,6 +165,7 @@
                 // fixture rideshare
                 var putLivreData = function() {
                     return {
+                        code_barre : '978120322514014',
                         _id: '525a8422f6d0f87f0e407a33',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',
@@ -225,6 +231,7 @@
                 // fixture rideshare
                 var putLivreData = function() {
                     return {
+                        code_barre : '978120322514014',
                         _id: '525a8422f6d0f87f0e407a33',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',
@@ -239,6 +246,7 @@
 
                 var putLivreDataEnd = function() {
                     return {
+                        code_barre : '978120322514014',
                         _id: '525a8422f6d0f87f0e407a33',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',
@@ -300,6 +308,7 @@
                 // fixture rideshare
                 var putLivreData = function() {
                     return {
+                        code_barre : '978120322514014',
                         _id: '525a8422f6d0f87f0e407a33',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',
@@ -312,6 +321,7 @@
 
                 var putLivreDataEnd = function() {
                     return {
+                        code_barre : '978120322514014',
                         _id: '525a8422f6d0f87f0e407a33',
                         title: 'An Livre about MEAN',
                         auteur: 'MEAN rocks!',

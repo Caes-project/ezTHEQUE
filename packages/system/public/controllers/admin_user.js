@@ -98,16 +98,14 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    date_fin : $scope.date_fin
 	                };
 	                $scope.user.emprunt.push(newEmprunt);
-	                // console.log(user);
                     livre.$update(function(response) {
 	                	$scope.user.$update(function(response) {
-	                        // $location.path('admin/users/' + response._id);
-	                        $scope.listeEmprunt.push(livre);
+	                      	$scope.listeEmprunt.push(livre);
 	                        $scope.dernierlivre = $scope.newlivre;
 	                        $scope.newlivre = null;
 	                        $scope.refMedia = null;
-	                        $scope.message_info = livre.title + ' est bien emprunté !';
 	                        $scope.listeModif.push({'title' : livre.title,'type' : 'new', '_id' : livre._id});
+	                        $scope.message_info = livre.title + ' est bien emprunté !';
 	                        $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
