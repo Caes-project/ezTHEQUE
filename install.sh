@@ -56,7 +56,7 @@ else
 	npm install > /dev/null 2>&1 || (echo "" echo "$(tput setaf 1)echec$(tput sgr0) : installation des dependances" && exit 1)
 	(bower --allow-root install > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : execution du gestionnaire bower" && exit 1)	
 	echo -n "=> Test de fonctionnement de l'application"
-	(npm test 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || ((npm test 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : un ou plusieurs tests ont echoue"))
+	(npm test > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || ((npm test > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : un ou plusieurs tests ont echoue"))
 	if [ -f "data_set.sh" ]
 		then
 		echo -n "Un jeu de donnees est disponible voulez vous l'importer ? [y/N] : "
