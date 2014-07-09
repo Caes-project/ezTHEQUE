@@ -60,12 +60,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 		//initialiaze le scope.emprunt
 	    $scope.getEmprunt = function(){
-		    var callback = function(livre){
-				$scope.listeEmprunt.push(livre);
+		    var callback = function(media){
+				$scope.listeEmprunt.push(media);
 			};
 
     		$scope.emprunt = $scope.user.emprunt;
-	    	//récupère la liste des id des livres emprunté
+	    	//récupère la liste des id des medias emprunté
 	    	for(var i in $scope.emprunt){
 		   		Livres.get({
 				    livreId: $scope.emprunt[i].id
@@ -82,30 +82,30 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         };
 
 	    $scope.validerEmprunt = function(){
-	    	if($scope.newlivre){
-		        var livre = $scope.newlivre;
-		        console.log(livre);
+	    	if($scope.newmedia){
+		        var media = $scope.newmedia;
+		        console.log(media);
 	            var newEmprunt;
-	            if(livre.emprunt.user){
-	                console.log('erreur livre déjà emprunté');
+	            if(media.emprunt.user){
+	                console.log('erreur media déjà emprunté');
 	            }else{
-	                livre.emprunt.user = $scope.user._id;
-	                livre.emprunt.date_debut = $scope.date;
-	                livre.emprunt.date_fin = $scope.date_fin;
+	                media.emprunt.user = $scope.user._id;
+	                media.emprunt.date_debut = $scope.date;
+	                media.emprunt.date_fin = $scope.date_fin;
 	                newEmprunt = {
-	                    id : livre._id,
+	                    id : media._id,
 	                    date_debut : $scope.date,
 	                    date_fin : $scope.date_fin
 	                };
 	                $scope.user.emprunt.push(newEmprunt);
-                    livre.$update(function(response) {
+                    media.$update(function(response) {
 	                	$scope.user.$update(function(response) {
-	                      	$scope.listeEmprunt.push(livre);
-	                        $scope.dernierlivre = $scope.newlivre;
-	                        $scope.newlivre = null;
+	                      	$scope.listeEmprunt.push(media);
+	                        $scope.derniermedia = $scope.newmedia;
+	                        $scope.newmedia = null;
 	                        $scope.refMedia = null;
-	                        $scope.listeModif.push({'title' : livre.title,'type' : 'new', '_id' : livre._id});
-	                        $scope.message_info = livre.title + ' est bien emprunté !';
+	                        $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
+	                        $scope.message_info = media.title + ' est bien emprunté !';
 	                        $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -115,32 +115,32 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	        }
         };
 
-        $scope.rendreLivre = function(livre) {
-        	if(livre.emprunt.user !== $scope.user._id){
+        $scope.rendreLivre = function(media) {
+        	if(media.emprunt.user !== $scope.user._id){
         		console.log('TODO gros message d\'erreur');
         	}else{
-	            livre.emprunt = {
+	            media.emprunt = {
 	                user: null,
 	                date_debut : null,
 	                date_fin : null
 	            };
 	            for(var i=0; i<$scope.user.emprunt.length; i++){
-	                if($scope.user.emprunt[i].id === livre._id){
+	                if($scope.user.emprunt[i].id === media._id){
 	                   $scope.user.emprunt.splice(i, 1);
 	                }
-	                if($scope.listeEmprunt[i]._id === livre._id){  
+	                if($scope.listeEmprunt[i]._id === media._id){  
 	                   $scope.listeEmprunt.splice(i,1);
 	                }
 	            }
 	            // console.log(user);
 	            $scope.user.$update(function(response){
-	                livre.$update(function(response) {
-	                    // $location.path('livres/' + response._id);
-	                    $scope.dernierlivre = $scope.newlivre;
-	                    $scope.newlivre = null;
+	                media.$update(function(response) {
+	                    // $location.path('medias/' + response._id);
+	                    $scope.derniermedia = $scope.newmedia;
+	                    $scope.newmedia = null;
 	                    $scope.refMedia = null;
-	                    $scope.listeModif.push({'title' : livre.title, 'type' : 'old', '_id' : livre._id});
-	                    $scope.message_info = livre.title + ' est rendu !';
+	                    $scope.listeModif.push({'title' : media.title, 'type' : 'old', '_id' : media._id});
+	                    $scope.message_info = media.title + ' est rendu !';
 	                    $timeout(function(){
 	                        	$scope.message_info =null;
 	                        }, 5000);
@@ -151,16 +151,16 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 
 	    $scope.verifInput = function(){
-		    $scope.newlivre = null;
+		    $scope.newmedia = null;
 	    	if($scope.refMedia.length > 8){
 		    	Livres.query({
 		    		code_barre : $scope.refMedia
 		    	},
-		    	function(livre){
-					if(livre[0]){
-						$scope.newlivre = livre[0];
-						if(livre[0].emprunt.user === $scope.user._id){
-							$scope.rendreLivre(livre[0]);
+		    	function(media){
+					if(media[0]){
+						$scope.newmedia = media[0];
+						if(media[0].emprunt.user === $scope.user._id){
+							$scope.rendreLivre(media[0]);
 							$scope.refMedia = null;
 						}else{
 							$scope.validerEmprunt();
@@ -170,24 +170,24 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 				});
 			}	 
 		    else{
-				$scope.newlivre = null;
+				$scope.newmedia = null;
 				Livres.query({
 					ref: $scope.refMedia
 			    },
-			    function(livre){
-					if(livre[0]){
-						$scope.newlivre = livre[0];
+			    function(media){
+					if(media[0]){
+						$scope.newmedia = media[0];
 					}
 				});
 			}
 	    };
 
-	   $scope.date_diff = function(livre){
+	   $scope.date_diff = function(media){
             var today = new Date();
-            if(!livre.emprunt.date_fin){
+            if(!media.emprunt.date_fin){
                 return 1;
             }
-            var fin = new Date(livre.emprunt.date_fin);
+            var fin = new Date(media.emprunt.date_fin);
             var diff = fin.getTime()- today.getTime();
             diff = Math.floor(diff / (1000 * 60 * 60 * 24));
             var res = {};

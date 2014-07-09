@@ -96,7 +96,7 @@
                 var user = new Users(putUserData());
                 
                 // mock livre in scope
-                scope.newlivre = livre;
+                scope.newmedia = livre;
                 scope.user = user;
                 scope.date = '2016-06-10';
                 scope.date_fin = '2016-06-24';
@@ -115,8 +115,8 @@
                     livre
                 ]);
 
-                expect(scope.dernierlivre).toEqualData(livre);
-                expect(scope.newlivre).toEqualData(null);
+                expect(scope.derniermedia).toEqualData(livre);
+                expect(scope.newmedia).toEqualData(null);
                 expect(scope.refMedia).toEqualData(null);
 
                 expect(scope.listeModif).toEqualData([

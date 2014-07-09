@@ -7,8 +7,8 @@
                 	<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='form-control' required  ng-change="verifInput()">
                 </div>
                 <div class='col-md-4'>
-                    <button ng-if='!newlivre.emprunt.user' type='submit' ng-click='validerEmprunt()' class="btn btn-primary btn-sm col-md-8"> Valider</button> 
-                    <button ng-if='newlivre.emprunt.user === user._id' type='submit' ng-click='rendreLivre(newlivre)' class="btn btn-primary btn-sm"><i class="icon-white icon-book"></i> Rendre</button>
+                    <button ng-if='!newmedia.emprunt.user' type='submit' ng-click='validerEmprunt()' class="btn btn-primary btn-sm col-md-8"> Valider</button> 
+                    <button ng-if='newmedia.emprunt.user === user._id' type='submit' ng-click='rendreLivre(newmedia)' class="btn btn-primary btn-sm"><i class="icon-white icon-book"></i> Rendre</button>
                 </div>
             </form>
         </div> 
@@ -40,11 +40,11 @@
         <br/>
         <div class='row'>
             <div class='col-md-12'>
-                <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user !== user._id' class='alert alert-danger trans_message' role='alert'>
-                    <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Livre déjà emprunté jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+                <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user !== user._id' class='alert alert-danger trans_message' role='alert'>
+                    <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Livre déjà emprunté jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}}
                 </div>
-                <div ng-show=' newlivre.emprunt.user &&newlivre.emprunt.user === user._id' class='alert alert-info'  role="alert">
-                   Vous avez jusqu'au {{newlivre.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
+                <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user === user._id' class='alert alert-info'  role="alert">
+                   Vous avez jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
                 </div>
                 <!-- Message de validation  -->
                 <article>
@@ -121,14 +121,14 @@
 
                 <article>
                     <h4 class='lato-font-title'> aperçu du dernier média : </h4>
-                    <div ng-class="{'divGrisClair' : dernierlivre}">
+                    <div ng-class="{'divGrisClair' : derniermedia}">
                         <div class="row">
                             <div style='padding-left:20px;'>
                            <h3>
-                                <div ng-show="dernierlivre"> {{dernierlivre.auteur}}<small><br><a data-ng-href="#!/livres/{{dernierlivre._id}}">{{dernierlivre.title}}</a></small>
+                                <div ng-show="derniermedia"> {{derniermedia.auteur}}<small><br><a data-ng-href="#!/livres/{{derniermedia._id}}">{{derniermedia.title}}</a></small>
                             </h3>
-                            <div data-ng-hide="!dernierlivre.lien_image"><a data-ng-href="#!/livres/{{dernierlivre._id}}"><img ng-src="{{dernierlivre.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-                            <div ng-show="dernierlivre">  Genre:{{dernierlivre.dewey}} &nbsp Ref. {{dernierlivre.ref}} </div>
+                            <div data-ng-hide="!derniermedia.lien_image"><a data-ng-href="#!/livres/{{derniermedia._id}}"><img ng-src="{{derniermedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+                            <div ng-show="derniermedia">  Genre:{{derniermedia.dewey}} &nbsp Ref. {{derniermedia.ref}} </div>
                             </div>
                         </div>
                     </div>
