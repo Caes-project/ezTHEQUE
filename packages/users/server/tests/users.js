@@ -77,6 +77,40 @@ describe('<Unit Test>', function() {
 
             });
 
+            it('should check that roles are assigned and created properly', function(done) {
+
+                var _user = new User(user1);
+                _user.save(function(err) {
+                    should.not.exist(err);
+
+                    // the user1 object and users in general are created with only the 'authenticated' role
+                    _user.hasRole('authenticated').should.equal(true);
+                    _user.hasRole('admin').should.equal(false);
+                    _user.isAdmin().should.equal(false);
+                    _user.roles.should.have.length(1);
+                    _user.remove(function(err) {
+                        done();
+                    });                    
+                });
+
+            });
+
+            it('should confirm that password is hashed correctly', function(done) {
+
+                var _user = new User(user1);
+
+                _user.save(function(err) {
+                    should.not.exist(err);
+                    _user.hashed_password.should.not.have.length(0);
+                    _user.salt.should.not.have.length(0);
+                    _user.authenticate(user1.password).should.equal(true);
+                    _user.remove(function(err) {
+                        done();
+                    });
+                    
+                });
+            });
+
             it('should be able to create user and save user for updates without problems', function(done) {
 
                 var _user = new User(user1);

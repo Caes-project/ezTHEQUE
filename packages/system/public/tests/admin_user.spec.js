@@ -40,7 +40,7 @@
             }));
 
 
-            it('should expose some global scope', inject(function(Livres, Users) {
+            it('Faire un emprunt', inject(function(Livres, Users) {
                 
                 var putLivreData = function() {
                     return {

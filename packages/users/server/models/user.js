@@ -25,6 +25,7 @@ var validateUniqueEmail = function(value, callback) {
 /**
  * User Schema
  */
+
 var UserSchema = new Schema({
     name: {
         type: String,
@@ -34,6 +35,7 @@ var UserSchema = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         match: [/.+\@.+\..+/, 'Please enter a valid email'],
         validate: [validateUniqueEmail, 'E-mail address is already in-use']
     },
@@ -86,6 +88,8 @@ var UserSchema = new Schema({
         }
     }],
     salt: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     facebook: {},
     twitter: {},
     github: {},

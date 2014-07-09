@@ -23,7 +23,7 @@
     },
     {
       "name": "Amos Haviv",
-      "mail": "mail@amoshaviv"
+      "mail": "mail@amoshaviv.com"
     }
   ],
   "mean": "0.4.0",
@@ -55,7 +55,6 @@
     "express-session": "^1.1.0",
     "express-validator": "^2.1.1",
     "forever": "^0.11.1",
-    "glob": "^4.0.3",
     "gridfs-stream": "^0.5.1",
     "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^0.5.0",
@@ -85,7 +84,9 @@
     "time-grunt": "^0.3.1",
     "view-helpers": "^0.1.4",
     "multer": "0.0.7",
-    "request": "~2.36.0"
+    "request": "~2.36.0",
+    "async": "~0.9.0",
+    "nodemailer": "~0.7.0"
   },
   "devDependencies": {
     "grunt-karma": "^0.8.2",

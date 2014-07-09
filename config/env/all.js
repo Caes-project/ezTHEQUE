@@ -1,7 +1,7 @@
 'use strict';
 
-var path = require('path');
-var rootPath = path.normalize(__dirname + '/../..');
+var path = require('path'),
+    rootPath = path.normalize(__dirname + '/../..');
 
 module.exports = {
     root: rootPath,
