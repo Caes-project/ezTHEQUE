@@ -12,13 +12,18 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
         $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
 
-        function message_info(message){
-            if(!$scope.message_info){
-                $scope.message_info = message;
+        function message_info(message, type){
+            var res = {};
+            res.message = message;
+            if(type){
+                res.status = type;
+            }
+            // if(!$scope.message_info){
+                $scope.message_info = res;
                 $timeout(function(){
                     $scope.message_info =null;
                 }, 5000);
-            }
+            // }
         }
 
         $scope.hasAuthorization = function(livre) {
@@ -59,7 +64,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                 this.dewey = '';
                 this.date_acquis = '';
                 this.lien_image = '';
-                this.ref= '';
+                $scope.ref+=1;
                 this.resume = '';
                 $scope.code_barre_recherche = '';
                 $scope.img_google = '';
@@ -241,7 +246,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                     $scope.data = data;
                     //si le livre retourné est unique alors on prérempli les champs.
                     if(!data.items){
-                        $scope.status = 'Aucun livre trouvé !';
+                        message_info('Aucun livre trouvé !', 'error');
                         $scope.code_barre = $scope.code_barre_recherche;
                     }else if(data.items.length === 1){
                         if(data.items[0].volumeInfo.authors){

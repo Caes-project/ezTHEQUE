@@ -1,4 +1,4 @@
-<section data-ng-controller="LivresController">
+<section data-ng-controller="LivresController" class='well'>
      <br>
     <!-- Formulaire d'ajout manuel ! -->
     <div class="row">
@@ -84,23 +84,12 @@
                 <br> 
                 <div data-ng-hide="!img_google"><img ng-src="{{img_google}}" border="0" align="center" width=130 height=200> </div>
             </li>
-            <div data-ng-show='status' class='error_mess'>
-                <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  
-                {{status}}
-            </div>
         </div>
         <!-- message info -->
         <div class='col-md-5 col-md-offset-1' style='position:relative'>
-            <div data-ng-show='message_info' class='alert alert-info trans_message' role="alert">
-                {{message_info}}
+            <div data-ng-show='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message' : message_info.status}" role="alert">
+                {{message_info.message}}
             </div>
         </div>
 </div>
-    
-
-
-    
-
-
-
 </section>

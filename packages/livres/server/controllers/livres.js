@@ -42,9 +42,6 @@ exports.create = function(req, res) {
 
 exports.saveImage = function(req, res) {
     var livre = new Livre(req.body);
-    console.log('req');
-    console.log(req.body);
-    console.log(livre);
     livre.emprunt = {
                         user: null,
                         date_debut : null,
