@@ -38,7 +38,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         $scope.create = function(isValid) {
             if (isValid) {
                var livre = new Livres({
-                    code_barre : this.code_barre,
+                    code_barre : $scope.code_barre_recherche,
                     title: this.title,
                     auteur: this.auteur,
                     cote : this.cote,
@@ -57,7 +57,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                 livre.$save(function(response) {
                    message_info('Livre crée avec succès ! ');
                 });
-                this.code_barre = '';
                 this.title = '';
                 this.auteur = '';
                 this.cote = '';
@@ -264,7 +263,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                                      if(data.items[0].volumeInfo.imageLinks){
                                         $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
                                      }else{
-                                         $scope.status = 'Aucune couverture dans les données renvoyées par Google';
+                                         message_info('Aucune couverture dans les données renvoyées par Google', 'error');
                                      }
                                 });
                         }

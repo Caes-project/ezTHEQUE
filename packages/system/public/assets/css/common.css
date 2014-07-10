@@ -95,10 +95,10 @@ footer p {
 }
 
 .trans_message{
-  -webkit-animation: info_mess_anim 5s 3s; 
-  -moz-animation:    info_mess_anim 5s 3s; 
-  -o-animation:      info_mess_anim 5s 3s; 
-  animation:         info_mess_anim 5s 3s; 
+  -webkit-animation: info_mess_anim 6s 3s; 
+  -moz-animation:    info_mess_anim 6s 3s; 
+  -o-animation:      info_mess_anim 6s 3s; 
+  animation:         info_mess_anim 6s 3s; 
 }
 
 .info_mess_temp{

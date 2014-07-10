@@ -90,13 +90,18 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	return false;
         }
 
+        var timer;
+
         function message_info(message){
-        	if(!$scope.message_info){
-                $scope.message_info = message;
-                $timeout(function(){
-                	$scope.message_info =null;
-                }, 5000);
-            }
+            $timeout.cancel(timer);
+            var transition = document.getElementById('message_info');
+            transition.classList.remove('trans_message');
+            transition.offsetWidth = transition.offsetWidth;
+            transition.classList.add('trans_message');
+            $scope.message_info = message;
+            timer = $timeout(function(){
+            	$scope.message_info =null;
+            }, 6000);
         }
 
 	    $scope.validerEmprunt = function(){
