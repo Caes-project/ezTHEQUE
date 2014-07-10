@@ -11,3 +11,7 @@
 span img {
   vertical-align : bottom;
 }
+
+.unstyled {
+	list-style-type:none; 
+}

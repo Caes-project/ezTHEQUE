@@ -77,8 +77,15 @@
                         email: 'toto@titi.com',
                         username: 'Titi',
                         hashed_password: '6KaTk74KsUTlwePMHM/wRVEfISeRGcxXAevJanKpzVu7pACKuEolxz68XbLbhR/gHEYTEBUuZBq/9c27MsBMNA==',
-                        emprunt: []
-                        };
+                        emprunt: [],
+                        abonnement:[{
+                            "nom":"BD, Livres, Magazines",
+                            "date_debut":"2014-07-10T09:01:40.259Z",
+                            "date_fin":"2015-07-10T09:01:40.259Z",
+                            "paiement":false,
+                            "caution":false
+                        }]
+                    };
                 };
 
                 var putUserDataEnd = function(){
@@ -88,8 +95,15 @@
                         email: 'toto@titi.com',
                         username: 'Titi',
                         hashed_password: '6KaTk74KsUTlwePMHM/wRVEfISeRGcxXAevJanKpzVu7pACKuEolxz68XbLbhR/gHEYTEBUuZBq/9c27MsBMNA==',
-                        emprunt: [{'id':'525a8422f6d0f87f0e407a33','date_debut':'2016-06-10','date_fin':'2016-06-24'}]
-                        };
+                        emprunt: [{'id':'525a8422f6d0f87f0e407a33','date_debut':'2016-06-10','date_fin':'2016-06-24'}],
+                        abonnement:[{
+                            "nom":"BD, Livres, Magazines",
+                            "date_debut":"2014-07-10T09:01:40.259Z",
+                            "date_fin":"2015-07-10T09:01:40.259Z",
+                            "paiement":false,
+                            "caution":false
+                        }]
+                    };
                 };
 
                 var livre = new Livres(putLivreData());
@@ -97,7 +111,8 @@
                 
                 // mock livre in scope
                 scope.newmedia = livre;
-                scope.user = user;
+                scope.newmedia.typeMedia = 'BD, Livres, Magazines';
+                scope.user = user; 
                 scope.date = '2016-06-10';
                 scope.date_fin = '2016-06-24';
 

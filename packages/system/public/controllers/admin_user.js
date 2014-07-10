@@ -109,6 +109,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            }else if(!isAboMedia($scope.user, media)){
 	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media');
 	            }else{
+	            	delete media.typeMedia;
 	                media.emprunt.user = $scope.user._id;
 	                media.emprunt.date_debut = $scope.date;
 	                media.emprunt.date_fin = $scope.date_fin;
@@ -176,7 +177,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		    	function(media){
 					if(media[0]){
 						$scope.newmedia = media[0];
-						$scope.newmedia.typeMedia = 'livre';
+						$scope.newmedia.typeMedia = 'BD, Livres, Magazines';
 						if(media[0].emprunt.user === $scope.user._id){
 							$scope.rendreLivre(media[0]);
 							$scope.refMedia = null;
@@ -203,6 +204,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 	   $scope.date_diff = function(media){
             var today = new Date();
+            //Si pas de date_fin alors on ne calcule pas la différence entre les dates
             if(!media.emprunt.date_fin){
                 return 1;
             }

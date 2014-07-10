@@ -12,6 +12,15 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
         $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
 
+        function message_info(message){
+            if(!$scope.message_info){
+                $scope.message_info = message;
+                $timeout(function(){
+                    $scope.message_info =null;
+                }, 5000);
+            }
+        }
+
         $scope.hasAuthorization = function(livre) {
             if (!livre) return false;
             return $scope.global.isAdmin;
@@ -41,7 +50,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                 });
                 console.log(livre);
                 livre.$save(function(response) {
-                    $location.path('livres/' + response._id);
+                   message_info('Livre crée avec succès ! ');
                 });
                 this.code_barre = '';
                 this.title = '';
@@ -52,6 +61,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                 this.lien_image = '';
                 this.ref= '';
                 this.resume = '';
+                $scope.code_barre_recherche = '';
+                $scope.img_google = '';
+                $scope.data = '';
+
             }else {
                 $scope.submitted = true;
             }
@@ -228,12 +241,13 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                     $scope.data = data;
                     //si le livre retourné est unique alors on prérempli les champs.
                     if(!data.items){
-                        console.log('lo');
                         $scope.status = 'Aucun livre trouvé !';
                         $scope.code_barre = $scope.code_barre_recherche;
                     }else if(data.items.length === 1){
-                        $scope.auteur = data.items[0].volumeInfo.authors[0];
-                        $scope.title = data.items[0].volumeInfo.title;
+                        if(data.items[0].volumeInfo.authors){
+                            $scope.auteur = data.items[0].volumeInfo.authors[0];}
+                        if(data.items[0].volumeInfo.title){
+                            $scope.title = data.items[0].volumeInfo.title;}
                         $scope.code_barre = $scope.code_barre_recherche;
                         if(data.items[0].volumeInfo.imageLinks){
                             $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;

@@ -148,7 +148,7 @@ describe('<Unit Test>', function() {
                         'User-Agent': 'Mozilla/5.0'
                     },
                     jar: true,
-                    proxy : process.env.PROXY || null
+                    proxy : process.env.http_proxy || null
                 };
                 request(options)
                 .pipe(file)

@@ -2,7 +2,7 @@
     <div class='col-md-6'>
         <div class="row">
             <form role="form" class="form-horizontal col-md-12" name='formulaire'>
-            <h3 class='divGrisClair'>Page de l'utilisateur : {{user.name}}</h3>
+            <h3 class='well'>Page de l'utilisateur : {{user.name}}</h3>
                 <div class='col-md-8'>
                 	<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='form-control' required  ng-change="verifInput()">
                 </div>
@@ -18,7 +18,7 @@
                 <h4 class='lato-font-title' > Emprunts actuels :</h4>
                 <ul style="list-style-type:none; margin:0; padding:0;">
                     <li class="user_list" ng-repeat="media in listeEmprunt">
-                        <div class='divGrisClair'>
+                        <div class='well'>
                            <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
                             <div data-ng-hide="!media.lien_image">
                                 <a data-ng-href="#!/livres/{{media._id}}">
@@ -110,7 +110,7 @@
             <div class='col-md-12'>
                 <article>
                     <h4 class='lato-font-title'> Dernières modifications : </h4>
-                    <div ng-class="{'divGrisClair' : listeModif.length}">
+                    <div ng-class="{'well' : listeModif.length}">
                         <ul style="list-style-type:none; margin:0; padding:0;">
                             <li class="user_list" ng-repeat="media in listeModif">
                              <a ng-class='{"lato-font-retard" : media.type == "old"}' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
@@ -121,7 +121,7 @@
 
                 <article>
                     <h4 class='lato-font-title'> aperçu du dernier média : </h4>
-                    <div ng-class="{'divGrisClair' : derniermedia}">
+                    <div ng-class="{'well' : derniermedia}">
                         <div class="row">
                             <div style='padding-left:20px;'>
                            <h3>

@@ -71,7 +71,7 @@ exports.saveImage = function(req, res) {
                         'User-Agent': 'Mozilla/5.0'
                     },
                     jar: true,
-                    proxy : process.env.PROXY || null
+                    proxy : process.env.http_proxy || null
                 };
                 request(options)
                 .pipe(file)
@@ -80,12 +80,10 @@ exports.saveImage = function(req, res) {
                     fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
                     res.send(500, 'Répertoire d\'upload indisponible');
                 }).on('finish', function () {
-                    res.setHeader('Content-Type', 'text/html');
                     res.status(200);
-                    res.cookie('info_mess', encodeURI('Livre créé avec succès !'));
-                    console.log('livre');
-                    console.log(livre);
-                    res.redirect('/#!/livres/');
+                    // res.cookie('info_mess', encodeURI('Livre créé avec succès !'));
+                    res.jsonp(livre);
+                    // res.redirect('/#!/livres/');
                 });
             }else{
                 // res.jsonp(livre);
