@@ -83,7 +83,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
         function isAboMedia(user, media){
         	for(var i in user.abonnement){
-        		if(user.abonnement[i].nom === media.typeMedia){
+        		if(user.abonnement[i].nom === media.typeMedia && user.abonnement[i].caution){
         			return true;
         		}
         	}
@@ -105,7 +105,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		        console.log(media);
 	            var newEmprunt;
 	            if(media.emprunt.user){
-	                console.log('erreur media déjà emprunté');
+	                console.log('erreur media déjà emprunté', 'error');
 	            }else if(!isAboMedia($scope.user, media)){
 	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media');
 	            }else{
