@@ -16,6 +16,7 @@ var mean = require('meanio'),
     mongoStore = require('connect-mongo')(session),
     helpers = require('view-helpers'),
     flash = require('connect-flash'),
+    multer  = require('multer'),
     config = mean.loadConfig();
 
 module.exports = function(app, passport, db) {
@@ -57,6 +58,7 @@ module.exports = function(app, passport, db) {
         extended: true
     }));
     app.use(methodOverride());
+    app.use(multer({ dest: __dirname + '/../../uploads/'}));
 
     // Import the assets file and add to locals
     var assets = assetmanager.process({

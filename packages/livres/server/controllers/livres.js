@@ -40,6 +40,24 @@ exports.create = function(req, res) {
     });
 };
 
+function saveImageToServer(req, res, livre){
+    var target_path = __dirname + '/../../upload/' + livre.ref + '_' +livre.code_barre+'.jpg';
+        //ERR 34 file doesn"t find ...
+        fs.rename(req.files.image.path, target_path, function (err) {
+          /*fs.writeFile(target_path, data, function (err) {*/
+            if(err){
+                console.log(err);
+                res.send(500, 'Répertoire d\'upload indisponible');
+            }else{
+                // res.jsonp(livre);
+                res.setHeader('Content-Type', 'text/html');
+                res.status(200);
+                res.redirect('/#!/livres/'+ livre._id);
+            }
+          /*});*/
+        });
+}
+
 exports.saveImage = function(req, res) {
     var livre = new Livre(req.body);
     livre.emprunt = {
@@ -93,7 +111,6 @@ exports.saveImage = function(req, res) {
 
 exports.edit = function(req, res) {
     var livre;
-    console.log(req.params);
     Livre.load(req.params.livreId, function(err, livre_) {
         if(err){
             console.log(err);
@@ -101,7 +118,7 @@ exports.edit = function(req, res) {
             livre = livre_;
             livre = _.extend(livre, req.body);
             if(req.files.image.originalname !== null){
-                livre.lien_image = '/public/upload/livres/' +req.files.image.originalname;
+               livre.lien_image = '/packages/livres/upload/' + livre.ref + '_' +livre.code_barre+'.jpg';
             }
             livre.save(function(err) {
                 if (err) {
@@ -114,21 +131,7 @@ exports.edit = function(req, res) {
                     console.log('livre updated',livre._id);
                     // set where the file should actually exists - in this case it is in the "images" directory
                     if(req.files.image.originalname !== null){
-                        var target_path = __dirname +'/../../../../public/upload/livres/' +req.files.image.originalname;
-                        //ERR 34 file doesn"t find ...
-                        fs.rename(req.files.image.path, target_path, function (err) {
-                          /*fs.writeFile(target_path, data, function (err) {*/
-                            if(err){
-                                console.log(err);
-                                res.send(500, 'Répertoire d\'upload indisponible');
-                            }else{
-                                // res.jsonp(livre);
-                                res.setHeader('Content-Type', 'text/html');
-                                res.status(200);
-                                res.redirect('/#!/livres/'+ livre._id);
-                            }
-                          /*});*/
-                        });
+                        saveImageToServer(req, res, livre);
                     }else{
                         // res.jsonp(livre);
                         res.setHeader('Content-Type', 'text/html');
