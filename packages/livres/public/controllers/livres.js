@@ -63,6 +63,8 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                 console.log(livre);
                 livre.$save(function(response) {
                    message_info('Livre crée avec succès ! ');
+                   $scope.enregistre = true;
+                   $scope.livre = livre;
                 });
                 this.title = '';
                 this.auteur = '';
@@ -79,6 +81,25 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
             }else {
                 $scope.submitted = true;
             }
+        };
+
+        $scope.ajoutImage = function(){
+            var formData = new FormData();
+            formData.append('file', $scope.image);
+            $http({
+                method: 'POST',
+                url: './uploadImage',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: {
+                    file : formData
+                }
+            }).
+            then(function(result) {
+                console.log(result);
+                return result.data;
+            });
         };
 
 
@@ -142,7 +163,9 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                 $scope.title = livre.title;
                 $scope.dewey =  livre.dewey;
                 $scope.date_acquis = livre.date_acquis;
-
+                $scope.code_barre_recherche = livre.code_barre;
+                $scope.cote = livre.cote;
+                $scope.resume = livre.resume;
             });
 
         };
@@ -247,6 +270,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
         $scope.recup_google = function(){
             if($scope.code_barre_recherche){
+                $scope.enregistre = false;
                 Livres.query({
                     'code_barre' : $scope.code_barre_recherche
                 }, function(livre){
@@ -290,7 +314,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                             }
                         }).
                         error(function(data, status, headers, config) {
-                            console.log('error ! errror !');
+                           message_info('Il semblerai que la connection vers google_book soit impossible pour le moment ...', 'error');
                         });
                     }
                 });

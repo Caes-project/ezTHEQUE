@@ -1,8 +1,9 @@
 <section data-ng-controller="LivresController" class='well'>
+    <h2> Créer un nouveau livre</h2>
      <br>
     <!-- Formulaire d'ajout manuel ! -->
     <div class="row">
-        <form class='form-horizontal col-md-9' style='margin-left:-60px'role="form" data-ng-submit='recup_google()' name='formulaire'>
+        <form class='form-horizontal col-md-9' style='margin-left:-65px'role="form" data-ng-submit='recup_google()' name='formulaire'>
              <div class="form-group">
                  <label class="col-md-3 control-label">Code barre :</label>
                  <div class="col-md-6">
@@ -89,6 +90,22 @@
             <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message' : message_info.status}" role="alert">
                 {{message_info.message}}
             </div>
+        </div>
+        <div ng-show='enregistre'>
+            <form class="form-horizontal col-md-5 col-md-offset-1 " role="form" enctype="multipart/form-data" action="{{'/livres/' + livre._id + '/edit'}}" method="post">
+            <input ng-hide='true' type='text' name='create' id='create' value='true'>
+            <div class="form-group">
+                <label for="image" class="col-md-3 control-label">Modifier couverture</label>
+                <div class="col-md-9">
+                    <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn btn-info" >Submit</button>
+                </div>
+            </div>
+            </form>
         </div>
 </div>
 </section>

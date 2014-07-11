@@ -52,7 +52,12 @@ function saveImageToServer(req, res, livre){
                 // res.jsonp(livre);
                 res.setHeader('Content-Type', 'text/html');
                 res.status(200);
-                res.redirect('/#!/livres/'+ livre._id);
+                if(req.body.create){
+                    res.redirect('/#!/livres/create');
+                }else{   
+                    res.redirect('/#!/livres/'+ livre._id);
+                }
+                // res.jsonp(livre);
             }
           /*});*/
         });
@@ -103,7 +108,8 @@ exports.saveImage = function(req, res) {
             }else{
                 // res.jsonp(livre);
                 res.setHeader('Content-Type', 'text/html');
-                res.redirect('/#!/livres/'+ livre._id);
+                res.jsonp(livre);
+                // res.redirect('/#!/livres/'+ livre._id);
             }
         }
     });     
@@ -111,6 +117,10 @@ exports.saveImage = function(req, res) {
 
 exports.edit = function(req, res) {
     var livre;
+    console.log('req.body');
+    console.log(req.query);
+    console.log(req.body);
+    console.log(req.params);
     Livre.load(req.params.livreId, function(err, livre_) {
         if(err){
             console.log(err);
@@ -133,8 +143,8 @@ exports.edit = function(req, res) {
                     if(req.files.image.originalname !== null){
                         saveImageToServer(req, res, livre);
                     }else{
-                        // res.jsonp(livre);
                         res.setHeader('Content-Type', 'text/html');
+                        // res.jsonp(livre);
                         res.redirect('/#!/livres/'+ livre._id);
                     }
                 }
