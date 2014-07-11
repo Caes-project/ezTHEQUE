@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <select data-ng-hide='!users[1]' ng-model='selectedUser' name="nom" size="1" ng-options="user.name for user in users" required>
+                <select data-ng-hide='!users[1]' ng-model='selectedUser' name="nom" size="1" ng-options="user.name for user in users" required class='form-control'>
                 <option value="">Choix utilisateur</option> 
                 </select>
                 <span data-ng-hide='users[1]'> Pour : {{users.name}}</span>

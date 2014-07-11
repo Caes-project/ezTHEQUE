@@ -12,19 +12,26 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
         $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
 
+        var timer;
+
         function message_info(message, type){
             var res = {};
             res.message = message;
             if(type){
                 res.status = type;
             }
-            // if(!$scope.message_info){
-                $scope.message_info = res;
-                $timeout(function(){
-                    $scope.message_info =null;
-                }, 5000);
-            // }
+           $timeout.cancel(timer);
+            var transition = document.getElementById('message_info');
+            transition.classList.remove('trans_message');
+            transition.offsetWidth = transition.offsetWidth;
+            transition.classList.add('trans_message');
+            $scope.message_info = res;
+            timer = $timeout(function(){
+                $scope.message_info =null;
+            }, 6000);
         }
+
+       
 
         $scope.hasAuthorization = function(livre) {
             if (!livre) return false;
@@ -239,44 +246,57 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         };
 
         $scope.recup_google = function(){
-            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
-                success(function(data, status, headers, config){
-                    console.log(data);
-                    $scope.data = data;
-                    //si le livre retourné est unique alors on prérempli les champs.
-                    if(!data.items){
-                        message_info('Aucun livre trouvé !', 'error');
-                        $scope.code_barre = $scope.code_barre_recherche;
-                    }else if(data.items.length === 1){
-                        if(data.items[0].volumeInfo.authors){
-                            $scope.auteur = data.items[0].volumeInfo.authors[0];}
-                        if(data.items[0].volumeInfo.title){
-                            $scope.title = data.items[0].volumeInfo.title;}
-                        $scope.code_barre = $scope.code_barre_recherche;
-                        if(data.items[0].volumeInfo.imageLinks){
-                            $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                        }else{
-                            console.log('2');
-                            $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
-                                success(function(data, status, headers, config){
-                                     console.log(data);
-                                     if(data.items[0].volumeInfo.imageLinks){
-                                        $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                                     }else{
-                                         message_info('Aucune couverture dans les données renvoyées par Google', 'error');
-                                     }
-                                });
-                        }
-                        $scope.lien_livre = data.items[0].volumeInfo;
-                        if(data.items[0].volumeInfo.description){
-                            $scope.resume = data.items[0].volumeInfo.description;
-                        }   
-                        $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
+            if($scope.code_barre_recherche){
+                Livres.query({
+                    'code_barre' : $scope.code_barre_recherche
+                }, function(livre){
+                    console.log(livre);
+                    if(livre[0]){
+                        message_info('Vous avez déjà un exemplaire de ce livre', 'error');
+                    }else{
+                        $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
+                        success(function(data, status, headers, config){
+                            console.log(data);
+                            $scope.data = data;
+                            //si le livre retourné est unique alors on prérempli les champs.
+                            if(!data.items){
+                                message_info('Aucun livre trouvé !', 'error');
+                                $scope.code_barre = $scope.code_barre_recherche;
+                            }else if(data.items.length === 1){
+                                if(data.items[0].volumeInfo.authors){
+                                    $scope.auteur = data.items[0].volumeInfo.authors[0];}
+                                if(data.items[0].volumeInfo.title){
+                                    $scope.title = data.items[0].volumeInfo.title;}
+                                $scope.code_barre = $scope.code_barre_recherche;
+                                if(data.items[0].volumeInfo.imageLinks){
+                                    $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                                }else{
+                                    console.log('2');
+                                    $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
+                                        success(function(data, status, headers, config){
+                                             console.log(data);
+                                             if(data.items[0].volumeInfo.imageLinks){
+                                                $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                                             }else{
+                                                 message_info('Aucune couverture dans les données renvoyées par Google', 'error');
+                                             }
+                                        });
+                                }
+                                $scope.lien_livre = data.items[0].volumeInfo;
+                                if(data.items[0].volumeInfo.description){
+                                    $scope.resume = data.items[0].volumeInfo.description;
+                                }   
+                                $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
+                            }
+                        }).
+                        error(function(data, status, headers, config) {
+                            console.log('error ! errror !');
+                        });
                     }
-                }).
-                error(function(data, status, headers, config) {
-                    console.log('error ! errror !');
                 });
+            }else{
+                message_info('Veuillez entrer un code barre');
+            }
         };
 
         $scope.date_diff = function(livre){
