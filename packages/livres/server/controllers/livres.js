@@ -233,7 +233,7 @@ exports.all = function(req, res) {
 };
 
 exports.getMaxRef = function(req, res){
-    Livre.find({}, {ref:1, _id:0}).sort({ref:-1}).limit(1).exec(function(err, livre){
+    Livre.find().sort({'ref':1/-1}).limit(-1).exec(function(err, livre){
          if (err) {
                 res.render('error', {
                     status: 500
