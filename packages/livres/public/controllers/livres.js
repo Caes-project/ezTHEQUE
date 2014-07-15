@@ -191,11 +191,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         };
 
         $scope.getInfoUser = function(){
-            if($cookies.info_mess){
-                $scope.message_info=decodeURI($cookies.info_mess);
-            }else{
-                $scope.message_info = null;
-            }
             Livres.get({
                 livreId: $stateParams.livreId
             }, function(livre) {
@@ -209,10 +204,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                     });
                 }
             });
-            $timeout(function(){
-                $scope.message_info =null;
-                delete $cookies.info_mess;       
-            }, 5000);
         };
 
         $scope.validerEmprunt = function(){

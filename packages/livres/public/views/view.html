@@ -1,4 +1,4 @@
-<section data-ng-controller="LivresController" data-ng-init="getInfoUser()" class="sectionLivre well">
+<section data-ng-controller="LivresController" data-ng-init="getInfoUser()" class="sectionLivre well" style='position:relative'>
   
     <!-- Message de validation  -->
     <article>
@@ -28,9 +28,13 @@
             <br/>
             Ajouté à la bibliothèque le : {{livre.date_acquis | date: 'dd/MM/yyyy'}}
         </p>
-        <a href="#" class="btn btn-primary btn-large"> Réserver</a>
-        <a data-ng-hide="livre.emprunt.user || !global.isAdmin" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"> Emprunter</a>
-
+        <ul class='tags'>    
+             <li><a href="#"> {{livre.tags}}</a></li>
+        </ul>
+        <div>
+            <a href="#" class="btn btn-primary btn-large"> Réserver</a>
+            <a data-ng-hide="livre.emprunt.user || !global.isAdmin" href="/#!/livres/{{livre._id}}/emprunt" class="btn btn-primary btn-large"> Emprunter</a>
+        </div>
 
         <!-- vu du prêt par un user normal -->
         <div ng-hide='global.isAdmin'>

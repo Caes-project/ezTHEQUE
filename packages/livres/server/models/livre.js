@@ -79,6 +79,10 @@ var LivreSchema = new Schema({
     resume:{
         type: String,
         required : false
+    },
+    tags:{
+        type: String,
+        required: false
     }
 
 });
