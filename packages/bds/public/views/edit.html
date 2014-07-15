@@ -1,0 +1,69 @@
+<section data-ng-controller="BdsController" data-ng-init="findOne()">
+    <form class="form-horizontal col-md-6 col-md-offset-3 well" role="form" enctype="multipart/form-data" action="{{'/bds/' + bd._id + '/edit'}}" method="post">
+        <div class="form-group">
+             <label class="col-md-3 control-label">Code barre :</label>
+             <div class="col-md-9">
+                <input class="form-control" type='text' data-ng-model="code_barre_recherche" name='code_barre_recherche' readonly="readonly">
+             </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-ref'" class="col-md-3 control-label" for="ref" >Ref : </label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="ref" id="ref" name='ref' placeholder="ref" class="form-control" readonly="readonly" required>
+            </div>
+        </div> 
+        <div class="form-group">
+            <label mean-token="'create-auteur'" for="auteur" class="col-md-3 control-label">Auteur</label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="auteur" id="auteur" name='auteur' placeholder="Auteur" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-title'" class="col-md-3 control-label">Titre</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='title' data-ng-model="title" id="title" placeholder="Title" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Rayonnage</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-dewey'" for="dewey" class="col-md-3 control-label">Genre</label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-date'" for="date" class="col-md-3 control-label">Date achat</label>
+            <div class="col-md-9">
+                <input type='date' data-ng-model="date" id="date" name='date_acquis' placeholder="date" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-image'" for="image" class="col-md-3 control-label">Couverture</label>
+            <div class="col-md-9">
+                <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="resume" class="col-md-3 control-label">résumé</label>
+            <div class="col-md-9">
+                <textarea data-ng-model="resume" id="resume" name='resume' cols="30" rows="7" placeholder="resume" class="form-control"/> </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="resume" class="col-md-3 control-label">Ajouter tags</label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="tags" id="tags" name='tags' placeholder="tags" class="form-control"/> 
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn btn-info" >Submit</button>
+            </div>
+        </div>
+    </form>
+</section>

@@ -5,21 +5,21 @@
  */
 var Module = require('meanio').Module;
 
-var Bd = new Module('bd');
+var Bds = new Module('bds');
 
 /*
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Bd.register(function(app, auth, database) {
+Bds.register(function(app, auth, database) {
 
     //We enable routing. By default the Package Object is passed to the routes
-    Bd.routes(app, auth, database);
+    Bds.routes(app, auth, database);
 
     //We are adding a link to the main menu for all authenticated users
-    Bd.menus.add({
-        title: 'bd example page',
-        link: 'bd example page',
+    Bds.menus.add({
+        title: 'BD',
+        link: 'bds',
         roles: ['authenticated'],
         menu: 'main'
     });
@@ -28,7 +28,7 @@ Bd.register(function(app, auth, database) {
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
     // Use this for saving data from administration pages
-    Bd.settings({
+    Bds.settings({
         'someSetting': 'some value'
     }, function(err, settings) {
         //you now have the settings object
@@ -36,15 +36,15 @@ Bd.register(function(app, auth, database) {
 
     // Another save settings example this time with no callback
     // This writes over the last settings.
-    Bd.settings({
+    Bds.settings({
         'anotherSettings': 'some value'
     });
 
     // Get settings. Retrieves latest saved settigns
-    Bd.settings(function(err, settings) {
+    Bds.settings(function(err, settings) {
         //you now have the settings object
     });
     */
 
-    return Bd;
+    return Bds;
 });

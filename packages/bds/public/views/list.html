@@ -1,0 +1,18 @@
+<section data-ng-controller="BdsController" data-ng-init="find()" class="sectionBd well">
+    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/bds/create">Ajouter un bd </a></h3>
+    <div class='col-md-4'>
+         <input type='text' ng-model='searchUser' placeholder='Recherche bd' autofocus class='form-control'>
+    </div>
+    <br/>
+    <br/>
+    <ul class="unstyled">
+        <li data-ng-repeat="bd in bds | orderBy:['-title', 'title'] | filter:searchUser">
+           <h3>
+                <a data-ng-href="#!/bds/{{bd._id}}">{{bd.title}}</a>
+            </h3> 
+             <div data-ng-hide="!bd.lien_image"><img ng-src="{{bd.lien_image}}" border="0" align="center" width=80 height=130> </div>
+            <p class='lato-font-title'> {{bd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{bd.dewey}} &nbsp Ref. {{bd.ref}}</p>
+            <p class='lato-font' ng-show="bd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(bd).retard}' ng-bind='date_diff(bd).message'> </p>
+        </li>
+    </ul>
+</section>
