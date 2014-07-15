@@ -108,7 +108,7 @@
 
                 var livre = new Livres(putLivreData());
                 var user = new Users(putUserData());
-                
+                scope.test = true;
                 // mock livre in scope
                 scope.newmedia = livre;
                 scope.newmedia.typeMedia = 'BD, Livres, Magazines';
