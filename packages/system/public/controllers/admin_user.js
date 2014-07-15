@@ -108,13 +108,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
                 $scope.message_info =null;
             }, 6000);
         }
+
 	    $scope.validerEmprunt = function(){
 	    	if($scope.newmedia){
 		        var media = $scope.newmedia;
-		        console.log(media);
 	            var newEmprunt;
 	            if(media.emprunt.user){
-	                console.log('erreur media déjà emprunté', 'error');
+	                message_info('erreur media déjà emprunté', 'error');
 	            }else if(!isAboMedia($scope.user, media)){
 	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media');
 	            }else{
@@ -183,12 +183,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		    	Livres.query({
 		    		code_barre : $scope.refMedia
 		    	},
-		    	function(media){
-					if(media[0]){
-						$scope.newmedia = media[0];
+		    	function(livre){
+					if(livre[0]){
+						$scope.newmedia = livre[0];
 						$scope.newmedia.typeMedia = 'BD, Livres, Magazines';
-						if(media[0].emprunt.user === $scope.user._id){
-							$scope.rendreLivre(media[0]);
+						if(livre[0].emprunt.user === $scope.user._id){
+							$scope.rendreLivre(livre[0]);
 							$scope.refMedia = null;
 						}else{
 							$scope.validerEmprunt();
@@ -202,9 +202,9 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 				Livres.query({
 					ref: $scope.refMedia
 			    },
-			    function(media){
-					if(media[0]){
-						$scope.newmedia = media[0];
+			    function(livre){
+					if(livre[0]){
+						$scope.newmedia = livre[0];
 						$scope.newmedia.typeMedia = 'BD, Livres, Magazines';
 					}
 				});
