@@ -93,6 +93,10 @@ var UserSchema = new Schema({
             type: Date
         }
     }],
+    date_inscription:{
+        type: Date,
+        default : new Date()
+    },
     salt: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
