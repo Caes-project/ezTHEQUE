@@ -5,9 +5,12 @@ if [ "$(id -u)" != "0" ]
 	echo "Ce script a besoin des droits sudo => sudo ./install.sh"
   	exit 1
 else
-	default_proxy="proxyout.inist.fr"
-	default_port=8080
-
+	if [ "$http_proxy" = "" ]
+		then
+		default_proxy="http://proxyout.inist.fr:8080"
+	else
+		default_proxy=$http_proxy
+	fi
 	echo -n "=> Installation de git, nodejs, npm et mongodb"
 	apt-get update > /dev/null 2>&1 || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : apt-get update" && exit 1) 
 	(echo "" | apt-get install git nodejs npm mongodb > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : apt-get install git nodejs npm mongodb" && exit 1) 
@@ -15,24 +18,21 @@ else
 	read proxy_bool
 	if [ "$proxy_bool" = "y" ]
 		then
-		echo -n "Entrez l'adresse du proxy (laissez vide pour le proxy par defaut => $default_proxy:$default_port) : "
+		echo -n "Entrez l'adresse du proxy (laissez vide pour le proxy par defaut => $default_proxy) : "
 		read proxy_name
 		if [ "$proxy_name" = "" ]
 			then
-			echo "Le proxy par defaut sera utilise ($default_proxy:$default_port)"
-			proxy_name=$default_proxy
-			proxy_port=$default_port
-		else
-			echo -n "Entrez le port du proxy : "
-			read proxy_port
+			echo "Le proxy par defaut sera utilise ($default_proxy)"
+			http_proxy=$default_proxy
 		fi
 		echo -n "=> Configuration des regles pour le proxy web"
-		npm config set https-proxy "http://$proxy_name:$proxy_port" || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : npm config set https-proxy http://$proxy_name:$proxy_port" && exit 1) 
-		npm config set proxy "http://$proxy_name:$proxy_port" || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : npm config set proxy http://$proxy_name:$proxy_port" && exit 1) 
-		export HTTP_PROXY="http://$proxy_name:$proxy_port"
-		export HTTPS_PROXY="http://$proxy_name:$proxy_port"
-		export PROXY="http://$proxy_name:$proxy_port"
-		(git config --global http.proxy "http://$proxy_name:$proxy_port" && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : git config --global http.proxy http://$proxy_name:$proxy_port" && exit 1) 
+		npm config set https-proxy "$http_proxy" || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : npm config set https-proxy $http_proxy" && exit 1) 
+		npm config set proxy "$http_proxy" || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : npm config set proxy $http_proxy" && exit 1)
+		export http_proxy
+		export https_proxy="$http_proxy" 
+		export HTTP_PROXY="$http_proxy"
+		export HTTPS_PROXY="$http_proxy"
+		(git config --global http.proxy "$http_proxy" && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : git config --global http.proxy $http_proxy" && exit 1) 
 	fi
 	echo -n "=> Creation du lien symbolique \"node\" vers \"nodejs\""
 	(ln -s /usr/bin/nodejs /usr/bin/node > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 3)attention$(tput sgr0) : un fichier/lien symbolique \"/usr/bin/node\" existe deja verifiez qu'il renvoie bien vers \"/usr/bin/nodejs\"")
@@ -56,7 +56,7 @@ else
 	npm install > /dev/null 2>&1 || (echo "" echo "$(tput setaf 1)echec$(tput sgr0) : installation des dependances" && exit 1)
 	(bower --allow-root install > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : execution du gestionnaire bower" && exit 1)	
 	echo -n "=> Test de fonctionnement de l'application"
-	(npm test > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || ((npm test > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : un ou plusieurs tests ont echoue"))
+	(npm test > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || ((npm test > /dev/null 2>&1 && echo "$(tput setaf 2) ✓$(tput sgr0)") || (echo "" && echo "$(tput setaf 1)echec$(tput sgr0) : un ou plusieurs tests ont echoue" && exit 1))
 	if [ -f "data_set.sh" ]
 		then
 		echo -n "Un jeu de donnees est disponible voulez vous l'importer ? [y/N] : "
