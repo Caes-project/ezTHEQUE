@@ -234,16 +234,16 @@ exports.all = function(req, res) {
 
 exports.getMaxRef = function(req, res){
     Bd.find().sort({'ref':1/-1}).limit(-1).exec(function(err, bd){
-         if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                if(bd[0])
-                    res.jsonp(200, bd[0]);
-                else{
-                    res.jsonp(200, {'ref' : 999});
-                }
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            if(bd[0])
+                res.jsonp(200, bd[0]);
+            else{
+                res.jsonp(200, {'ref' : 100000});
             }
+        }
     });
 };

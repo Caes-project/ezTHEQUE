@@ -51,6 +51,10 @@ var LivreSchema = new Schema({
         type: Date,
         required: false
     },
+    date_hors_circu: {
+        type: Date,
+        required: false
+    },
     lien_image: {
         type: String,
         required: false
@@ -63,7 +67,7 @@ var LivreSchema = new Schema({
     historique: [{        
         user: {
             type: Schema.ObjectId,
-            ref: 'Livre'
+            ref: 'User'
         },
         date_debut: {
             type: Date

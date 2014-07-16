@@ -17,7 +17,7 @@
             <article class="col-md-12">
                 <h4 class='lato-font-title' > Emprunts actuels :</h4>
                 <ul style="list-style-type:none; margin:0; padding:0;">
-                    <li class="user_list" ng-repeat="media in listeEmprunt">
+                    <li class="user_list" ng-repeat="media in listeEmprunts">
                         <div class='well'>
                            <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
                             <div data-ng-hide="!media.lien_image">
@@ -30,7 +30,7 @@
                         </div> 
                     </li>
                 </ul>
-                <p ng-show='listeEmprunt.length === 0'>
+                <p ng-show='listeEmprunts.length === 0'>
                     Aucun emprunt en cours
                 </p>
             </article>
@@ -68,10 +68,10 @@
                         <tr>
                         <th> abonnement </th>
                         <th>  Date_fin </th>
-                        <th>  Caution </th>
-                        <th>  Paiement </th>
+                        <!-- <th>  Caution </th>
+                        <th>  Paiement </th> -->
                         </tr>
-                        <tr ng-repeat="abo in user.abonnement">
+                       <!--  <tr ng-repeat="abo in user.abonnement">
                             <td>
                                   {{abo.nom}}
                             </td> 
@@ -79,28 +79,36 @@
                                {{abo.date_fin | date: 'dd/MM/yyyy'}} 
                             </td>
                             <td>
-                                <!-- <span class="glyphicon glyphicon-remove" style='color:red'></span> -->
-                                <button type="button" ng-click="aboCaution(abo)" class="btn btn-xs">
+                               <button type="button" ng-click="aboCaution(abo)" class="btn btn-xs">
                                 <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.caution, 'glyphicon-remove':!abo.caution, 'green':abo.caution, 'red':!abo.caution}"></span>
                                 </button>
                             </td>
                             <td>
-                                <!-- <span class="glyphicon glyphicon-ok" style='color:green'></span> -->
-                                <button type="button" ng-click="aboPaiement(abo)" class="btn btn-xs">
+                               <button type="button" ng-click="aboPaiement(abo)" class="btn btn-xs">
                                 <span ng-class="{'glyphicon':true, 'glyphicon-ok':abo.paiement, 'glyphicon-remove':!abo.paiement, 'green':abo.paiement, 'red':!abo.paiement}"></span>
                                 </button>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
+                            <td> Livres, BD, Magazines </td>
+                            <td>
+                                <div ng-if='user.livre_mag_revue'> {{user.livre_mag_revue}} </div>
+                                <div ng-if='!user.livre_mag_revue'> 
+                                    <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
+                                    <span class="glyphicon glyphicon-remove red"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- <tr>
                             <td colspan="2">
                                 <select class='form-control' ng-model='newAbo' ng-options="aboption.name for aboption in option_abo">
-                                    <!-- <option value=''> Nouveau </option> -->
                                 </select>
                             </td>
                             <td style='text-align:center' colspan="2">
                                  <button ng-click='validerNewAbo(newAbo)' class="btn btn-primary btn-md"> Valider</button> 
                             </td>
-                        </tr>
+                        </tr> -->
                         </table>
                     </accordion-group>
                 </accordion>

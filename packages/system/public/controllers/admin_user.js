@@ -56,12 +56,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	        });
 	    }
 
-	    $scope.listeEmprunt = [];
+	    $scope.listeEmprunts = [];
 
 		//initialiaze le scope.emprunt
 	    $scope.getEmprunt = function(){
 		    var callback = function(media){
-				$scope.listeEmprunt.push(media);
+				$scope.listeEmprunts.push(media);
 			};
 
     		$scope.emprunt = $scope.user.emprunt;
@@ -81,9 +81,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
         };
 
+        //TODO refactor
         function isAboMedia(user, media){
         	for(var i in user.abonnement){
-        		if(user.abonnement[i].nom === media.typeMedia && user.abonnement[i].caution){
+        		if(user.abonnement[i].nom === media.typeMedia && user.caution){
         			return true;
         		}
         	}
@@ -119,6 +120,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            var newEmprunt;
 	            if(media.emprunt.user){
 	                message_info('erreur media déjà emprunté', 'error');
+	            //TODO
 	            }else if(!isAboMedia($scope.user, media)){
 	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media');
 	            }else{
@@ -130,11 +132,11 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                    id : media._id,
 	                    date_debut : $scope.date,
 	                    date_fin : $scope.date_fin
-	                };
+	                };            
 	                $scope.user.emprunt.push(newEmprunt);
                     media.$update(function(response) {
 	                	$scope.user.$update(function(response) {
-	                      	$scope.listeEmprunt.push(media);
+	                      	$scope.listeEmprunts.push(media);
 	                        $scope.derniermedia = $scope.newmedia;
 	                        $scope.newmedia = null;
 	                        $scope.refMedia = null;
@@ -150,6 +152,19 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	if(media.emprunt.user !== $scope.user._id){
         		console.log('TODO gros message d\'erreur');
         	}else{
+        		// if(!media.emprunt.historique){
+        		// 	media.emprunt.historique = [];
+        		// }
+	            media.historique.push({
+					'user' : $scope.user._id,
+					'date_debut' : media.emprunt.date_debut,
+                    'date_fin' : new Date()
+				});
+				$scope.user.historique.push({
+					'media' : media._id,
+					'date_debut' : media.emprunt.date_debut,
+                    'date_fin' : new Date()
+				});	    
 	            media.emprunt = {
 	                user: null,
 	                date_debut : null,
@@ -159,11 +174,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	                if($scope.user.emprunt[i].id === media._id){
 	                   $scope.user.emprunt.splice(i, 1);
 	                }
-	                if($scope.listeEmprunt[i]._id === media._id){  
-	                   $scope.listeEmprunt.splice(i,1);
+	                if($scope.listeEmprunts[i]._id === media._id){  
+	                   $scope.listeEmprunts.splice(i,1);
 	                }
 	            }
-	            // console.log(user);
 	            $scope.user.$update(function(response){
 	                media.$update(function(response) {
 	                    // $location.path('medias/' + response._id);
@@ -267,27 +281,27 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             console.log($scope.user);
 		};
 
-		$scope.aboCaution = function(abo){
-			console.log(abo);
-			for(var i in $scope.user.abonnement){
-				if($scope.user.abonnement[i].nom ===  abo.nom){
-					$scope.user.abonnement[i].caution =!$scope.user.abonnement[i].caution;
-				}
-			}
-			$scope.user.$update(function(response){
-				  message_info('Changement validé !');
-			});
-		};
+		// $scope.aboCaution = function(abo){
+		// 	console.log(abo);
+		// 	for(var i in $scope.user.abonnement){
+		// 		if($scope.user.abonnement[i].nom ===  abo.nom){
+		// 			$scope.user.abonnement[i].caution =!$scope.user.abonnement[i].caution;
+		// 		}
+		// 	}
+		// 	$scope.user.$update(function(response){
+		// 		  message_info('Changement validé !');
+		// 	});
+		// };
 
-		$scope.aboPaiement = function(abo){
-			console.log(abo);
-			for(var i in $scope.user.abonnement){
-				if($scope.user.abonnement[i].nom ===  abo.nom){
-					$scope.user.abonnement[i].paiement =!$scope.user.abonnement[i].paiement;
-				}
-			}
-			$scope.user.$update(function(response){
-				message_info('Changement validé !');
-			});
-		};
+		// $scope.aboPaiement = function(abo){
+		// 	console.log(abo);
+		// 	for(var i in $scope.user.abonnement){
+		// 		if($scope.user.abonnement[i].nom ===  abo.nom){
+		// 			$scope.user.abonnement[i].paiement =!$scope.user.abonnement[i].paiement;
+		// 		}
+		// 	}
+		// 	$scope.user.$update(function(response){
+		// 		message_info('Changement validé !');
+		// 	});
+		// };
 }]);

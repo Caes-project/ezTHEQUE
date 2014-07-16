@@ -58,8 +58,7 @@ var UserSchema = new Schema({
     },
     emprunt: [{
         id: {
-            type: Schema.ObjectId,
-            ref: 'Livre'
+            type: Schema.ObjectId
         },
         date_debut: {
             type: Date
@@ -68,23 +67,30 @@ var UserSchema = new Schema({
             type: Date
         }
     }],
-    abonnement:[{
-        nom : {
-            type: String
+    livre_mag_revue : {
+        type: Date
+    },
+    DVD : {
+        type: Date
+    },
+    CD : {
+        type: Date
+    },
+    paiement : {
+        type: Date
+    },
+    caution : {
+        type: Date
+    },
+    historique: [{        
+        media: {
+            type: Schema.ObjectId
         },
         date_debut: {
             type: Date
         }, 
         date_fin: {
             type: Date
-        },
-        paiement : {
-            type: Boolean,
-            default: false
-        },
-        caution : {
-            type : Boolean,
-            default: false
         }
     }],
     salt: String,

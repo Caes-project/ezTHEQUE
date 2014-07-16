@@ -58,7 +58,8 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
                         'user' : null,
                         'date_debut' : null,
                         'date_fin' : null
-                    }
+                    },
+                    historique : []
                 });
                 console.log(livre);
                 livre.$save(function(response) {

@@ -242,7 +242,7 @@ exports.getMaxRef = function(req, res){
                 if(livre[0])
                     res.jsonp(200, livre[0]);
                 else{
-                    res.jsonp(200, {'ref' : 999});
+                    res.jsonp(200, {'ref' : 200000});
                 }
             }
     });
