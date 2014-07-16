@@ -101,6 +101,13 @@ footer p {
   animation:         info_mess_anim 6s 3s; 
 }
 
+.trans_message_error{
+  -webkit-animation: info_mess_anim 15s 12s; 
+  -moz-animation:    info_mess_anim 15s 12s; 
+  -o-animation:      info_mess_anim 15s 12s; 
+  animation:         info_mess_anim 15s 12s; 
+}
+
 .info_mess_temp{
    width: 450px;
    border: 1px solid #D8D8D8;

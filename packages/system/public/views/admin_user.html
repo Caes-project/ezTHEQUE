@@ -48,7 +48,7 @@
                 </div>
                 <!-- Message de validation  -->
                 <article>
-                    <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message' : message_info.status}" role="alert">
+                    <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
                 {{message_info.message}}
                     </div>
                 </article>
@@ -92,9 +92,53 @@
                         <tr>
                             <td> Livres, BD, Magazines </td>
                             <td>
-                                <div ng-if='user.livre_mag_revue'> {{user.livre_mag_revue}} </div>
+                                <div ng-if='user.livre_mag_revue'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
                                 <div ng-if='!user.livre_mag_revue'> 
                                     <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
+                                    <span class="glyphicon glyphicon-remove red"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> DVD </td>
+                            <td>
+                                <div ng-if='user.DVD'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='!user.DVD'> 
+                                    <button type="button" ng-click="validerNewAbo('DVD')" class="btn btn-xs">
+                                    <span class="glyphicon glyphicon-remove red"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> CD </td>
+                            <td>
+                                <div ng-if='user.CD'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='!user.CD'> 
+                                    <button type="button" ng-click="validerNewAbo('CD')" class="btn btn-xs">
+                                    <span class="glyphicon glyphicon-remove red"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Caution </td>
+                            <td>
+                                <div ng-if='user.caution'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='!user.caution'> 
+                                    <button type="button" ng-click="validerNewAbo('caution')" class="btn btn-xs">
+                                    <span class="glyphicon glyphicon-remove red"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> Paiement </td>
+                            <td>
+                                <div ng-if='user.paiement'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='!user.paiement'> 
+                                    <button type="button" ng-click="validerNewAbo('paiement')" class="btn btn-xs">
                                     <span class="glyphicon glyphicon-remove red"></span>
                                     </button>
                                 </div>

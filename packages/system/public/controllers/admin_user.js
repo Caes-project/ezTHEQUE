@@ -81,13 +81,18 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
         };
 
-        //TODO refactor
         function isAboMedia(user, media){
-        	for(var i in user.abonnement){
-        		if(user.abonnement[i].nom === media.typeMedia && user.caution){
-        			return true;
-        		}
-        	}
+        	console.log(user.livre_mag_revue);
+        	console.log(user.caution);
+        	console.log(media.typeMedia);
+        	if(media.typeMedia === 'BD, Livres, Magazines' && user.livre_mag_revue && user.caution){
+        		console.log('true');
+				return true;          	
+            }else if(media.typeMedia === 'DVD' && user.DVD && user.caution){
+            	return true;
+            }else if(media.typeMedia === 'CD' && user.CD && user.caution){
+            	return true;
+      		}
         	return false;
         }
 
@@ -95,6 +100,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
         function message_info(message, type){
             var res = {};
+            var time = 1;
+            if(type === 'error'){
+            	time = 3;
+            }
             res.message = message;
             if(type){
                 res.status = type;
@@ -110,7 +119,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            $scope.message_info = res;
 	            timer = $timeout(function(){
 	                $scope.message_info =null;
-	            }, 6000);
+	            }, 6000*time);
 	        }
         }
 
@@ -120,9 +129,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            var newEmprunt;
 	            if(media.emprunt.user){
 	                message_info('erreur media déjà emprunté', 'error');
-	            //TODO
 	            }else if(!isAboMedia($scope.user, media)){
-	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media');
+	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media', 'error');
 	            }else{
 	            	delete media.typeMedia;
 	                media.emprunt.user = $scope.user._id;
@@ -152,9 +160,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	if(media.emprunt.user !== $scope.user._id){
         		console.log('TODO gros message d\'erreur');
         	}else{
-        		// if(!media.emprunt.historique){
-        		// 	media.emprunt.historique = [];
-        		// }
 	            media.historique.push({
 					'user' : $scope.user._id,
 					'date_debut' : media.emprunt.date_debut,
@@ -249,59 +254,23 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             return res;
         };
 
-        function isInArray(tab,elem){
-        	for(var i in tab){
-        		if(tab[i].nom === elem){
-        			return true;
-        		}
-        	}
-        	return false;
-        }
-
         $scope.validerNewAbo = function(newAbo){
         	var today = new Date();
             var end = new Date();
             end.setFullYear(today.getFullYear()+1);
-            if(newAbo.name){
-            	if(!isInArray($scope.user.abonnement, newAbo.name)){
-	            	$scope.user.abonnement.push({
-	                    'nom' : newAbo.name,
-	                    'date_debut' : today,
-	                    'date_fin' : end,
-	                    'paiement': false,
-	                    'caution' : false
-	                });
-	                $scope.user.$update(function(response){
-		                message_info('Abonnement créé !');
-			        });
-	            }else{
-	                  message_info('Abonnement déjà en cours !');
-	            }
-	        }
-            console.log($scope.user);
+            if(newAbo === 'livre_mag_revue'){
+            	$scope.user.livre_mag_revue = end;
+            }else if(newAbo === 'DVD'){
+            	$scope.user.DVD = end;
+            }else if(newAbo === 'CD'){
+            	$scope.user.CD = end;
+      		}else if(newAbo === 'caution'){
+            	$scope.user.caution = end;
+            }else if(newAbo === 'paiement'){
+            	$scope.user.paiement = end;
+            }
+            $scope.user.$update(function(response){
+		   		message_info('Abonnement créé !');
+			});
 		};
-
-		// $scope.aboCaution = function(abo){
-		// 	console.log(abo);
-		// 	for(var i in $scope.user.abonnement){
-		// 		if($scope.user.abonnement[i].nom ===  abo.nom){
-		// 			$scope.user.abonnement[i].caution =!$scope.user.abonnement[i].caution;
-		// 		}
-		// 	}
-		// 	$scope.user.$update(function(response){
-		// 		  message_info('Changement validé !');
-		// 	});
-		// };
-
-		// $scope.aboPaiement = function(abo){
-		// 	console.log(abo);
-		// 	for(var i in $scope.user.abonnement){
-		// 		if($scope.user.abonnement[i].nom ===  abo.nom){
-		// 			$scope.user.abonnement[i].paiement =!$scope.user.abonnement[i].paiement;
-		// 		}
-		// 	}
-		// 	$scope.user.$update(function(response){
-		// 		message_info('Changement validé !');
-		// 	});
-		// };
 }]);
