@@ -92,7 +92,7 @@
                         <tr>
                             <td> Livres, BD, Magazines </td>
                             <td>
-                                <div ng-if='user.livre_mag_revue'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='user.livre_mag_revue' ng-class='{red: date_diff_abo(user.livre_mag_revue).retard === 1}'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
                                 <div ng-if='!user.livre_mag_revue'> 
                                     <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
                                     <span class="glyphicon glyphicon-remove red"></span>
@@ -103,7 +103,7 @@
                         <tr>
                             <td> DVD </td>
                             <td>
-                                <div ng-if='user.DVD'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='user.DVD' ng-class='{red: date_diff_abo(user.DVD).retard === 1}'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
                                 <div ng-if='!user.DVD'> 
                                     <button type="button" ng-click="validerNewAbo('DVD')" class="btn btn-xs">
                                     <span class="glyphicon glyphicon-remove red"></span>
@@ -114,7 +114,7 @@
                         <tr>
                             <td> CD </td>
                             <td>
-                                <div ng-if='user.CD'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='user.CD' ng-class='{red: date_diff_abo(user.CD).retard === 1}'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
                                 <div ng-if='!user.CD'> 
                                     <button type="button" ng-click="validerNewAbo('CD')" class="btn btn-xs">
                                     <span class="glyphicon glyphicon-remove red"></span>
@@ -125,7 +125,7 @@
                         <tr>
                             <td> Caution </td>
                             <td>
-                                <div ng-if='user.caution'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='user.caution' ng-class='{red: date_diff_abo(user.caution).retard === 1}'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
                                 <div ng-if='!user.caution'> 
                                     <button type="button" ng-click="validerNewAbo('caution')" class="btn btn-xs">
                                     <span class="glyphicon glyphicon-remove red"></span>
@@ -136,7 +136,7 @@
                         <tr>
                             <td> Paiement </td>
                             <td>
-                                <div ng-if='user.paiement'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
+                                <div ng-if='user.paiement' ng-class='{red: date_diff_abo(user.paiement).retard === 1}'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
                                 <div ng-if='!user.paiement'> 
                                     <button type="button" ng-click="validerNewAbo('paiement')" class="btn btn-xs">
                                     <span class="glyphicon glyphicon-remove red"></span>

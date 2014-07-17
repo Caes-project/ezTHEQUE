@@ -41,6 +41,30 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 			return parts.join('-');
 		}
 		
+		function checkDureeAbo(user){
+			var res;
+			res = $scope.date_diff_abo(user.livre_mag_revue);
+			if(res.retard === 1){
+				message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+			}
+			res = $scope.date_diff_abo(user.DVD);
+			if(res.retard === 1){
+				message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+			}
+			res = $scope.date_diff_abo(user.CD);
+			if(res.retard === 1){
+				message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+			}
+			res = $scope.date_diff_abo(user.caution);
+			if(res.retard === 1){
+				message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+			}
+			res = $scope.date_diff_abo(user.paiement);
+			if(res.retard === 1){
+				message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+			}
+		}
+
 		$scope.date = new Date().toISOString().substring(0, 10);
 		// $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
 		$scope.date_fin = incr_date($scope.date);
@@ -52,9 +76,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            $scope.user = user;
 				$scope.getEmprunt();
 				console.log(user);
-				// $scope.user.abonnement[2].paiement = true;	    		
+				checkDureeAbo(user);
 	        });
 	    }
+
 
 	    $scope.listeEmprunts = [];
 
@@ -250,6 +275,25 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
             }else{
                 res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
                 res.retard = 1;
+            }
+            return res;
+        };
+
+        $scope.date_diff_abo = function(abo){
+            var today = new Date();
+            if(!abo){
+                return 1;
+            }
+            var fin = new Date(abo);
+            var diff = fin.getTime()- today.getTime();
+            diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var res = {};
+            if(diff >= 15){
+                res.retard = 0;
+                res.diff = diff;
+            }else{
+                res.retard = 1;
+                res.diff = diff;
             }
             return res;
         };
