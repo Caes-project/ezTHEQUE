@@ -1,0 +1,142 @@
+#! /bin/bash
+
+[ -z "$EZTHEQUE_PATH" ] && EZTHEQUE_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+[ -z "$EZTHEQUE_PIDFILE" ] && EZTHEQUE_PIDFILE="$EZTHEQUE_PATH/EZTHEQUE.pid"
+[ -z "$EZTHEQUE_PORT" ] && EZTHEQUE_PORT=50020
+[ -z "$EZTHEQUE_NAME" ] && EZTHEQUE_NAME="EZTHEQUE"
+[ -z "$EZTHEQUE_ENV" ] && EZTHEQUE_ENV="production"
+[ -z "$EZTHEQUE_DEBUG_LEVEL" ] && EZTHEQUE_DEBUG_LEVEL="*"
+[ -z "$EZTHEQUE_LOGDIR" ] && EZTHEQUE_LOGDIR="$EZTHEQUE_PATH/logs"
+[ -z "$FOREVER_CMD" ] && FOREVER_CMD="forever"
+
+
+EZTHEQUE_start() {
+  if [ "$EZTHEQUE_ENV" == "development" ]; then
+    # NODE_ENV used to control the expressjs development or production flag
+    NODE_ENV=${NODE_ENV:="$EZTHEQUE_ENV"}
+    # DEBUG used to activate verbose and colored logs on stdout
+    DEBUG=${DEBUG:="$EZTHEQUE_DEBUG_LEVEL"}
+    # run app.js forground to help developer
+    NODE_ENV="$NODE_ENV" DEBUG="$DEBUG" PORT="$EZTHEQUE_PORT" node_modules/.bin/grunt 1>/dev/null &
+	echo $! > $EZTHEQUE_PIDFILE
+  else
+	# NODE_ENV used to control the expressjs development or production flag
+	NODE_ENV=${NODE_ENV:="$EZTHEQUE_ENV"}
+    PORT="$EZTHEQUE_PORT" NODE_ENV="$NODE_ENV" $FOREVER_CMD start -p $EZTHEQUE_PATH -a -l $EZTHEQUE_LOGDIR/forever.log \
+                     -o $EZTHEQUE_LOGDIR/out.log \
+                     -e $EZTHEQUE_LOGDIR/err.log \
+                     --pidFile $EZTHEQUE_PIDFILE \
+                     node_modules/.bin/grunt 1>/dev/null
+  fi
+}
+
+EZTHEQUE_stop() {
+  if [ "$EZTHEQUE_ENV" == "development" ]; then
+    kill `cat $EZTHEQUE_PIDFILE`
+  else
+    $FOREVER_CMD stop -p $EZTHEQUE_PATH node_modules/.bin/grunt 1>/dev/null
+  fi
+}
+
+EZTHEQUE_restart() {
+  if [ "$EZTHEQUE_ENV" == "development" ]; then
+    EZTHEQUE_stop
+    EZTHEQUE_start
+  else
+    $FOREVER_CMD restart -p $EZTHEQUE_PATH node_modules/.bin/grunt 1>/dev/null
+  fi
+}
+
+case $1 in
+
+  start)
+    if kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+      echo "$EZTHEQUE_NAME is already running, listening on http://localhost:$EZTHEQUE_PORT/"
+      exit 0
+    else
+	   	EZTHEQUE_start
+		for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14; do
+		  if [ -f $EZTHEQUE_PIDFILE ]; then
+			break
+		  fi
+		  sleep 1
+		done
+
+		if kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+		  echo "$EZTHEQUE_NAME started, listening on http://localhost:$EZTHEQUE_PORT/"
+		  exit 0
+		else
+		  echo "$EZTHEQUE_NAME cannot be started."
+		  exit 1
+		fi
+    fi
+  ;;
+
+  stop)
+    if ! kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+      echo "$EZTHEQUE_NAME is already stopped."
+      exit 0
+    else
+      EZTHEQUE_PID=`cat $EZTHEQUE_PIDFILE`
+      EZTHEQUE_stop
+
+      for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14; do
+        if ! kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+          break
+        fi
+        sleep 1
+      done
+
+      if kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+        echo "$EZTHEQUE_NAME cannot be stopped."
+        exit 1
+      else
+        echo "$EZTHEQUE_NAME is stopped."
+        rm -f $EZTHEQUE_PIDFILE 2>/dev/null
+        exit 0
+      fi
+    fi
+  ;;
+
+  restart | reload | force-reload)
+    if ! kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+      PID=0
+      EZTHEQUE_start
+    else
+      PID=`cat $EZTHEQUE_PIDFILE`
+      EZTHEQUE_restart
+    fi
+
+    for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14; do
+      if [[ -f $EZTHEQUE_PIDFILE && "$PID" != "`cat $EZTHEQUE_PIDFILE`" ]]; then
+        break
+      fi
+      sleep 1
+    done
+
+    if kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+      echo "$EZTHEQUE_NAME has been restarted, listening on http://localhost:$EZTHEQUE_PORT/"
+      exit 0
+    else
+      echo "$EZTHEQUE_NAME cannot be restarted."
+      exit 1
+    fi    
+  ;;
+
+  status)
+    if kill -0 `cat $EZTHEQUE_PIDFILE 2>/dev/null` >/dev/null 2>&1; then
+      echo "$EZTHEQUE_NAME is running, listening on http://localhost:$EZTHEQUE_PORT/"
+      exit 0
+    else
+      echo "$EZTHEQUE_NAME is not running."
+      exit 1
+    fi
+  ;;
+
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+  ;;
+
+esac
