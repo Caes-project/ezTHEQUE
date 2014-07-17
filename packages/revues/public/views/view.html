@@ -1,0 +1,71 @@
+<section data-ng-controller="RevuesController" data-ng-init="getInfoUser()" class="sectionBd well" style='position:relative'>
+  
+    <!-- Message de validation  -->
+    <article>
+        <div ng-show='message_info' class='info_mess_temp lato-font'>
+                {{message_info}}
+        </div>
+    </article>
+
+    <div class='container' class='lato-font'> 
+        <h1 class='lato-font-title'>{{revue.title}} <small> {{revue.auteur}}</small></h1>
+        <h2></h2>
+        <div data-ng-if="hasAuthorization(revue)">
+            <a class="btn" href="/#!/revues/{{revue._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i> modifier
+            </a>
+            <a class="btn" data-ng-click="save_suppr()">
+                <i class="glyphicon glyphicon-trash"></i> Supprimer
+            </a>
+        </div>
+        <p data-ng-hide="!revue.lien_image" class="articleBd">
+            <img ng-src="{{revue.lien_image}}" style='float: left' border="0" align="center" width=130 height=200 alt='couverture' /> 
+            <span class='col-md-5 text-justify lato-font' style='margin-left:25px;'>  {{revue.resume}} </span>
+        </p>
+        <br/>
+        <p style='clear:both' class='lato-font'>
+            Genre : {{revue.dewey}}
+            <br/>
+            Ajouté à la bibliothèque le : {{revue.date_acquis | date: 'dd/MM/yyyy'}}
+        </p>
+        <ul class='tags'>    
+             <li><a href="#"> {{revue.tags}}</a></li>
+        </ul>
+        <div>
+            <a href="#" class="btn btn-primary btn-large"> Réserver</a>
+            <a data-ng-hide="revue.emprunt.user || !global.isAdmin" href="/#!/revues/{{revue._id}}/emprunt" class="btn btn-primary btn-large"> Emprunter</a>
+        </div>
+
+        <!-- vu du prêt par un user normal -->
+        <div ng-hide='global.isAdmin'>
+            <hr data-ng-show="revue.emprunt.user"/>
+            <p data-ng-show="revue.emprunt.user" class='lato-font'>
+                   Le revue est emprunté depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+            </p>
+        </div>
+
+        <!-- Gestion admin  -->
+        <div ng-show='global.isAdmin'>
+            <hr data-ng-show="revue.emprunt.user"/>
+            <p data-ng-show="revue.emprunt.user" class='lato-font'>
+                   Le revue est emprunté par <a href='/#!/admin/users/{{user._id}}'>{{user.name}} </a> depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+            </p>
+            <a data-ng-hide="!revue.emprunt.user"  data-ng-click='rendreBd(revue)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
+        </div>
+    </div>
+
+
+    <!-- formulaire pour valider suppression -->
+    <form class="form-inline" role="form">
+        <div data-ng-show='suppr' class="form-group">
+            <h3>Voulez-vous vraiment supprimer ce revue?</h3>
+            <button type="button" class="btn btn-primary" data-ng-click="remove(revue)">Yes</button>
+            <button type="button" class="btn btn-danger" data-ng-click="save()">No</button>
+        </div>
+        <div ng-show='error' class='error_mess'>
+                <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" /> 
+                Impossible de supprimer le revue car il est emprunté.
+        <div>
+    </form>
+</section>
+
