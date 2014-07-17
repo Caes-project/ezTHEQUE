@@ -78,13 +78,8 @@
                         username: 'Titi',
                         hashed_password: '6KaTk74KsUTlwePMHM/wRVEfISeRGcxXAevJanKpzVu7pACKuEolxz68XbLbhR/gHEYTEBUuZBq/9c27MsBMNA==',
                         emprunt: [],
-                        abonnement:[{
-                            'nom':'BD, Livres, Magazines',
-                            'date_debut':'2014-07-10T09:01:40.259Z',
-                            'date_fin':'2015-07-10T09:01:40.259Z',
-                            'paiement':false,
-                            'caution':true
-                        }]
+                        caution: '2015-07-10T09:01:40.259Z',
+                        livre_mag_revue: '2015-07-10T09:01:40.259Z'
                     };
                 };
 
@@ -96,13 +91,8 @@
                         username: 'Titi',
                         hashed_password: '6KaTk74KsUTlwePMHM/wRVEfISeRGcxXAevJanKpzVu7pACKuEolxz68XbLbhR/gHEYTEBUuZBq/9c27MsBMNA==',
                         emprunt: [{'id':'525a8422f6d0f87f0e407a33','date_debut':'2016-06-10','date_fin':'2016-06-24'}],
-                        abonnement:[{
-                            'nom':'BD, Livres, Magazines',
-                            'date_debut':'2014-07-10T09:01:40.259Z',
-                            'date_fin':'2015-07-10T09:01:40.259Z',
-                            'paiement':false,
-                            'caution':true
-                        }]
+                        caution: '2015-07-10T09:01:40.259Z',
+                        livre_mag_revue: '2015-07-10T09:01:40.259Z'
                     };
                 };
 
@@ -126,7 +116,7 @@
                 scope.validerEmprunt();
                 $httpBackend.flush();
                
-                expect(scope.listeEmprunt).toEqualData([
+                expect(scope.listeEmprunts).toEqualData([
                     livre
                 ]);
 
