@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mean.revues').directive('ezDatepicker', function() {
     return {
         restrict: 'A',
@@ -12,8 +14,8 @@ angular.module('mean.revues').directive('ezDatepicker', function() {
                 'Septembre','Octobre','Novembre','Decembre',
                ],
                dayOfWeek:[
-                "Dim.", "Lun", "Mar", "Mer", 
-                "Jeu", "Ven", "Sam",
+                'Dim.', 'Lun', 'Mar', 'Mer', 
+                'Jeu', 'Ven', 'Sam',
                ]
               }
              },

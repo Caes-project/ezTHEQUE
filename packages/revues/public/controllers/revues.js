@@ -33,7 +33,7 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
 
        $scope.majTitre = function(){
             $scope.title = $scope.revue + ' : ' + $scope.date + ' n°' + $scope.numero;
-       }
+       };
 
         $scope.hasAuthorization = function(revue) {
             if (!revue) return false;
