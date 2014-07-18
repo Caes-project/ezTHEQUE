@@ -17,7 +17,7 @@ var isAdmin = function(req, res, next) {
 };
 
 // The Package is past automatically as first parameter
-module.exports = function(Livres, app, auth, database) {
+module.exports = function(Bds, app, auth, database) {
 
     app.route('/bds/getMaxRef')
         .get(auth.requiresAdmin, bds.getMaxRef);

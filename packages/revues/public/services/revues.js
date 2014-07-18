@@ -13,6 +13,15 @@ angular.module('mean.revues').factory('Revues', ['$resource',
                 method: 'GET',
                 params: {action: 'getMaxRef'},
                 isArray: false
+            },
+            getRevues : {
+            	method: 'GET',
+                params: {action: 'getRevues'},
+                isArray: true
+            },
+            createRevues : {
+            	method: 'GET',
+                params: {action: 'createRevues'}
             }
 		});
 	}

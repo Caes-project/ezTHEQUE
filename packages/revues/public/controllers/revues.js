@@ -10,7 +10,9 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
         };
         $scope.date = new Date().toISOString().substring(0, 7);
 
-        $scope.nom_revues = ['Micro-ordinateur', 'Maison et travaux'];
+        Revues.getRevues(function(liste_revues){
+                $scope.liste_revues = liste_revues;
+        });
 
         var timer;
 
@@ -84,26 +86,6 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
                 $scope.submitted = true;
             }
         };
-
-        $scope.ajoutImage = function(){
-            var formData = new FormData();
-            formData.append('file', $scope.image);
-            $http({
-                method: 'POST',
-                url: './uploadImage',
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                data: {
-                    file : formData
-                }
-            }).
-            then(function(result) {
-                console.log(result);
-                return result.data;
-            });
-        };
-
 
         $scope.save = function(){
             $scope.suppr = false;
@@ -261,61 +243,6 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
             });
         };
 
-        $scope.recup_google = function(){
-            if($scope.code_barre_recherche){
-                $scope.enregistre = false;
-                Revues.query({
-                    'code_barre' : $scope.code_barre_recherche
-                }, function(revue){
-                    console.log(revue);
-                    if(revue[0]){
-                        message_info('Vous avez déjà un exemplaire de ce revue', 'error');
-                    }else{
-                        $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
-                        success(function(data, status, headers, config){
-                            console.log(data);
-                            $scope.data = data;
-                            //si le revue retourné est unique alors on prérempli les champs.
-                            if(!data.items){
-                                message_info('Aucun revue trouvé !', 'error');
-                                $scope.code_barre = $scope.code_barre_recherche;
-                            }else if(data.items.length === 1){
-                                if(data.items[0].volumeInfo.authors){
-                                    $scope.auteur = data.items[0].volumeInfo.authors[0];}
-                                if(data.items[0].volumeInfo.title){
-                                    $scope.title = data.items[0].volumeInfo.title;}
-                                $scope.code_barre = $scope.code_barre_recherche;
-                                if(data.items[0].volumeInfo.imageLinks){
-                                    $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                                }else{
-                                    console.log('2');
-                                    $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
-                                        success(function(data, status, headers, config){
-                                             console.log(data);
-                                             if(data.items[0].volumeInfo.imageLinks){
-                                                $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                                             }else{
-                                                 message_info('Aucune couverture dans les données renvoyées par Google', 'error');
-                                             }
-                                        });
-                                }
-                                $scope.lien_revue = data.items[0].volumeInfo;
-                                if(data.items[0].volumeInfo.description){
-                                    $scope.resume = data.items[0].volumeInfo.description;
-                                }   
-                                $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
-                            }
-                        }).
-                        error(function(data, status, headers, config) {
-                           message_info('Il semblerai que la connection vers google_book soit impossible pour le moment ...', 'error');
-                        });
-                    }
-                });
-            }else{
-                message_info('Veuillez entrer un code barre');
-            }
-        };
-
         $scope.date_diff = function(revue){
             var today = new Date();
             if(!revue.emprunt.date_fin){
@@ -339,6 +266,20 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
             Revues.getMaxRef(function(revue){
                 console.log(revue);
                 $scope.ref = revue.ref + 1;
+            });
+        };
+
+        $scope.createAbo = function(){
+            $scope.date_renouvellement = new Date(this.date_abo);
+            console.log($scope.date_renouvellement);
+            // $scope.date_renouvellement.setFullYear($scope.date_renouvellement.getFullYear()+1);
+            Revues.createRevues({
+                nom : this.nom,
+                date_abo : this.date_abo,
+                date_renouvellement :  $scope.date_renouvellement.setFullYear($scope.date_renouvellement.getFullYear()+1)
+            }, function(pattern_revue){
+                console.log(pattern_revue);
+                $scope.liste_revues.push(pattern_revue);
             });
         };
     }

@@ -19,7 +19,7 @@
                 <!-- <input type='text' data-ng-model="revue" id="revue" name='revue' class="form-control"> -->
                 <select class="form-control" ng-model="revue" id="revue" name='revue' size='1' required ng-change='majTitre()'>
                     <option value='' > Choix revue </option>
-                    <option value="{{nom_revue}}" ng-repeat="nom_revue in nom_revues">{{nom_revue}}</option>
+                    <option value="{{nom_revue.nom}}" ng-repeat="nom_revue in liste_revues">{{nom_revue.nom}}</option>
                 </select>
             </div>
         </div> 
@@ -98,7 +98,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn btn-info" >Submit</button>
+                    <button type="submit" class="btn btn-info" >Valider</button>
                 </div>
             </div>
             </form>

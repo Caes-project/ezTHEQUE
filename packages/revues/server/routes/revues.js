@@ -17,10 +17,14 @@ var isAdmin = function(req, res, next) {
 };
 
 // The Package is past automatically as first parameter
-module.exports = function(Livres, app, auth, database) {
+module.exports = function(Revues, app, auth, database) {
 
     app.route('/revues/getMaxRef')
         .get(auth.requiresAdmin, revues.getMaxRef);
+    app.route('/revues/createRevues')
+        .get(auth.requiresLogin, revues.createRevues); 
+    app.route('/revues/getRevues')
+        .get(auth.requiresLogin, revues.getRevues);
     app.route('/revues/:revueId/emprunt')
         .post(auth.requiresLogin, revues.update);
     app.route('/revues/upload')
