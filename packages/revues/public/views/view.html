@@ -40,7 +40,7 @@
         <div ng-hide='global.isAdmin'>
             <hr data-ng-show="revue.emprunt.user"/>
             <p data-ng-show="revue.emprunt.user" class='lato-font'>
-                   Le revue est emprunté depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+                   La revue est emprunté depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> elle sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
             </p>
         </div>
 
@@ -48,7 +48,7 @@
         <div ng-show='global.isAdmin'>
             <hr data-ng-show="revue.emprunt.user"/>
             <p data-ng-show="revue.emprunt.user" class='lato-font'>
-                   Le revue est emprunté par <a href='/#!/admin/users/{{user._id}}'>{{user.name}} </a> depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> il sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+                   La revue est emprunté par <a href='/#!/admin/users/{{user._id}}'>{{user.name}} </a> depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> elle sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
             </p>
             <a data-ng-hide="!revue.emprunt.user"  data-ng-click='rendreBd(revue)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
         </div>

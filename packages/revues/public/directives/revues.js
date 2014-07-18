@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.revues').directive('ezDatepicker', function() {
+angular.module('mean.revues').directive('ezDatepickerMonth', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
@@ -10,7 +10,7 @@ angular.module('mean.revues').directive('ezDatepicker', function() {
               fr:{
                months:[
                 'Janvier','Fevrier','Mars','Avril',
-                'Mai','Juin','Juiller','Aout',
+                'Mai','Juin','Juillet','Aout',
                 'Septembre','Octobre','Novembre','Decembre',
                ],
                dayOfWeek:[

@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Revue = mongoose.model('Revue'),
     fs = require('fs'),
     // http = require('http'),
-    request = require('request'),
     _ = require('lodash');
 
 
@@ -65,54 +64,32 @@ function saveImageToServer(req, res, revue){
 
 exports.saveImage = function(req, res) {
     var revue = new Revue(req.body);
+    console.log(revue);
     revue.emprunt = {
                         user: null,
                         date_debut : null,
                         date_fin : null
                     };
-    if(req.body.lien_image){
+    if(req.files.image.originalname !== null){
         revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
     }
-   revue.save(function(err) {
-        if (err) {
-            console.log(err);
-            return res.send(400, {
-                errors: err.errors,
-                revue: revue
-            });
-        } else {
-            if(req.body.lien_image){
-                var targetpath = __dirname + '/../../upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
-                var file = fs.createWriteStream(targetpath);
-                var options = {
-                    method: 'GET',
-                    uri: req.body.lien_image,
-                    headers : {
-                        'User-Agent': 'Mozilla/5.0'
-                    },
-                    jar: true,
-                    proxy : process.env.http_proxy || null
-                };
-                request(options)
-                .pipe(file)
-                .on('error', function (err) {
-                    console.log(err);
-                    fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
-                    res.send(500, 'Répertoire d\'upload indisponible');
-                }).on('finish', function () {
-                    res.status(200);
-                    // res.cookie('info_mess', encodeURI('Revue créé avec succès !'));
-                    res.jsonp(revue);
-                    // res.redirect('/#!/revues/');
+        revue.save(function(err) {
+            if (err) {
+                console.log(err);
+                return res.send(400, {
+                    errors: err.errors,
+                    revue: revue
                 });
-            }else{
-                // res.jsonp(revue);
-                res.setHeader('Content-Type', 'text/html');
-                res.jsonp(revue);
-                // res.redirect('/#!/revues/'+ revue._id);
+            } else {
+                if(req.files.image.originalname !== null){
+                    saveImageToServer(req, res, revue);
+                }else{
+                    // res.jsonp(revue);
+                    res.setHeader('Content-Type', 'text/html');
+                    res.redirect('/#!/revues/'+ revue._id);
+                }
             }
-        }
-    });     
+        });     
 };
 
 exports.edit = function(req, res) {
@@ -242,7 +219,7 @@ exports.getMaxRef = function(req, res){
             if(revue[0])
                 res.jsonp(200, revue[0]);
             else{
-                res.jsonp(200, {'ref' : 100000});
+                res.jsonp(200, {'ref' : 400000});
             }
         }
     });

@@ -3,22 +3,16 @@
      <br>
     <!-- Formulaire d'ajout manuel ! -->
     <div class="row">
-        <form class='form-horizontal col-md-9' style='margin-left:-65px'role="form" data-ng-submit='recup_google()' name='formulaire'>
-             <div class="form-group">
-                 <label class="col-md-3 control-label">Code barre :</label>
-                 <div class="col-md-6">
-                    <input class="form-control" type='text' data-ng-model="code_barre_recherche" name='code_barre_recherche' placeholder="code barre" >
-                 </div>
-                 <!-- <div class="col-md-1">
-                     <button type="submit" class="btn btn-info">Chercher</button>
-                 </div> -->
+    <form name="revueForm" class="form-horizontal col-md-6"  role="form" enctype="multipart/form-data" action="/revues/upload" method="post">
+        <div class="form-group">
+             <label class="col-md-3 control-label">Code barre :</label>
+             <div class="col-md-9">
+                <input class="form-control" type='text' data-ng-model="code_barre" name='code_barre' placeholder="code barre" >
              </div>
-        </form>
-        
-    </div>
-    <div class="row">
-    <form name="revueForm" class="form-horizontal col-md-6"  role="form" data-ng-submit="create(revueForm.$valid)">
-        <input type='text' data-ng-model="img_google" name='img_google' style='display:none'>
+             <!-- <div class="col-md-1">
+                 <button type="submit" class="btn btn-info">Chercher</button>
+             </div> -->
+         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Revue : </label>
             <div class="col-md-9">
@@ -44,7 +38,7 @@
         <div class="form-group">
             <label for="date" class="col-md-3 control-label">Date parution</label>
             <div class="col-md-9">
-                <input type='text' data-ng-model="date" id="date" name='date_acquis' class="form-control" ez-datepicker>
+                <input type='text' data-ng-model="date" id="date" name='date_acquis' class="form-control" ez-datepicker-month>
             </div>
         </div>
         <div class="form-group">
@@ -61,12 +55,12 @@
         </div>
         <div class="form-group">
         </div>
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label for="image" class="col-md-3 control-label">Couverture</label>
             <div class="col-md-9">
                 <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
             </div>
-        </div> -->
+        </div>
         <div class="form-group">
             <label for="resume" class="col-md-3 control-label">résumé</label>
             <div class="col-md-9">
