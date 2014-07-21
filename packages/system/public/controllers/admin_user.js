@@ -227,7 +227,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 	    $scope.verifInput = function(){
 		    $scope.newmedia = null;
-	    	if($scope.refMedia.length > 8){
+	    	if($scope.refMedia && $scope.refMedia.length > 8){
 		    	Livres.query({
 		    		code_barre : $scope.refMedia
 		    	},

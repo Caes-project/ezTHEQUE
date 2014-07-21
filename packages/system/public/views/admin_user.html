@@ -132,7 +132,7 @@
             <div class='col-md-6'>
                 <article>
                     <h4 class='lato-font-title' ng-if='listeModif.length'> Emprunts : </h4>
-                    <div ng-class="{'well' : listeModif.length}">
+                    <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
                         <ul style="list-style-type:none; margin:0; padding:0;">
                             <li class="user_list" ng-repeat="media in listeModif">
                              <a ng-if='media.type == "new"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
@@ -144,7 +144,7 @@
             <div class='col-md-6'>
                 <article>
                     <h4 class='lato-font-title' ng-if='listeModif.length'> Rendu : </h4>
-                    <div ng-class="{'well' : listeModif.length}" id='well'>
+                    <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
                         <ul style="list-style-type:none; margin:0; padding:0;">
                             <li class="user_list" ng-repeat="media in listeModif">
                              <a class='lato-font-retard' ng-if='media.type =="old"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
