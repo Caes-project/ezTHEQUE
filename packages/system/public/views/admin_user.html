@@ -1,9 +1,12 @@
 <section data-ng-controller="UsersAdminController" class="sectionLivre">
     <div class='col-md-6'>
         <div class="row">
-            <form role="form" class="form-horizontal col-md-12" name='formulaire'>
             <h3 class='well'>Page de l'utilisateur : {{user.name}}</h3>
-                <div class='col-md-8'>
+            <form role="form" class="form-horizontal col-md-12 well" name='formulaire'>
+                <div class='col-md-2'>
+                    <label class='control-label'>Scan :</label>
+                </div>
+                <div class='col-md-6'>
                 	<input type='text' ng-model='refMedia' placeholder='CodeBarre ou ref' ng-focus class='form-control' required  ng-change="verifInput()">
                 </div>
                 <div class='col-md-4'>

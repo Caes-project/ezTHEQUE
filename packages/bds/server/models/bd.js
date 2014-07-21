@@ -22,9 +22,13 @@ var BdSchema = new Schema({
         type: String,
         required: true
     },
-    auteur: {
+    scenariste: {
         type: String,
-        required: true
+        required: false
+    },
+    dessinateur: {
+        type: String,
+        required: false
     },
     code_barre: {
         type: String,

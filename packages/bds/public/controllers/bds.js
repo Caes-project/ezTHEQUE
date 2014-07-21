@@ -10,7 +10,7 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
         };
         $scope.date = new Date().toISOString().substring(0, 10);
 
-        $scope.genre_liste_bd = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
+        $scope.genre_liste_bd = ['Aventure', 'Erotique', 'Humour', 'Fantastique', 'Bibliographie', 'Manga', 'Enfants', 'Divers'];
 
         var timer;
 

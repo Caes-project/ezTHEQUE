@@ -26,7 +26,7 @@ module.exports = function(Livres, app, auth, database) {
     app.route('/livres/upload')
         .post(auth.requiresLogin, isAdmin,livres.saveImage);
     app.route('/livres/:livreId/edit')
-        .post(auth.requiresLogin, isAdmin,livres.edit);
+        .post(auth.requiresAdmin, isAdmin,livres.edit);
     app.route('/livres')
         .get(livres.all)
         .post(auth.requiresLogin, isAdmin, livres.saveImage);

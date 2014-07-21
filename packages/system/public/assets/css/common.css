@@ -40,12 +40,14 @@ footer {
 footer p {
     padding:5px 0 12px 10px
 }
-.ng-invalid.ng-dirty{
+
+/*.ng-invalid.ng-dirty{
     border-color:#66CCCC;
 }
 .ng-valid.ng-dirty{
     border-color:#66CCCC;
-}
+}*/
+
 .users_list{
     width: 300px;
     padding: 10px 20px;
