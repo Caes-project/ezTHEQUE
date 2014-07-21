@@ -125,7 +125,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
         function message_info(message, type){
             var res = {};
-            var time = 1;
+            var time = 2;
             if(type === 'error'){
             	time = 3;
             }

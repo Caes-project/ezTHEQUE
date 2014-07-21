@@ -65,40 +65,12 @@ footer p {
     border: 1px solid #ccc;
 }
 
-.error_mess{
-   width: 450px;
-   border: 1px solid #D8D8D8;
-   padding: 5px;
-   border-radius: 5px;
-   font-family: Arial;
-   font-size: 14px;
-   text-transform: uppercase;
-   background-color: rgb(255, 249, 242);
-   color: rgb(211, 0, 0);
-   text-align: center;
-}
-.info_mess{
-   width: 450px;
-   border: 1px solid #D8D8D8;
-   padding: 5px;
-   border-radius: 5px;
-   font-family: Arial;
-   font-size: 14px;
-   background-color: rgb(51, 225, 255);
-   background-color: rgba(51, 225, 255, 0.5);
-   color: rgb(51, 51, 51);
-   text-align: center;
-  -webkit-animation: info_mess_anim_entre 2s; 
-  -moz-animation:    info_mess_anim_entre 2s; 
-  -o-animation:      info_mess_anim_entre 2s; 
-  animation:         info_mess_anim_entre 2s;  
-}
-
 .trans_message{
-  -webkit-animation: info_mess_anim 6s 3s; 
-  -moz-animation:    info_mess_anim 6s 3s; 
-  -o-animation:      info_mess_anim 6s 3s; 
-  animation:         info_mess_anim 6s 3s; 
+  -webkit-animation: info_mess_anim 12s 9s; 
+  -moz-animation:    info_mess_anim 12s 9s; 
+  -o-animation:      info_mess_anim 12s 9s; 
+  animation:         info_mess_anim 12s 9s; 
+  margin: 0;
 }
 
 .trans_message_error{
@@ -106,6 +78,7 @@ footer p {
   -moz-animation:    info_mess_anim 15s 12s; 
   -o-animation:      info_mess_anim 15s 12s; 
   animation:         info_mess_anim 15s 12s; 
+  margin: 0;
 }
 
 .info_mess_temp{
@@ -198,3 +171,4 @@ footer p {
   font-weight: 400;
   src: url('Lato.eot?#iefix') format('embedded-opentype'),local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
 }
+
