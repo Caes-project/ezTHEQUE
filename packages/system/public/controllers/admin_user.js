@@ -86,15 +86,25 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		//initialiaze le scope.emprunt
 	    $scope.getEmprunt = function(){
 		    var callback = function(media){
+		    	console.log(media);
 				$scope.listeEmprunts.push(media);
 			};
 
-    		$scope.emprunt = $scope.user.emprunt;
 	    	//récupère la liste des id des medias emprunté
-	    	for(var i in $scope.emprunt){
-		   		Livres.get({
-				    livreId: $scope.emprunt[i].id
-				}, callback);
+	    	for(var i in $scope.user.emprunt){
+	    		if($scope.user.emprunt[i].type === 'Livres'){
+			   		Livres.get({
+					    livreId: $scope.user.emprunt[i].id
+					}, callback);
+				}else if($scope.user.emprunt[i].type === 'Magazines'){
+					Revues.get({
+					    revueId: $scope.user.emprunt[i].id
+					}, callback);
+				}else if($scope.user.emprunt[i].type === 'BD'){
+					Bds.get({
+					    bdId: $scope.user.emprunt[i].id
+					}, callback);
+				}
 	    	}
 	    };
 
@@ -110,8 +120,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         	console.log(user.livre_mag_revue);
         	console.log(user.caution);
         	console.log(media.typeMedia);
-        	if(media.typeMedia === 'BD, Livres, Magazines' && user.livre_mag_revue && user.caution){
-        		console.log('true');
+        	if( (media.typeMedia === 'BD' || media.typeMedia === 'Livres' || media.typeMedia === 'Magazines') && user.livre_mag_revue && user.caution){
 				return true;          	
             }else if(media.typeMedia === 'DVD' && user.DVD && user.caution){
             	return true;
@@ -134,7 +143,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
                 res.status = type;
             }
            	if($scope.test){
-           		console.log('gros hack pour les tests 2');
+           		console.log('gros hack pour les tests');
 	        }else{
            		$timeout.cancel(timer);
 	            var transition = document.getElementById('message_info');
@@ -157,15 +166,16 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	            }else if(!isAboMedia($scope.user, media)){
 	            	message_info('L\'utilisateur n\'est pas abonné à ce type de media', 'error');
 	            }else{
-	            	delete media.typeMedia;
 	                media.emprunt.user = $scope.user._id;
 	                media.emprunt.date_debut = $scope.date;
 	                media.emprunt.date_fin = $scope.date_fin;
 	                newEmprunt = {
 	                    id : media._id,
 	                    date_debut : $scope.date,
-	                    date_fin : $scope.date_fin
+	                    date_fin : $scope.date_fin,
+	                    type : media.typeMedia
 	                };            
+	            	delete media.typeMedia;
 	                $scope.user.emprunt.push(newEmprunt);
                     media.$update(function(response) {
 	                	$scope.user.$update(function(response) {
@@ -251,7 +261,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		    		code_barre : $scope.refMedia
 		    	},
 		    	function(livre){
-					verifMediaCB(livre, 'BD, Livres, Magazines');
+					verifMediaCB(livre, 'Livres');
 				});
 			}
 			else if (type === 'Ref'){
@@ -259,7 +269,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 					ref: $scope.refMedia
 			    },
 			    function(livre){
-					verifMediaRef(livre, 'BD, Livres, Magazines');
+					verifMediaRef(livre, 'Livres');
 				});
 			}
         }
@@ -270,7 +280,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		    		code_barre : $scope.refMedia
 		    	},
 		    	function(livre){
-					verifMediaCB(livre, 'BD, Livres, Magazines');
+					verifMediaCB(livre, 'BD');
 				});
 			}
 			else if (type === 'Ref'){
@@ -278,7 +288,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 					ref: $scope.refMedia
 			    },
 			    function(livre){
-					verifMediaRef(livre, 'BD, Livres, Magazines');
+					verifMediaRef(livre, 'BD');
 				});
 			}
         }
@@ -289,7 +299,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 		    		code_barre : $scope.refMedia
 		    	},
 		    	function(livre){
-					verifMediaCB(livre, 'BD, Livres, Magazines');
+					verifMediaCB(livre, 'Magazines');
 				});
 			}
 			else if (type === 'Ref'){
@@ -297,7 +307,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 					ref: $scope.refMedia
 			    },
 			    function(livre){
-					verifMediaRef(livre, 'BD, Livres, Magazines');
+					verifMediaRef(livre, 'Magazines');
 				});
 			}
         }
