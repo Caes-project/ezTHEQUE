@@ -41,7 +41,7 @@ exports.create = function(req, res) {
 };
 
 function saveImageToServer(req, res, revue){
-    var target_path = __dirname + '/../../upload/' + revue.ref + '_' +revue.code_barre+'.jpg';
+    var target_path = __dirname + '/../../upload/' + revue.ref + '_' +revue.code_barre+ req.files.image.extension;
         //ERR 34 file doesn"t find ...
         fs.rename(req.files.image.path, target_path, function (err) {
           /*fs.writeFile(target_path, data, function (err) {*/
@@ -72,7 +72,7 @@ exports.saveImage = function(req, res) {
                         date_fin : null
                     };
     if(req.files.image.originalname !== null){
-        revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
+        revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
     }
         revue.save(function(err) {
             if (err) {
@@ -95,10 +95,6 @@ exports.saveImage = function(req, res) {
 
 exports.edit = function(req, res) {
     var revue;
-    console.log('req.body');
-    console.log(req.query);
-    console.log(req.body);
-    console.log(req.params);
     Revue.load(req.params.revueId, function(err, revue_) {
         if(err){
             console.log(err);
@@ -106,7 +102,7 @@ exports.edit = function(req, res) {
             revue = revue_;
             revue = _.extend(revue, req.body);
             if(req.files.image.originalname !== null){
-               revue.lien_image = '/packages/revues/upload/' + revue.ref + '_' +revue.code_barre+'.jpg';
+               revue.lien_image = '/packages/revues/upload/' + revue.ref + '_' +revue.code_barre+ req.files.image.extension;
             }
             revue.save(function(err) {
                 if (err) {
@@ -116,7 +112,7 @@ exports.edit = function(req, res) {
                         revue: revue
                     });
                 } else {
-                    console.log('revue updated',revue._id);
+
                     // set where the file should actually exists - in this case it is in the "images" directory
                     if(req.files.image.originalname !== null){
                         saveImageToServer(req, res, revue);
