@@ -1,4 +1,4 @@
-<section data-ng-controller="RevuesController" data-ng-init="getInfoUser()" class="sectionBd well" style='position:relative'>
+<section data-ng-controller="RevuesController" data-ng-init="getInfoUser()" class="sectionRevue well" style='position:relative'>
   
     <!-- Message de validation  -->
     <article>
@@ -18,7 +18,7 @@
                 <i class="glyphicon glyphicon-trash"></i> Supprimer
             </a>
         </div>
-        <p data-ng-hide="!revue.lien_image" class="articleBd">
+        <p data-ng-hide="!revue.lien_image" class="articleRevue">
             <img ng-src="{{revue.lien_image}}" style='float: left' border="0" align="center" width=130 height=200 alt='couverture' /> 
             <span class='col-md-5 text-justify lato-font' style='margin-left:25px;'>  {{revue.resume}} </span>
         </p>
@@ -50,7 +50,7 @@
             <p data-ng-show="revue.emprunt.user" class='lato-font'>
                    La revue est emprunté par <a href='/#!/admin/users/{{user._id}}'>{{user.name}} </a> depuis le {{revue.emprunt.date_debut | date: 'dd/MM/yyyy'}} <br> elle sera normalement disponible le {{revue.emprunt.date_fin | date: 'dd/MM/yyyy'}}
             </p>
-            <a data-ng-hide="!revue.emprunt.user"  data-ng-click='rendreBd(revue)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
+            <a data-ng-hide="!revue.emprunt.user"  data-ng-click='rendreRevue(revue)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
         </div>
     </div>
 
