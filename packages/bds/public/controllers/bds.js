@@ -159,7 +159,8 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
             }, function(bd) {
                 $scope.bd = bd;
                 $scope.ref = bd.ref;
-                $scope.auteur = bd.auteur;
+                $scope.dessinateur = bd.dessinateur;
+                $scope.scenariste = bd.scenariste;
                 $scope.title = bd.title;
                 $scope.dewey =  bd.dewey;
                 $scope.date_acquis = bd.date_acquis;
