@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', '$filter',
-    function($scope,$stateParams, $location, $timeout, Users, Global, Livres, $filter) {
+angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 'Revues', 'Bds', '$filter',
+    function($scope,$stateParams, $location, $timeout, Users, Global, Livres, Revues, Bds, $filter) {
 		
 		$scope.global = Global;
 		
@@ -224,38 +224,96 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 	        }
         };
 
+        function verifMediaRef(media, type){
+			if(media[0]){
+				$scope.newmedia = media[0];
+				$scope.newmedia.typeMedia = type;
+			}
+        }
 
-	    $scope.verifInput = function(){
-		    $scope.newmedia = null;
-	    	if($scope.refMedia && $scope.refMedia.length > 8){
-		    	Livres.query({
+        function verifMediaCB(media, type){
+        	if(media[0]){
+				$scope.newmedia = media[0];
+				$scope.newmedia.typeMedia = type;
+				if(media[0].emprunt.user === $scope.user._id){
+					$scope.rendreLivre(media[0]);
+					$scope.refMedia = null;
+				}else{
+					$scope.validerEmprunt();
+					$scope.refMedia = null;
+				}
+			}
+        }
+
+        function getLivre(type){
+    		if(type === 'CB'){
+	        	Livres.query({
 		    		code_barre : $scope.refMedia
 		    	},
 		    	function(livre){
-					if(livre[0]){
-						$scope.newmedia = livre[0];
-						$scope.newmedia.typeMedia = 'BD, Livres, Magazines';
-						if(livre[0].emprunt.user === $scope.user._id){
-							$scope.rendreLivre(livre[0]);
-							$scope.refMedia = null;
-						}else{
-							$scope.validerEmprunt();
-							$scope.refMedia = null;
-						}
-					}
+					verifMediaCB(livre, 'BD, Livres, Magazines');
 				});
-			}	 
-		    else{
-				$scope.newmedia = null;
+			}
+			else if (type === 'Ref'){
 				Livres.query({
 					ref: $scope.refMedia
 			    },
 			    function(livre){
-					if(livre[0]){
-						$scope.newmedia = livre[0];
-						$scope.newmedia.typeMedia = 'BD, Livres, Magazines';
-					}
+					verifMediaRef(livre, 'BD, Livres, Magazines');
 				});
+			}
+        }
+
+        function getBd(type){
+    		if(type === 'CB'){
+	        	Bds.query({
+		    		code_barre : $scope.refMedia
+		    	},
+		    	function(livre){
+					verifMediaCB(livre, 'BD, Livres, Magazines');
+				});
+			}
+			else if (type === 'Ref'){
+				Bds.query({
+					ref: $scope.refMedia
+			    },
+			    function(livre){
+					verifMediaRef(livre, 'BD, Livres, Magazines');
+				});
+			}
+        }
+
+        function getRevue(type){
+    		if(type === 'CB'){
+	        	Revues.query({
+		    		code_barre : $scope.refMedia
+		    	},
+		    	function(livre){
+					verifMediaCB(livre, 'BD, Livres, Magazines');
+				});
+			}
+			else if (type === 'Ref'){
+				Revues.query({
+					ref: $scope.refMedia
+			    },
+			    function(livre){
+					verifMediaRef(livre, 'BD, Livres, Magazines');
+				});
+			}
+        }
+
+	    $scope.verifInput = function(){
+		    $scope.newmedia = null;
+	    	if($scope.refMedia && $scope.refMedia.length > 8){
+		    	getLivre('CB');
+		    	getBd('CB');
+		    	getRevue('CB');
+			}	 
+		    else{
+				$scope.newmedia = null;
+				getLivre('Ref');
+				getBd('Ref');
+		    	getRevue('Ref');
 			}
 	    };
 
