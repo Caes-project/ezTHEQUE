@@ -16,6 +16,8 @@
                 module('mean');
                 module('mean.system');
                 module('mean.users');
+                module('mean.revues');
+                module('mean.bds');
                 // module('mean.livres');
             });
 
