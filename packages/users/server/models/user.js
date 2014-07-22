@@ -65,6 +65,9 @@ var UserSchema = new Schema({
         }, 
         date_fin: {
             type: Date
+        },
+        type: {
+            type: String
         }
     }],
     livre_mag_revue : {
