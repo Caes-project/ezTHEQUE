@@ -92,7 +92,7 @@
                         email: 'toto@titi.com',
                         username: 'Titi',
                         hashed_password: '6KaTk74KsUTlwePMHM/wRVEfISeRGcxXAevJanKpzVu7pACKuEolxz68XbLbhR/gHEYTEBUuZBq/9c27MsBMNA==',
-                        emprunt: [{'id':'525a8422f6d0f87f0e407a33','date_debut':'2016-06-10','date_fin':'2016-06-24'}],
+                        emprunt: [{'id':'525a8422f6d0f87f0e407a33','date_debut':'2016-06-10','date_fin':'2016-06-24', 'type' : 'Livres'}],
                         caution: '2015-07-10T09:01:40.259Z',
                         livre_mag_revue: '2015-07-10T09:01:40.259Z'
                     };
@@ -103,7 +103,7 @@
                 scope.test = true;
                 // mock livre in scope
                 scope.newmedia = livre;
-                scope.newmedia.typeMedia = 'BD, Livres, Magazines';
+                scope.newmedia.typeMedia = 'Livres';
                 scope.user = user; 
                 scope.date = '2016-06-10';
                 scope.date_fin = '2016-06-24';
