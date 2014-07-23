@@ -2,70 +2,24 @@
 
 angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 'Revues', 'Bds', '$filter',
   function($scope,$stateParams, $location, $timeout, Users, Global, Livres, Revues, Bds, $filter) {
-	
-	$scope.global = Global;
-	
-	$scope.listeModif = [];		
-	
-	$scope.option_abo = [{'name' : 'BD, Livres, Magazines'},{'name' : 'Disque'}, {'name' : 'DVD'}];
+  
+  $scope.global = Global;
+  
+  $scope.listeModif = [];   
+  
+  $scope.option_abo = [{'name' : 'BD, Livres, Magazines'},{'name' : 'Disque'}, {'name' : 'DVD'}];
 
-	$scope.newAbo = {};
+  $scope.newAbo = {};
 
-	if($scope.global.message_info){
-		$scope.message_info = $scope.global.message_info;
-		delete $scope.global.message_info;
-		$timeout(function(){
-          	$scope.message_info =null;
+  if($scope.global.message_info){
+    $scope.message_info = $scope.global.message_info;
+    delete $scope.global.message_info;
+    $timeout(function(){
+            $scope.message_info =null;
           }, 5000);
-	}
+  }
 
-      $scope.isOpen2 = false;
-
-    function incr_date(date_str){
-	    var parts = date_str.split('-');
-	    var dt = new Date(
-	         parseInt(parts[0], 10),      // year
-	         parseInt(parts[1], 10) - 1,  // month (starts with 0)
-	         parseInt(parts[2], 10)       // date
-	     );
-	 	dt.setDate(dt.getDate() + 7);
-		 parts[0] = '' + dt.getFullYear();
-		 parts[1] = '' + (dt.getMonth() + 1);
-		 if (parts[1].length < 2) {
-		    parts[1] = '0' + parts[1];
-		}
-		parts[2] = '' + dt.getDate();
-		if (parts[2].length < 2) {
-		    parts[2] = '0' + parts[2];
-		}
-		return parts.join('-');
-	}
-	
-	function checkDureeAbo(user){
-		var res;
-		res = $scope.date_diff_abo(user.livre_mag_revue);
-		if(res.retard === 1){
-			message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
-		}
-		res = $scope.date_diff_abo(user.DVD);
-		if(res.retard === 1){
-			message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
-		}
-		res = $scope.date_diff_abo(user.CD);
-		if(res.retard === 1){
-			message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
-		}
-		res = $scope.date_diff_abo(user.caution);
-		if(res.retard === 1){
-			message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
-		}
-		res = $scope.date_diff_abo(user.paiement);
-		if(res.retard === 1){
-			message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
-		}
-	}
-
-	$scope.date = new Date().toISOString().substring(0, 10);
+  $scope.date = new Date().toISOString().substring(0, 10);
 	// $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
 	$scope.date_fin = incr_date($scope.date);
 
@@ -79,6 +33,51 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 			checkDureeAbo(user);
         });
     }
+
+    function incr_date(date_str){
+      var parts = date_str.split('-');
+      var dt = new Date(
+           parseInt(parts[0], 10),      // year
+           parseInt(parts[1], 10) - 1,  // month (starts with 0)
+           parseInt(parts[2], 10)       // date
+       );
+    dt.setDate(dt.getDate() + 7);
+     parts[0] = '' + dt.getFullYear();
+     parts[1] = '' + (dt.getMonth() + 1);
+     if (parts[1].length < 2) {
+        parts[1] = '0' + parts[1];
+    }
+    parts[2] = '' + dt.getDate();
+    if (parts[2].length < 2) {
+        parts[2] = '0' + parts[2];
+    }
+    return parts.join('-');
+  }
+  
+  function checkDureeAbo(user){
+    var res;
+    res = $scope.date_diff_abo(user.livre_mag_revue);
+    if(res.retard === 1){
+      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+    }
+    res = $scope.date_diff_abo(user.DVD);
+    if(res.retard === 1){
+      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+    }
+    res = $scope.date_diff_abo(user.CD);
+    if(res.retard === 1){
+      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+    }
+    res = $scope.date_diff_abo(user.caution);
+    if(res.retard === 1){
+      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+    }
+    res = $scope.date_diff_abo(user.paiement);
+    if(res.retard === 1){
+      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+    }
+  }
+
 
 
     $scope.listeEmprunts = [];
