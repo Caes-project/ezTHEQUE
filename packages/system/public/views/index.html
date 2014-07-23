@@ -12,24 +12,31 @@
 			<!-- affichage du livre trouvé -->
 		</div>
 	</div>
+	<h1 data-ng-show='global.isAdmin'>Liste des utilisateurs actifs</h1>
 	<div class='row'>
 		<br/>
-		<div data-ng-show='global.isAdmin' class='col-md-5' >
-			<h1 mean-token="'home-default'">Liste des utilisateurs</h1>
+		<div data-ng-show='global.isAdmin' class='col-md-5 well' >
 			<div class='col-md-9'>
 				<input type='text' ng-model='searchUser' placeholder='Recherche' class='form-control'>
 			</div>
 			<br/>
 			<br/>
 			<br/>
-			<ul>
-				<li class="users_list" ng-repeat="user in users | orderBy:['-name', 'name'] | filter:searchUser">
-					<a data-ng-href="#!/admin/users/{{user._id}}">{{user.name}}</a>
+			<div class="form-group">
+				<label class='control-label col-md-10 lato-font' style='text-align:right; font-size:20px'> Afficher les inactifs : </label>
+				<div class='col-md-2'>
+					<input type='checkbox' class='form-control' ng-model='listeAll'>
+				</div>
+			</div>
+			<br/>
+			<br/>
+			<ul style='list-style-type:none;'>
+				<li class="users_list" ng-repeat="user in users | orderBy:['name', 'name'] | filter:searchUser" ng-if='checkActif(user)'>
+					<a data-ng-href="#!/admin/users/{{user._id}}" ng-bind='user.name'></a>
 				</li>
 			</ul>
 		</div>
 		<article class='col-md-4 col-md-offset-2'>
-
 			<h2 ng-show="newlivre" > Livre trouvé </h2>
 			<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
 			<div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a>

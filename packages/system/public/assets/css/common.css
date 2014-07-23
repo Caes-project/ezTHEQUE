@@ -51,9 +51,9 @@ footer p {
 .users_list{
     width: 300px;
     padding: 10px 20px;
-    background-color: #EEE;
     margin-bottom: 10px;
     border-radius: 5px;
+    border: 1px solid #888;    
     color: #888;
 }
 
