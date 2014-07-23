@@ -5,6 +5,26 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
   
   $scope.global = Global;
   
+  function incr_date(date_str){
+    var parts = date_str.split('-');
+    var dt = new Date(
+         parseInt(parts[0], 10),      // year
+         parseInt(parts[1], 10) - 1,  // month (starts with 0)
+         parseInt(parts[2], 10)       // date
+    );
+    dt.setDate(dt.getDate() + 7);
+     parts[0] = '' + dt.getFullYear();
+     parts[1] = '' + (dt.getMonth() + 1);
+     if (parts[1].length < 2) {
+        parts[1] = '0' + parts[1];
+    }
+    parts[2] = '' + dt.getDate();
+    if (parts[2].length < 2) {
+        parts[2] = '0' + parts[2];
+    }
+    return parts.join('-');
+  }
+
   $scope.listeModif = [];   
   
   $scope.option_abo = [{'name' : 'BD, Livres, Magazines'},{'name' : 'Disque'}, {'name' : 'DVD'}];
@@ -20,39 +40,20 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
   }
 
   $scope.date = new Date().toISOString().substring(0, 10);
-	// $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
-	$scope.date_fin = incr_date($scope.date);
+  // $scope.date_fin = new Date((new Date()).valueOf() + 1000*3600*24*7).toISOString().substring(0, 10);
+  $scope.date_fin = incr_date($scope.date);
 
-	if($scope.global.isAdmin){
+  if($scope.global.isAdmin){
        Users.findById({
             userId: $stateParams.userId
         },function(user){
             $scope.user = user;
-			$scope.getEmprunt();
-			console.log(user);
-			checkDureeAbo(user);
+      $scope.getEmprunt();
+      console.log(user);
+      checkDureeAbo(user);
         });
     }
 
-    function incr_date(date_str){
-      var parts = date_str.split('-');
-      var dt = new Date(
-           parseInt(parts[0], 10),      // year
-           parseInt(parts[1], 10) - 1,  // month (starts with 0)
-           parseInt(parts[2], 10)       // date
-       );
-    dt.setDate(dt.getDate() + 7);
-     parts[0] = '' + dt.getFullYear();
-     parts[1] = '' + (dt.getMonth() + 1);
-     if (parts[1].length < 2) {
-        parts[1] = '0' + parts[1];
-    }
-    parts[2] = '' + dt.getDate();
-    if (parts[2].length < 2) {
-        parts[2] = '0' + parts[2];
-    }
-    return parts.join('-');
-  }
   
   function checkDureeAbo(user){
     var res;
@@ -84,25 +85,33 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
 	//initialiaze le scope.emprunt
     $scope.getEmprunt = function(){
-	    var callback = function(media){
-	    	console.log(media);
+	    var callbackLivre = function(media){
+        media.type='Livres';
+      $scope.listeEmprunts.push(media);
+      };
+      var callbackMagazine = function(media){
+        media.type='Magazines';
+      $scope.listeEmprunts.push(media);
+      };
+      var callbackBD = function(media){
+        media.type='BD';
 			$scope.listeEmprunts.push(media);
-		};
+		  };
 
     	//récupère la liste des id des medias emprunté
     	for(var i in $scope.user.emprunt){
     		if($scope.user.emprunt[i].type === 'Livres'){
 		   		Livres.get({
 				    livreId: $scope.user.emprunt[i].id
-				}, callback);
+				}, callbackLivre);
 			}else if($scope.user.emprunt[i].type === 'Magazines'){
 				Revues.get({
 				    revueId: $scope.user.emprunt[i].id
-				}, callback);
+				}, callbackMagazine);
 			}else if($scope.user.emprunt[i].type === 'BD'){
 				Bds.get({
 				    bdId: $scope.user.emprunt[i].id
-				}, callback);
+				}, callbackBD);
 			}
     	}
     };
@@ -174,16 +183,17 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
                     date_fin : $scope.date_fin,
                     type : media.typeMedia
                 };            
-            	delete media.typeMedia;
+            	// delete media.typeMedia;
                 $scope.user.emprunt.push(newEmprunt);
                   media.$update(function(response) {
                 	$scope.user.$update(function(response) {
+                      media.type=
                 			$scope.listeEmprunts.push(media);
-                        $scope.derniermedia = $scope.newmedia;
-                        $scope.newmedia = null;
-                        $scope.refMedia = null;
-                        $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
-                        message_info(media.title + ' est bien emprunté !');
+                      $scope.derniermedia = $scope.newmedia;
+                      $scope.newmedia = null;
+                      $scope.refMedia = null;
+                      $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
+                      message_info(media.title + ' est bien emprunté !');
                     });
                 });
             }
