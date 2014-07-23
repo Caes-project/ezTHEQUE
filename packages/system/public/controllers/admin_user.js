@@ -182,20 +182,22 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
                     date_debut : $scope.date,
                     date_fin : $scope.date_fin,
                     type : media.typeMedia
-                };            
-            	// delete media.typeMedia;
-                $scope.user.emprunt.push(newEmprunt);
-                  media.$update(function(response) {
-                	$scope.user.$update(function(response) {
-                      media.type=
-                			$scope.listeEmprunts.push(media);
-                      $scope.derniermedia = $scope.newmedia;
-                      $scope.newmedia = null;
-                      $scope.refMedia = null;
-                      $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
-                      message_info(media.title + ' est bien emprunté !');
-                    });
+                };    
+              var typeMedia =media.typeMedia;     
+              $scope.user.emprunt.push(newEmprunt);
+                media.$update(function(response) {
+                  console.log(response);
+                  console.log(media);
+              	$scope.user.$update(function(response) {
+                  media.type = typeMedia;
+            			$scope.listeEmprunts.push(media);
+                  $scope.derniermedia = $scope.newmedia;
+                  $scope.newmedia = null;
+                  $scope.refMedia = null;
+                  $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
+                  message_info(media.title + ' est bien emprunté !');
                 });
+              });
             }
         }
       };
