@@ -22,16 +22,16 @@
         <accordion close-others="oneAtATime">
           <accordion-group is-open="isOpenLivreBDMag">
             <accordion-heading >
-              Livres, BD, Magazines
+              Livres, BD, Magazines <b> {{nbLivres + nbBD + nbMag}} </b> Emprunt(s)
               <i class="pull-right glyphicon"
               ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
             </accordion-heading>
             <accordion close-others="oneAtATime">
-              <accordion-group is-open="isOpenLivreBDMag">
+              <accordion-group is-open="isOpenLivre">
                 <accordion-heading >
-                  Livres 
+                  Livres <b>{{nbLivres}} </b> emprunt(s)
                   <i class="pull-right glyphicon"
-                  ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
+                  ng-class="{'glyphicon-chevron-down': isOpenLivre, 'glyphicon-chevron-right': !isOpenLivre}"></i>
                 </accordion-heading>
                 <ul style="list-style-type:none; margin:0; padding:0;">
                   <li class="user_list" ng-repeat="media in listeEmprunts">
@@ -52,11 +52,11 @@
               </accordion-group>
             </accordion>
             <accordion close-others="oneAtATime">
-              <accordion-group is-open="isOpenLivreBDMag">
+              <accordion-group is-open="isOpenMag">
                 <accordion-heading >
-                  Magazines 
+                  Magazines <b> {{nbMag}} </b> emprunt(s)
                   <i class="pull-right glyphicon"
-                  ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
+                  ng-class="{'glyphicon-chevron-down': isOpenMag, 'glyphicon-chevron-right': !isOpenMag}"></i>
                 </accordion-heading>
                 <ul style="list-style-type:none; margin:0; padding:0;">
                   <li class="user_list" ng-repeat="media in listeEmprunts">
@@ -77,11 +77,11 @@
               </accordion-group>
             </accordion>
             <accordion close-others="oneAtATime">
-              <accordion-group is-open="isOpenLivreBDMag">
+              <accordion-group is-open="isOpenBD">
                 <accordion-heading >
-                  BD 
+                  BD <b> {{nbBD}} </b> emprunt(s)
                   <i class="pull-right glyphicon"
-                  ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
+                  ng-class="{'glyphicon-chevron-down': isOpenBD, 'glyphicon-chevron-right': !isOpenBD}"></i>
                 </accordion-heading>
                 <ul style="list-style-type:none; margin:0; padding:0;">
                   <li class="user_list" ng-repeat="media in listeEmprunts">
@@ -104,11 +104,11 @@
           </accordion-group>
         </accordion>
         <accordion close-others="oneAtATime">
-          <accordion-group is-open="isOpenLivreBDMag">
+          <accordion-group is-open="isOpenCD">
             <accordion-heading >
               CD 
               <i class="pull-right glyphicon"
-              ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
+              ng-class="{'glyphicon-chevron-down': isOpenCD, 'glyphicon-chevron-right': !isOpenCD}"></i>
             </accordion-heading>
             <ul style="list-style-type:none; margin:0; padding:0;">
               <li class="user_list" ng-repeat="media in listeEmprunts">
@@ -129,11 +129,11 @@
           </accordion-group>
         </accordion>
         <accordion close-others="oneAtATime">
-          <accordion-group is-open="isOpenLivreBDMag">
+          <accordion-group is-open="isOpenDVD">
             <accordion-heading >
               DVD 
               <i class="pull-right glyphicon"
-              ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
+              ng-class="{'glyphicon-chevron-down': isOpenDVD, 'glyphicon-chevron-right': !isOpenDVD}"></i>
             </accordion-heading>
             <ul style="list-style-type:none; margin:0; padding:0;">
               <li class="user_list" ng-repeat="media in listeEmprunts">
@@ -175,6 +175,7 @@
       </div>
     </article>
   </div>
+  {{listeEmprunts}}
   <div class='row'>
     <div class='col-md-12'>
       <accordion close-others="oneAtATime">

@@ -84,173 +84,198 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     $scope.listeEmprunts = [];
 
 	//initialiaze le scope.emprunt
-    $scope.getEmprunt = function(){
-	    var callbackLivre = function(media){
-        media.type='Livres';
+  $scope.getEmprunt = function(){
+    $scope.nbLivres = $scope.nbMag = $scope.nbBD = 0;
+    var callbackLivre = function(media){
+      media.type='Livres';
       $scope.listeEmprunts.push(media);
-      };
-      var callbackMagazine = function(media){
-        media.type='Magazines';
+      $scope.nbLivres++;
+    };
+    var callbackMagazine = function(media){
+      media.type='Magazines';
       $scope.listeEmprunts.push(media);
-      };
-      var callbackBD = function(media){
-        media.type='BD';
-			$scope.listeEmprunts.push(media);
-		  };
-
-    	//récupère la liste des id des medias emprunté
-    	for(var i in $scope.user.emprunt){
-    		if($scope.user.emprunt[i].type === 'Livres'){
-		   		Livres.get({
-				    livreId: $scope.user.emprunt[i].id
-				}, callbackLivre);
-			}else if($scope.user.emprunt[i].type === 'Magazines'){
-				Revues.get({
-				    revueId: $scope.user.emprunt[i].id
-				}, callbackMagazine);
-			}else if($scope.user.emprunt[i].type === 'BD'){
-				Bds.get({
-				    bdId: $scope.user.emprunt[i].id
-				}, callbackBD);
-			}
-    	}
+      $scope.nbMag++;
     };
+    var callbackBD = function(media){
+      media.type='BD';
+      $scope.listeEmprunts.push(media);
+      $scope.nbBD++;
+	  };
 
-    $scope.onChangeDate = function(){
-    	$scope.date_fin = incr_date($scope.date);
-    };
+  	//récupère la liste des id des medias emprunté
+  	for(var i in $scope.user.emprunt){
+  		if($scope.user.emprunt[i].type === 'Livres'){
+	   		Livres.get({
+			    livreId: $scope.user.emprunt[i].id
+			}, callbackLivre);
+		}else if($scope.user.emprunt[i].type === 'Magazines'){
+			Revues.get({
+			    revueId: $scope.user.emprunt[i].id
+			}, callbackMagazine);
+		}else if($scope.user.emprunt[i].type === 'BD'){
+			Bds.get({
+			    bdId: $scope.user.emprunt[i].id
+			}, callbackBD);
+		}
+  	}
+  };
+
+  $scope.onChangeDate = function(){
+  	$scope.date_fin = incr_date($scope.date);
+  };
 
 	$scope.selectedAbo = function () {
           $scope.abo_select = $filter('filter')($scope.option_abo, {checked: true});
       };
 
-      function isAboMedia(user, media){
-      	console.log(user.livre_mag_revue);
-      	console.log(user.caution);
-      	console.log(media.typeMedia);
-      	if( (media.typeMedia === 'BD' || media.typeMedia === 'Livres' || media.typeMedia === 'Magazines') && user.livre_mag_revue && user.caution){
-			return true;          	
-          }else if(media.typeMedia === 'DVD' && user.DVD && user.caution){
-          	return true;
-          }else if(media.typeMedia === 'CD' && user.CD && user.caution){
-          	return true;
-    		}
-      	return false;
-      }
+  function incrementNb(typeMedia){
+    switch(typeMedia){
+      case 'Livres' : $scope.nbLivres++; break;
+      case 'BD' : $scope.nbBD++; break;
+      case 'Magazines' : $scope.nbMag++; break;
+    }
+  }
 
-      var timer;
+  function decrementNb(typeMedia){
+    switch(typeMedia){
+      case 'Livres' : $scope.nbLivres--; break;
+      case 'BD' : $scope.nbBD--; break;
+      case 'Magazines' : $scope.nbMag--; break;
+    }
+  }
 
-      function message_info(message, type){
-          var res = {};
-          var time = 2;
-          if(type === 'error'){
-          	time = 3;
-          }
-          res.message = message;
-          if(type){
-              res.status = type;
-          }
-         	if($scope.test){
-         		console.log('gros hack pour les tests');
-        }else{
-         		$timeout.cancel(timer);
-            var transition = document.getElementById('message_info');
-            transition.classList.remove('trans_message');
-            transition.offsetWidth = transition.offsetWidth;
-            transition.classList.add('trans_message');
-            $scope.message_info = res;
-            timer = $timeout(function(){
-                $scope.message_info =null;
-            }, 6000*time);
-        }
-      }
-
-    $scope.validerEmprunt = function(){
-    	if($scope.newmedia){
-	        var media = $scope.newmedia;
-            var newEmprunt;
-            if(media.emprunt.user){
-                message_info('erreur media déjà emprunté', 'error');
-            }else if(!isAboMedia($scope.user, media)){
-            	message_info('L\'utilisateur n\'est pas abonné à ce type de media', 'error');
-            }else{
-                media.emprunt.user = $scope.user._id;
-                media.emprunt.date_debut = $scope.date;
-                media.emprunt.date_fin = $scope.date_fin;
-                newEmprunt = {
-                    id : media._id,
-                    date_debut : $scope.date,
-                    date_fin : $scope.date_fin,
-                    type : media.typeMedia
-                };    
-              var typeMedia =media.typeMedia;     
-              $scope.user.emprunt.push(newEmprunt);
-                media.$update(function(response) {
-                  console.log(response);
-                  console.log(media);
-              	$scope.user.$update(function(response) {
-                  media.type = typeMedia;
-            			$scope.listeEmprunts.push(media);
-                  $scope.derniermedia = $scope.newmedia;
-                  $scope.newmedia = null;
-                  $scope.refMedia = null;
-                  $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
-                  message_info(media.title + ' est bien emprunté !');
-                });
-              });
-            }
-        }
-      };
-
-      $scope.rendreLivre = function(media) {
-      	if(media.emprunt.user !== $scope.user._id){
-      		console.log('TODO gros message d\'erreur');
-      	}else{
-            media.historique.push({
-				'user' : $scope.user._id,
-				'date_debut' : media.emprunt.date_debut,
-                  'date_fin' : new Date()
-			});
-			$scope.user.historique.push({
-				'media' : media._id,
-				'date_debut' : media.emprunt.date_debut,
-                  'date_fin' : new Date()
-			});	    
-            media.emprunt = {
-                user: null,
-                date_debut : null,
-                date_fin : null
-            };
-            for(var i=0; i<$scope.user.emprunt.length; i++){
-                if($scope.user.emprunt[i].id === media._id){
-                   $scope.user.emprunt.splice(i, 1);
-                }
-                if($scope.listeEmprunts[i]._id === media._id){  
-                   $scope.listeEmprunts.splice(i,1);
-                }
-            }
-            $scope.user.$update(function(response){
-                media.$update(function(response) {
-                    // $location.path('medias/' + response._id);
-                    $scope.derniermedia = $scope.newmedia;
-                    $scope.newmedia = null;
-                    $scope.refMedia = null;
-                    $scope.listeModif.push({'title' : media.title, 'type' : 'old', '_id' : media._id});
-                    message_info(media.title + ' est rendu !');
-                    $timeout(function(){
-                        	$scope.message_info =null;
-                        }, 5000);
-                });
-            });
-        }
-      };
-
-      function verifMediaRef(media, type){
-		if(media[0]){
-			$scope.newmedia = media[0];
-			$scope.newmedia.typeMedia = type;
+  function isAboMedia(user, media){
+  	console.log(user.livre_mag_revue);
+  	console.log(user.caution);
+  	console.log(media.typeMedia);
+  	if( (media.typeMedia === 'BD' || media.typeMedia === 'Livres' || media.typeMedia === 'Magazines') && user.livre_mag_revue && user.caution){
+	return true;          	
+      }else if(media.typeMedia === 'DVD' && user.DVD && user.caution){
+      	return true;
+      }else if(media.typeMedia === 'CD' && user.CD && user.caution){
+      	return true;
 		}
+  	return false;
+  }
+
+  var timer;
+
+  function message_info(message, type){
+      var res = {};
+      var time = 2;
+      if(type === 'error'){
+      	time = 3;
       }
+      res.message = message;
+      if(type){
+          res.status = type;
+      }
+     	if($scope.test){
+     		console.log('gros hack pour les tests');
+    }else{
+     		$timeout.cancel(timer);
+        var transition = document.getElementById('message_info');
+        transition.classList.remove('trans_message');
+        transition.offsetWidth = transition.offsetWidth;
+        transition.classList.add('trans_message');
+        $scope.message_info = res;
+        timer = $timeout(function(){
+            $scope.message_info =null;
+        }, 6000*time);
+    }
+  }
+
+  $scope.validerEmprunt = function(){
+  	if($scope.newmedia){
+        var media = $scope.newmedia;
+          var newEmprunt;
+          if(media.emprunt.user){
+              message_info('erreur media déjà emprunté', 'error');
+          }else if(!isAboMedia($scope.user, media)){
+          	message_info('L\'utilisateur n\'est pas abonné à ce type de media', 'error');
+          }else{
+              media.emprunt.user = $scope.user._id;
+              media.emprunt.date_debut = $scope.date;
+              media.emprunt.date_fin = $scope.date_fin;
+              newEmprunt = {
+                  id : media._id,
+                  date_debut : $scope.date,
+                  date_fin : $scope.date_fin,
+                  type : media.typeMedia
+              };    
+            var typeMedia =media.typeMedia;     
+            $scope.user.emprunt.push(newEmprunt);
+              media.$update(function(response) {
+                console.log(response);
+                console.log(media);
+            	$scope.user.$update(function(response) {
+                media.type = typeMedia;
+          			$scope.listeEmprunts.push(media);
+                incrementNb(typeMedia);
+                $scope.derniermedia = $scope.newmedia;
+                $scope.newmedia = null;
+                $scope.refMedia = null;
+                $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
+                message_info(media.title + ' est bien emprunté !');
+              });
+            });
+          }
+      }
+    };
+
+    $scope.rendreLivre = function(media) {
+      if(media.emprunt.user !== $scope.user._id){
+        console.log('TODO gros message d\'erreur');
+      }else{
+        media.historique.push({
+          'user' : $scope.user._id,
+          'date_debut' : media.emprunt.date_debut,
+          'date_fin' : new Date()
+         });
+        $scope.user.historique.push({
+          'media' : media._id,
+          'date_debut' : media.emprunt.date_debut,
+          'date_fin' : new Date()
+        });     
+        media.emprunt = {
+          user: null,
+          date_debut : null,
+          date_fin : null
+        };
+        console.log($scope.user.emprunt.length);
+        for(var i=0; i<$scope.user.emprunt.length; i++){
+            if($scope.user.emprunt[i].id === media._id){
+               $scope.user.emprunt.splice(i, 1);
+            }
+            console.log(i);
+            if($scope.listeEmprunts[i]._id === media._id){  
+               $scope.listeEmprunts.splice(i,1);
+            }
+        }
+        var typeMedia =media.typeMedia;
+        $scope.user.$update(function(response){
+          media.$update(function(response) {
+            console.log(response);
+            decrementNb(typeMedia);
+            $scope.derniermedia = $scope.newmedia;
+            $scope.newmedia = null;
+            $scope.refMedia = null;
+            $scope.listeModif.push({'title' : media.title, 'type' : 'old', '_id' : media._id});
+            message_info(media.title + ' est rendu !');
+            $timeout(function(){
+              $scope.message_info =null;
+            }, 5000);
+          });
+        });
+      }
+    };
+
+    function verifMediaRef(media, type){
+		  if(media[0]){
+		  	$scope.newmedia = media[0];
+  			$scope.newmedia.typeMedia = type;
+  		}
+    }
 
       function verifMediaCB(media, type){
       	if(media[0]){
