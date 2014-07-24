@@ -72,6 +72,8 @@ exports.saveImage = function(req, res) {
                     };
     if(req.body.lien_image){
         bd.lien_image = '/packages/bds/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
+    }else{
+        bd.lien_image = '/packages/default.jpg';
     }
    bd.save(function(err) {
         if (err) {
@@ -108,8 +110,7 @@ exports.saveImage = function(req, res) {
             }else{
                 // res.jsonp(bd);
                 res.setHeader('Content-Type', 'text/html');
-                res.jsonp(bd);
-                // res.redirect('/#!/bds/'+ bd._id);
+                res.redirect('/#!/bds/create');
             }
         }
     });     
