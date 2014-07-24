@@ -3,7 +3,7 @@
 module.exports = {
   db: 'mongodb://localhost/mean-prod',
   app: {
-    name: 'MEAN - A Modern Stack - Production'
+    name: 'ezthèque CAES'
   },
   facebook: {
     clientID: 'APP_ID',
@@ -21,9 +21,9 @@ module.exports = {
     callbackURL: 'http://localhost:3000/auth/github/callback'
   },
   google: {
-    clientID: 'APP_ID',
-    clientSecret: 'APP_SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+    clientID: '856357196278-17ttmtm09rp2dooc8mmr788br2o7tt88.apps.googleusercontent.com',
+    clientSecret: 'nf7xPcB7vrgWyY3T2N5-tHrN',
+    callbackURL: 'http://nancy.caes.cnrs.fr:50020/auth/google/callback'
   },
   linkedin: {
     clientID: 'API_KEY',
