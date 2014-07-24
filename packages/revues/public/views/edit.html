@@ -12,10 +12,10 @@
                 <input type='text' data-ng-model="ref" id="ref" name='ref' placeholder="ref" class="form-control" readonly="readonly" required>
             </div>
         </div> 
-        <div class="form-group">
-            <label mean-token="'create-auteur'" for="auteur" class="col-md-3 control-label">Auteur</label>
+         <div class="form-group">
+            <label class="col-md-3 control-label">Revue : </label>
             <div class="col-md-9">
-                <input type='text' data-ng-model="auteur" id="auteur" name='auteur' placeholder="Auteur" class="form-control" required>
+                <input type='text' data-ng-model="nom_revue" id="nom_revue" name='nom_revue' class="form-control" readonly='readonly'>
             </div>
         </div>
         <div class="form-group">
@@ -25,21 +25,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Rayonnage</label>
+            <label mean-token="'create-date'" for="date" class="col-md-3 control-label">Date parution</label>
             <div class="col-md-9">
-                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage" required>
+               <input type='text' data-ng-model="date" id="date" name='date_acquis' class="form-control" ez-datepicker-month>
             </div>
         </div>
         <div class="form-group">
-            <label mean-token="'create-dewey'" for="dewey" class="col-md-3 control-label">Genre</label>
-            <div class="col-md-9">
-                <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" >
+            <label for="date" class="col-md-3 control-label">Numéro</label>
+            <div class="col-md-5">
+                <input type='text' ng-model="numero" id="numero" name='numero' class="form-control" ng-change='majTitre()'>
             </div>
-        </div>
-        <div class="form-group">
-            <label mean-token="'create-date'" for="date" class="col-md-3 control-label">Date achat</label>
-            <div class="col-md-9">
-                <input type='date' data-ng-model="date" id="date" name='date_acquis' placeholder="date" class="form-control" >
+            <div class="col-md-2">
+                <label for="date" class="col-md-3 control-label">Hors_serie</label>
+            </div>
+            <div class="col-md-2">
+                <input type='checkbox' style='text-align:right' ng-model="hors_serie" id="hors_serie" name='hors_serie' class="form-control">
             </div>
         </div>
         <div class="form-group">

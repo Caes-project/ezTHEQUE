@@ -27,6 +27,9 @@ var RevueSchema = new Schema({
         required: true,
         unique : true
     },
+    nom_revue : {
+        type : String
+    },
     numero:{
         type: Number,
         required: true,

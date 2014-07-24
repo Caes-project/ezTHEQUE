@@ -14,7 +14,7 @@
             <label class="col-md-3 control-label">Revue : </label>
             <div class="col-md-9">
                 <!-- <input type='text' data-ng-model="revue" id="revue" name='revue' class="form-control"> -->
-                <select class="form-control" ng-model="revue" id="revue" name='revue' size='1' required ng-change='majTitre()'>
+                <select class="form-control" ng-model="nom_revue" id="nom_revue" name='nom_revue' size='1' required ng-change='majTitre()'>
                     <option value='' > Choix revue </option>
                     <option value="{{nom_revue.nom}}" ng-repeat="nom_revue in liste_revues">{{nom_revue.nom}}</option>
                 </select>

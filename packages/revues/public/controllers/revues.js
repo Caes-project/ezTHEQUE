@@ -34,7 +34,7 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
         }
 
        $scope.majTitre = function(){
-            $scope.title = $scope.revue + ' : ' + $scope.date + ' n°' + $scope.numero;
+            $scope.title = $scope.nom_revue + ' : ' + $scope.date + ' n°' + $scope.numero;
        };
 
         $scope.hasAuthorization = function(revue) {
@@ -142,13 +142,13 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
                 revueId: $stateParams.revueId
             }, function(revue) {
                 $scope.revue = revue;
+                $scope.nom_revue = revue.nom_revue;
                 $scope.ref = revue.ref;
-                $scope.auteur = revue.auteur;
+                $scope.numero = revue.numero;
+                $scope.hors_serie = revue.hors_serie;
                 $scope.title = revue.title;
-                $scope.dewey =  revue.dewey;
                 $scope.date_acquis = revue.date_acquis;
                 $scope.code_barre_recherche = revue.code_barre;
-                $scope.cote = revue.cote;
                 $scope.resume = revue.resume;
             });
 
