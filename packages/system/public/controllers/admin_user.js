@@ -47,10 +47,9 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
        Users.findById({
             userId: $stateParams.userId
         },function(user){
-            $scope.user = user;
-      $scope.getEmprunt();
-      console.log(user);
-      checkDureeAbo(user);
+          $scope.user = user;
+          $scope.getEmprunt();
+          checkDureeAbo(user);
         });
     }
 
