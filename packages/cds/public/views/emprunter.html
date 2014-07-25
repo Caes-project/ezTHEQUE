@@ -1,0 +1,33 @@
+<section data-ng-controller="CdsController" data-ng-init="listeUsers()"  class="sectionCd">
+    <div class='container'> 
+        <h2>{{cd.title}} écrit par : {{cd.auteur}}</h2>
+        <h2></h2>
+        <article data-ng-hide="!cd.lien_image" class="articleCd"><img ng-src="{{cd.lien_image}}"  border="0" align="center" width=130 height=200> </article>
+        <br/>
+        <article class="articleCd">code dewey : {{cd.dewey}}</article>
+        <br/>
+        <article class="articleCd">Ajouté à la bibliothèque le : {{cd.date_acquis | date: 'dd/MM/yyyy'}}</article>
+        <form class="form-horizontal col-md-6" role="form" data-ng-submit='validerEmprunt()' name='formulaire'>
+            <div class="form-group">
+                <label for="date" class="col-md-4 control-label">Début du prêt :</label>
+                <div class="col-md-6">
+                    <input type='date' data-ng-model="date" name='date_début' placeholder="date" class="form-control" required >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="date" class="col-md-4 control-label">Fin du prêt :</label>
+                <div class="col-md-6">
+                    <input type='date' data-ng-model="date_fin" name='date_fin' placeholder="date" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <select data-ng-hide='!users[1]' ng-model='selectedUser' name="nom" size="1" ng-options="user.name for user in users" required class='form-control'>
+                <option value="">Choix utilisateur</option> 
+                </select>
+                <span data-ng-hide='users[1]'> Pour : {{users.name}}</span>
+                <button type='submit' class="btn btn-primary btn-large"><i class="icon-white icon-book"></i> Valider</button>
+            </div>
+        </form>
+    </div>
+</section>
+

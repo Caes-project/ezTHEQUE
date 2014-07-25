@@ -42,7 +42,7 @@
 			<div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a>
 				<span ng-show='emprunteur'> &nbsp&nbsp&nbsp emprunté par {{emprunteur.name}} </span>
 			</div>
-			<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}
+			<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}
 			</div>
 		</article>
 	</div>
@@ -68,7 +68,7 @@
 						<li class="user_list" ng-repeat="media in listeEmprunt">
 							<a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
 							<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-							<p> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Class:{{media.dewey}} &nbsp Ref. {{media.ref}}</p>
+							<p> {{media.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{media.dewey}} &nbsp Ref. {{media.ref}}</p>
 							<p ng-show="media.emprunt.date_fin" ng-bind='date_diff(media)'> </p>
 						</li>
 					</ul>
