@@ -203,7 +203,8 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
                 newEmprunt = {
                     id : revue._id,
                     date_debut : $scope.date,
-                    date_fin : $scope.date_fin
+                    date_fin : $scope.date_fin,
+                    type : 'Magazines'
                 };
                 user.emprunt.push(newEmprunt);
                 // console.log(user);
@@ -216,31 +217,39 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
         };
 
         $scope.rendreRevue = function(revue) {
-            var user;
-            // console.log($scope.revue.emprunt.user);
-            Users.findById({
-                    userId: $scope.revue.emprunt.user
-                },
-                 function(user_){
-                    user = user_;
-                    revue.emprunt = {
-                        user: null,
-                        date_debut : null,
-                        date_fin : null
-                    };
-                    for(var i=0; i<user.emprunt.length; i++){
-                        if(user.emprunt[i].id === $scope.revue._id){
-                           user.emprunt.splice(i, 1);
-                        }
-                    }
-                    // console.log(user);
-                    $scope.error=false;
-                    user.$update(function(response){
-                        revue.$update(function(response) {
-                            $location.path('revues/' + response._id);
-                        });
-                    });
+          var user;
+          Users.findById({
+            userId: $scope.revue.emprunt.user
+          }, function(user_){
+            user = user_;
+            revue.historique.push({
+              'user' : $scope.user._id,
+              'date_debut' : revue.emprunt.date_debut,
+              'date_fin' : new Date()
             });
+            user.historique.push({
+              'media' : revue._id,
+              'date_debut' : revue.emprunt.date_debut,
+              'date_fin' : new Date()
+            });     
+            revue.emprunt = {
+              user: null,
+              date_debut : null,
+              date_fin : null
+            };
+            for(var i=0; i<user.emprunt.length; i++){
+              if(user.emprunt[i].id === $scope.revue._id){
+                 user.emprunt.splice(i, 1);
+              }
+            }
+            // console.log(user);
+            $scope.error=false;
+            user.$update(function(response){
+              revue.$update(function(response) {
+                  $location.path('revues/' + response._id);
+              });
+            });
+          });
         };
 
         $scope.date_diff = function(revue){

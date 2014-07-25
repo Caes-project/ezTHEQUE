@@ -186,39 +186,39 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
   $scope.validerEmprunt = function(){
   	if($scope.newmedia){
-        var media = $scope.newmedia;
-          var newEmprunt;
-          if(media.emprunt.user){
-              message_info('erreur media déjà emprunté', 'error');
-          }else if(!isAboMedia($scope.user, media)){
-          	message_info('L\'utilisateur n\'est pas abonné à ce type de media', 'error');
-          }else{
-              media.emprunt.user = $scope.user._id;
-              media.emprunt.date_debut = $scope.date;
-              media.emprunt.date_fin = $scope.date_fin;
-              newEmprunt = {
-                  id : media._id,
-                  date_debut : $scope.date,
-                  date_fin : $scope.date_fin,
-                  type : media.typeMedia
-              };    
-            var typeMedia =media.typeMedia;     
-            $scope.user.emprunt.push(newEmprunt);
-              media.$update(function(response) {
-                console.log(response);
-                console.log(media);
-            	$scope.user.$update(function(response) {
-                media.type = typeMedia;
-          			$scope.listeEmprunts.push(media);
-                incrementNb(typeMedia);
-                $scope.derniermedia = $scope.newmedia;
-                $scope.newmedia = null;
-                $scope.refMedia = null;
-                $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
-                message_info(media.title + ' est bien emprunté !');
-              });
+      var media = $scope.newmedia;
+        var newEmprunt;
+        if(media.emprunt.user){
+          message_info('erreur media déjà emprunté', 'error');
+        }else if(!isAboMedia($scope.user, media)){
+        	message_info('L\'utilisateur n\'est pas abonné à ce type de media', 'error');
+        }else{
+          media.emprunt.user = $scope.user._id;
+          media.emprunt.date_debut = $scope.date;
+          media.emprunt.date_fin = $scope.date_fin;
+          newEmprunt = {
+              id : media._id,
+              date_debut : $scope.date,
+              date_fin : $scope.date_fin,
+              type : media.typeMedia
+          };    
+          var typeMedia =media.typeMedia;     
+          $scope.user.emprunt.push(newEmprunt);
+            media.$update(function(response) {
+              console.log(response);
+              console.log(media);
+          	$scope.user.$update(function(response) {
+              media.type = typeMedia;
+        			$scope.listeEmprunts.push(media);
+              incrementNb(typeMedia);
+              $scope.derniermedia = $scope.newmedia;
+              $scope.newmedia = null;
+              $scope.refMedia = null;
+              $scope.listeModif.push({'title' : media.title,'type' : 'new', '_id' : media._id});
+              message_info(media.title + ' est bien emprunté !');
             });
-          }
+          });
+        }
       }
     };
 
