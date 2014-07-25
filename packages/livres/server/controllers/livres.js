@@ -71,6 +71,8 @@ exports.saveImage = function(req, res) {
                         date_fin : null
                     };
     if(req.body.lien_image){
+        livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+ '.jpg';
+    }else if(req.files.image){
         livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
     }else{
         livre.lien_image = '/packages/default.jpg';
