@@ -17,147 +17,98 @@
     </div> 
     <div class='row'>
       <!-- liste des emprunts de l'utilisateurs  -->
-      <article>
-         Livres, BD, Magazines :<b> {{nbLivres + nbBD + nbMag}} </b> 
-         BD :<b> {{nbBD}} </b>
-         Magazines :<b> {{nbMag}} </b>
-      </article>      
+      <h4>
+        Livres, BD, Magazines :<b> {{nbLivres + nbBD + nbMag}} </b> 
+        BD :<b> {{nbBD}} </b>
+        Magazines :<b> {{nbMag}} </b>
+      </h4>      
       <article class="col-md-12">
-        <h4 class='lato-font-title' > Emprunts actuels :</h4>
-        <accordion close-others="oneAtATime">
-          <accordion-group is-open="isOpenLivreBDMag">
-            <accordion-heading >
-              Livres, BD, Magazines <b> {{nbLivres + nbBD + nbMag}} </b> Emprunt(s)
-              <i class="pull-right glyphicon"
-              ng-class="{'glyphicon-chevron-down': isOpenLivreBDMag, 'glyphicon-chevron-right': !isOpenLivreBDMag}"></i>
-            </accordion-heading>
-            <accordion close-others="oneAtATime">
-              <accordion-group is-open="isOpenLivre">
-                <accordion-heading >
-                  Livres <b>{{nbLivres}} </b> emprunt(s)
-                  <i class="pull-right glyphicon"
-                  ng-class="{'glyphicon-chevron-down': isOpenLivre, 'glyphicon-chevron-right': !isOpenLivre}"></i>
-                </accordion-heading>
-                <ul style="list-style-type:none; margin:0; padding:0;">
-                  <li class="user_list" ng-repeat="media in listeEmprunts">
-                    <div class='well' ng-if='media.type === "Livres"'>
-                      <div class='col-md-9'>
-                        <h3 style="margin-top:6px">{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
-                        <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
-                        <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
-                      </div> 
-                      <div data-ng-hide="!media.lien_image">
-                        <a data-ng-href="#!/livres/{{media._id}}">
-                          <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
-                        </a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </accordion-group>
-            </accordion>
-            <accordion close-others="oneAtATime">
-              <accordion-group is-open="isOpenMag">
-                <accordion-heading >
-                  Magazines <b> {{nbMag}} </b> emprunt(s)
-                  <i class="pull-right glyphicon"
-                  ng-class="{'glyphicon-chevron-down': isOpenMag, 'glyphicon-chevron-right': !isOpenMag}"></i>
-                </accordion-heading>
-                <ul style="list-style-type:none; margin:0; padding:0;">
-                  <li class="user_list" ng-repeat="media in listeEmprunts">
-                    <div class='well' ng-if='media.type === "Magazines"'>
-                      <div class='col-md-9'>
-                        <h4><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></h4>
-                        <div> Numero: {{media.numero}} &nbsp Ref. {{media.ref}}</div>
-                        <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
-                      </div> 
-                      <div data-ng-hide="!media.lien_image">
-                        <a data-ng-href="#!/livres/{{media._id}}">
-                          <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
-                        </a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </accordion-group>
-            </accordion>
-            <accordion close-others="oneAtATime">
-              <accordion-group is-open="isOpenBD">
-                <accordion-heading >
-                  BD <b> {{nbBD}} </b> emprunt(s)
-                  <i class="pull-right glyphicon"
-                  ng-class="{'glyphicon-chevron-down': isOpenBD, 'glyphicon-chevron-right': !isOpenBD}"></i>
-                </accordion-heading>
-                <ul style="list-style-type:none; margin:0; padding:0;">
-                  <li class="user_list" ng-repeat="media in listeEmprunts">
-                    <div class='well' ng-if='media.type === "BD"'>
-                      <div class='col-md-9'>
-                        <h3 style='margin-top:0'>{{media.scenariste}}<small><br><a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a></small></h3>
-                        <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
-                        <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
-                      </div> 
-                      <div data-ng-hide="!media.lien_image">
-                        <a data-ng-href="#!/bds/{{media._id}}">
-                          <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
-                        </a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </accordion-group>
-            </accordion>
-          </accordion-group>
-        </accordion>
-        <accordion close-others="oneAtATime">
-          <accordion-group is-open="isOpenCD">
-            <accordion-heading >
-              CD 
-              <i class="pull-right glyphicon"
-              ng-class="{'glyphicon-chevron-down': isOpenCD, 'glyphicon-chevron-right': !isOpenCD}"></i>
-            </accordion-heading>
-            <ul style="list-style-type:none; margin:0; padding:0;">
-              <li class="user_list" ng-repeat="media in listeEmprunts">
-                <div class='well' ng-if='media.type === "CD"'>
-                  <div class='col-md-9'>
-                    <h3>{{media.auteur}}<small><br><a data-ng-href="#!/cds/{{media._id}}">{{media.title}}</a></small></h3>
-                    <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
-                    <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
-                  </div> 
-                  <div data-ng-hide="!media.lien_image">
-                    <a data-ng-href="#!/cds/{{media._id}}">
-                      <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </accordion-group>
-        </accordion>
-        <accordion close-others="oneAtATime">
-          <accordion-group is-open="isOpenDVD">
-            <accordion-heading >
-              DVD 
-              <i class="pull-right glyphicon"
-              ng-class="{'glyphicon-chevron-down': isOpenDVD, 'glyphicon-chevron-right': !isOpenDVD}"></i>
-            </accordion-heading>
-            <ul style="list-style-type:none; margin:0; padding:0;">
-              <li class="user_list" ng-repeat="media in listeEmprunts">
-                <div class='well' ng-if='media.type === "DVD"'>
-                  <div class='col-md-9'>
-                    <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
-                    <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
-                    <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
-                  </div> 
-                  <div data-ng-hide="!media.lien_image">
-                    <a data-ng-href="#!/livres/{{media._id}}">
-                      <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </accordion-group>
-        </accordion>
+        <h3 class='lato-font-title' > Emprunts actuels :</h3>
+        <h4> Livres <b>{{nbLivres}} </b> emprunt(s) </h4>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeEmprunts">
+            <div class='well' ng-if='media.type === "Livres"'>
+              <div class='col-md-9'>
+                <h3 style="margin-top:6px">{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
+                <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+                <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
+              </div> 
+              <div data-ng-hide="!media.lien_image">
+                <a data-ng-href="#!/livres/{{media._id}}">
+                  <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+          <h4> Magazines <b> {{nbMag}} </b> emprunt(s) </h4>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeEmprunts">
+            <div class='well' ng-if='media.type === "Magazines"'>
+              <div class='col-md-9'>
+                <h4><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></h4>
+                <div> Numero: {{media.numero}} &nbsp Ref. {{media.ref}}</div>
+                <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
+              </div> 
+              <div data-ng-hide="!media.lien_image">
+                <a data-ng-href="#!/livres/{{media._id}}">
+                  <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+          <h4> BD <b> {{nbBD}} </b> emprunt(s) </h4>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeEmprunts">
+            <div class='well' ng-if='media.type === "BD"'>
+              <div class='col-md-9'>
+                <h3 style='margin-top:0'>{{media.scenariste}}<small><br><a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a></small></h3>
+                <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+                <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
+              </div> 
+              <div data-ng-hide="!media.lien_image">
+                <a data-ng-href="#!/bds/{{media._id}}">
+                  <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+          <h4> CD </h4>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeEmprunts">
+            <div class='well' ng-if='media.type === "CD"'>
+              <div class='col-md-9'>
+                <h3>{{media.auteur}}<small><br><a data-ng-href="#!/cds/{{media._id}}">{{media.title}}</a></small></h3>
+                <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+                <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
+              </div> 
+              <div data-ng-hide="!media.lien_image">
+                <a data-ng-href="#!/cds/{{media._id}}">
+                  <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+          <h4> DVD </h4>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeEmprunts">
+            <div class='well' ng-if='media.type === "DVD"'>
+              <div class='col-md-9'>
+                <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
+                <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
+                <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
+              </div> 
+              <div data-ng-hide="!media.lien_image">
+                <a data-ng-href="#!/livres/{{media._id}}">
+                  <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
         <p ng-show='listeEmprunts.length === 0'>
           Aucun emprunt en cours
         </p>
@@ -184,118 +135,118 @@
     <div class='col-md-12'>
       <accordion close-others="oneAtATime">
         <accordion-group is-open="isOpen">
-          <accordion-heading >
-            Abonnement de l'utilisateur
-            <i class="pull-right glyphicon"
-            ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
-          </accordion-heading>
-          <table class="table table-striped table-bordered table-hover">
-            <tr>
-              <th> abonnement </th>
-              <th>  Date_fin </th>
-            </tr>
-            <tr>
-              <td> Livres, BD, Magazines </td>
-              <td>
-                <div ng-if='user.livre_mag_revue' ng-class='{red: date_diff_abo(user.livre_mag_revue).retard === 1}'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
-                <div ng-if='!user.livre_mag_revue'> 
-                  <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
-                    <span class="glyphicon glyphicon-remove red"></span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> DVD </td>
-              <td>
-                <div ng-if='user.DVD' ng-class='{red: date_diff_abo(user.DVD).retard === 1}'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
-                <div ng-if='!user.DVD'> 
-                  <button type="button" ng-click="validerNewAbo('DVD')" class="btn btn-xs">
-                    <span class="glyphicon glyphicon-remove red"></span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> CD </td>
-              <td>
-                <div ng-if='user.CD' ng-class='{red: date_diff_abo(user.CD).retard === 1}'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
-                <div ng-if='!user.CD'> 
-                  <button type="button" ng-click="validerNewAbo('CD')" class="btn btn-xs">
-                    <span class="glyphicon glyphicon-remove red"></span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> Caution </td>
-              <td>
-                <div ng-if='user.caution' ng-class='{red: date_diff_abo(user.caution).retard === 1}'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
-                <div ng-if='!user.caution'> 
-                  <button type="button" ng-click="validerNewAbo('caution')" class="btn btn-xs">
-                    <span class="glyphicon glyphicon-remove red"></span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td> Paiement </td>
-              <td>
-                <div ng-if='user.paiement' ng-class='{red: date_diff_abo(user.paiement).retard === 1}'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
-                <div ng-if='!user.paiement'> 
-                  <button type="button" ng-click="validerNewAbo('paiement')" class="btn btn-xs">
-                    <span class="glyphicon glyphicon-remove red"></span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </accordion-group>
-      </accordion>
-    </div>
-   </div>
-  <div class='row'>
-    <h4 class='lato-font-title'> Dernières modifications : </h4>
-    <div class='col-md-6'>
-      <article>
-        <h4 class='lato-font-title' ng-if='listeModif.length'> Emprunts : </h4>
-        <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
-          <ul style="list-style-type:none; margin:0; padding:0;">
-            <li class="user_list" ng-repeat="media in listeModif">
-             <a ng-if='media.type == "new"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
-           </li>
-         </ul>
-       </div>
-     </article>
-    </div>
-    <div class='col-md-6'>
-      <article>
-        <h4 class='lato-font-title' ng-if='listeModif.length'> Rendu : </h4>
-        <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
-          <ul style="list-style-type:none; margin:0; padding:0;">
-            <li class="user_list" ng-repeat="media in listeModif">
-             <a class='lato-font-retard' ng-if='media.type =="old"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
-           </li>
-         </ul>
-       </div>
-     </article>
-    </div>
-    </div>
-    <div class='row'> 
-      <article>
-        <h4 class='lato-font-title'> aperçu du dernier média : </h4>
-        <div ng-class="{'well' : derniermedia}">
-          <div class="row">
-            <div style='padding-left:20px;'>
-             <h3>
-              <div ng-show="derniermedia"> {{derniermedia.auteur}}<small><br><a data-ng-href="#!/livres/{{derniermedia._id}}">{{derniermedia.title}}</a></small>
-              </h3>
-              <div data-ng-hide="!derniermedia.lien_image"><a data-ng-href="#!/livres/{{derniermedia._id}}"><img ng-src="{{derniermedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-              <div ng-show="derniermedia">  Genre:{{derniermedia.dewey}} &nbsp Ref. {{derniermedia.ref}} </div>
+        <accordion-heading >
+        Abonnement de l'utilisateur
+        <i class="pull-right glyphicon"
+        ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+      </accordion-heading>
+      <table class="table table-striped table-bordered table-hover">
+        <tr>
+          <th> abonnement </th>
+          <th>  Date_fin </th>
+        </tr>
+        <tr>
+          <td> Livres, BD, Magazines </td>
+          <td>
+            <div ng-if='user.livre_mag_revue' ng-class='{red: date_diff_abo(user.livre_mag_revue).retard === 1}'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
+            <div ng-if='!user.livre_mag_revue'> 
+              <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
+                <span class="glyphicon glyphicon-remove red"></span>
+              </button>
             </div>
-          </div>
+          </td>
+        </tr>
+        <tr>
+          <td> DVD </td>
+          <td>
+            <div ng-if='user.DVD' ng-class='{red: date_diff_abo(user.DVD).retard === 1}'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
+            <div ng-if='!user.DVD'> 
+              <button type="button" ng-click="validerNewAbo('DVD')" class="btn btn-xs">
+                <span class="glyphicon glyphicon-remove red"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td> CD </td>
+          <td>
+            <div ng-if='user.CD' ng-class='{red: date_diff_abo(user.CD).retard === 1}'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
+            <div ng-if='!user.CD'> 
+              <button type="button" ng-click="validerNewAbo('CD')" class="btn btn-xs">
+                <span class="glyphicon glyphicon-remove red"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td> Caution </td>
+          <td>
+            <div ng-if='user.caution' ng-class='{red: date_diff_abo(user.caution).retard === 1}'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
+            <div ng-if='!user.caution'> 
+              <button type="button" ng-click="validerNewAbo('caution')" class="btn btn-xs">
+                <span class="glyphicon glyphicon-remove red"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td> Paiement </td>
+          <td>
+            <div ng-if='user.paiement' ng-class='{red: date_diff_abo(user.paiement).retard === 1}'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
+            <div ng-if='!user.paiement'> 
+              <button type="button" ng-click="validerNewAbo('paiement')" class="btn btn-xs">
+                <span class="glyphicon glyphicon-remove red"></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </accordion-group>
+  </accordion>
+</div>
+</div>
+<div class='row'>
+  <h4 class='lato-font-title'> Dernières modifications : </h4>
+  <div class='col-md-6'>
+    <article>
+      <h4 class='lato-font-title' ng-if='listeModif.length'> Emprunts : </h4>
+      <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeModif">
+           <a ng-if='media.type == "new"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
+         </li>
+       </ul>
+     </div>
+   </article>
+ </div>
+ <div class='col-md-6'>
+  <article>
+    <h4 class='lato-font-title' ng-if='listeModif.length'> Rendu : </h4>
+    <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
+      <ul style="list-style-type:none; margin:0; padding:0;">
+        <li class="user_list" ng-repeat="media in listeModif">
+         <a class='lato-font-retard' ng-if='media.type =="old"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
+       </li>
+     </ul>
+   </div>
+ </article>
+</div>
+</div>
+<div class='row'> 
+  <article>
+    <h4 class='lato-font-title'> aperçu du dernier média : </h4>
+    <div ng-class="{'well' : derniermedia}">
+      <div class="row">
+        <div style='padding-left:20px;'>
+         <h3>
+          <div ng-show="derniermedia"> {{derniermedia.auteur}}<small><br><a data-ng-href="#!/livres/{{derniermedia._id}}">{{derniermedia.title}}</a></small>
+          </h3>
+          <div data-ng-hide="!derniermedia.lien_image"><a data-ng-href="#!/livres/{{derniermedia._id}}"><img ng-src="{{derniermedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+          <div ng-show="derniermedia">  Genre:{{derniermedia.dewey}} &nbsp Ref. {{derniermedia.ref}} </div>
         </div>
-      </article>
+      </div>
     </div>
-  </div>       
+  </article>
+</div>
+</div>       
 </section>
