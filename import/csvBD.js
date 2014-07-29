@@ -26,12 +26,13 @@ transformer.on('error', function(err){
 });
 
 transformer.on('readable', function(){
+  var new_ref;
   while(data = transformer.read()){
     switch(data.ref.length){
-      case 4: data.ref='10'+data.ref; break;
-      case 3: data.ref='100'+data.ref; break;
-      case 2: data.ref='1000'+data.ref; break;
-      case 1: data.ref='10000'+data.ref; break;
+      case 4: new_ref='10'+data.ref; break;
+      case 3: new_ref='100'+data.ref; break;
+      case 2: new_ref='1000'+data.ref; break;
+      case 1: new_ref='10000'+data.ref; break;
     }
     
     var newBD = {
@@ -40,9 +41,9 @@ transformer.on('readable', function(){
       'scenariste' : data.scenariste,
       'editeur' : data.editeur,
       'dewey' : data.genre,
-      'ref' : parseInt(data.ref),
-      'date_acquis' : data.date_achat,
+      'ref' : parseInt(new_ref),
       'rayonnage' : data.rayonnage,
+      'old_ref' : parseInt(data.ref),
       'emprunt' : {
         user: null,
         date_debut : null,
@@ -50,12 +51,15 @@ transformer.on('readable', function(){
       },
       'historique' : []
     }
+    if(data.date_achat !== '0000-00-00' && data.date_achat !== 'NULL'){
+      newBD.date_acquis = data.date_achat;
+    } 
     if(data.mis_hs !== '0000-00-00' && data.mis_hs !== 'NULL'){
       newBD.date_hors_circu = data.mis_hs;
     }
     // var match = data.lien_image.match(/\ /);
-    if(data.lien_image.split('\ ')){
-      var images = data.lien_image.split('\ ');
+    var images = data.lien_image.split('\ ');
+    if(images){
       data.lien_image = images[0];
     }
     if(data.lien_image && data.lien_image !== 'NULL'){
