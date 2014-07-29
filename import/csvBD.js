@@ -27,6 +27,13 @@ transformer.on('error', function(err){
 
 transformer.on('readable', function(){
   while(data = transformer.read()){
+    switch(data.ref.length){
+      case 4: data.ref='10'+data.ref; break;
+      case 3: data.ref='100'+data.ref; break;
+      case 2: data.ref='1000'+data.ref; break;
+      case 1: data.ref='10000'+data.ref; break;
+    }
+    
     var newBD = {
       'title' : data.titre,
       'dessinateur' : data.dessinateur,
