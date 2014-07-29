@@ -1,5 +1,5 @@
 <section data-ng-controller="RevuesController" data-ng-init="find()" class="well">
-    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/revues/create">Ajouter une revue </a></h3>
+    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/revues/create">Ajouter un numéro </a></h3>
     
     <div class='col-md-4'>
          <input type='text' ng-model='searchUser' placeholder='Recherche revue' autofocus class='form-control'>
@@ -21,7 +21,7 @@
         </div>
         <div class='col-md-5'>
             <div class='row well'>
-                <h4> Ajouter un nouvel abonnement</h4>
+                <h4> Ajouter un nouveau titre de revue</h4>
                 <form class='form-horizontal col-md-9' data-ng-submit='createAbo()'>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nom : </label>
