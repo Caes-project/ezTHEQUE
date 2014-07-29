@@ -42,7 +42,6 @@ transformer.on('readable', function(){
       'dewey' : data.genre,
       'ref' : parseInt(data.ref),
       'date_acquis' : data.date_achat,
-      'date_hors_circu' : data.mis_hs,
       'rayonnage' : data.rayonnage,
       'emprunt' : {
         user: null,
@@ -50,6 +49,9 @@ transformer.on('readable', function(){
         date_fin : null
       },
       'historique' : []
+    }
+    if(data.mis_hs !== '0000-00-00' && data.mis_hs !== 'NULL'){
+      newBD.date_hors_circu = data.mis_hs;
     }
     // var match = data.lien_image.match(/\ /);
     if(data.lien_image.split('\ ')){

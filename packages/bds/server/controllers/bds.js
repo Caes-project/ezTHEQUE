@@ -170,6 +170,7 @@ exports.update = function(req, res) {
 
         bd.save(function(err) {
             if (err) {
+                console.log(err);
                 return res.send(400,'users/signup', {
                     errors: err.errors,
                     bd: bd
