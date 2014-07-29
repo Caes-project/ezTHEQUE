@@ -6,7 +6,7 @@
     <br/>
     <br/>
     <ul class="unstyled">
-        <li data-ng-repeat="bd in bds | orderBy:['-title', 'title'] | filter:searchUser">
+        <li data-ng-repeat="bd in bds |  filter:searchUser">
            <h3>
                 <a data-ng-href="#!/bds/{{bd._id}}">{{bd.title}}</a>
             </h3> 

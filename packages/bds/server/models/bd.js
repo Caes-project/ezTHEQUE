@@ -35,6 +35,11 @@ var BdSchema = new Schema({
         required: true,
         unique : true
     },
+    editeur: {
+        type: String,
+        required: false,
+        unique: false
+    },
     emprunt: {
         user: {
             type: Schema.ObjectId,
@@ -52,6 +57,10 @@ var BdSchema = new Schema({
         required: false
     },
     date_acquis: {
+        type: Date,
+        required: false
+    },
+    date_hors_circu: {
         type: Date,
         required: false
     },

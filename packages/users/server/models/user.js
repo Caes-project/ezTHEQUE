@@ -104,7 +104,7 @@ var UserSchema = new Schema({
           type: Date
       }
   }],
-  date_inscription:{
+  date_maj : {
       type: Date,
       default : new Date()
   },

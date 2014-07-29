@@ -211,7 +211,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     if(req.query){
-        Bd.find(req.query).sort('-created').exec(function(err, bds) {
+        Bd.find(req.query).sort({'ref':1/-1}).limit(250).exec(function(err, bds) {
             if (err) {
                 res.render('error', {
                     status: 500
