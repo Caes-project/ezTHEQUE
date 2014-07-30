@@ -335,10 +335,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     });
    }
    else if (type === 'Ref'){
+    console.log($scope.refMedia);
      Revues.query({
       ref: $scope.refMedia
     },
     function(livre){
+    console.log('Getrevue');
+    console.log(livre);
       verifMediaRef(livre, 'Magazines');
     });
    }
