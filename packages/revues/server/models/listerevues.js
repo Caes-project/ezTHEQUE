@@ -19,15 +19,14 @@ var mongoose = require('mongoose'),
  */
 var ListeRevuesSchema = new Schema({
 	nom : {
-        type : String
+        type : String,
+        unique : true
     },
     date_abo : {
         type : Date,
-        default : new Date()
     },
     date_renouvellement :{
         type: Date,
-        default : new Date()
     }
 });
 

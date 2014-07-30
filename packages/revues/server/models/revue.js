@@ -32,8 +32,8 @@ var RevueSchema = new Schema({
     },
     numero:{
         type: Number,
-        required: true,
-        unique : true
+        required: false,
+        unique : false
     },
     Hors_serie:{
         type: Boolean
