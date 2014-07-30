@@ -50,7 +50,7 @@ transformer.on('readable', function(){
 			'date_acquis' : null,
 			'date_hors_circu' : null,
 			'lien_image' : null,
-			'ref' : new_ref,
+			'ref' : parseInt(new_ref),
       'old_ref' : data.ref,
 			'tags' : null,
       'historique' : []
@@ -194,7 +194,7 @@ transformer.on('readable', function(){
       data.lien_image = images[0];
     }
     if(data.lien_image && data.lien_image !== 'NULL'){
-     newRevue.lien_image = 'packages/bds/upload/'+ data.lien_image;
+     newRevue.lien_image = 'packages/revues/upload/'+ data.lien_image;
     }else{
       newRevue.lien_image = 'packages/default.jpg'
     }
@@ -207,11 +207,11 @@ transformer.on('readable', function(){
 				break;
 			}
 		}
-		if(free){
-			console.log(newLR.nom);
-			listeRevues.push(newLR);
-			fs.appendFileSync('listeRevues.json', JSON.stringify(newLR)+ '\n');
-		}
+		// if(free){
+		// 	console.log(newLR.nom);
+		// 	listeRevues.push(newLR);
+		// 	fs.appendFileSync('listeRevues.json', JSON.stringify(newLR)+ '\n');
+		// }
     // console.log(newRevue);
     // console.log('cpt' + cpt);
   }
