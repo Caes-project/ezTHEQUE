@@ -18,19 +18,24 @@ var mongoose = require('mongoose'),
  * Cd Schema
  */
 var CdSchema = new Schema({
-	title: {
+		title: {
         type: String,
         required: true
     },
-    scenariste: {
+    auteur: {
         type: String,
         required: false
     },
-    dessinateur: {
+    editeur: {
         type: String,
         required: false
     },
-    code_barre: {
+    interpretes: {
+        type: String,
+        required: true,
+        unique : true
+    },
+		code_barre: {
         type: String,
         required: true,
         unique : true
@@ -55,6 +60,10 @@ var CdSchema = new Schema({
         type: Date,
         required: false
     },
+		date_hors_circu: {
+        type: Date,
+        required: false
+    },
     lien_image: {
         type: String,
         required: false
@@ -76,19 +85,10 @@ var CdSchema = new Schema({
             type: Date
         }
     }],
-    cote: {
+    rayonnage: {
         type: String,
         required : false
-    },
-    resume:{
-        type: String,
-        required : false
-    },
-    tags:{
-        type: String,
-        required: false
     }
-
 });
 
 
