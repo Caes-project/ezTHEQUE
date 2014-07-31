@@ -40,7 +40,6 @@ transformer.on('readable', function(){
       'auteur' : data.auteur,
       'dewey' : data.genre,
       'ref' : parseInt(new_ref),
-      'date_acquis' : data.date_achat,
       'cote' : data.rayonnage,
       'emprunt' : {
         user: null,
@@ -53,8 +52,11 @@ transformer.on('readable', function(){
 			'old_ref' : parseInt(data.ref)
 
     }
+	if(data.date_achat !== '0000-00-00' && data.date_achat !== 'NULL'){
+      newLivre.date_acquis = new Date(data.date_achat);
+    } 
     if(data.mis_hs !== '0000-00-00' && data.mis_hs !== 'NULL'){
-      newLivre.date_hors_circu = data.mis_hs;
+      newLivre.date_hors_circu = new Date(data.mis_hs);
     }
     // var match = data.lien_image.match(/\ /);
     if(data.lien_image.split('\ ')){

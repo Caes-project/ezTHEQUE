@@ -52,10 +52,10 @@ transformer.on('readable', function(){
       'historique' : []
     }
     if(data.date_achat !== '0000-00-00' && data.date_achat !== 'NULL'){
-      newBD.date_acquis = data.date_achat;
+      newBD.date_acquis = new Date(data.date_achat);
     } 
     if(data.mis_hs !== '0000-00-00' && data.mis_hs !== 'NULL'){
-      newBD.date_hors_circu = data.mis_hs;
+      newBD.date_hors_circu = new Date(data.mis_hs);
     }
     // var match = data.lien_image.match(/\ /);
     var images = data.lien_image.split('\ ');
