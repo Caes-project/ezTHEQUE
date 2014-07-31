@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 'Revues', 'Bds', '$filter',
-  function($scope,$stateParams, $location, $timeout, Users, Global, Livres, Revues, Bds, $filter) {
+angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 'Revues', 'Cds','Dvds','Bds', '$filter',
+  function($scope,$stateParams, $location, $timeout, Users, Global, Livres, Revues, Cds, Dvds, Bds, $filter) {
 
     $scope.global = Global;
 
@@ -83,7 +83,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
   $scope.listeEmprunts = [];
 	//initialiaze le scope.emprunt
   $scope.getEmprunt = function(){
-    $scope.nbLivres = $scope.nbMag = $scope.nbBD = 0;
+    $scope.nbLivres = $scope.nbMag = $scope.nbBD = $scope.nbCD = $scope.nbDVD = 0;
     var callbackLivre = function(media){
       media.type='Livres';
       $scope.listeEmprunts.push(media);
@@ -99,6 +99,17 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       $scope.listeEmprunts.push(media);
       $scope.nbBD++;
     };
+    var callbackCD = function(media){
+      media.type='CD';
+      $scope.listeEmprunts.push(media);
+      $scope.nbCD++;
+    };
+    var callbackDVD = function(media){
+      media.type='DVD';
+      $scope.listeEmprunts.push(media);
+      $scope.nbDVD++;
+    };
+
   	//récupère la liste des id des medias emprunté
   	for(var i in $scope.user.emprunt){
   		if($scope.user.emprunt[i].type === 'Livres'){
@@ -113,6 +124,14 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         Bds.get({
           bdId: $scope.user.emprunt[i].id
         }, callbackBD);
+      }else if($scope.user.emprunt[i].type === 'CD'){
+        Cds.get({
+          cdId: $scope.user.emprunt[i].id
+        }, callbackCD);
+      }else if($scope.user.emprunt[i].type === 'DVD'){
+        Dvds.get({
+          dvdId: $scope.user.emprunt[i].id
+        }, callbackDVD);
       }
     }
   };
@@ -130,6 +149,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       case 'Livres' : $scope.nbLivres++; break;
       case 'BD' : $scope.nbBD++; break;
       case 'Magazines' : $scope.nbMag++; break;
+      case 'CD' : $scope.nbCD++; break;
+      case 'DVD' : $scope.nbDVD++; break;
     }
   }
 
@@ -138,6 +159,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       case 'Livres' : $scope.nbLivres--; break;
       case 'BD' : $scope.nbBD--; break;
       case 'Magazines' : $scope.nbMag--; break;
+      case 'CD' : $scope.nbCD--; break;
+      case 'DVD' : $scope.nbDVD--; break;
     }
   }
 
@@ -340,9 +363,50 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       ref: $scope.refMedia
     },
     function(livre){
-    console.log('Getrevue');
     console.log(livre);
       verifMediaRef(livre, 'Magazines');
+    });
+   }
+  }
+
+  function getCD(type){
+    if(type === 'CB'){
+     Cds.query({
+       code_barre : $scope.refMedia
+     },
+     function(livre){
+      verifMediaCB(livre, 'CD');
+    });
+   }
+   else if (type === 'Ref'){
+    console.log($scope.refMedia);
+     Cds.query({
+      ref: $scope.refMedia
+    },
+    function(livre){
+    console.log(livre);
+      verifMediaRef(livre, 'CD');
+    });
+   }
+  }
+
+  function getDVD(type){
+    if(type === 'CB'){
+     Dvds.query({
+       code_barre : $scope.refMedia
+     },
+     function(livre){
+      verifMediaCB(livre, 'DVD');
+    });
+   }
+   else if (type === 'Ref'){
+    console.log($scope.refMedia);
+     Dvds.query({
+      ref: $scope.refMedia
+    },
+    function(livre){
+    console.log(livre);
+      verifMediaRef(livre, 'DVD');
     });
    }
   }
@@ -353,12 +417,16 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       getLivre('CB');
       getBd('CB');
       getRevue('CB');
+      getCD('CB');
+      getDVD('CB');
     }	 
     else{
       $scope.newmedia = null;
       getLivre('Ref');
       getBd('Ref');
       getRevue('Ref');
+      getCD('Ref');
+      getDVD('Ref');
     }
   };
 

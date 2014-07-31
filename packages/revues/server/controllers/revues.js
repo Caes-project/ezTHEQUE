@@ -213,8 +213,6 @@ exports.getRevues = function(req, res) {
     console.log(Object.keys(req.query));
     if(Object.keys(req.query).length !== 0){
         ListeRevues.find(req.query).sort('-created').exec(function(err, revues) {
-            console.log('revues lol');
-            console.log(revues);
             if (err) {
                 res.render('error', {
                     status: 500
@@ -240,7 +238,6 @@ exports.getRevues = function(req, res) {
 exports.createRevues = function(req, res){
      var revue = new ListeRevues(req.query);
         revue.save(function(err){
-            console.log(revue);
             res.jsonp(200, revue);
         });
 };

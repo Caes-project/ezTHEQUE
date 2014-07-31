@@ -15,13 +15,14 @@
         </div>
       </form>
     </div> 
-    {{newmedia}}
     <div class='row'>
       <!-- liste des emprunts de l'utilisateurs  -->
       <h4>
         Livres :<b> {{nbLivres}} </b> 
         BD :<b> {{nbBD}} </b>
         Magazines :<b> {{nbMag}} </b>
+        CD :<b> {{nbCD}} </b>
+        DVD :<b> {{nbDVD}} </b>
       </h4>      
       <article class="col-md-12">
         <h3 class='lato-font-title' > Emprunts actuels :</h3>
@@ -240,7 +241,7 @@
       <div class="row">
         <div style='padding-left:20px;'>
          <h3>
-          <div ng-show="derniermedia"> {{derniermedia.auteur}}<small><br><a data-ng-href="#!/livres/{{derniermedia._id}}">{{derniermedia.title}}</a></small>
+          <div ng-show="derniermedia"> <a data-ng-href="#!/livres/{{derniermedia._id}}">{{derniermedia.title}}</a>
           </h3>
           <div data-ng-hide="!derniermedia.lien_image"><a data-ng-href="#!/livres/{{derniermedia._id}}"><img ng-src="{{derniermedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
           <div ng-show="derniermedia">  Genre:{{derniermedia.dewey}} &nbsp Ref. {{derniermedia.ref}} </div>
