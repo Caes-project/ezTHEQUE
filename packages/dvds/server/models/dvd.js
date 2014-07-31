@@ -22,12 +22,20 @@ var DvdSchema = new Schema({
         type: String,
         required: true
     },
-    scenariste: {
+    realisateur: {
         type: String,
         required: false
     },
-    dessinateur: {
+    acteur: {
         type: String,
+        required: false
+    },
+    annee:{
+        type: Number,
+        required: false
+    },
+    duree:{
+        type: Number,
         required: false
     },
     code_barre: {
@@ -35,10 +43,9 @@ var DvdSchema = new Schema({
         required: true,
         unique : true
     },
-    editeur: {
+    info: {
         type: String,
-        required: false,
-        unique: false
+        required: false
     },
     emprunt: {
         user: {
@@ -73,6 +80,10 @@ var DvdSchema = new Schema({
         required: true,
         unique : true
     },
+    ref_adav:{
+        type: Number,
+        required: false
+    },
     historique: [{        
         user: {
             type: Schema.ObjectId,
@@ -85,19 +96,10 @@ var DvdSchema = new Schema({
             type: Date
         }
     }],
-    cote: {
-        type: String,
-        required : false
-    },
     resume:{
         type: String,
         required : false
-    },
-    tags:{
-        type: String,
-        required: false
     }
-
 });
 
 
