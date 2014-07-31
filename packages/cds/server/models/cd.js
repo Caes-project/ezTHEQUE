@@ -18,7 +18,7 @@ var mongoose = require('mongoose'),
  * Cd Schema
  */
 var CdSchema = new Schema({
-		title: {
+	title: {
         type: String,
         required: true
     },
@@ -32,10 +32,9 @@ var CdSchema = new Schema({
     },
     interpretes: {
         type: String,
-        required: true,
-        unique : true
+        required: false,
     },
-		code_barre: {
+	code_barre: {
         type: String,
         required: true,
         unique : true
@@ -60,7 +59,7 @@ var CdSchema = new Schema({
         type: Date,
         required: false
     },
-		date_hors_circu: {
+	date_hors_circu: {
         type: Date,
         required: false
     },

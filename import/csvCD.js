@@ -50,7 +50,7 @@ transformer.on('readable', function(){
       'auteur' : data.dessinateur,
       'editeur' : data.scenariste,
       'interpretes' : data.editeur,
-      'dewey' : data.genre,
+      'dewey' : genre,
       'ref' : parseInt(new_ref),
       'rayonnage' : data.rayonnage,
       'old_ref' : data.ref,
