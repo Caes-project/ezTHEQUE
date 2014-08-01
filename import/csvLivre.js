@@ -34,11 +34,22 @@ transformer.on('readable', function(){
       case 2: new_ref='2000'+data.ref; break;
       case 1: new_ref='20000'+data.ref; break;
     }
-    
+    var genre;
+    switch(data.genre){    
+      case 'P':genre='Policier';break;
+      case 'SF':genre='Science Fiction';break;
+      case '808':genre='Romans français';break;
+      case '810':genre='Romans anglais';break;
+      case '830':genre='Romans allemands';break;
+      case '850':genre='Romans italiens';break;
+      case '860':genre='Romans espagnols';break;
+      case '89':genre='Romans, divers';break;
+      case '000':genre='Documentaires';break;
+    }
     var newLivre = {
       'title' : data.titre,
       'auteur' : data.auteur,
-      'dewey' : data.genre,
+      'dewey' : genre,
       'ref' : parseInt(new_ref),
       'cote' : data.rayonnage,
       'emprunt' : {
