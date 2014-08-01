@@ -40,7 +40,7 @@ transformer.on('readable', function(){
 		var newRevue = {
       'title' : data.titre,
       'code_barre' : 1,
-      'nom_revue' : data.titre,
+      'nom_revue' : data.titre.split(' :')[0],
       'Hors_serie' : false,
       'emprunt' : {
         user: null,
