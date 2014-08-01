@@ -2,38 +2,27 @@
 
 var livres = require('../controllers/livres');
 
-var hasAuthorization = function(req, res, next) {
-    if (!req.user.isAdmin && req.livre.user.id !== req.user.id) {
-        return res.send(401, 'User is not authorized');
-    }
-    next();
-};
-
-var isAdmin = function(req, res, next) {
-    if (!req.user.isAdmin) {
-        return res.send(401, 'User is not authorized');
-    }
-    next();
-};
-
 // The Package is past automatically as first parameter
 module.exports = function(Livres, app, auth, database) {
 
     app.route('/livres/getMaxRef')
         .get(auth.requiresAdmin, livres.getMaxRef);
+    app.route('/livres/Settings')
+        .get(auth.requiresAdmin, livres.getSettings(Livres))
+        .put(auth.requiresAdmin, livres.putSettings(Livres));
     app.route('/livres/:livreId/emprunt')
         .post(auth.requiresLogin, livres.update);
     app.route('/livres/upload')
-        .post(auth.requiresLogin, isAdmin,livres.saveImage);
+        .post(auth.requiresAdmin,livres.saveImage);
     app.route('/livres/:livreId/edit')
-        .post(auth.requiresAdmin, isAdmin,livres.edit);
+        .post(auth.requiresAdmin,livres.edit);
     app.route('/livres')
         .get(livres.all)
-        .post(auth.requiresLogin, isAdmin, livres.saveImage);
+        .post(auth.requiresAdmin, livres.saveImage);
     app.route('/livres/:livreId')
         .get(livres.show)
-        .put(auth.requiresLogin, hasAuthorization, livres.update)
-        .delete(auth.requiresLogin, hasAuthorization, livres.destroy);
+        .put(auth.requiresAdmin, livres.update)
+        .delete(auth.requiresAdmin, livres.destroy);
     app.route('/livres/list')
         .get(livres.all);
 

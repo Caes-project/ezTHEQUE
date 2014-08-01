@@ -242,15 +242,15 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         function(user_){
           user = user_;
           livre.historique.push({
-              'user' : $scope.user._id,
-              'date_debut' : livre.emprunt.date_debut,
-              'date_fin' : new Date()
-            });
-            user.historique.push({
-              'media' : livre._id,
-              'date_debut' : livre.emprunt.date_debut,
-              'date_fin' : new Date()
-            });    
+            'user' : $scope.user._id,
+            'date_debut' : livre.emprunt.date_debut,
+            'date_fin' : new Date()
+          });
+          user.historique.push({
+            'media' : livre._id,
+            'date_debut' : livre.emprunt.date_debut,
+            'date_fin' : new Date()
+          });    
           livre.emprunt = {
             user: null,
             date_debut : null,
@@ -269,87 +269,86 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
             });
           });
         });
-      };
-
-      $scope.recup_google = function(){
-        if($scope.code_barre_recherche){
-          $scope.enregistre = false;
-          Livres.query({
-            'code_barre' : $scope.code_barre_recherche
-          }, function(livre){
-            console.log(livre);
-            if(livre[0]){
-              message_info('Vous avez déjà un exemplaire de ce livre', 'error');
-            }else{
-              $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
-              success(function(data, status, headers, config){
-                console.log(data);
-                $scope.data = data;
-                            //si le livre retourné est unique alors on prérempli les champs.
-                            if(!data.items){
-                              message_info('Aucun livre trouvé !', 'error');
-                              $scope.code_barre = $scope.code_barre_recherche;
-                            }else if(data.items.length === 1){
-                              if(data.items[0].volumeInfo.authors){
-                                $scope.auteur = data.items[0].volumeInfo.authors[0];}
-                                if(data.items[0].volumeInfo.title){
-                                  $scope.title = data.items[0].volumeInfo.title;}
-                                  $scope.code_barre = $scope.code_barre_recherche;
-                                  if(data.items[0].volumeInfo.imageLinks){
-                                    $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                                  }else{
-                                    console.log('2');
-                                    $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
-                                    success(function(data, status, headers, config){
-                                     console.log(data);
-                                     if(data.items[0].volumeInfo.imageLinks){
-                                      $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                                    }else{
-                                     message_info('Aucune couverture dans les données renvoyées par Google', 'error');
-                                   }
-                                 });
-                                  }
-                                  $scope.lien_livre = data.items[0].volumeInfo;
-                                  if(data.items[0].volumeInfo.description){
-                                    $scope.resume = data.items[0].volumeInfo.description;
-                                  }   
-                                  $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
-                                }
-                              }).
-error(function(data, status, headers, config) {
- message_info('Il semblerai que la connection vers google_book soit impossible pour le moment ...', 'error');
-});
-}
-});
-}else{
-  message_info('Veuillez entrer un code barre');
-}
 };
 
-$scope.date_diff = function(livre){
-  var today = new Date();
-  if(!livre.emprunt.date_fin){
-    return 1;
+$scope.recup_google = function(){
+  if($scope.code_barre_recherche){
+    $scope.enregistre = false;
+    Livres.query({
+      'code_barre' : $scope.code_barre_recherche
+    }, function(livre){
+      console.log(livre);
+      if(livre[0]){
+        message_info('Vous avez déjà un exemplaire de ce livre', 'error');
+      }else{
+        $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
+        success(function(data, status, headers, config){
+          console.log(data);
+          $scope.data = data;
+          //si le livre retourné est unique alors on prérempli les champs.
+          if(!data.items){
+            message_info('Aucun livre trouvé !', 'error');
+            $scope.code_barre = $scope.code_barre_recherche;
+          }else if(data.items.length === 1){
+            if(data.items[0].volumeInfo.authors){
+              $scope.auteur = data.items[0].volumeInfo.authors[0];}
+              if(data.items[0].volumeInfo.title){
+                $scope.title = data.items[0].volumeInfo.title;}
+                $scope.code_barre = $scope.code_barre_recherche;
+                if(data.items[0].volumeInfo.imageLinks){
+                  $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                }else{
+                  console.log('2');
+                  $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
+                  success(function(data, status, headers, config){
+                   console.log(data);
+                   if(data.items[0].volumeInfo.imageLinks){
+                    $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
+                  }else{
+                   message_info('Aucune couverture dans les données renvoyées par Google', 'error');
+                 }
+               });
+                }
+                $scope.lien_livre = data.items[0].volumeInfo;
+                if(data.items[0].volumeInfo.description){
+                  $scope.resume = data.items[0].volumeInfo.description;
+                }   
+                $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
+              }
+            }).error(function(data, status, headers, config) {
+             message_info('Il semblerai que la connection vers google_book soit impossible pour le moment ...', 'error');
+           });
+          }
+        });
+      }else{
+        message_info('Veuillez entrer un code barre');
+      }
+    };
+
+    $scope.date_diff = function(livre){
+      var today = new Date();
+      if(!livre.emprunt.date_fin){
+        return 1;
+      }
+      var fin = new Date(livre.emprunt.date_fin);
+      var diff = fin.getTime()- today.getTime();
+      diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var res = {};
+      if(diff >= 0){
+        res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+        res.retard = 0;
+      }else{
+        res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+        res.retard = 1;
+      }
+      return res;
+    };
+
+    $scope.Initref = function(){
+      Livres.getMaxRef(function(livre){
+        console.log(livre);
+        $scope.ref = livre.ref + 1;
+      });
+    };
   }
-  var fin = new Date(livre.emprunt.date_fin);
-  var diff = fin.getTime()- today.getTime();
-  diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-  var res = {};
-  if(diff >= 0){
-    res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
-    res.retard = 0;
-  }else{
-    res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
-    res.retard = 1;
-  }
-  return res;
-};
-
-$scope.Initref = function(){
-  Livres.getMaxRef(function(livre){
-    console.log(livre);
-    $scope.ref = livre.ref + 1;
-  });
-};
-}
 ]);

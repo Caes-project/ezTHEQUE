@@ -65,7 +65,7 @@
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "BD"'>
               <div class='col-md-9'>
-                <h3 style='margin-top:0'>{{media.scenariste}}<small><br><a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a></small></h3>
+                <h3 style='margin-top:0'>{{media.dessinateur}}<small><br><a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a></small></h3>
                 <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
                 <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
               </div> 
@@ -99,7 +99,7 @@
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "DVD"'>
               <div class='col-md-9'>
-                <h3>{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
+                <h3>{{media.realisateur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
                 <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
                 <p ng-show="media.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(media).retard}' ng-bind='date_diff(media).message'> </p>   
               </div> 

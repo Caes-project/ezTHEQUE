@@ -47,9 +47,9 @@ transformer.on('readable', function(){
     
     var newCD = {
       'title' : data.titre,
-      'auteur' : data.dessinateur,
-      'editeur' : data.scenariste,
-      'interpretes' : data.editeur,
+      'auteur' : data.auteur,
+      'editeur' : data.editeur,
+      'interpretes' : data.interpretes,
       'dewey' : genre,
       'ref' : parseInt(new_ref),
       'rayonnage' : data.rayonnage,

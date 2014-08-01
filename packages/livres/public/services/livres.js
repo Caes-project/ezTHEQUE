@@ -10,10 +10,15 @@ angular.module('mean').factory('Livres', ['$resource',
 				method: 'PUT'
 			},
 			getMaxRef : {
-                method: 'GET',
-                params: {action: 'getMaxRef'},
-                isArray: false
-            }
+        method: 'GET',
+        params: {action: 'getMaxRef'},
+        isArray: false
+      },
+      getSettings : {
+      	method: 'GET',
+      	params: {action: 'Settings'},
+      	isArray: false
+      }
 		});
 	}
 ]);

@@ -10,8 +10,8 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
     };
     $scope.date = new Date().toISOString().substring(0, 10);
 
-    $scope.genre_liste_cd = ['Aventure', 'Erotique', 'Humour', 'Fantastique', 'Bibliographie', 'Manga', 'Enfants', 'Divers'];
-
+    $scope.genre_liste_cd = ['Jazz', 'Etranger', 'Français', 'Enfants', 'Classique', 'BO film', 'Blues'];
+    
     var timer;
 
     function message_info(message, type){
@@ -159,8 +159,8 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
     }, function(cd) {
       $scope.cd = cd;
       $scope.ref = cd.ref;
-      $scope.dessinateur = cd.dessinateur;
-      $scope.scenariste = cd.scenariste;
+      $scope.auteur = cd.auteur;
+      $scope.interpretes = cd.interpretes;
       $scope.title = cd.title;
       $scope.dewey =  cd.dewey;
       $scope.date_acquis = cd.date_acquis;
