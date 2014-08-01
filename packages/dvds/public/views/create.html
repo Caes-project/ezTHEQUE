@@ -1,5 +1,5 @@
 <section data-ng-controller="DvdsController" class='well'>
-    <h2> Créer une nouvelle dvd</h2>
+    <h2> Créer un DVD</h2>
     <br>
     <!-- Formulaire d'ajout manuel ! -->
     <div class="row">
@@ -17,27 +17,21 @@
             </div>
         </div> 
         <div class="form-group">
-            <label class="col-md-3 control-label">Titre</label>
+            <label for="realisateur" class="col-md-3 control-label">Réalisateur</label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="realisateur" id="realisateur" name='realisateur' placeholder="Réalisateur" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="acteur" class="col-md-3 control-label">Acteur </label>
+            <div class="col-md-9">
+                <input type='text' data-ng-model="acteur" id="acteur" name='acteur' placeholder="Acteur" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-title'" class="col-md-3 control-label">Titre</label>
             <div class="col-md-9">
                 <input type="text" class="form-control" name='title' data-ng-model="title" id="title" placeholder="Title" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="scenariste" class="col-md-3 control-label">Scénariste</label>
-            <div class="col-md-9">
-                <input type='text' data-ng-model="scenariste" id="scenariste" name='scenariste' placeholder="Scénariste" class="form-control" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="dessinateur" class="col-md-3 control-label">Dessinateur</label>
-            <div class="col-md-9">
-                <input type='text' data-ng-model="dessinateur" id="dessinateur" name='dessinateur' placeholder="Dessinateur" class="form-control" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">Rayonnage</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage" required>
             </div>
         </div>
         <div class="form-group">
@@ -45,18 +39,36 @@
             <div class="col-md-9">
                 <select class="form-control" ng-model='dewey' name="dewey" size="1" required>
                     <option value='' > Choix genre </option>
-                    <option value="{{genre}}" ng-repeat="genre in genre_liste_dvd">{{genre}}</option>
+                    <option value="{{genre}}" ng-repeat="genre in genre_liste_dvd">{{genre}}</option> 
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label for="date" class="col-md-3 control-label">Date achat</label>
+            <label class="col-md-3 control-label">Année</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='annee' data-ng-model="annee" id="annee" placeholder="Année" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Durée</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='duree' data-ng-model="duree" id="duree" placeholder="Durée" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Rayonnage</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage">
+            </div>
+        </div>
+        <div class="form-group">
+            <label mean-token="'create-date'" for="date" class="col-md-3 control-label">Date achat</label>
             <div class="col-md-9">
                 <input type='date' data-ng-model="date" id="date" name='date_acquis' placeholder="date" class="form-control" >
             </div>
         </div>
         <div class="form-group">
-            <label for="image" class="col-md-3 control-label">Couverture</label>
+            <label mean-token="'create-image'" for="image" class="col-md-3 control-label">Couverture</label>
             <div class="col-md-9">
                 <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
             </div>
@@ -65,6 +77,12 @@
             <label for="resume" class="col-md-3 control-label">résumé</label>
             <div class="col-md-9">
                 <textarea data-ng-model="resume" id="resume" name='resume' cols="30" rows="7" placeholder="resume" class="form-control"/> </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="info" class="col-md-3 control-label">Info Dvd</label>
+            <div class="col-md-9">
+                <textarea data-ng-model="info" id="info" name='info' cols="30" rows="7" placeholder="info" class="form-control"/> </textarea>
             </div>
         </div>
         <div class="form-group">
