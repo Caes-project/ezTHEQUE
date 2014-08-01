@@ -52,7 +52,7 @@ transformer.on('readable', function(){
     var newDVD = {
       'title' : data.titre,
       'realisateur' : data.realisateur,
-      'acteurs' : data.acteurs,
+      'acteur' : data.acteurs,
       'dewey' : genre,
 			'old_deway' : data.genre,
 			'annee' : data.annee,

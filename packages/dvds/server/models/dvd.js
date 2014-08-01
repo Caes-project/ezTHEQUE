@@ -35,7 +35,7 @@ var DvdSchema = new Schema({
         required: false
     },
     duree:{
-        type: Number,
+        type: String,
         required: false
     },
     code_barre: {

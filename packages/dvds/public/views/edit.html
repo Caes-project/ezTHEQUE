@@ -13,15 +13,15 @@
             </div>
         </div> 
         <div class="form-group">
-            <label for="scenariste" class="col-md-3 control-label">Scénariste</label>
+            <label for="realisateur" class="col-md-3 control-label">Réalisateur</label>
             <div class="col-md-9">
-                <input type='text' data-ng-model="scenariste" id="scenariste" name='scenariste' placeholder="Scénariste" class="form-control" required>
+                <input type='text' data-ng-model="realisateur" id="realisateur" name='realisateur' placeholder="Réalisateur" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
-            <label for="dessinateur" class="col-md-3 control-label">Dessinateur</label>
+            <label for="acteur" class="col-md-3 control-label">Acteur </label>
             <div class="col-md-9">
-                <input type='text' data-ng-model="dessinateur" id="dessinateur" name='dessinateur' placeholder="Dessinateur" class="form-control" required>
+                <input type='text' data-ng-model="acteur" id="acteur" name='acteur' placeholder="Acteur" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
@@ -31,18 +31,30 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Rayonnage</label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage" required>
-            </div>
-        </div>
-        <div class="form-group">
             <label for="dewey" class="col-md-3 control-label">Genre</label>
             <div class="col-md-9">
                 <select class="form-control" ng-model='dewey' name="dewey" size="1" required>
                     <option value='' > Choix genre </option>
-                    <option value="{{genre}}" ng-repeat="genre in genre_liste_dvd">{{genre}}</option>
+                    <option value="{{genre}}" ng-repeat="genre in genre_liste_dvd">{{genre}}</option> 
                 </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Année</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='annee' data-ng-model="annee" id="annee" placeholder="Année" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Durée</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='duree' data-ng-model="duree" id="duree" placeholder="Durée" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Rayonnage</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name='cote' data-ng-model="cote" id="cote" placeholder="Rayonnage" required>
             </div>
         </div>
         <div class="form-group">
@@ -61,6 +73,12 @@
             <label for="resume" class="col-md-3 control-label">résumé</label>
             <div class="col-md-9">
                 <textarea data-ng-model="resume" id="resume" name='resume' cols="30" rows="7" placeholder="resume" class="form-control"/> </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="info" class="col-md-3 control-label">Info Dvd</label>
+            <div class="col-md-9">
+                <textarea data-ng-model="info" id="info" name='info' cols="30" rows="7" placeholder="info" class="form-control"/> </textarea>
             </div>
         </div>
         <div class="form-group">

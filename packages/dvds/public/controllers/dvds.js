@@ -10,8 +10,8 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
     };
     $scope.date = new Date().toISOString().substring(0, 10);
 
-    $scope.genre_liste_dvd = ['Aventure', 'Erotique', 'Humour', 'Fantastique', 'Bibliographie', 'Manga', 'Enfants', 'Divers'];
-
+    $scope.genre_liste_dvd = ['Animation', 'Aventure/Action' ,'Comédie', 'Comédie dramatique', 'Documentaire', 'Fantastique/Horreur', 'Historique/Guerre', 'Musical', 'Policier/Suspense', 'Science Fiction', 'Théatre', 'Western'];
+  
     var timer;
 
     function message_info(message, type){
@@ -159,8 +159,12 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
     }, function(dvd) {
       $scope.dvd = dvd;
       $scope.ref = dvd.ref;
-      $scope.dessinateur = dvd.dessinateur;
-      $scope.scenariste = dvd.scenariste;
+      $scope.info = dvd.info;
+      $scope.ref_adav = dvd.ref_adav;
+      $scope.realisateur = dvd.realisateur;
+      $scope.duree = dvd.duree;
+      $scope.annee = dvd.annee;
+      $scope.acteur = dvd.acteur;
       $scope.title = dvd.title;
       $scope.dewey =  dvd.dewey;
       $scope.date_acquis = dvd.date_acquis;
