@@ -36,7 +36,8 @@ module.exports = function(MeanUser, app, auth, database, passport) {
     }), function(req, res) {
       res.send({
         user: req.user,
-        redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
+        // redirect: (req.user.roles.indexOf('admin') !== -1) ? req.get('referer') : false
+        redirect: req.get('referer')
       });
     });
 
