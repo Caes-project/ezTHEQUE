@@ -235,21 +235,22 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
       $scope.rendreLivre = function(livre) {
         var user;
-        // console.log($scope.livre.emprunt.user);
+        console.log($scope.livre.emprunt.user);
         Users.findById({
           userId: $scope.livre.emprunt.user
         },
         function(user_){
           user = user_;
+          console.log(user);
           livre.historique.push({
-            'user' : $scope.user._id,
+            'user' : user._id,
             'date_debut' : livre.emprunt.date_debut,
-            'date_fin' : new Date()
+            'date_fin' : new Date().toISOString().substring(0, 10)
           });
           user.historique.push({
             'media' : livre._id,
             'date_debut' : livre.emprunt.date_debut,
-            'date_fin' : new Date()
+            'date_fin' : new Date().toISOString().substring(0, 10)
           });    
           livre.emprunt = {
             user: null,

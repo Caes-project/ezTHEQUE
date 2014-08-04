@@ -47,7 +47,7 @@ describe('<Unit Test>', function() {
                         date_debut : '2014-06-12',
                         date_fin : '2014-06-26'
                     },
-                    ref: -1
+                    ref: 1
                 });
                 livreExistant = new Livre({
                     code_barre: '97820706430260',
@@ -58,13 +58,13 @@ describe('<Unit Test>', function() {
                         date_debut : '2014-06-12',
                         date_fin : '2014-06-26'
                     },
-                    ref: -666
+                    ref: 666
                 });
                 livreExistant2 = new Livre({
                     code_barre: '97820706430270',
                     title: 'Livre Title existant2',
                     auteur: 'Mikey here',
-                    ref: -667
+                    ref: 667
                 });
                 livreExistant.save(function(){
                     livreExistant2.save(function(){
@@ -83,8 +83,10 @@ describe('<Unit Test>', function() {
             });
 
             it('should be able to show an error when try to save a ref that already exist', function(done) {
-                livre.ref = -666;
+                livre.ref = 666;
+                // console.log(livre);
                 return livre.save(function(err) {
+                    // console.log(err);
                     should.exist(err);
                     done();
                 });
@@ -103,7 +105,7 @@ describe('<Unit Test>', function() {
 
         describe('Method read Livre', function(){
             it('should be able to read the begining date of a borrowing', function(done){
-                return Livre.find({ref: -666}, function(err, livres){
+                return Livre.find({ref: 666}, function(err, livres){
                     livres.should.have.length(1);
                     should.exist(livres[0].emprunt.date_debut);
                     done();
@@ -111,7 +113,7 @@ describe('<Unit Test>', function() {
             });
 
             it('should be able to read a book without borrowing', function(done){
-                Livre.find({ref: -667}, function(err, livres){
+                Livre.find({ref: 667}, function(err, livres){
                     livres.should.have.length(1);
                     should.not.exist(livres[0].emprunt.user);
                     done();
@@ -121,13 +123,13 @@ describe('<Unit Test>', function() {
 
         describe('Method update Emprunt Livre', function(){
             it('should erase the borrowing and give another one without problems', function(done){
-                Livre.update({'ref': -666}, { $set: { 'emprunt.user': null}}, function(err){
-                    Livre.find({ref: -666}, function(err, livres){
+                Livre.update({'ref': 666}, { $set: { 'emprunt.user': null}}, function(err){
+                    Livre.find({ref: 666}, function(err, livres){
                         should.not.exist(err);
                         // console.log(livres[0].emprunt);
                         // (livres[0].emprunt.user === null).should.be.true;
-                        Livre.update({'ref': -666}, { $set: { 'emprunt.user': user}}, function(err){
-                            Livre.find({ref: -666}, function(err, livres){
+                        Livre.update({'ref': 666}, { $set: { 'emprunt.user': user}}, function(err){
+                            Livre.find({ref: 666}, function(err, livres){
                                should.exist(livres[0].emprunt.user);
                                done();
                             });

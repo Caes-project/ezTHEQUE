@@ -18,6 +18,8 @@
                 module('mean.users');
                 module('mean.revues');
                 module('mean.bds');
+                module('mean.cds');
+                module('mean.dvds');
                 // module('mean.livres');
             });
 

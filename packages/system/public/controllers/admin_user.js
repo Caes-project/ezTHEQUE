@@ -220,11 +220,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           date_fin : $scope.date_fin,
           type : media.typeMedia
         };    
-        console.log('media');
-        console.log(media);
-        console.log('user');
-        console.log($scope.user);
-        var typeMedia =media.typeMedia;     
+        var typeMedia =media.typeMedia;
+        delete media.typeMedia;     
         $scope.user.emprunt.push(newEmprunt);
         media.$update(function(response) {
          $scope.user.$update(function(response) {
