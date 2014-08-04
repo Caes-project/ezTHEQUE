@@ -1,4 +1,5 @@
-<section data-ng-controller="IndexController" style='padding-left: 60px'>
+<section data-ng-controller="IndexController" >
+	
 	<!-- Index de l'admin  -->
 	<div class='row'>
 		<div ng-show='global.isAdmin'>
@@ -40,9 +41,9 @@
 			<h2 ng-show="newlivre" > Livre trouvé </h2>
 			<a data-ng-href="#!/livres/{{newlivre._id}}">{{newlivre.title}}</a>
 			<div data-ng-hide="!newlivre.lien_image"><a data-ng-href="#!/livres/{{newlivre._id}}"><img ng-src="{{newlivre.lien_image}}" border="0" align="center" width=80 height=130> </a>
-				<span ng-show='emprunteur'> &nbsp&nbsp&nbsp emprunté par {{emprunteur.name}} </span>
+				<span ng-show='emprunteur'> emprunté par {{emprunteur.name}} </span>
 			</div>
-			<div ng-show="newlivre"> {{newlivre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{newlivre.dewey}} &nbsp Ref. {{newlivre.ref}}
+			<div ng-show="newlivre"> {{newlivre.auteur}} Genre:{{newlivre.dewey}} Ref. {{newlivre.ref}}
 			</div>
 		</article>
 	</div>
@@ -51,13 +52,44 @@
 	<div data-ng-hide='global.isAdmin'>
 		<article>
 			<h1> Bienvenue sur l'application de la médiathèque du CAES</h1>
-			<div data-ng-hide='global.authenticated'>
-				<br>
+			<!-- Si pas connecté -->
+			<div data-ng-hide='global.authenticated' class='well'>
+				<h3>  Pour accèder à la liste des médias ou a votre compte, connectez vous ! </h3>
 				<p>
-					Pour accèder à la liste des médias ou a votre compte, connectez vous !
+				<br/>
+					La bibliothèque est située au local du CAES à l'INIST (bâtiment COSMOS), sur le trajet du restaurant - 2, allée du Parc de Brabois à Vandoeuvre. 
+				</p>
+				<p>
+					Elle est ouverte les
+					<h3> MARDI & VENDREDI de 12 h 30 à 13 h 30 </h3>
+				<p>
+				<p>
+					Les modalités d'emprunt sont les suivantes : 
+					<ul>
+						<li>
+							cotisation de 10 Euros/an pour une seule inscription Bibliothèque (sur laquelle sont appliqués les tarifs dégressifs detail des tarifs)
+						</li>
+						<li> dépôt d'une caution de 45 Euros </li> 
+						<li> remplir le dossier du CAES (si ce n'est pas déjà fait !) </li>
+					</ul>
+					Vous pouvez emprunter :
+					<ul>
+						<li> 3 livres / mois </li>
+						<li> 3 magazines / semaine </li>
+						<li> 3 BD / semaine </li>
+					</ul>
+				</p>
+				<p style='text-align: justify'>
+					parmi un choix de plus de 2580 livres et 2900 B.D. (romans, policiers, science-fiction, livres sur la Lorraine, histoire...) et 12 revues auxquelles la bibliothèque est abonnée.
+					liste des revues
+					Chaque année, 2 à 3 achats de livres et de B.D. sont faits en fonction des demandes des adhérents. N'hésitez pas à faire vos suggestions auprès des bénévoles
+
+					Le budget de fonctionnement de l'activité correspond à une subvention annuelle votée par les élus du CLAS à laquelle s'ajoute l'argent recueilli par les cotisations des adhérents de l'activité.
 				</p>
 				<br/>
 			</div>
+
+			<!-- si connecté -->
 			<div data-ng-show='global.authenticated'>
 				<p>
 					il y a {{livre_dispo}} livres disponible dans la médiathèque !

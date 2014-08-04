@@ -26,7 +26,7 @@
       </h4>      
       <article class="col-md-12">
         <h3 class='lato-font-title' > Emprunts actuels :</h3>
-        <h4> Livres <b>{{nbLivres}} </b> emprunt(s) </h4>
+        <h4 ng-show='nbLivres > 0'> Livres </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "Livres"'>
@@ -40,10 +40,11 @@
                   <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
                 </a>
               </div>
+              <div style='clear:both'> </div>
             </div>
           </li>
         </ul>
-          <h4> Magazines <b> {{nbMag}} </b> emprunt(s) </h4>
+          <h4 ng-show='nbMag > 0'> Magazines </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "Magazines"'>
@@ -57,10 +58,11 @@
                   <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
                 </a>
               </div>
+              <div style='clear:both'> </div>
             </div>
           </li>
         </ul>
-          <h4> BD <b> {{nbBD}} </b> emprunt(s) </h4>
+          <h4 ng-show='nbBD > 0'> BD </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "BD"'>
@@ -74,10 +76,11 @@
                   <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
                 </a>
               </div>
+              <div style='clear:both'> </div>
             </div>
           </li>
         </ul>
-          <h4> CD </h4>
+          <h4 ng-show='nbCD > 0'> CD </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "CD"'>
@@ -91,10 +94,11 @@
                   <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
                 </a>
               </div>
+              <div style='clear:both'> </div>
             </div>
           </li>
         </ul>
-          <h4> DVD </h4>
+          <h4 ng-show='nbDVD > 0'> DVD </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
             <div class='well' ng-if='media.type === "DVD"'>
@@ -108,6 +112,7 @@
                   <img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130>
                 </a>
               </div>
+              <div style='clear:both'> </div>
             </div>
           </li>
         </ul>
