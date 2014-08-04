@@ -211,7 +211,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     if(req.query){
-        Cd.find(req.query).sort({'ref':1/-1}).limit(250).exec(function(err, cds) {
+        Cd.find(req.query).sort({'ref':1/-1}).exec(function(err, cds) {
             if (err) {
                 res.render('error', {
                     status: 500

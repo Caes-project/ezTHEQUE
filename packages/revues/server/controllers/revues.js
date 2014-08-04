@@ -186,7 +186,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     if(req.query){
-        Revue.find(req.query).sort({'ref':1/-1}).limit(250).exec(function(err, revues) {
+        Revue.find(req.query).sort({'ref':1/-1}).exec(function(err, revues) {
             if (err) {
                 res.render('error', {
                     status: 500
@@ -209,8 +209,6 @@ exports.all = function(req, res) {
 };
 
 exports.getRevues = function(req, res) {
-    console.log('revues');
-    console.log(Object.keys(req.query));
     if(Object.keys(req.query).length !== 0){
         ListeRevues.find(req.query).sort('-created').exec(function(err, revues) {
             if (err) {

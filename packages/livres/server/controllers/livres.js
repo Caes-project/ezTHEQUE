@@ -214,7 +214,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     if(req.query){
-        Livre.find(req.query).sort({'ref':1/-1}).limit(250).exec(function(err, livres) {
+        Livre.find(req.query).sort({'ref':1/-1}).exec(function(err, livres) {
             if (err) {
                 res.render('error', {
                     status: 500

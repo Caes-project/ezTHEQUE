@@ -212,7 +212,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     if(req.query){
-        Dvd.find(req.query).sort({'ref':1/-1}).limit(675).exec(function(err, dvds) {
+        Dvd.find(req.query).sort({'ref':1/-1}).exec(function(err, dvds) {
             if (err) {
                 res.render('error', {
                     status: 500
