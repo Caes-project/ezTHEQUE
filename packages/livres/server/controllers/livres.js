@@ -255,6 +255,7 @@ exports.getMaxRef = function(req, res){
 exports.getSettings = function (Livres) {
     return function(req, res){
        Livres.settings(function(err, settings) {
+            if(err) console.log(err);
             res.jsonp(200, settings);
         });
     };
@@ -262,12 +263,9 @@ exports.getSettings = function (Livres) {
 
 exports.putSettings = function (Livres) {
     return function(req, res){
-        // console.log(req.params);
-        // console.log(req.settings);
-        // console.log(req.body);
-        // console.log(req.query);
         Livres.settings(req.body, function(err, settings) {
             if(err){
+                console.log(err);
                 res.send(500, err);
             }else{
                 res.jsonp(200, settings);

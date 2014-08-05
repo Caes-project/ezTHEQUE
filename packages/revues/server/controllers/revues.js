@@ -226,7 +226,6 @@ exports.getRevues = function(req, res) {
                     status: 500
                 });
             } else {
-                console.log(revues);
                 res.jsonp(200, revues);
             }
         });
