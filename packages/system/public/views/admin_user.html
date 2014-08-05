@@ -29,7 +29,7 @@
         <h4 ng-show='nbLivres > 0'> Livres </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
-            <div class='well' ng-if='media.type === "Livres"'>
+            <div class='well' ng-if='media.typeMedia === "Livres"'>
               <div class='col-md-9'>
                 <h3 style="margin-top:6px">{{media.auteur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
                 <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
@@ -49,7 +49,7 @@
           <h4 ng-show='nbMag > 0'> Magazines </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
-            <div class='well' ng-if='media.type === "Magazines"'>
+            <div class='well' ng-if='media.typeMedia === "Magazines"'>
               <div class='col-md-9'>
                 <h4><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></h4>
                 <div> Numero: {{media.numero}} &nbsp Ref. {{media.ref}}</div>
@@ -67,7 +67,7 @@
           <h4 ng-show='nbBD > 0'> BD </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
-            <div class='well' ng-if='media.type === "BD"'>
+            <div class='well' ng-if='media.typeMedia === "BD"'>
               <div class='col-md-9'>
                 <h3 style='margin-top:0'>{{media.dessinateur}}<small><br><a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a></small></h3>
                 <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
@@ -85,7 +85,7 @@
           <h4 ng-show='nbCD > 0'> CD </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
-            <div class='well' ng-if='media.type === "CD"'>
+            <div class='well' ng-if='media.typeMedia === "CD"'>
               <div class='col-md-9'>
                 <h3>{{media.auteur}}<small><br><a data-ng-href="#!/cds/{{media._id}}">{{media.title}}</a></small></h3>
                 <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
@@ -103,7 +103,7 @@
           <h4 ng-show='nbDVD > 0'> DVD </h4>
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeEmprunts">
-            <div class='well' ng-if='media.type === "DVD"'>
+            <div class='well' ng-if='media.typeMedia === "DVD"'>
               <div class='col-md-9'>
                 <h3>{{media.realisateur}}<small><br><a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a></small></h3>
                 <div> Genre: {{media.dewey}} &nbsp Ref. {{media.ref}}</div>
@@ -130,7 +130,7 @@
       <!-- Message de validation  -->
       <article style='min-height : 90px'>
         <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user !== user._id' class='alert alert-danger trans_message' role='alert'>
-          <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Livre déjà emprunté jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}}
+          <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Média déjà emprunté jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}}
         </div>
         <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user === user._id' class='alert alert-info trans_message'  role="alert">
          Vous avez jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt

@@ -5,24 +5,25 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
     $scope.global = Global;
 
-    function incr_date(date_str){
-      var parts = date_str.split('-');
-      var dt = new Date(
-         parseInt(parts[0], 10),      // year
-         parseInt(parts[1], 10) - 1,  // month (starts with 0)
-         parseInt(parts[2], 10)       // date
-         );
-      dt.setDate(dt.getDate() + 7);
-      parts[0] = '' + dt.getFullYear();
-      parts[1] = '' + (dt.getMonth() + 1);
-      if (parts[1].length < 2) {
-        parts[1] = '0' + parts[1];
+     Livres.getSettings(function(settings){
+        $scope.settings = settings.settings;
+    });
+
+    function incr_date(date_str, typeMedia){
+
+      var today = new Date();
+      var nbjour = 7;
+      switch (typeMedia) {
+        case 'Livres' : nbjour = $scope.settings.delay_livre; break; 
+        case 'BD' : nbjour = $scope.settings.delay_BD; break; 
+        case 'CD' : nbjour = $scope.settings.delay_CD; break; 
+        case 'DVD' : nbjour = $scope.settings.delay_DVD; break; 
+        case 'Magazines' : nbjour = $scope.settings.delay_revue; break; 
       }
-      parts[2] = '' + dt.getDate();
-      if (parts[2].length < 2) {
-        parts[2] = '0' + parts[2];
-      }
-      return parts.join('-');
+     
+      var fin = new Date();
+      fin.setDate(today.getDate() + nbjour);
+      return fin;
     }
 
     $scope.listeModif = [];   
@@ -85,27 +86,27 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
   $scope.getEmprunt = function(){
     $scope.nbLivres = $scope.nbMag = $scope.nbBD = $scope.nbCD = $scope.nbDVD = 0;
     var callbackLivre = function(media){
-      media.type='Livres';
+      media.typeMedia='Livres';
       $scope.listeEmprunts.push(media);
       $scope.nbLivres++;
     };
     var callbackMagazine = function(media){
-      media.type='Magazines';
+      media.typeMedia='Magazines';
       $scope.listeEmprunts.push(media);
       $scope.nbMag++;
     };
     var callbackBD = function(media){
-      media.type='BD';
+      media.typeMedia='BD';
       $scope.listeEmprunts.push(media);
       $scope.nbBD++;
     };
     var callbackCD = function(media){
-      media.type='CD';
+      media.typeMedia='CD';
       $scope.listeEmprunts.push(media);
       $scope.nbCD++;
     };
     var callbackDVD = function(media){
-      media.type='DVD';
+      media.typeMedia='DVD';
       $scope.listeEmprunts.push(media);
       $scope.nbDVD++;
     };
@@ -213,7 +214,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       }else{
         media.emprunt.user = $scope.user._id;
         media.emprunt.date_debut = $scope.date;
-        media.emprunt.date_fin = $scope.date_fin;
+        media.emprunt.date_fin = incr_date($scope.date, media.typeMedia);
         newEmprunt = {
           id : media._id,
           date_debut : $scope.date,
@@ -225,7 +226,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         $scope.user.emprunt.push(newEmprunt);
         media.$update(function(response) {
          $scope.user.$update(function(response) {
-          media.type = typeMedia;
+          media.typeMedia = typeMedia;
           $scope.listeEmprunts.push(media);
           incrementNb(typeMedia);
           $scope.derniermedia = $scope.newmedia;
@@ -240,6 +241,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
   };
 
   $scope.rendreLivre = function(media) {
+    console.log(media.typeMedia);
     if(media.emprunt.user !== $scope.user._id){
       console.log('TODO gros message d\'erreur');
     }else{
@@ -258,12 +260,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         date_debut : null,
         date_fin : null
       };
-      console.log($scope.user.emprunt.length);
       for(var i=0; i<$scope.user.emprunt.length; i++){
         if($scope.user.emprunt[i].id === media._id){
          $scope.user.emprunt.splice(i, 1);
        }
-       console.log(i);
        if($scope.listeEmprunts[i]._id === media._id){  
          $scope.listeEmprunts.splice(i,1);
        }
@@ -355,12 +355,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     });
    }
    else if (type === 'Ref'){
-    console.log($scope.refMedia);
      Revues.query({
       ref: $scope.refMedia
     },
     function(livre){
-    console.log(livre);
       verifMediaRef(livre, 'Magazines');
     });
    }
@@ -376,12 +374,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     });
    }
    else if (type === 'Ref'){
-    console.log($scope.refMedia);
      Cds.query({
       ref: $scope.refMedia
     },
     function(livre){
-    console.log(livre);
       verifMediaRef(livre, 'CD');
     });
    }
@@ -397,12 +393,10 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     });
    }
    else if (type === 'Ref'){
-    console.log($scope.refMedia);
      Dvds.query({
       ref: $scope.refMedia
     },
     function(livre){
-    console.log(livre);
       verifMediaRef(livre, 'DVD');
     });
    }
