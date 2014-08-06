@@ -30,6 +30,21 @@ var validateUniqueEmail = function(value, callback) {
   });
 };
 
+var validateUniqueUsername = function(value, callback) {
+  var User = mongoose.model('User');
+  User.find({
+    $and: [{
+      username: value
+    }, {
+      _id: {
+        $ne: this._id
+      }
+    }]
+  }, function(err, user) {
+    callback(err || user.length === 0);
+  });
+};
+
 /**
  * User Schema
  */
@@ -38,19 +53,20 @@ var UserSchema = new Schema({
   name: {
       type: String,
       required: true,
-      validate: [validatePresenceOf, 'Name cannot be blank']
+      validate: [validatePresenceOf, 'Le nom doit être renseigné']
   },
   email: {
       type: String,
       required: true,
       unique: true,
-      match: [/.+\@.+\..+/, 'Please enter a valid email'],
-      validate: [validateUniqueEmail, 'E-mail address is already in-use']
+      match: [/.+\@.+\..+/, 'Entrez une adresse mail valide'],
+      validate: [validateUniqueEmail, 'E-mail est déjà utilisé']
   },
   username: {
       type: String,
       unique: true,
-      validate: [validatePresenceOf, 'Username cannot be blank']
+      // validate: [validatePresenceOf, 'Username doit être renseigné']
+      validate: [validateUniqueUsername, 'Username est déjà présent']
   },
   roles: {
       type: Array,
