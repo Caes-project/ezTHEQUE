@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class='col-md-5'>
-            <div class='row well'>
+            <div class='row well' ng-show='isAdmin()'>
                 <h4> Ajouter un nouveau titre de revue</h4>
                 <form class='form-horizontal col-md-9' data-ng-submit='createAbo()'>
                     <div class="form-group">

@@ -34,7 +34,17 @@ transformer.on('readable', function(){
       case 2: new_ref='1000'+data.ref; break;
       case 1: new_ref='10000'+data.ref; break;
     }
-    
+    switch(data.genre){
+      case 'A' : data.genre = 'Aventure'; break;
+      case 'E' : data.genre = 'Erotique'; break;
+      case 'H' : data.genre = 'Humour'; break;
+      case 'P' : data.genre = 'Policier'; break;
+      case 'F' : data.genre = 'Fantastique'; break;
+      case 'B' : data.genre = 'Bibliographie'; break;
+      case 'M' : data.genre = 'Manga'; break;
+      case 'S' : data.genre = 'Enfants'; break;
+      case 'VS' : data.genre = 'Divers'; break;
+    }
     var newBD = {
       'title' : data.titre,
       'dessinateur' : data.dessinateur,
