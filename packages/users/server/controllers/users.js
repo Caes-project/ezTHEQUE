@@ -199,12 +199,8 @@ exports.forgotpassword = function(req, res, next) {
       },
       function(token, done) {
         User.findOne({
-          $or: [{
             email: req.body.text
-          }, {
-            username: req.body.text
-          }]
-        }, function(err, user) {
+          }, function(err, user) {
           if (err || !user) return done(true);
           done(err, user, token);
         });
