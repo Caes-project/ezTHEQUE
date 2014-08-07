@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Bd = mongoose.model('Bd'),
     fs = require('fs'),
     // http = require('http'),
-    request = require('request'),
     _ = require('lodash');
 
 
@@ -41,7 +40,7 @@ exports.create = function(req, res) {
 };
 
 function saveImageToServer(req, res, bd){
-    var target_path = __dirname + '/../../upload/' + bd.ref + '_' +bd.code_barre+ req.files.image.extension;
+    var target_path = __dirname + '/../../upload/' + bd.ref + '_' +bd.code_barre+'.'+req.files.image.extension;
         //ERR 34 file doesn"t find ...
         fs.rename(req.files.image.path, target_path, function (err) {
           /*fs.writeFile(target_path, data, function (err) {*/
@@ -70,8 +69,8 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-    if(req.body.lien_image){
-        bd.lien_image = '/packages/bds/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
+    if(req.files.image.originalname !== null){
+        bd.lien_image = '/packages/bds/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
         bd.lien_image = '/packages/default.jpg';
     }
@@ -83,34 +82,12 @@ exports.saveImage = function(req, res) {
                 bd: bd
             });
         } else {
-            if(req.body.lien_image){
-                var targetpath = __dirname + '/../../upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
-                var file = fs.createWriteStream(targetpath);
-                var options = {
-                    method: 'GET',
-                    uri: req.body.lien_image,
-                    headers : {
-                        'User-Agent': 'Mozilla/5.0'
-                    },
-                    jar: true,
-                    proxy : process.env.http_proxy || null
-                };
-                request(options)
-                .pipe(file)
-                .on('error', function (err) {
-                    console.log(err);
-                    fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
-                    res.send(500, 'Répertoire d\'upload indisponible');
-                }).on('finish', function () {
-                    res.status(200);
-                    // res.cookie('info_mess', encodeURI('Bd créé avec succès !'));
-                    res.jsonp(bd);
-                    // res.redirect('/#!/bds/');
-                });
+            if(req.files.image.originalname !== null){
+                saveImageToServer(req, res, bd);
             }else{
-                // res.jsonp(bd);
+                // res.jsonp(revue);
                 res.setHeader('Content-Type', 'text/html');
-                res.redirect('/#!/bds/create');
+                res.redirect('/#!/revues/create');
             }
         }
     });     
@@ -129,7 +106,7 @@ exports.edit = function(req, res) {
             bd = bd_;
             bd = _.extend(bd, req.body);
             if(req.files.image.originalname !== null){
-               bd.lien_image = '/packages/bds/upload/' + bd.ref + '_' +bd.code_barre+ req.files.image.extension;
+               bd.lien_image = '/packages/bds/upload/' + bd.ref + '_' +bd.code_barre+ '.'+req.files.image.extension;
             }
             bd.save(function(err) {
                 if (err) {

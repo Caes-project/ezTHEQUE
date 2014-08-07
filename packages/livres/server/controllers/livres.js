@@ -41,7 +41,7 @@ exports.create = function(req, res) {
 };
 
 function saveImageToServer(req, res, livre){
-    var target_path = __dirname + '/../../upload/' + livre.ref + '_' +livre.code_barre+ req.files.image.extension;
+    var target_path = __dirname + '/../../upload/' + livre.ref + '_' +livre.code_barre+'.'+ req.files.image.extension;
         //ERR 34 file doesn"t find ...
         fs.rename(req.files.image.path, target_path, function (err) {
           /*fs.writeFile(target_path, data, function (err) {*/
@@ -73,7 +73,7 @@ exports.saveImage = function(req, res) {
     if(req.body.lien_image){
         livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+ '.jpg';
     }else if(req.files.image){
-        livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
+        livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
         livre.lien_image = '/packages/default.jpg';
     }
@@ -132,7 +132,7 @@ exports.edit = function(req, res) {
             livre = livre_;
             livre = _.extend(livre, req.body);
             if(req.files.image.originalname !== null){
-               livre.lien_image = '/packages/livres/upload/' + livre.ref + '_' +livre.code_barre+ req.files.image.extension;
+               livre.lien_image = '/packages/livres/upload/' + livre.ref + '_' +livre.code_barre+'.'+ req.files.image.extension;
             }
             livre.save(function(err) {
                 if (err) {

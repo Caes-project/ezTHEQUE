@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Cd = mongoose.model('Cd'),
     fs = require('fs'),
     // http = require('http'),
-    request = require('request'),
     _ = require('lodash');
 
 
@@ -41,7 +40,7 @@ exports.create = function(req, res) {
 };
 
 function saveImageToServer(req, res, cd){
-    var target_path = __dirname + '/../../upload/' + cd.ref + '_' +cd.code_barre+ req.files.image.extension;
+    var target_path = __dirname + '/../../upload/' + cd.ref + '_' +cd.code_barre +'.'+req.files.image.extension;
         //ERR 34 file doesn"t find ...
         fs.rename(req.files.image.path, target_path, function (err) {
           /*fs.writeFile(target_path, data, function (err) {*/
@@ -70,8 +69,8 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-    if(req.body.lien_image){
-        cd.lien_image = '/packages/cds/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
+    if(req.files.image.originalname !== null){
+        cd.lien_image = '/packages/cds/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
         cd.lien_image = '/packages/default.jpg';
     }
@@ -82,35 +81,13 @@ exports.saveImage = function(req, res) {
                 errors: err.errors,
                 cd: cd
             });
-        } else {
-            if(req.body.lien_image){
-                var targetpath = __dirname + '/../../upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
-                var file = fs.createWriteStream(targetpath);
-                var options = {
-                    method: 'GET',
-                    uri: req.body.lien_image,
-                    headers : {
-                        'User-Agent': 'Mozilla/5.0'
-                    },
-                    jar: true,
-                    proxy : process.env.http_proxy || null
-                };
-                request(options)
-                .pipe(file)
-                .on('error', function (err) {
-                    console.log(err);
-                    fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
-                    res.send(500, 'Répertoire d\'upload indisponible');
-                }).on('finish', function () {
-                    res.status(200);
-                    // res.cookie('info_mess', encodeURI('Cd créé avec succès !'));
-                    res.jsonp(cd);
-                    // res.redirect('/#!/cds/');
-                });
+        }  else {
+            if(req.files.image.originalname !== null){
+                saveImageToServer(req, res, cd);
             }else{
-                // res.jsonp(cd);
+                // res.jsonp(revue);
                 res.setHeader('Content-Type', 'text/html');
-                res.redirect('/#!/cds/create');
+                res.redirect('/#!/revues/create');
             }
         }
     });     
@@ -118,10 +95,6 @@ exports.saveImage = function(req, res) {
 
 exports.edit = function(req, res) {
     var cd;
-    console.log('req.body');
-    console.log(req.query);
-    console.log(req.body);
-    console.log(req.params);
     Cd.load(req.params.cdId, function(err, cd_) {
         if(err){
             console.log(err);
@@ -129,7 +102,7 @@ exports.edit = function(req, res) {
             cd = cd_;
             cd = _.extend(cd, req.body);
             if(req.files.image.originalname !== null){
-               cd.lien_image = '/packages/cds/upload/' + cd.ref + '_' +cd.code_barre+ req.files.image.extension;
+               cd.lien_image = '/packages/cds/upload/' + cd.ref + '_' +cd.code_barre+'.'+ req.files.image.extension;
             }
             cd.save(function(err) {
                 if (err) {

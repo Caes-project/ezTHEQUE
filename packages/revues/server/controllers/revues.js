@@ -41,7 +41,7 @@ exports.create = function(req, res) {
 };
 
 function saveImageToServer(req, res, revue){
-    var target_path = __dirname + '/../../upload/' + revue.ref + '_' +revue.code_barre+ req.files.image.extension;
+    var target_path = __dirname + '/../../upload/' + revue.ref + '_' +revue.code_barre+ '.'+req.files.image.extension;
         //ERR 34 file doesn"t find ...
         fs.rename(req.files.image.path, target_path, function (err) {
           /*fs.writeFile(target_path, data, function (err) {*/
@@ -72,7 +72,7 @@ exports.saveImage = function(req, res) {
                         date_fin : null
                     };
     if(req.files.image.originalname !== null){
-        revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
+        revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
         revue.lien_image = '/packages/default.jpg';
     }
@@ -104,7 +104,7 @@ exports.edit = function(req, res) {
             revue = revue_;
             revue = _.extend(revue, req.body);
             if(req.files.image.originalname !== null){
-               revue.lien_image = '/packages/revues/upload/' + revue.ref + '_' +revue.code_barre+ req.files.image.extension;
+               revue.lien_image = '/packages/revues/upload/' + revue.ref + '_' +revue.code_barre+'.'+ req.files.image.extension;
             }
             revue.save(function(err) {
                 if (err) {

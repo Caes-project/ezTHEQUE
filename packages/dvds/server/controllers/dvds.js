@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
     Dvd = mongoose.model('Dvd'),
     fs = require('fs'),
     // http = require('http'),
-    request = require('request'),
     _ = require('lodash');
 
 
@@ -41,7 +40,7 @@ exports.create = function(req, res) {
 };
 
 function saveImageToServer(req, res, dvd){
-    var target_path = __dirname + '/../../upload/' + dvd.ref + '_' +dvd.code_barre+ req.files.image.extension;
+    var target_path = __dirname + '/../../upload/' + dvd.ref + '_' +dvd.code_barre+'.'+req.files.image.extension;
         //ERR 34 file doesn"t find ...
         fs.rename(req.files.image.path, target_path, function (err) {
           /*fs.writeFile(target_path, data, function (err) {*/
@@ -70,8 +69,8 @@ exports.saveImage = function(req, res) {
                         date_debut : null,
                         date_fin : null
                     };
-    if(req.body.lien_image){
-        dvd.lien_image = '/packages/dvds/upload/' + req.body.ref + '_' +req.body.code_barre+ req.files.image.extension;
+    if(req.files.image.originalname !== null){
+        dvd.lien_image = '/packages/dvds/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
         dvd.lien_image = '/packages/default.jpg';
     }
@@ -82,35 +81,13 @@ exports.saveImage = function(req, res) {
                 errors: err.errors,
                 dvd: dvd
             });
-        } else {
-            if(req.body.lien_image){
-                var targetpath = __dirname + '/../../upload/' + req.body.ref + '_' +req.body.code_barre+'.jpg';
-                var file = fs.createWriteStream(targetpath);
-                var options = {
-                    method: 'GET',
-                    uri: req.body.lien_image,
-                    headers : {
-                        'User-Agent': 'Mozilla/5.0'
-                    },
-                    jar: true,
-                    proxy : process.env.http_proxy || null
-                };
-                request(options)
-                .pipe(file)
-                .on('error', function (err) {
-                    console.log(err);
-                    fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
-                    res.send(500, 'Répertoire d\'upload indisponible');
-                }).on('finish', function () {
-                    res.status(200);
-                    // res.cookie('info_mess', encodeURI('Dvd créé avec succès !'));
-                    res.jsonp(dvd);
-                    // res.redirect('/#!/dvds/');
-                });
+        }  else {
+            if(req.files.image.originalname !== null){
+                saveImageToServer(req, res, dvd);
             }else{
-                // res.jsonp(dvd);
+                // res.jsonp(revue);
                 res.setHeader('Content-Type', 'text/html');
-                res.redirect('/#!/dvds/create');
+                res.redirect('/#!/revues/create');
             }
         }
     });     
@@ -129,7 +106,7 @@ exports.edit = function(req, res) {
             dvd = dvd_;
             dvd = _.extend(dvd, req.body);
             if(req.files.image.originalname !== null){
-               dvd.lien_image = '/packages/dvds/upload/' + dvd.ref + '_' +dvd.code_barre+ req.files.image.extension;
+               dvd.lien_image = '/packages/dvds/upload/' + dvd.ref + '_' +dvd.code_barre+'.'+ req.files.image.extension;
             }
             dvd.save(function(err) {
                 if (err) {
