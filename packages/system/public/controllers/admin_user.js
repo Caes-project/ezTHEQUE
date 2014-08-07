@@ -411,7 +411,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       getCD('CB');
       getDVD('CB');
     }	 
-    else{
+    else if($scope.refMedia && $scope.refMedia.length > 3){
       $scope.newmedia = null;
       getLivre('Ref');
       getBd('Ref');
