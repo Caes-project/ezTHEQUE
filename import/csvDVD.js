@@ -83,7 +83,7 @@ transformer.on('readable', function(){
     if(data.lien_image && data.lien_image !== 'NULL'){
      newDVD.lien_image = 'packages/dvds/upload/'+ data.lien_image;
     }else{
-      newDVD.lien_image = 'packages/default.jpg'
+      newDVD.lien_image = 'packages/dvds/upload/default.jpg'
     }
 
     //création code barre

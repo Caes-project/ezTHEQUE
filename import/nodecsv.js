@@ -1,7 +1,6 @@
 var csv = require('csv');
 var fs = require('fs');
 var crypto = require('crypto');
-var tabUser = {};
 var userListe = fs.createReadStream(__dirname + '/user/exp_dump.caes_user.csv');
 var parser = csv.parse({
     delimiter: ';',
@@ -30,16 +29,13 @@ transformer.on('error', function(err){
 transformer.on('readable', function(){
   //console.log('transformer');
   while(data = transformer.read()){
+
     var newUser = {
       'username' : data.username,
       'email' : data.email,
       'name' : data.nom + ' ' + data.prenom,
       'roles' : ['authenticated'],
       'hashed_password' : data.mdp,
-      'date_maj' : data.date_maj,
-      'livre_mag_revue' : data.date_fin_Livres,
-      'DVD' : new Date(data.date_fin_DVD),
-      'CD' : new Date(data.date_fin_CD),
       'paiement' : null,
       'caution' : null,
       'provider' : 'local',
@@ -51,7 +47,19 @@ transformer.on('readable', function(){
     if(data.group === 'admin'){
       newUser.roles.push('admin');
     }
-    tabUser[data.id_user] = newUser;
+    if(data.date_fin_DVD !== '0000-00-00' && data.date_fin_DVD !== 'NULL'){
+      newUser.DVD = new Date(data.date_fin_DVD);
+    } 
+    if(data.date_fin_CD !== '0000-00-00' && data.date_fin_CD !== 'NULL'){
+      newUser.CD = new Date(data.date_fin_CD);
+    } 
+    if(data.date_fin_Livres !== '0000-00-00' && data.date_fin_Livres !== 'NULL'){
+      newUser.livre_mag_revue = new Date(data.date_fin_Livres);
+    }
+    if(data.date_maj !== '0000-00-00' && data.date_maj !== 'NULL'){
+      newUser.date_maj = new Date(data.date_maj);
+    }
+
 		var salt=makeSalt();
 		newUser.salt=salt;
 		newUser.hashed_password=hashPassword(data.mdp,salt);

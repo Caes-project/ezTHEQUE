@@ -17,6 +17,7 @@ var mean = require('meanio'),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
   multer  = require('multer'),
+  express = require('express'),
   config = mean.loadConfig();
 
 module.exports = function(app, passport, db) {
@@ -59,7 +60,11 @@ module.exports = function(app, passport, db) {
   }));
   app.use(methodOverride());
   app.use(multer({ dest: __dirname + '/../../uploads/'}));
-
+  app.use('/packages/dvds/upload', express.static(config.root + '/packages/dvds/upload'));
+  app.use('/packages/bds/upload', express.static(config.root + '/packages/bds/upload'));
+  app.use('/packages/cds/upload', express.static(config.root + '/packages/cds/upload'));
+  app.use('/packages/livres/upload', express.static(config.root + '/packages/livres/upload'));
+  app.use('/packages/revues/upload', express.static(config.root + '/packages/revues/upload'));
   // Import the assets file and add to locals
   var assets = assetmanager.process({
     assets: require('./assets.json'),

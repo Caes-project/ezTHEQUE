@@ -75,7 +75,7 @@ transformer.on('readable', function(){
     if(data.lien_image && data.lien_image !== 'NULL'){
      newBD.lien_image = 'packages/bds/upload/'+ data.lien_image;
     }else{
-      newBD.lien_image = 'packages/default.jpg'
+      newBD.lien_image = 'packages/bds/upload/default.jpg'
     }
 
     //création code barre

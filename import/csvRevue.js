@@ -196,7 +196,7 @@ transformer.on('readable', function(){
     if(data.lien_image && data.lien_image !== 'NULL'){
      newRevue.lien_image = 'packages/revues/upload/'+ data.lien_image;
     }else{
-      newRevue.lien_image = 'packages/default.jpg'
+      newRevue.lien_image = 'packages/revues/upload/default.jpg'
     }
 
     fs.appendFileSync('revue.json', JSON.stringify(newRevue)+ '\n');

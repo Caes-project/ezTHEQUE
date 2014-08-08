@@ -75,7 +75,7 @@ transformer.on('readable', function(){
     if(data.lien_image && data.lien_image !== 'NULL'){
      newCD.lien_image = 'packages/cds/upload/'+ data.lien_image;
     }else{
-      newCD.lien_image = 'packages/default.jpg'
+      newCD.lien_image = 'packages/cds/upload/default.jpg'
     }
 
     //création code barre

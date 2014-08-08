@@ -77,7 +77,7 @@ transformer.on('readable', function(){
     if(data.lien_image && data.lien_image !== 'NULL'){
      newLivre.lien_image = 'packages/livres/upload/'+ data.lien_image;
     }else{
-      newLivre.lien_image = 'packages/default.jpg'
+      newLivre.lien_image = 'packages/livres/upload/default.jpg'
     }
 
     //création code barre
