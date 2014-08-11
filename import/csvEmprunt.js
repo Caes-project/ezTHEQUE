@@ -160,7 +160,7 @@ CdEmprunt = function(tmp, callback){
           user.emprunt.push({ 'id': cd._id,
               'date_debut' :  tmp.date_debut,
               'date_fin' : tmp.date_fin,
-              'type' : 'cd'           
+              'type' : 'CD'           
             });
           user.save(function(err, user){
             if(err) throw err;
@@ -208,7 +208,7 @@ RevueEmprunt = function(tmp, callback){
           user.emprunt.push({ 'id': revue._id,
               'date_debut' :  tmp.date_debut,
               'date_fin' : tmp.date_fin,
-              'type' : 'revue'           
+              'type' : 'Magazines'           
             });
           user.save(function(err, user){
             if(err) throw err;
@@ -256,7 +256,7 @@ DvdEmprunt = function(tmp, callback){
           user.emprunt.push({ 'id': dvd._id,
               'date_debut' :  tmp.date_debut,
               'date_fin' : tmp.date_fin,
-              'type' : 'dvd'           
+              'type' : 'DVD'           
             });
           user.save(function(err, user){
             if(err) throw err;
