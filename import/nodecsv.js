@@ -25,10 +25,22 @@ parser.on('error', function(err){
 transformer.on('error', function(err){
   console.log(err);
 });
-
+var cpt = 0;
 transformer.on('readable', function(){
   //console.log('transformer');
   while(data = transformer.read()){
+
+    if(data.username == null || data.username.length == 0){
+      data.username = 'default' + Math.random()*100000;
+    }
+    console.log(data.email);
+    if(data.email == null || data.email.length == 0){
+      console.log('true');
+      data.email = 'default' + Math.random()*100000 + '@default.com';
+    }
+    if(data.name == null || data.name.length == 0){
+      data.name = 'default' + Math.random()*100000;
+    }
 
     var newUser = {
       'username' : data.username,
@@ -42,7 +54,7 @@ transformer.on('readable', function(){
       'salt' : null,
       'emprunt' : [],
       'historique' : [],
-      'id_user' : data.id_user
+      'id_user' : parseInt(data.id_user)
     }
     if(data.group === 'admin'){
       newUser.roles.push('admin');
@@ -64,6 +76,7 @@ transformer.on('readable', function(){
 		newUser.salt=salt;
 		newUser.hashed_password=hashPassword(data.mdp,salt);
 		//console.log(newUser);
+    console.log(++cpt);
 		fs.appendFileSync('user.json', JSON.stringify(newUser)+ '\n');
   }
 });

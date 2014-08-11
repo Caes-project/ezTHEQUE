@@ -62,6 +62,7 @@ transformer.on('readable', function(){
       'ref' : parseInt(new_ref),
 			'ref_adav': parseInt(data.ref_adav),
       'rayonnage' : data.rayonnage,
+      'old_ref' : data.ref,
       'emprunt' : {
         user: null,
         date_debut : null,
@@ -89,7 +90,7 @@ transformer.on('readable', function(){
     //création code barre
     var refString = data.ref.toString();
     var middle = '00000000000'.substring(0,11-refString.length);
-    var code_barre = '1'+middle+refString;
+    var code_barre = '5'+middle+refString;
     var sommePair = 0;
     var sommeImpair = 0;
     for(var i = 0; i<12; i++){

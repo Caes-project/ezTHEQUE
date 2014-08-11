@@ -80,6 +80,9 @@ var UserSchema = new Schema({
       type: String,
       default: 'local'
   },
+  id_user :{
+      type: Number
+  },
   emprunt: [{
     id: {
       type: Schema.ObjectId
