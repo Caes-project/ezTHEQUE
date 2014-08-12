@@ -274,7 +274,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       media.$update(function(response) {
         console.log(response);
         decrementNb(typeMedia);
-        $scope.derniermedia = $scope.newmedia;
+        if($scope.newmedia){
+          $scope.derniermedia = $scope.newmedia;
+        }else{
+          $scope.derniermedia = media;
+          $scope.derniermedia.typeMedia = typeMedia;
+        }
         $scope.newmedia = null;
         $scope.refMedia = null;
         $scope.listeModif.push({'title' : media.title, 'type' : 'old', '_id' : media._id});

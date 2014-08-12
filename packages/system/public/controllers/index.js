@@ -14,6 +14,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
       Users.me({
         userId: $scope.global.user._id
       }, function(user){
+        console.log(user);
       	$scope.user = user;
       	$scope.getEmprunt();	    		
       });
@@ -56,21 +57,61 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
     };
 
 
-    $scope.listeEmprunt = [];
-  	  //initialiaze le scope
-      $scope.getEmprunt = function(){
-       var callback = function(livre){
-         $scope.listeEmprunt.push(livre);
-       };
-
-      $scope.emprunt = $scope.user.emprunt;
-    	//récupère la liste des id des livres emprunté
-    	for(var i in $scope.emprunt){
-        Livres.get({
-          livreId: $scope.emprunt[i].id
-        }, callback);
-      }
+    $scope.listeEmprunts = [];
+  //initialiaze le scope.emprunt
+  $scope.getEmprunt = function(){
+    $scope.nbLivres = $scope.nbMag = $scope.nbBD = $scope.nbCD = $scope.nbDVD = 0;
+    var callbackLivre = function(media){
+      media.typeMedia='Livres';
+      $scope.listeEmprunts.push(media);
+      $scope.nbLivres++;
     };
+    var callbackMagazine = function(media){
+      media.typeMedia='Magazines';
+      $scope.listeEmprunts.push(media);
+      $scope.nbMag++;
+    };
+    var callbackBD = function(media){
+      media.typeMedia='BD';
+      $scope.listeEmprunts.push(media);
+      $scope.nbBD++;
+    };
+    var callbackCD = function(media){
+      media.typeMedia='CD';
+      $scope.listeEmprunts.push(media);
+      $scope.nbCD++;
+    };
+    var callbackDVD = function(media){
+      media.typeMedia='DVD';
+      $scope.listeEmprunts.push(media);
+      $scope.nbDVD++;
+    };
+
+    //récupère la liste des id des medias emprunté
+    for(var i in $scope.user.emprunt){
+      if($scope.user.emprunt[i].type === 'Livres'){
+        Livres.get({
+         livreId: $scope.user.emprunt[i].id
+       }, callbackLivre);
+      }else if($scope.user.emprunt[i].type === 'Magazines'){
+        Revues.get({
+          revueId: $scope.user.emprunt[i].id
+        }, callbackMagazine);
+      }else if($scope.user.emprunt[i].type === 'BD'){
+        Bds.get({
+          bdId: $scope.user.emprunt[i].id
+        }, callbackBD);
+      }else if($scope.user.emprunt[i].type === 'CD'){
+        Cds.get({
+          cdId: $scope.user.emprunt[i].id
+        }, callbackCD);
+      }else if($scope.user.emprunt[i].type === 'DVD'){
+        Dvds.get({
+          dvdId: $scope.user.emprunt[i].id
+        }, callbackDVD);
+      }
+    }
+  };
 
      $scope.date_diff = function(livre){
       var today = new Date();
@@ -222,39 +263,59 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
       }
     };
 
-    var timer;
-    function message_info(message, type){
-      var res = {};
-      var time = 2;
-      if(type === 'error'){
-       time = 3;
-      }
-      res.message = message;
-      if(type){
-       res.status = type;
-      }
-      if($scope.test){
-        console.log('gros hack pour les tests');
-      }else{
-        $timeout.cancel(timer);
-        var transition = document.getElementById('message_info');
-        transition.classList.remove('trans_message');
-        transition.offsetWidth = transition.offsetWidth;
-        transition.classList.add('trans_message');
-        $scope.message_info = res;
-        timer = $timeout(function(){
-          $scope.message_info =null;
-        }, 6000*time);
-      }
-    }
+    // var timer;
+    // function message_info(message, type){
+    //   var res = {};
+    //   var time = 2;
+    //   if(type === 'error'){
+    //    time = 3;
+    //   }
+    //   res.message = message;
+    //   if(type){
+    //    res.status = type;
+    //   }
+    //   if($scope.test){
+    //     console.log('gros hack pour les tests');
+    //   }else{
+    //     $timeout.cancel(timer);
+    //     var transition = document.getElementById('message_info');
+    //     transition.classList.remove('trans_message');
+    //     transition.offsetWidth = transition.offsetWidth;
+    //     transition.classList.add('trans_message');
+    //     $scope.message_info = res;
+    //     timer = $timeout(function(){
+    //       $scope.message_info =null;
+    //     }, 6000*time);
+    //   }
+    // }
+
+
+    // $scope.rendreLivre = function(livre) {
+    //   console.log('rendre');
+    //   livre.emprunt = {
+    //     user: null,
+    //     date_debut : null,
+    //     date_fin : null
+    //   };
+    //   for(var i=0; i<$scope.emprunteur.emprunt.length; i++){
+    //     if($scope.emprunteur.emprunt[i].id === livre._id){
+    //       $scope.emprunteur.emprunt.splice(i, 1);
+    //     }
+    //  }
+    //   // console.log(user);
+    //   livre.$update(function(response) {
+    //     $scope.emprunteur.$update(function(response){
+    //       Global.message_info = livre.title + ' est rendu !';
+    //         $location.path('admin/users/' + $scope.emprunteur._id);
+    //     });
+    //   });
+    // };
 
     $scope.rendreLivre = function(media) {
-    console.log(media.typeMedia);
-    if(media.emprunt.user !== $scope.user._id){
-      console.log('TODO gros message d\'erreur');
-    }else{
+      console.log(media.typeMedia);
+      var emprunteur = media.emprunt.user;
       media.historique.push({
-        'user' : $scope.user._id,
+        'user' : emprunteur,
         'date_debut' : media.emprunt.date_debut,
         'date_fin' : new Date()
       });
@@ -268,21 +329,22 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
         date_debut : null,
         date_fin : null
       };
-      for(var i=0; i<$scope.user.emprunt.length; i++){
-        if($scope.user.emprunt[i].id === media._id){
-         $scope.user.emprunt.splice(i, 1);
-       }
-     }
-     $scope.user.$update(function(response){
-      media.$update(function(response) {    
-        $scope.newmedia = null;
-        $scope.refMedia = null;
-        message_info(media.title + ' est rendu !');
-        $timeout(function(){
-          $scope.message_info =null;
-        }, 5000);
+      Users.get({
+        userId : emprunteur
+      }, function(user){
+        console.log(user);
+        var emprunteur = user;
+        for(var i=0; i<emprunteur.emprunt.length; i++){
+          if(emprunteur.emprunt[i].id === media._id){
+           emprunteur.emprunt.splice(i, 1);
+         }
+        }
+        emprunteur.$update(function(response){
+          media.$update(function(response) {    
+            Global.message_info = media.title + ' est rendu !';
+            $location.path('admin/users/' + emprunteur._id);
+          });
+        });
       });
-    });
-   }
-  };
+    };
 }]);
