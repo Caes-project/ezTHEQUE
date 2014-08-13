@@ -13,6 +13,11 @@
 	<div class='row'>
 		<br/>
 		<div data-ng-show='global.isAdmin' class='col-md-5 well' >
+			<ul>
+				<li class='lato-font'>En rouge : un ou plusieurs emprunts en retard </li>
+				<li class='lato-font'>En gris : aucun emprunt en cours </li>
+				<li class='lato-font'>En bleu : des emprunts sans retards </li>
+			</ul>
 			<div class='col-md-9'>
 				<input type='text' ng-model='searchUser' placeholder='Recherche' class='form-control'>
 			</div>
@@ -27,46 +32,57 @@
 			</div>
 			<br/>
 			<br/>
-			<ul style='list-style-type:none;'>
-				<li class="users_list" ng-repeat="user in users | orderBy:['name', 'name'] | filter:searchUser" ng-if='checkActif(user)'>
-					<a data-ng-href="#!/admin/users/{{user._id}}" ng-bind='user.name'></a>
-				</li>
-			</ul>
+			<table>
+				<!-- <th>
+					Utilisateur
+				</th> -->
+				<!-- <th>
+					Nombre d'emprunts
+				</th> -->
+				<tr ng-repeat="user in users | orderBy:['name', 'name'] | filter:searchUser" ng-if='checkActif(user)'>
+					<td>
+						<a data-ng-href="#!/admin/users/{{user._id}}" ng-bind='user.name' ng-class='{pas_emprunt : !user.emprunt.length, emprunt_retard : emprunt_retard(user)}'></a>
+					</td>
+					<!-- <td style='text-align:center'>
+						{{user.emprunt.length}}
+					</td> -->
+				</tr>
+			</table>
 		</div>
 		<article class='col-md-4 col-md-offset-2 well' ng-show='newmedia'>
 			<h2 ng-show="newmedia" > Média trouvé </h2>
 			<div ng-show="newmedia.typeMedia === 'Livres'"> 
-    		<h3> <a data-ng-href="#!/livres/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
-    		<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/livres/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-   			<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-   			<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/livres/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
- 			</div>
-      <div ng-show="newmedia.typeMedia === 'BD'"> 
-        <h3> <a data-ng-href="#!/bds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
-        <div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/bds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-        <div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-        <a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/bds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
-      </div>
-      <div ng-show="newmedia.typeMedia === 'CD'"> 
-        <h3> <a data-ng-href="#!/cds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
-        <div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/cds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=130 height=130> </a></div>
-        <div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-        <a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/cds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
-      </div>
-      <div ng-show="newmedia.typeMedia === 'DVD'"> 
-        <h3> <a data-ng-href="#!/dvds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
-        <div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/dvds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-        <div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-        <a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/dvds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
-      </div>
-      <div ng-show="newmedia.typeMedia === 'Magazines'"> 
-        <h3> <a data-ng-href="#!/revues/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
-        <div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/revues/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-        <div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-        <a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/revues/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
-      </div>
-      <span ng-show='emprunteur'> emprunté par {{emprunteur.name}} </span>
-				<button ng-if='newmedia.emprunt.user' type='submit' ng-click='rendreLivre(newmedia)' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-book"></i> Rendre</button>
+				<h3> <a data-ng-href="#!/livres/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
+				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/livres/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/livres/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+			</div>
+			<div ng-show="newmedia.typeMedia === 'BD'"> 
+				<h3> <a data-ng-href="#!/bds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
+				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/bds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/bds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+			</div>
+			<div ng-show="newmedia.typeMedia === 'CD'"> 
+				<h3> <a data-ng-href="#!/cds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
+				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/cds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=130 height=130> </a></div>
+				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/cds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+			</div>
+			<div ng-show="newmedia.typeMedia === 'DVD'"> 
+				<h3> <a data-ng-href="#!/dvds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
+				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/dvds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/dvds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+			</div>
+			<div ng-show="newmedia.typeMedia === 'Magazines'"> 
+				<h3> <a data-ng-href="#!/revues/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
+				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/revues/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/revues/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+			</div>
+			<span ng-show='emprunteur'> emprunté par {{emprunteur.name}} </span>
+			<button ng-if='newmedia.emprunt.user' type='submit' ng-click='rendreLivre(newmedia)' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-book"></i> Rendre</button>
 		</article>
 	</div>
 
@@ -78,80 +94,80 @@
 			<div data-ng-hide='global.authenticated' class='well'>
 				<h3>  Pour accèder à la liste des médias ou a votre compte, connectez vous via le lien Login en haut de la page à droite ! <small>Si vous ne possédez pas encore de compte, cliquez sur le lien Register en haut de la page à droite"</small></h3>
 				<p>
-				<br/>
+					<br/>
 					La bibliothèque est située au local du CAES à l'Inist-CNRS (bâtiment COSMOS), sur le trajet du restaurant - 2, allée du Parc de Brabois à Vandoeuvre. 
 				</p>
 				<p>
 					Elle est ouverte les
 					<h3> MARDI & VENDREDI de 12 h 30 à 13 h 30 </h3>
-				<p>
-				<p>
-					Les modalités d'emprunt sont les suivantes : 
-					<ul>
-						<li>
-							cotisation de 10 Euros/an pour une seule inscription Bibliothèque (sur laquelle sont appliqués les tarifs dégressifs detail des tarifs)
-						</li>
-						<li> dépôt d'une caution de 45 Euros </li> 
-						<li> remplir le dossier du CAES (si ce n'est pas déjà fait !) </li>
-					</ul>
-					Vous pouvez emprunter :
-					<ul>
-						<li> 3 livres / mois </li>
-						<li> 3 magazines / semaine </li>
-						<li> 3 BD / semaine </li>
-					</ul>
-				</p>
-				<p style='text-align: justify'>
-					parmi un choix de plus de 2580 livres et 2900 B.D. (romans, policiers, science-fiction, livres sur la Lorraine, histoire...) et 12 revues auxquelles la bibliothèque est abonnée.
-					liste des revues
-					Chaque année, 2 à 3 achats de livres et de B.D. sont faits en fonction des demandes des adhérents. N'hésitez pas à faire vos suggestions auprès des bénévoles
+					<p>
+						<p>
+							Les modalités d'emprunt sont les suivantes : 
+							<ul>
+								<li>
+									cotisation de 10 Euros/an pour une seule inscription Bibliothèque (sur laquelle sont appliqués les tarifs dégressifs detail des tarifs)
+								</li>
+								<li> dépôt d'une caution de 45 Euros </li> 
+								<li> remplir le dossier du CAES (si ce n'est pas déjà fait !) </li>
+							</ul>
+							Vous pouvez emprunter :
+							<ul>
+								<li> 3 livres / mois </li>
+								<li> 3 magazines / semaine </li>
+								<li> 3 BD / semaine </li>
+							</ul>
+						</p>
+						<p style='text-align: justify'>
+							parmi un choix de plus de 2580 livres et 2900 B.D. (romans, policiers, science-fiction, livres sur la Lorraine, histoire...) et 12 revues auxquelles la bibliothèque est abonnée.
+							liste des revues
+							Chaque année, 2 à 3 achats de livres et de B.D. sont faits en fonction des demandes des adhérents. N'hésitez pas à faire vos suggestions auprès des bénévoles
 
-					Le budget de fonctionnement de l'activité correspond à une subvention annuelle votée par les élus du CLAS à laquelle s'ajoute l'argent recueilli par les cotisations des adhérents de l'activité.
-				</p>
-				<br/>
-			</div>
+							Le budget de fonctionnement de l'activité correspond à une subvention annuelle votée par les élus du CLAS à laquelle s'ajoute l'argent recueilli par les cotisations des adhérents de l'activité.
+						</p>
+						<br/>
+					</div>
 
-			<!-- si connecté -->
-			<div data-ng-show='global.authenticated'>
-				<p>
-					il y a {{livre_dispo}} livres disponible dans la médiathèque !
-				</p>
-				<article class="col-md-8">
-					<h4> Liste de vos emprunts en cours : </h4>
-					<ul>
-						<li class="user_list" ng-repeat="media in listeEmprunts">
-							<div ng-show="media.typeMedia === 'Livres'"> 
-            		<h3> <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a> </h3>
-            		<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-           			<div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
-         			</div>
-		          <div ng-show="media.typeMedia === 'BD'"> 
-		            <h3> <a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a> </h3>
-		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/bds/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-		            <div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
-		          </div>
-		          <div ng-show="media.typeMedia === 'CD'"> 
-		            <h3> <a data-ng-href="#!/cds/{{media._id}}">{{media.title}}</a> </h3>
-		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/cds/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=130 height=130> </a></div>
-		            <div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
-		          </div>
-		          <div ng-show="media.typeMedia === 'DVD'"> 
-		            <h3> <a data-ng-href="#!/dvds/{{media._id}}">{{media.title}}</a> </h3>
-		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/dvds/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-		            <div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
-		          </div>
-		          <div ng-show="media.typeMedia === 'Magazines'"> 
-		            <h3> <a data-ng-href="#!/revues/{{media._id}}">{{media.title}}</a> </h3>
-		            <div data-ng-hide="!media.lien_image"><a data-ng-href="#!/revues/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
-		            <div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
-		          </div>
-						</li>
-					</ul>
-					<p ng-show='listeEmprunt.length === 0'>
-						Aucun emprunt en cours
-					</p>
+					<!-- si connecté -->
+					<div data-ng-show='global.authenticated'>
+						<p>
+							il y a {{livre_dispo}} livres disponible dans la médiathèque !
+						</p>
+						<article class="col-md-8">
+							<h4> Liste de vos emprunts en cours : </h4>
+							<ul>
+								<li class="user_list" ng-repeat="media in listeEmprunts">
+									<div ng-show="media.typeMedia === 'Livres'"> 
+										<h3> <a data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a> </h3>
+										<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/livres/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+										<div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
+									</div>
+									<div ng-show="media.typeMedia === 'BD'"> 
+										<h3> <a data-ng-href="#!/bds/{{media._id}}">{{media.title}}</a> </h3>
+										<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/bds/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+										<div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
+									</div>
+									<div ng-show="media.typeMedia === 'CD'"> 
+										<h3> <a data-ng-href="#!/cds/{{media._id}}">{{media.title}}</a> </h3>
+										<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/cds/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=130 height=130> </a></div>
+										<div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
+									</div>
+									<div ng-show="media.typeMedia === 'DVD'"> 
+										<h3> <a data-ng-href="#!/dvds/{{media._id}}">{{media.title}}</a> </h3>
+										<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/dvds/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+										<div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
+									</div>
+									<div ng-show="media.typeMedia === 'Magazines'"> 
+										<h3> <a data-ng-href="#!/revues/{{media._id}}">{{media.title}}</a> </h3>
+										<div data-ng-hide="!media.lien_image"><a data-ng-href="#!/revues/{{media._id}}"><img ng-src="{{media.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
+										<div ng-show="media">  Genre:{{media.dewey}} &nbsp Ref. {{media.ref}} </div>
+									</div>
+								</li>
+							</ul>
+							<p ng-show='listeEmprunt.length === 0'>
+								Aucun emprunt en cours
+							</p>
+						</article>
+					</div>
 				</article>
 			</div>
-		</article>
-	</div>
-</section>
+		</section>

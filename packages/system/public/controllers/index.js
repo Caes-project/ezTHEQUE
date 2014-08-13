@@ -15,8 +15,8 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
         userId: $scope.global.user._id
       }, function(user){
         console.log(user);
-      	$scope.user = user;
-      	$scope.getEmprunt();	    		
+        $scope.user = user;
+        $scope.getEmprunt();	    		
       });
       Livres.query({
       }, function(livres){
@@ -113,155 +113,155 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
     }
   };
 
-     $scope.date_diff = function(livre){
-      var today = new Date();
-      var fin = new Date(livre.emprunt.date_fin);
-      var diff = fin.getTime()- today.getTime();
-      diff = Math.floor(diff / (1000 * 60 * 60 * 24));
-      var mess;
-      if(diff >= 0){
-       mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
-      }else{
-       mess = 'Il y a' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
-      }
-      return mess;
-    };
+  $scope.date_diff = function(livre){
+    var today = new Date();
+    var fin = new Date(livre.emprunt.date_fin);
+    var diff = fin.getTime()- today.getTime();
+    diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var mess;
+    if(diff >= 0){
+     mess = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+   }else{
+     mess = 'Il y a' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+   }
+   return mess;
+ };
 
-   function verifMediaRef(media, type){
-      if(media[0]){
-        $scope.newmedia = media[0];
-        $scope.newmedia.typeMedia = type;
-      }
-    }
+ function verifMediaRef(media, type){
+  if(media[0]){
+    $scope.newmedia = media[0];
+    $scope.newmedia.typeMedia = type;
+  }
+}
 
-    function verifMediaCB(media, type){
-       if(media[0]){
-         $scope.newmedia = media[0];
-         $scope.newmedia.typeMedia = type;
-         if(media[0].emprunt.user === $scope.user._id){
-          $scope.rendreLivre(media[0]);
-          $scope.refMedia = null;
-        }else{
-          $scope.validerEmprunt();
-          $scope.refMedia = null;
-        }
-      }
-    }
+function verifMediaCB(media, type){
+ if(media[0]){
+   $scope.newmedia = media[0];
+   $scope.newmedia.typeMedia = type;
+   if(media[0].emprunt.user === $scope.user._id){
+    $scope.rendreLivre(media[0]);
+    $scope.refMedia = null;
+  }else{
+    $scope.validerEmprunt();
+    $scope.refMedia = null;
+  }
+}
+}
 
-    function getLivre(type){
-      if(type === 'CB'){
-       Livres.query({
-         code_barre : $scope.refMedia
-       },
-       function(livre){
-        verifMediaCB(livre, 'Livres');
-      });
-     }
-     else if (type === 'Ref'){
-       Livres.query({
-        ref: $scope.refMedia
-      },
-      function(livre){
-        verifMediaRef(livre, 'Livres');
-      });
-     }
-    }
+function getLivre(type){
+  if(type === 'CB'){
+   Livres.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'Livres');
+  });
+ }
+ else if (type === 'Ref'){
+   Livres.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'Livres');
+  });
+ }
+}
 
-    function getBd(type){
-      if(type === 'CB'){
-       Bds.query({
-         code_barre : $scope.refMedia
-       },
-       function(livre){
-        verifMediaCB(livre, 'BD');
-      });
-     }
-     else if (type === 'Ref'){
-       Bds.query({
-        ref: $scope.refMedia
-      },
-      function(livre){
-        verifMediaRef(livre, 'BD');
-      });
-     }
-    }
+function getBd(type){
+  if(type === 'CB'){
+   Bds.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'BD');
+  });
+ }
+ else if (type === 'Ref'){
+   Bds.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'BD');
+  });
+ }
+}
 
-    function getRevue(type){
-      if(type === 'CB'){
-       Revues.query({
-         code_barre : $scope.refMedia
-       },
-       function(livre){
-        verifMediaCB(livre, 'Magazines');
-      });
-     }
-     else if (type === 'Ref'){
-       Revues.query({
-        ref: $scope.refMedia
-      },
-      function(livre){
-        verifMediaRef(livre, 'Magazines');
-      });
-     }
-    }
+function getRevue(type){
+  if(type === 'CB'){
+   Revues.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'Magazines');
+  });
+ }
+ else if (type === 'Ref'){
+   Revues.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'Magazines');
+  });
+ }
+}
 
-    function getCD(type){
-      if(type === 'CB'){
-       Cds.query({
-         code_barre : $scope.refMedia
-       },
-       function(livre){
-        verifMediaCB(livre, 'CD');
-      });
-     }
-     else if (type === 'Ref'){
-       Cds.query({
-        ref: $scope.refMedia
-      },
-      function(livre){
-        verifMediaRef(livre, 'CD');
-      });
-     }
-    }
+function getCD(type){
+  if(type === 'CB'){
+   Cds.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'CD');
+  });
+ }
+ else if (type === 'Ref'){
+   Cds.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'CD');
+  });
+ }
+}
 
-    function getDVD(type){
-      if(type === 'CB'){
-       Dvds.query({
-         code_barre : $scope.refMedia
-       },
-       function(livre){
-        verifMediaCB(livre, 'DVD');
-      });
-     }
-     else if (type === 'Ref'){
-       Dvds.query({
-        ref: $scope.refMedia
-      },
-      function(livre){
-        verifMediaRef(livre, 'DVD');
-      });
-     }
-    }
+function getDVD(type){
+  if(type === 'CB'){
+   Dvds.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'DVD');
+  });
+ }
+ else if (type === 'Ref'){
+   Dvds.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'DVD');
+  });
+ }
+}
 
-    $scope.verifInput = function(){
-      console.log('lol');
-      $scope.newmedia = null;
-      if($scope.refMedia && $scope.refMedia.length > 12){
-        getLivre('CB');
-        getBd('CB');
-        getRevue('CB');
-        getCD('CB');
-        getDVD('CB');
-      }  
-      else if($scope.refMedia && $scope.refMedia.length > 3){
-        $scope.newmedia = null;
-        getLivre('Ref');
-        getBd('Ref');
-        getRevue('Ref');
-        getCD('Ref');
-        getDVD('Ref');
-      }
-    };
+$scope.verifInput = function(){
+  console.log('lol');
+  $scope.newmedia = null;
+  if($scope.refMedia && $scope.refMedia.length > 12){
+    getLivre('CB');
+    getBd('CB');
+    getRevue('CB');
+    getCD('CB');
+    getDVD('CB');
+  }  
+  else if($scope.refMedia && $scope.refMedia.length > 3){
+    $scope.newmedia = null;
+    getLivre('Ref');
+    getBd('Ref');
+    getRevue('Ref');
+    getCD('Ref');
+    getDVD('Ref');
+  }
+};
 
     // var timer;
     // function message_info(message, type){
@@ -290,26 +290,15 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
     // }
 
 
-    // $scope.rendreLivre = function(livre) {
-    //   console.log('rendre');
-    //   livre.emprunt = {
-    //     user: null,
-    //     date_debut : null,
-    //     date_fin : null
-    //   };
-    //   for(var i=0; i<$scope.emprunteur.emprunt.length; i++){
-    //     if($scope.emprunteur.emprunt[i].id === livre._id){
-    //       $scope.emprunteur.emprunt.splice(i, 1);
-    //     }
-    //  }
-    //   // console.log(user);
-    //   livre.$update(function(response) {
-    //     $scope.emprunteur.$update(function(response){
-    //       Global.message_info = livre.title + ' est rendu !';
-    //         $location.path('admin/users/' + $scope.emprunteur._id);
-    //     });
-    //   });
-    // };
+    $scope.emprunt_retard = function(user){
+      for(var i =0; i<user.emprunt.length; i++){
+        var tmp = new Date(user.emprunt[i].date_fin);
+        if(tmp.getTime() < new Date().getTime()){
+          if(user.id_user === 265)console.log(tmp.getTime()+ '     '+ new Date().getTime());
+          return true;
+        }
+      }
+    };
 
     $scope.rendreLivre = function(media) {
       console.log(media.typeMedia);
@@ -338,13 +327,13 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
           if(emprunteur.emprunt[i].id === media._id){
            emprunteur.emprunt.splice(i, 1);
          }
-        }
-        emprunteur.$update(function(response){
-          media.$update(function(response) {    
-            Global.message_info = media.title + ' est rendu !';
-            $location.path('admin/users/' + emprunteur._id);
-          });
+       }
+       emprunteur.$update(function(response){
+        media.$update(function(response) {    
+          Global.message_info = media.title + ' est rendu !';
+          $location.path('admin/users/' + emprunteur._id);
         });
       });
+     });
     };
-}]);
+  }]);

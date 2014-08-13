@@ -64,6 +64,22 @@ footer p {
     border: 1px solid #ccc;
 }
 
+.pas_emprunt{
+  color : grey;
+}
+
+.pas_emprunt:hover{
+  color : grey;
+}
+
+.emprunt_retard{
+  color: red;
+}
+
+.emprunt_retard:hover{
+  color: red;
+}
+
 .trans_message{
   -webkit-animation: info_mess_anim 12s 9s; 
   -moz-animation:    info_mess_anim 12s 9s; 
