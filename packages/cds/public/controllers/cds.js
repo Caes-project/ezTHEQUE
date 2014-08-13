@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Cds', 
-  function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Cds) {
+angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Cds', 'Livres',
+  function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Cds, Livres) {
     $scope.global = Global;
     // $scope.users = Users;
     $scope.suppr = false;
@@ -16,19 +16,48 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
 
     function message_info(message, type){
       var res = {};
+      var time = 2;
+      if(type === 'error'){
+       time = 3;
+      }
       res.message = message;
       if(type){
-        res.status = type;
+       res.status = type;
       }
-      $timeout.cancel(timer);
-      var transition = document.getElementById('message_info');
-      transition.classList.remove('trans_message');
-      transition.offsetWidth = transition.offsetWidth;
-      transition.classList.add('trans_message');
-      $scope.message_info = res;
-      timer = $timeout(function(){
-        $scope.message_info =null;
-      }, 6000);
+      if($scope.test){
+        console.log('gros hack pour les tests');
+      }else{
+        $timeout.cancel(timer);
+        var transition = document.getElementById('message_info');
+        transition.classList.remove('trans_message');
+        transition.offsetWidth = transition.offsetWidth;
+        transition.classList.add('trans_message');
+        $scope.message_info = res;
+        timer = $timeout(function(){
+          $scope.message_info =null;
+        }, 6000*time);
+      }
+    }
+
+    Livres.getSettings(function(settings){
+      $scope.settings = settings.settings;
+    });
+
+    function incr_date(date_str, typeMedia){
+
+      var today = new Date();
+      var nbjour = 7;
+      switch (typeMedia) {
+        case 'Livres' : nbjour = $scope.settings.delay_livre; break; 
+        case 'BD' : nbjour = $scope.settings.delay_BD; break; 
+        case 'CD' : nbjour = $scope.settings.delay_CD; break; 
+        case 'DVD' : nbjour = $scope.settings.delay_DVD; break; 
+        case 'Magazines' : nbjour = $scope.settings.delay_revue; break; 
+      }
+     
+      var fin = new Date();
+      fin.setDate(today.getDate() + nbjour);
+      return fin;
     }
 
 
@@ -192,6 +221,7 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
   };
 
   $scope.getInfoUser = function(){
+    recupActif();
     Cds.get({
       cdId: $stateParams.cdId
     }, function(cd) {
@@ -207,31 +237,70 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
     });
   };
 
-  $scope.validerEmprunt = function(){
-    var cd = $scope.cd;
-    var user = $scope.selectedUser;
-    var newEmprunt;
-    if(null){
-      console.log('erreur cd déjà emprunté');
-    }else{
-      cd.emprunt.user = $scope.selectedUser._id;
-      cd.emprunt.date_debut = $scope.date;
-      cd.emprunt.date_fin = $scope.date_fin;
-      newEmprunt = {
-        id : cd._id,
-        date_debut : $scope.date,
-        date_fin : $scope.date_fin,
-        type : 'CD'
-      };
-      user.emprunt.push(newEmprunt);
-      // console.log(user);
-      user.$update(function(response) {
-        cd.$update(function(response) {
-          $location.path('cds/' + response._id);
+  $scope.usersActifs = [];
+
+    function recupActif(){
+      Users.query(function(users){
+        $scope.users = users;
+        $scope.users.forEach(function(user){
+          if($scope.checkActif(user)){
+            $scope.usersActifs.push(user);
+          } 
         });
       });
     }
-  };
+
+    $scope.nbAboCD = 0;
+
+    $scope.checkActif = function(user){
+      var time = 1000 * 60 * 60 * 24;
+      var today = new Date();
+      var fin_CD = new Date(user.CD);
+      var diff_CD = fin_CD.getTime()- today.getTime();
+      // var fin_caution = new Date(user.caution);
+      // var diff_caution = fin_caution.getTime()- today.getTime();
+
+      // if(Math.floor(diff_CD / time) >=-30 && Math.floor(diff_caution / time) >=-30){
+      if(Math.floor(diff_CD / time) >=-30){
+        $scope.nbAboCD++;
+        return true;
+      }
+      return false;
+    };
+
+    $scope.selectUser = function(user){
+      $scope.selectedUser = user;
+      $scope.validerEmprunt();
+    };
+
+    $scope.validerEmprunt = function(){
+      if(!$scope.selectedUser){
+        message_info('choisissez un utilisateur !', 'error');
+        return 1;
+      }
+      var cd = $scope.cd;
+      var user = $scope.selectedUser;
+      var newEmprunt;
+      cd.emprunt.user = $scope.selectedUser._id;
+      cd.emprunt.date_debut = $scope.date;
+      cd.emprunt.date_fin = incr_date($scope.date, 'CD');
+      newEmprunt = {
+        id : cd._id,
+        date_debut : $scope.date,
+        date_fin : incr_date($scope.date, 'CD'),
+        type: 'CD'
+      };
+      user.emprunt.push(newEmprunt);
+      user.$update(function(response) {
+        cd.$update(function(response) {
+          $location.path('cds/' + response._id);
+          $scope.emprunt = false;
+          $scope.searchUser= null;
+          message_info('Emprunt validé');
+          $scope.user = user;
+        });
+      });
+    };
 
   $scope.rendreCd = function(cd) {
     var user;
