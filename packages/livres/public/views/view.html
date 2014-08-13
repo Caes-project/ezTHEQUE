@@ -37,6 +37,7 @@
     <!-- <a data-ng-hide="livre.emprunt.user || !global.isAdmin || !emprunt" ng-click='validerEmprunt()' class="btn btn-success btn-large"> Valider</a> -->
   </div>
 
+  {{nbAboLivre}}
   <!-- Formulaire pour emprunté un livre -->
   <div ng-show='global.isAdmin && emprunt'>
     <br/>
@@ -48,7 +49,7 @@
     <br/>
     <ul style='list-style-type:none;'>
       <li ng-repeat="user in usersActifs | orderBy:['name', 'name'] | filter:searchUser | slice:0:10">
-        <a ng-click='selectUser(user)' ng-bind='user.name'></a>
+        <a ng-click='selectUser(user)' href='' ng-bind='user.name'></a>
       </li>
     </ul>
   </div>
