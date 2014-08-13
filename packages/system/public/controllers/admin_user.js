@@ -5,8 +5,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
     $scope.global = Global;
 
-     Livres.getSettings(function(settings){
-        $scope.settings = settings.settings;
+    Livres.getSettings(function(settings){
+      $scope.settings = settings.settings;
     });
 
     function incr_date(date_str, typeMedia){
@@ -37,7 +37,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       delete $scope.global.message_info;
       $timeout(function(){
         $scope.message_info =null;
-      }, 5000);
+      }, 15000);
     }
 
     $scope.date = new Date().toISOString().substring(0, 10);
@@ -219,7 +219,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         newEmprunt = {
           id : media._id,
           date_debut : $scope.date,
-          date_fin : $scope.date_fin,
+          date_fin : incr_date($scope.date, media.typeMedia),
           type : media.typeMedia
         };    
         var typeMedia =media.typeMedia;

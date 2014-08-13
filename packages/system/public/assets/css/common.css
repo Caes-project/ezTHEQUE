@@ -48,12 +48,7 @@ footer p {
     border-color:#66CCCC;
 }*/
 
-.users_list{
-    width: 300px;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #888;    
+.users_list{  
     color: #888;
 }
 

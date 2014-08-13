@@ -134,85 +134,85 @@
         </div>
         <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user === user._id' class='alert alert-info trans_message'  role="alert">
          Vous avez jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
-       </div>
-       <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
-        {{message_info.message}}
-      </div>
-    </article>
+        </div>
+        <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
+          {{message_info.message}}
+        </div>
+      </article>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+        <accordion close-others="oneAtATime">
+          <accordion-group is-open="isOpen">
+          <accordion-heading >
+          Abonnement de l'utilisateur
+          <i class="pull-right glyphicon"
+          ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+        </accordion-heading>
+        <table class="table table-striped table-bordered table-hover">
+          <tr>
+            <th> abonnement </th>
+            <th>  Date_fin </th>
+          </tr>
+          <tr>
+            <td> Livres, BD, Magazines </td>
+            <td>
+              <div ng-if='user.livre_mag_revue' ng-class='{red: date_diff_abo(user.livre_mag_revue).retard === 1}'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
+              <div ng-if='!user.livre_mag_revue'> 
+                <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
+                  <span class="glyphicon glyphicon-remove red"></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td> DVD </td>
+            <td>
+              <div ng-if='user.DVD' ng-class='{red: date_diff_abo(user.DVD).retard === 1}'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
+              <div ng-if='!user.DVD'> 
+                <button type="button" ng-click="validerNewAbo('DVD')" class="btn btn-xs">
+                  <span class="glyphicon glyphicon-remove red"></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td> CD </td>
+            <td>
+              <div ng-if='user.CD' ng-class='{red: date_diff_abo(user.CD).retard === 1}'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
+              <div ng-if='!user.CD'> 
+                <button type="button" ng-click="validerNewAbo('CD')" class="btn btn-xs">
+                  <span class="glyphicon glyphicon-remove red"></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td> Caution </td>
+            <td>
+              <div ng-if='user.caution' ng-class='{red: date_diff_abo(user.caution).retard === 1}'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
+              <div ng-if='!user.caution'> 
+                <button type="button" ng-click="validerNewAbo('caution')" class="btn btn-xs">
+                  <span class="glyphicon glyphicon-remove red"></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td> Paiement </td>
+            <td>
+              <div ng-if='user.paiement' ng-class='{red: date_diff_abo(user.paiement).retard === 1}'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
+              <div ng-if='!user.paiement'> 
+                <button type="button" ng-click="validerNewAbo('paiement')" class="btn btn-xs">
+                  <span class="glyphicon glyphicon-remove red"></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </accordion-group>
+    </accordion>
   </div>
-  <div class='row'>
-    <div class='col-md-12'>
-      <accordion close-others="oneAtATime">
-        <accordion-group is-open="isOpen">
-        <accordion-heading >
-        Abonnement de l'utilisateur
-        <i class="pull-right glyphicon"
-        ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
-      </accordion-heading>
-      <table class="table table-striped table-bordered table-hover">
-        <tr>
-          <th> abonnement </th>
-          <th>  Date_fin </th>
-        </tr>
-        <tr>
-          <td> Livres, BD, Magazines </td>
-          <td>
-            <div ng-if='user.livre_mag_revue' ng-class='{red: date_diff_abo(user.livre_mag_revue).retard === 1}'> {{user.livre_mag_revue | date: 'dd/MM/yyyy'}} </div>
-            <div ng-if='!user.livre_mag_revue'> 
-              <button type="button" ng-click="validerNewAbo('livre_mag_revue')" class="btn btn-xs">
-                <span class="glyphicon glyphicon-remove red"></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td> DVD </td>
-          <td>
-            <div ng-if='user.DVD' ng-class='{red: date_diff_abo(user.DVD).retard === 1}'> {{user.DVD | date: 'dd/MM/yyyy'}} </div>
-            <div ng-if='!user.DVD'> 
-              <button type="button" ng-click="validerNewAbo('DVD')" class="btn btn-xs">
-                <span class="glyphicon glyphicon-remove red"></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td> CD </td>
-          <td>
-            <div ng-if='user.CD' ng-class='{red: date_diff_abo(user.CD).retard === 1}'> {{user.CD | date: 'dd/MM/yyyy'}} </div>
-            <div ng-if='!user.CD'> 
-              <button type="button" ng-click="validerNewAbo('CD')" class="btn btn-xs">
-                <span class="glyphicon glyphicon-remove red"></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td> Caution </td>
-          <td>
-            <div ng-if='user.caution' ng-class='{red: date_diff_abo(user.caution).retard === 1}'> {{user.caution | date: 'dd/MM/yyyy'}} </div>
-            <div ng-if='!user.caution'> 
-              <button type="button" ng-click="validerNewAbo('caution')" class="btn btn-xs">
-                <span class="glyphicon glyphicon-remove red"></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td> Paiement </td>
-          <td>
-            <div ng-if='user.paiement' ng-class='{red: date_diff_abo(user.paiement).retard === 1}'> {{user.paiement | date: 'dd/MM/yyyy'}} </div>
-            <div ng-if='!user.paiement'> 
-              <button type="button" ng-click="validerNewAbo('paiement')" class="btn btn-xs">
-                <span class="glyphicon glyphicon-remove red"></span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </accordion-group>
-  </accordion>
-</div>
 </div>
 <div class='row'>
   <h4 class='lato-font-title'> Dernières modifications : </h4>
@@ -223,23 +223,23 @@
         <ul style="list-style-type:none; margin:0; padding:0;">
           <li class="user_list" ng-repeat="media in listeModif">
            <a ng-if='media.type == "new"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
+           </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+  <div class='col-md-6'>
+    <article>
+      <h4 class='lato-font-title' ng-if='listeModif.length'> Rendu : </h4>
+      <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
+        <ul style="list-style-type:none; margin:0; padding:0;">
+          <li class="user_list" ng-repeat="media in listeModif">
+           <a class='lato-font-retard' ng-if='media.type =="old"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
          </li>
        </ul>
      </div>
    </article>
- </div>
- <div class='col-md-6'>
-  <article>
-    <h4 class='lato-font-title' ng-if='listeModif.length'> Rendu : </h4>
-    <div ng-class="{'well' : listeModif.length}" style='margin:0; padding:6px; line-height: 1.75'>
-      <ul style="list-style-type:none; margin:0; padding:0;">
-        <li class="user_list" ng-repeat="media in listeModif">
-         <a class='lato-font-retard' ng-if='media.type =="old"' data-ng-href="#!/livres/{{media._id}}">{{media.title}}</a>
-       </li>
-     </ul>
-   </div>
- </article>
-</div>
+  </div>
 </div>
 <div class='row'> 
   <article>
