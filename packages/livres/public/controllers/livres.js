@@ -159,6 +159,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       Livres.query(function(livres) {
         $scope.livres = livres;
         $scope.loader = false;
+      }, function(err){
+        $scope.loader = false;
+        message_info('Le serveur à échouer à charger les livres', 'error');
+        console.log(err);
       });
     };
 

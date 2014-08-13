@@ -217,7 +217,8 @@ exports.all = function(req, res) {
         Livre.find(req.query).sort({'ref':1/-1}).exec(function(err, livres) {
             if (err) {
                 res.render('error', {
-                    status: 500
+                    status: 500,
+                    error : err
                 });
             } else {
                 res.jsonp(200, livres);
