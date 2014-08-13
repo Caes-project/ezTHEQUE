@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Dvds', 
-  function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Dvds) {
+angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Dvds', 'Livres',
+  function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Dvds, Livres) {
     $scope.global = Global;
     // $scope.users = Users;
     $scope.suppr = false;
@@ -16,19 +16,48 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
 
     function message_info(message, type){
       var res = {};
+      var time = 2;
+      if(type === 'error'){
+       time = 3;
+      }
       res.message = message;
       if(type){
-        res.status = type;
+       res.status = type;
       }
-      $timeout.cancel(timer);
-      var transition = document.getElementById('message_info');
-      transition.classList.remove('trans_message');
-      transition.offsetWidth = transition.offsetWidth;
-      transition.classList.add('trans_message');
-      $scope.message_info = res;
-      timer = $timeout(function(){
-        $scope.message_info =null;
-      }, 6000);
+      if($scope.test){
+        console.log('gros hack pour les tests');
+      }else{
+        $timeout.cancel(timer);
+        var transition = document.getElementById('message_info');
+        transition.classList.remove('trans_message');
+        transition.offsetWidth = transition.offsetWidth;
+        transition.classList.add('trans_message');
+        $scope.message_info = res;
+        timer = $timeout(function(){
+          $scope.message_info =null;
+        }, 6000*time);
+      }
+    }
+
+    Livres.getSettings(function(settings){
+      $scope.settings = settings.settings;
+    });
+
+    function incr_date(date_str, typeMedia){
+
+      var today = new Date();
+      var nbjour = 7;
+      switch (typeMedia) {
+        case 'Livres' : nbjour = $scope.settings.delay_livre; break; 
+        case 'BD' : nbjour = $scope.settings.delay_BD; break; 
+        case 'CD' : nbjour = $scope.settings.delay_CD; break; 
+        case 'DVD' : nbjour = $scope.settings.delay_DVD; break; 
+        case 'Magazines' : nbjour = $scope.settings.delay_revue; break; 
+      }
+     
+      var fin = new Date();
+      fin.setDate(today.getDate() + nbjour);
+      return fin;
     }
 
 
@@ -196,6 +225,7 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
   };
 
   $scope.getInfoUser = function(){
+    recupActif();
     Dvds.get({
       dvdId: $stateParams.dvdId
     }, function(dvd) {
@@ -211,31 +241,70 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
     });
   };
 
-  $scope.validerEmprunt = function(){
-    var dvd = $scope.dvd;
-    var user = $scope.selectedUser;
-    var newEmprunt;
-    if(null){
-      console.log('erreur dvd déjà emprunté');
-    }else{
-      dvd.emprunt.user = $scope.selectedUser._id;
-      dvd.emprunt.date_debut = $scope.date;
-      dvd.emprunt.date_fin = $scope.date_fin;
-      newEmprunt = {
-        id : dvd._id,
-        date_debut : $scope.date,
-        date_fin : $scope.date_fin,
-        type : 'BD'
-      };
-      user.emprunt.push(newEmprunt);
-      // console.log(user);
-      user.$update(function(response) {
-        dvd.$update(function(response) {
-          $location.path('dvds/' + response._id);
+  $scope.usersActifs = [];
+
+    function recupActif(){
+      Users.query(function(users){
+        $scope.users = users;
+        $scope.users.forEach(function(user){
+          if($scope.checkActif(user)){
+            $scope.usersActifs.push(user);
+          } 
         });
       });
     }
-  };
+
+    $scope.nbAboDVD = 0;
+
+    $scope.checkActif = function(user){
+      var time = 1000 * 60 * 60 * 24;
+      var today = new Date();
+      var fin_DVD = new Date(user.DVD);
+      var diff_DVD = fin_DVD.getTime()- today.getTime();
+      // var fin_caution = new Date(user.caution);
+      // var diff_caution = fin_caution.getTime()- today.getTime();
+
+      // if(Math.floor(diff_DVD / time) >=-30 && Math.floor(diff_caution / time) >=-30){
+      if(Math.floor(diff_DVD / time) >=-30){
+        $scope.nbAboDVD++;
+        return true;
+      }
+      return false;
+    };
+
+    $scope.selectUser = function(user){
+      $scope.selectedUser = user;
+      $scope.validerEmprunt();
+    };
+
+    $scope.validerEmprunt = function(){
+      if(!$scope.selectedUser){
+        message_info('choisissez un utilisateur !', 'error');
+        return 1;
+      }
+      var dvd = $scope.dvd;
+      var user = $scope.selectedUser;
+      var newEmprunt;
+      dvd.emprunt.user = $scope.selectedUser._id;
+      dvd.emprunt.date_debut = $scope.date;
+      dvd.emprunt.date_fin = incr_date($scope.date, 'DVD');
+      newEmprunt = {
+        id : dvd._id,
+        date_debut : $scope.date,
+        date_fin : incr_date($scope.date, 'DVD'),
+        type: 'DVD'
+      };
+      user.emprunt.push(newEmprunt);
+      user.$update(function(response) {
+        dvd.$update(function(response) {
+          $location.path('dvds/' + response._id);
+          $scope.emprunt = false;
+          $scope.searchUser= null;
+          message_info('Emprunt validé');
+          $scope.user = user;
+        });
+      });
+    };
 
   $scope.rendreDvd = function(dvd) {
     var user;
