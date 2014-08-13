@@ -294,7 +294,6 @@ $scope.verifInput = function(){
       for(var i =0; i<user.emprunt.length; i++){
         var tmp = new Date(user.emprunt[i].date_fin);
         if(tmp.getTime() < new Date().getTime()){
-          if(user.id_user === 265)console.log(tmp.getTime()+ '     '+ new Date().getTime());
           return true;
         }
       }
