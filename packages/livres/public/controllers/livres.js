@@ -3,7 +3,7 @@
 angular.module('mean').controller('LivresController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Livres', 
   function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Livres) {
     $scope.global = Global;
-    
+    $scope.loader = true;
     $scope.suppr = false;
     $scope.package = {
       name: 'livres'
@@ -158,6 +158,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
     $scope.find = function() {
       Livres.query(function(livres) {
         $scope.livres = livres;
+        $scope.loader = false;
       });
     };
 

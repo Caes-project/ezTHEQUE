@@ -15,4 +15,8 @@
             <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(livre).retard}' ng-bind='date_diff(livre).message'> </p>
         </li>
     </ul>
+     <div class='row' ng-show='loader'>
+        <img ng-show='loader' src='packages/system/public/assets/img/loaders/loader.gif'/>
+        <!-- plz be patient the page still loading ...  -->
+    </div>    
 </section>

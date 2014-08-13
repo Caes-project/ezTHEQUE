@@ -36,19 +36,32 @@
     <a data-ng-hide="livre.emprunt.user || !global.isAdmin || emprunt" ng-click='emprunt = true' class="btn btn-primary btn-large"> Emprunter</a>
     <!-- <a data-ng-hide="livre.emprunt.user || !global.isAdmin || !emprunt" ng-click='validerEmprunt()' class="btn btn-success btn-large"> Valider</a> -->
   </div>
+  
+  <!-- formulaire pour valider suppression -->
+  <form class="form-inline" role="form">
+    <div data-ng-show='suppr' class="form-group">
+      <h3>Voulez-vous vraiment supprimer ce livre?</h3>
+      <button type="button" class="btn btn-primary" data-ng-click="remove(livre)">Yes</button>
+      <button type="button" class="btn btn-danger" data-ng-click="save()">No</button>
+    </div>
+    <div ng-show='error' class='error_mess'>
+      <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" /> 
+      Impossible de supprimer le livre car il est emprunté.
+    </div>
+  </form>
 
-  {{nbAboLivre}}
   <!-- Formulaire pour emprunté un livre -->
   <div ng-show='global.isAdmin && emprunt'>
     <br/>
     <div class='col-md-8 '>
-      <input type='text' ng-model='searchUser' placeholder='Recherche' class='form-control'>
+      <input type='text' ng-model='searchUser' placeholder='Recherche utilisateur' class='form-control'>
     </div>
     <br/> 
     <br/>
     <br/>
+      <span class='lato-font'> {{nbAboLivre}} utilisateurs disponible </span>
     <ul style='list-style-type:none;'>
-      <li ng-repeat="user in usersActifs | orderBy:['name', 'name'] | filter:searchUser | slice:0:10">
+      <li ng-repeat="user in usersActifs | orderBy:['name', 'name'] | filter:searchUser">
         <a ng-click='selectUser(user)' href='' ng-bind='user.name'></a>
       </li>
     </ul>
@@ -71,17 +84,5 @@
     <a data-ng-hide="!livre.emprunt.user"  data-ng-click='rendreLivre(livre)' class="btn btn-primary btn-large"><i class="icon-white glyphicon-book"></i> Rendre</a>
   </div>
 
-  <!-- formulaire pour valider suppression -->
-  <form class="form-inline" role="form">
-    <div data-ng-show='suppr' class="form-group">
-      <h3>Voulez-vous vraiment supprimer ce livre?</h3>
-      <button type="button" class="btn btn-primary" data-ng-click="remove(livre)">Yes</button>
-      <button type="button" class="btn btn-danger" data-ng-click="save()">No</button>
-    </div>
-    <div ng-show='error' class='error_mess'>
-      <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" /> 
-      Impossible de supprimer le livre car il est emprunté.
-    </div>
-  </form>
 </section>
 
