@@ -224,7 +224,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       });
     }
 
-    var nbAboLivre = 0;
+    $scope.nbAboLivre = 0;
 
     $scope.checkActif = function(user){
       var time = 1000 * 60 * 60 * 24;
@@ -236,7 +236,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
       // if(Math.floor(diff_livre_mag_revue / time) >=-30 && Math.floor(diff_caution / time) >=-30){
       if(Math.floor(diff_livre_mag_revue / time) >=-30){
-        nbAboLivre++;
+        $scope.nbAboLivre++;
         return true;
       }
       return false;
