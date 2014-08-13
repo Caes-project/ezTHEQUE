@@ -173,11 +173,18 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
       });
     };
 
+    $scope.loader=true;
     $scope.find = function() {
-      Bds.query(function(bds) {
-        $scope.bds = bds;
-      });
+       Bds.query(function(bds) {
+          $scope.bds = bds;
+          $scope.loader = false;
+        }, function(err){
+          $scope.loader = false;
+          message_info('Le serveur à échouer à charger les bds', 'error');
+          console.log(err);
+        });
     };
+
 
     $scope.findOne = function() {
       Bds.get({

@@ -1,18 +1,22 @@
 <section data-ng-controller="CdsController" data-ng-init="find()" class="sectionCd well">
-    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/cds/create">Ajouter un CD </a></h3>
-    <div class='col-md-4'>
-         <input type='text' ng-model='searchUser' placeholder='Recherche cd' autofocus class='form-control'>
-    </div>
-    <br/>
-    <br/>
-    <ul class="unstyled">
-        <li data-ng-repeat="cd in cds | filter:searchUser | slice:0:50">
-           <h3>
-                <a data-ng-href="#!/cds/{{cd._id}}">{{cd.title}}</a>
-            </h3> 
-             <div data-ng-hide="!cd.lien_image"><img ng-src="{{cd.lien_image}}" border="0" align="center" width=120 height=120> </div>
-            <p class='lato-font-title'> {{cd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{cd.dewey}} &nbsp Ref. {{cd.ref}}</p>
-            <p class='lato-font' ng-show="cd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(cd).retard}' ng-bind='date_diff(cd).message'> </p>
-        </li>
-    </ul>
+  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/cds/create">Ajouter un CD </a></h3>
+  <div class='col-md-4'>
+    <input type='text' ng-model='searchUser' placeholder='Recherche cd' autofocus class='form-control'>
+  </div>
+  <br/>
+  <br/>
+  <ul class="unstyled">
+    <li data-ng-repeat="cd in cds | filter:searchUser | slice:0:50">
+      <h3>
+        <a data-ng-href="#!/cds/{{cd._id}}">{{cd.title}}</a>
+      </h3> 
+      <div data-ng-hide="!cd.lien_image"><img ng-src="{{cd.lien_image}}" border="0" align="center" width=120 height=120> </div>
+      <p class='lato-font-title'> {{cd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{cd.dewey}} &nbsp Ref. {{cd.ref}}</p>
+      <p class='lato-font' ng-show="cd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(cd).retard}' ng-bind='date_diff(cd).message'> </p>
+    </li>
+  </ul>
+  <div class='row' ng-show='loader' style='text-align:center'>
+    <img ng-show='loader' src='/img/loaders/loader.gif' style='height:200px; width:200px;' />
+    La page est en cours de chargement ... 
+  </div>   
 </section>

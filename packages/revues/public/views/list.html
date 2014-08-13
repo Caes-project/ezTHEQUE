@@ -1,57 +1,51 @@
 <section data-ng-controller="RevuesController" data-ng-init="find()" class="well">
-    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/revues/create">Ajouter un numéro </a></h3>
-    
-    <div class='col-md-4'>
-         <input type='text' ng-model='searchUser' placeholder='Recherche revue' autofocus class='form-control'>
-    </div>
-    <br/>
-    <br/>
-    <div class='row'>
-        <div class='col-md-7'>
-            <ul class="unstyled">
-                <li data-ng-repeat="revue in revues | filter:searchUser | slice:0:50">
-                   <h3>
-                        <a data-ng-href="#!/revues/{{revue._id}}">{{revue.title}}</a>
-                    </h3> 
-                     <div data-ng-hide="!revue.lien_image"><img ng-src="{{revue.lien_image}}" border="0" align="center" width=80 height=130> </div>
-                    <p class='lato-font-title'> {{revue.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{revue.dewey}} &nbsp Ref. {{revue.ref}}</p>
-                    <p class='lato-font' ng-show="revue.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(revue).retard}' ng-bind='date_diff(revue).message'> </p>
-                </li>
-            </ul>
+  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/revues/create">Ajouter un numéro </a></h3>
+
+  <div class='col-md-4'>
+    <input type='text' ng-model='searchUser' placeholder='Recherche revue' autofocus class='form-control'>
+  </div>
+  <br/>
+  <br/>
+  <div class='row'>
+    <div class='col-md-7'>
+      <ul class="unstyled">
+        <li data-ng-repeat="revue in revues | filter:searchUser | slice:0:50">
+         <h3>
+          <a data-ng-href="#!/revues/{{revue._id}}">{{revue.title}}</a>
+        </h3> 
+        <div data-ng-hide="!revue.lien_image"><img ng-src="{{revue.lien_image}}" border="0" align="center" width=80 height=130> </div>
+        <p class='lato-font-title'> {{revue.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{revue.dewey}} &nbsp Ref. {{revue.ref}}</p>
+        <p class='lato-font' ng-show="revue.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(revue).retard}' ng-bind='date_diff(revue).message'> </p>
+      </li>
+    </ul>
+    <div class='row' ng-show='loader' style='text-align:center'>
+      <img ng-show='loader' src='/img/loaders/loader.gif' style='height:200px; width:200px;' />
+      La page est en cours de chargement ... 
+    </div>    
+  </div>
+  <div class='col-md-5'>
+    <div class='row well' ng-show='isAdmin()'>
+      <h4> Ajouter un nouveau titre de revue</h4>
+      <form class='form-horizontal col-md-9' data-ng-submit='createAbo()'>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Nom : </label>
+          <div class="col-md-8">
+            <input type='text' data-ng-model="nom" id="nom" name='nom' placeholder="nom" class="form-control">
+          </div>
+        </div> 
+        <div class="form-group">
+          <label class="col-md-4 control-label">Date abo : </label>
+          <div class="col-md-8">
+            <input type='text' data-ng-model="date_abo" id="date_abo" name='date_abo' class="form-control" ez-datepicker>
+          </div>
+        </div> 
+        <div class="form-group">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn btn-info" >Valider</button>
+          </div>
         </div>
-        <div class='col-md-5'>
-            <div class='row well' ng-show='isAdmin()'>
-                <h4> Ajouter un nouveau titre de revue</h4>
-                <form class='form-horizontal col-md-9' data-ng-submit='createAbo()'>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Nom : </label>
-                        <div class="col-md-8">
-                            <input type='text' data-ng-model="nom" id="nom" name='nom' placeholder="nom" class="form-control">
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Date abo : </label>
-                        <div class="col-md-8">
-                            <input type='text' data-ng-model="date_abo" id="date_abo" name='date_abo' class="form-control" ez-datepicker>
-                        </div>
-                    </div> 
-                    <div class="form-group">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn btn-info" >Valider</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-           <!--  <div class='row'>
-                <h3> Liste des revues de la médiathèque </h3>
-                <ul class="unstyled">
-                    <li data-ng-repeat="revue in liste_revues | orderBy:['-nom', 'nom']">
-                       <h3>
-                            {{revue.nom}}
-                        </h3> 
-                    </li>
-                </ul>
-            </div> -->
-        </div>
+      </form>
     </div>
+  </div>
+</div>
 </section>

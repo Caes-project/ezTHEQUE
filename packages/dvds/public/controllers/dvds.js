@@ -175,11 +175,17 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
       $location.path('dvds/' + dvd._id);
     });
   };
-
+  
+  $scope.loader=true;
   $scope.find = function() {
-    Dvds.query(function(dvds) {
-      $scope.dvds = dvds;
-    });
+     Dvds.query(function(dvds) {
+        $scope.dvds = dvds;
+        $scope.loader = false;
+      }, function(err){
+        $scope.loader = false;
+        message_info('Le serveur à échouer à charger les dvds', 'error');
+        console.log(err);
+      });
   };
 
   $scope.findOne = function() {

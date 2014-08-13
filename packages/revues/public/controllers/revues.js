@@ -159,9 +159,15 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
       });
     };
 
+    $scope.loader=true;
     $scope.find = function() {
       Revues.query(function(revues) {
         $scope.revues = revues;
+        $scope.loader = false;
+      }, function(err){
+        $scope.loader = false;
+        message_info('Le serveur à échouer à charger les revues', 'error');
+        console.log(err);
       });
     };
 

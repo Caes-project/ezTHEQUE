@@ -176,11 +176,17 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
     });
   };
 
+  $scope.loader=true;
   $scope.find = function() {
-    Cds.query(function(cds) {
-      $scope.cds = cds;
-    });
-  };
+      Cds.query(function(cds) {
+        $scope.cds = cds;
+        $scope.loader = false;
+      }, function(err){
+        $scope.loader = false;
+        message_info('Le serveur à échouer à charger les cds', 'error');
+        console.log(err);
+      });
+    };
 
   $scope.findOne = function() {
     Cds.get({

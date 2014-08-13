@@ -1,18 +1,22 @@
 <section data-ng-controller="DvdsController" data-ng-init="find()" class="sectionDvd well">
-    <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/dvds/create">Ajouter un DVD </a></h3>
-    <div class='col-md-4'>
-         <input type='text' ng-model='searchUser' placeholder='Recherche dvd' autofocus class='form-control'>
-    </div>
-    <br/>
-    <br/>
-    <ul class="unstyled">
-        <li data-ng-repeat="dvd in dvds |  filter:searchUser | slice:0:50">
-           <h3>
-                <a data-ng-href="#!/dvds/{{dvd._id}}">{{dvd.title}}</a>
-            </h3> 
-             <div data-ng-hide="!dvd.lien_image"><img ng-src="{{dvd.lien_image}}" border="0" align="center" width=80 height=130> </div>
-            <p class='lato-font-title'> {{dvd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{dvd.dewey}} &nbsp Ref. {{dvd.ref}}</p>
-            <p class='lato-font' ng-show="dvd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(dvd).retard}' ng-bind='date_diff(dvd).message'> </p>
-        </li>
-    </ul>
+  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/dvds/create">Ajouter un DVD </a></h3>
+  <div class='col-md-4'>
+    <input type='text' ng-model='searchUser' placeholder='Recherche dvd' autofocus class='form-control'>
+  </div>
+  <br/>
+  <br/>
+  <ul class="unstyled">
+    <li data-ng-repeat="dvd in dvds |  filter:searchUser | slice:0:50">
+      <h3>
+        <a data-ng-href="#!/dvds/{{dvd._id}}">{{dvd.title}}</a>
+      </h3> 
+      <div data-ng-hide="!dvd.lien_image"><img ng-src="{{dvd.lien_image}}" border="0" align="center" width=80 height=130> </div>
+      <p class='lato-font-title'> {{dvd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{dvd.dewey}} &nbsp Ref. {{dvd.ref}}</p>
+      <p class='lato-font' ng-show="dvd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(dvd).retard}' ng-bind='date_diff(dvd).message'> </p>
+    </li>
+  </ul>
+  <div class='row' ng-show='loader' style='text-align:center'>
+    <img ng-show='loader' src='/img/loaders/loader.gif' style='height:200px; width:200px;' />
+    La page est en cours de chargement ... 
+  </div>    
 </section>
