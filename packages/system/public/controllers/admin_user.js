@@ -101,7 +101,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if(res.diff+365>0)
         $scope.message_abo.push('Le paiement expire dans : ' + res.diff + ' jours \n');
       else if(res.diff+365<0 && res.diff>-365*2)
-        $scope.message_abo.push('Le paiement est expiré depuis : ' + res.diff*-1-365) + ' jours \n');
+        $scope.message_abo.push('Le paiement est expiré depuis : ' + (res.diff*-1-365) + ' jours \n');
       else
         $scope.message_abo.push('Le paiement est expiré depuis le : ' + new Date(user.paiement).toISOString().substring(0,10) + '\n');
     }
