@@ -64,7 +64,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if(res.diff>0)
         $scope.message_abo.push('Abonnement livre ce termine dans : ' + res.diff + ' jours ');
       else if(res.diff<0 && res.diff>-360)
-        $scope.message_abo.push('Abonnement livre est terminé depuis : ' + res.diff + ' jours \n');
+        $scope.message_abo.push('Abonnement livre est terminé depuis : ' + res.diff*-1 + ' jours \n');
       else
         $scope.message_abo.push('Abonnement livre est terminé depuis le : ' + new Date(user.livre_mag_revue).toISOString().substring(0,10) + '\n');
     }
@@ -73,7 +73,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if(res.diff>0)
         $scope.message_abo.push('Abonnement DVD ce termine dans : ' + res.diff + ' jours \n');
       else if(res.diff<0 && res.diff>-360)
-        $scope.message_abo.push('Abonnement DVD est terminé depuis : ' + res.diff + ' jours \n');
+        $scope.message_abo.push('Abonnement DVD est terminé depuis : ' + res.diff*-1 + ' jours \n');
       else
         $scope.message_abo.push('Abonnement DVD est terminé depuis le : ' + new Date(user.DVD).toISOString().substring(0,10) + '\n');
     }
@@ -82,25 +82,26 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if(res.diff>0)
         $scope.message_abo.push('Abonnement CD ce termine dans : ' + res.diff + ' jours \n');
       else if(res.diff<0 && res.diff>-360)
-        $scope.message_abo.push('Abonnement CD est terminé depuis : ' + res.diff + ' jours \n');
+        $scope.message_abo.push('Abonnement CD est terminé depuis : ' + res.diff*-1 + ' jours \n');
       else
         $scope.message_abo.push('Abonnement CD est terminé depuis le : ' + new Date(user.CD).toISOString().substring(0,10) + ' \n');
     }
     res = $scope.date_diff_abo(user.caution);
     if(res.retard === 1){
-      if(res.diff>0)
+      console.log(res);
+      if(res.diff+365>0)
         $scope.message_abo.push('La caution expire dans : ' + res.diff + ' jours \n');
-      else if(res.diff<0 && res.diff>-360)
-        $scope.message_abo.push('La caution est expirée depuis : ' + res.diff + ' jours \n');
+      else if(res.diff+365<0 && res.diff>-365*2)
+        $scope.message_abo.push('La caution est expirée depuis : ' + (res.diff*-1-365) + ' jours \n');
       else
         $scope.message_abo.push('La caution est expirée depuis le : ' + new Date(user.caution).toISOString().substring(0,10) + '\n');
     }
     res = $scope.date_diff_abo(user.paiement);
     if(res.retard === 1){
-      if(res.diff>0)
+      if(res.diff+365>0)
         $scope.message_abo.push('Le paiement expire dans : ' + res.diff + ' jours \n');
-      else if(res.diff<0 && res.diff>-360)
-        $scope.message_abo.push('Le paiement est expiré depuis : ' + res.diff + ' jours \n');
+      else if(res.diff+365<0 && res.diff>-365*2)
+        $scope.message_abo.push('Le paiement est expiré depuis : ' + res.diff*-1-365) + ' jours \n');
       else
         $scope.message_abo.push('Le paiement est expiré depuis le : ' + new Date(user.paiement).toISOString().substring(0,10) + '\n');
     }
