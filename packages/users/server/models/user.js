@@ -112,6 +112,12 @@ var UserSchema = new Schema({
   caution : {
     type: Date
   },
+  montant_caution : {
+    type :Number
+  },
+  montant_paiement : {
+    type : Number
+  },
   historique: [{        
       media: {
           type: Schema.ObjectId
