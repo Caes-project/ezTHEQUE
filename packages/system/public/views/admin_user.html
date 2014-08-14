@@ -138,6 +138,10 @@
         <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
           {{message_info.message}}
         </div>
+        <div data-ng-show='message_abo' id='message_abo' class="alert alert-danger trans_message_error" role="alert">
+          <p ng-repeat='message in message_abo'>{{message}}</p>
+        </div>
+        <br/>
       </article>
     </div>
     <div class='row'>

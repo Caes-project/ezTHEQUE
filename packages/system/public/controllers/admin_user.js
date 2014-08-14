@@ -58,26 +58,55 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
    function checkDureeAbo(user){
     var res;
+    $scope.message_abo=[];
     res = $scope.date_diff_abo(user.livre_mag_revue);
     if(res.retard === 1){
-      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+      if(res.diff>0)
+        $scope.message_abo.push('Abonnement livre ce termine dans : ' + res.diff + ' jours ');
+      else if(res.diff<0 && res.diff>-360)
+        $scope.message_abo.push('Abonnement livre est terminé depuis : ' + res.diff + ' jours \n');
+      else
+        $scope.message_abo.push('Abonnement livre est terminé depuis le : ' + new Date(user.livre_mag_revue).toISOString().substring(0,10) + '\n');
     }
     res = $scope.date_diff_abo(user.DVD);
     if(res.retard === 1){
-      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+      if(res.diff>0)
+        $scope.message_abo.push('Abonnement DVD ce termine dans : ' + res.diff + ' jours \n');
+      else if(res.diff<0 && res.diff>-360)
+        $scope.message_abo.push('Abonnement DVD est terminé depuis : ' + res.diff + ' jours \n');
+      else
+        $scope.message_abo.push('Abonnement DVD est terminé depuis le : ' + new Date(user.DVD).toISOString().substring(0,10) + '\n');
     }
     res = $scope.date_diff_abo(user.CD);
     if(res.retard === 1){
-      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+      if(res.diff>0)
+        $scope.message_abo.push('Abonnement CD ce termine dans : ' + res.diff + ' jours \n');
+      else if(res.diff<0 && res.diff>-360)
+        $scope.message_abo.push('Abonnement CD est terminé depuis : ' + res.diff + ' jours \n');
+      else
+        $scope.message_abo.push('Abonnement CD est terminé depuis le : ' + new Date(user.CD).toISOString().substring(0,10) + ' \n');
     }
     res = $scope.date_diff_abo(user.caution);
     if(res.retard === 1){
-      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+      if(res.diff>0)
+        $scope.message_abo.push('La caution expire dans : ' + res.diff + ' jours \n');
+      else if(res.diff<0 && res.diff>-360)
+        $scope.message_abo.push('La caution est expirée depuis : ' + res.diff + ' jours \n');
+      else
+        $scope.message_abo.push('La caution est expirée depuis le : ' + new Date(user.caution).toISOString().substring(0,10) + '\n');
     }
     res = $scope.date_diff_abo(user.paiement);
     if(res.retard === 1){
-      message_info('Attention il reste '+ res.diff + ' jour(s) avant la fin d\'un abonnement', 'error');
+      if(res.diff>0)
+        $scope.message_abo.push('Le paiement expire dans : ' + res.diff + ' jours \n');
+      else if(res.diff<0 && res.diff>-360)
+        $scope.message_abo.push('Le paiement est expiré depuis : ' + res.diff + ' jours \n');
+      else
+        $scope.message_abo.push('Le paiement est expiré depuis le : ' + new Date(user.paiement).toISOString().substring(0,10) + '\n');
     }
+    $timeout(function(){
+      $scope.message_abo =null;
+    }, 6000*3);
   }
 
 
@@ -456,7 +485,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       var diff = fin.getTime()- today.getTime();
       diff = Math.floor(diff / (1000 * 60 * 60 * 24));
       var res = {};
-      if(diff >= 15){
+      if(diff >= 30){
         res.retard = 0;
         res.diff = diff;
       }else{
