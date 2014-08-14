@@ -157,6 +157,11 @@ UserSchema.pre('save', function(next) {
   next();
 });
 
+UserSchema.pre('save', function(next) {
+  this.date_maj = new Date();
+  next();
+});
+
 /**
  * Methods
  */
