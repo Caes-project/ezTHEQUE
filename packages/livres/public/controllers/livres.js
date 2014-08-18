@@ -39,10 +39,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       }
     }
 
-    Livres.getSettings(function(settings){
-      $scope.settings = settings.settings;
-    });
-
+    
     function incr_date(date_str, typeMedia){
 
       var today = new Date();
@@ -179,6 +176,9 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         $scope.code_barre_recherche = livre.code_barre;
         $scope.cote = livre.cote;
         $scope.resume = livre.resume;
+      });
+      Livres.getSettings(function(settings){
+        $scope.settings = settings.settings;
       });
     };
 
@@ -376,6 +376,8 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
     };
 
     $scope.date_diff = function(livre){
+      if(livre.emprunt.date_fin)
+        console.log(livre);
       var today = new Date();
       if(!livre.emprunt.date_fin){
         return 1;
@@ -385,10 +387,18 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       diff = Math.floor(diff / (1000 * 60 * 60 * 24));
       var res = {};
       if(diff >= 0){
-        res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+        if($scope.global.isAdmin){
+          res.message = 'Média emprunté par ' +  livre.emprunt.user.name + ' Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+        }else{
+          res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+        }
         res.retard = 0;
       }else{
-        res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+        if($scope.global.isAdmin){
+          res.message = 'Média emprunté par ' +  livre.emprunt.user.name + ' Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+        }else{
+          res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+        }
         res.retard = 1;
       }
       return res;

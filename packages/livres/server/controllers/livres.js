@@ -75,7 +75,7 @@ exports.saveImage = function(req, res) {
     }else if(req.files.image){
         livre.lien_image = '/packages/livres/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
-        livre.lien_image = '/packages/default.jpg';
+        livre.lien_image = '/packages/livres/upload/default.jpg';
     }
    livre.save(function(err) {
         if (err) {
@@ -213,28 +213,16 @@ exports.show = function(req, res) {
  * List of Livres
  */
 exports.all = function(req, res) {
-    if(req.query){
-        Livre.find(req.query).sort({'ref':1/-1}).exec(function(err, livres) {
-            if (err) {
-                res.render('error', {
-                    status: 500,
-                    error : err
-                });
-            } else {
-                res.jsonp(200, livres);
-            }
-        });
-    }else{
-        Livre.find().sort('-created').exec(function(err, livres) {
-            if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                res.jsonp(200, livres);
-            }
-        });
-    }
+    Livre.find(req.query).sort({'ref':1/-1}).populate('emprunt.user', 'name').exec(function(err, livres) {
+        if (err) {
+            res.render('error', {
+                status: 500,
+                error : err
+            });
+        } else {
+            res.jsonp(200, livres);
+        }
+    });
 };
 
 exports.getMaxRef = function(req, res){

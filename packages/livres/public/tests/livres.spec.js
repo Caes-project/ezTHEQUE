@@ -51,7 +51,7 @@
             it('$scope.find() should create an array with at least one livre object ' +
                 'fetched from XHR', function() {
 
-                    // test expected GET request
+                   // test expected GET request
                     $httpBackend.expectGET('livres').respond([{
                         code_barre : '978120322514014',
                         title: 'An Livre about MEAN',
@@ -96,6 +96,7 @@
 
                     // test expected GET request with response object
                     $httpBackend.expectGET(/livres\/([0-9a-fA-F]{24})$/).respond(testLivreData());
+                    $httpBackend.expectGET('livres\/Settings').respond();
 
                     // run controller
                     scope.findOne();
