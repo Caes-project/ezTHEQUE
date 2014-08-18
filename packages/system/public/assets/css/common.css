@@ -54,6 +54,17 @@ footer p {
 	border-color: #78FA89;
 }*/
 
+@media screen and (min-width: 1600px) {
+    .container {
+        max-width: (1600px - @grid-gutter-width);
+    }
+}
+@media screen and (min-width: 1900px) {
+    .container {
+        max-width: (1900px - @grid-gutter-width);
+    }
+}
+
 .input_user{
     width: 250px;
     padding: 0 10px;

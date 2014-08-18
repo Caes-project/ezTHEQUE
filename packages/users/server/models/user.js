@@ -118,6 +118,12 @@ var UserSchema = new Schema({
   montant_paiement : {
     type : Number
   },
+  commentaires : {
+    type : String
+  },
+  laboratoire : {
+    type : String
+  },
   historique: [{        
       media: {
           type: Schema.ObjectId
