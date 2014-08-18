@@ -89,11 +89,11 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     res = $scope.date_diff_abo(user.caution);
     if(res.retard === 1){
       console.log(res);
-      if(res.diff+365>0)
-        $scope.message_abo.push('La caution expire dans : ' + res.diff + ' jours \n');
-      else if(res.diff+365<0 && res.diff>-365*2)
+      if(res.diff < -335 && res.diff+365>0)
+        $scope.message_abo.push('La caution expire dans : ' + (res.diff+365) + ' jours \n');
+      else if(res.diff < -365 && res.diff+365<0 && res.diff>-365*2)
         $scope.message_abo.push('La caution est expirée depuis : ' + (res.diff*-1-365) + ' jours \n');
-      else
+      else if(res.diff < -365)
         $scope.message_abo.push('La caution est expirée depuis le : ' + new Date(user.caution).toISOString().substring(0,10) + '\n');
     }
     res = $scope.date_diff_abo(user.paiement);
@@ -507,9 +507,9 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
      }else if(newAbo === 'CD'){
        $scope.user.CD = end;
      }else if(newAbo === 'caution'){
-       $scope.user.caution = end;
+       $scope.user.caution = today;
      }else if(newAbo === 'paiement'){
-       $scope.user.paiement = end;
+       $scope.user.paiement = today;
      }
      $scope.user.$update(function(response){
       message_info('Abonnement créé !');
