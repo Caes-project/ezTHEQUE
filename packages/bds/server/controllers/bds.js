@@ -72,7 +72,7 @@ exports.saveImage = function(req, res) {
     if(req.files.image.originalname !== null){
         bd.lien_image = '/packages/bds/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
-        bd.lien_image = '/packages/default.jpg';
+        bd.lien_image = '/packages/bds/upload/default.jpg';
     }
    bd.save(function(err) {
         if (err) {

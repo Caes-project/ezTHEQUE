@@ -106,8 +106,11 @@
                 var user = new Users(putUserData());
                 scope.test = true;
                 // mock livre in scope
-                scope.settings = {};
-                scope.settings.delay_livre = 14;
+                scope.settings = {
+                    delay_livre : 14
+                };
+                
+                // console.log(scope.settings);
                 scope.newmedia = livre;
                 scope.newmedia.typeMedia = 'Livres';
                 scope.user = user; 

@@ -72,7 +72,7 @@ exports.saveImage = function(req, res) {
     if(req.files.image.originalname !== null){
         cd.lien_image = '/packages/cds/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
-        cd.lien_image = '/packages/default.jpg';
+        cd.lien_image = '/packages/cds/upload/default.jpg';
     }
    cd.save(function(err) {
         if (err) {

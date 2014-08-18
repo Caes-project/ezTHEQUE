@@ -72,7 +72,7 @@ exports.saveImage = function(req, res) {
     if(req.files.image.originalname !== null){
         dvd.lien_image = '/packages/dvds/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
-        dvd.lien_image = '/packages/default.jpg';
+        dvd.lien_image = '/packages/dvds/upload/default.jpg';
     }
    dvd.save(function(err) {
         if (err) {

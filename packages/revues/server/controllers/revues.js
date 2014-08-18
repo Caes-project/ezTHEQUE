@@ -74,7 +74,7 @@ exports.saveImage = function(req, res) {
     if(req.files.image.originalname !== null){
         revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
     }else{
-        revue.lien_image = '/packages/default.jpg';
+        revue.lien_image = '/packages/revues/upload/default.jpg';
     }
         revue.save(function(err) {
             if (err) {
