@@ -10,7 +10,11 @@
       <h3>
         <a data-ng-href="#!/bds/{{bd._id}}">{{bd.title}}</a>
       </h3> 
-      <div data-ng-hide="!bd.lien_image"><img ng-src="{{bd.lien_image}}" border="0" align="center" width=80 height=130> </div>
+      <div data-ng-hide="!bd.lien_image">
+        <a href='#!/bds/{{bd._id}}'>
+          <img ng-src="{{bd.lien_image}}" border="0" align="center" width=80 height=130> 
+        </a>
+      </div>
       <p class='lato-font-title'> {{bd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{bd.dewey}} &nbsp Ref. {{bd.ref}}</p>
       <p class='lato-font' ng-show="bd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(bd).retard}' ng-bind='date_diff(bd).message'> </p>
     </li>

@@ -16,7 +16,11 @@
       <h3>
         <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
       </h3> 
-      <div data-ng-hide="!livre.lien_image"><img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> </div>
+      <div data-ng-hide="!livre.lien_image">
+        <a href='#!/livres/{{livre._id}}'>
+          <img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> 
+        </a>
+      </div>
       <p class='lato-font-title'> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</p>
       <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(livre).retard}' ng-bind='date_diff(livre).message'> </p>
     </li>

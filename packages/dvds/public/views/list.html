@@ -10,7 +10,11 @@
       <h3>
         <a data-ng-href="#!/dvds/{{dvd._id}}">{{dvd.title}}</a>
       </h3> 
-      <div data-ng-hide="!dvd.lien_image"><img ng-src="{{dvd.lien_image}}" border="0" align="center" width=80 height=130> </div>
+      <div data-ng-hide="!dvd.lien_image">
+        <a href='#!/dvds/{{dvd._id}}'>
+          <img ng-src="{{dvd.lien_image}}" border="0" align="center" width=80 height=130> 
+        </a>
+      </div>
       <p class='lato-font-title'> {{dvd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{dvd.dewey}} &nbsp Ref. {{dvd.ref}}</p>
       <p class='lato-font' ng-show="dvd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(dvd).retard}' ng-bind='date_diff(dvd).message'> </p>
     </li>

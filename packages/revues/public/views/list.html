@@ -13,7 +13,11 @@
          <h3>
           <a data-ng-href="#!/revues/{{revue._id}}">{{revue.title}}</a>
         </h3> 
-        <div data-ng-hide="!revue.lien_image"><img ng-src="{{revue.lien_image}}" border="0" align="center" width=80 height=130> </div>
+        <div data-ng-hide="!revue.lien_image">
+          <a href='#!/revues/{{revue._id}}'>
+            <img ng-src="{{revue.lien_image}}" border="0" align="center" width=80 height=130> 
+          </a>
+        </div>
         <p class='lato-font-title'> {{revue.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{revue.dewey}} &nbsp Ref. {{revue.ref}}</p>
         <p class='lato-font' ng-show="revue.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(revue).retard}' ng-bind='date_diff(revue).message'> </p>
       </li>

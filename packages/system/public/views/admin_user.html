@@ -129,10 +129,10 @@
     <div class='row'>
       <!-- Message de validation  -->
       <article style='min-height : 90px'>
-        <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user !== user._id' class='alert alert-danger ' role='alert'>
+        <div ng-show='newmedia.emprunt.user &&newmedia.emprunt.user !== user._id' class='alert alert-danger' role='alert'>
           <img src="/system/assets/img/error_ico.png" height=30px width=30px alt="Error" />  Média déjà emprunté jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}}
         </div>
-        <div ng-show=' newmedia.emprunt.user &&newmedia.emprunt.user === user._id' class='alert alert-info '  role="alert">
+        <div ng-show='newmedia.emprunt.user &&newmedia.emprunt.user === user._id' class='alert alert-info '  role="alert">
          Vous avez jusqu'au {{newmedia.emprunt.date_fin | date: 'dd/MM/yyyy'}} pour rendre cet emprunt
         </div>
         <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info ' : !message_info.status,'alert alert-danger ' : message_info.status}" role="alert">
