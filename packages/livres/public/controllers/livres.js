@@ -28,10 +28,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         console.log('gros hack pour les tests');
       }else{
         $timeout.cancel(timer);
-        var transition = document.getElementById('message_info');
-        transition.classList.remove('trans_message');
-        transition.offsetWidth = transition.offsetWidth;
-        transition.classList.add('trans_message');
+        // var transition = document.getElementById('message_info');
+        // transition.classList.remove('trans_message');
+        // transition.offsetWidth = transition.offsetWidth;
+        // transition.classList.add('trans_message');
         $scope.message_info = res;
         timer = $timeout(function(){
           $scope.message_info =null;
