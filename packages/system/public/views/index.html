@@ -55,31 +55,31 @@
 				<h3> <a data-ng-href="#!/livres/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
 				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/livres/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
 				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/livres/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/livres/{{newmedia._id}}" class="btn btn-primary btn-sm"> emprunter</a> 
 			</div>
 			<div ng-show="newmedia.typeMedia === 'BD'"> 
 				<h3> <a data-ng-href="#!/bds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
 				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/bds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
 				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/bds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/bds/{{newmedia._id}}" class="btn btn-primary btn-sm"> emprunter</a> 
 			</div>
 			<div ng-show="newmedia.typeMedia === 'CD'"> 
 				<h3> <a data-ng-href="#!/cds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
 				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/cds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=130 height=130> </a></div>
 				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/cds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/cds/{{newmedia._id}}" class="btn btn-primary btn-sm"> emprunter</a> 
 			</div>
 			<div ng-show="newmedia.typeMedia === 'DVD'"> 
 				<h3> <a data-ng-href="#!/dvds/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
 				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/dvds/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
 				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/dvds/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/dvds/{{newmedia._id}}" class="btn btn-primary btn-sm"> emprunter</a> 
 			</div>
 			<div ng-show="newmedia.typeMedia === 'Magazines'"> 
 				<h3> <a data-ng-href="#!/revues/{{newmedia._id}}">{{newmedia.title}}</a> </h3>
 				<div data-ng-hide="!newmedia.lien_image"><a data-ng-href="#!/revues/{{newmedia._id}}"><img ng-src="{{newmedia.lien_image}}" border="0" align="center" width=80 height=130> </a></div>
 				<div ng-show="newmedia">  Genre:{{newmedia.dewey}} &nbsp Ref. {{newmedia.ref}} </div>
-				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/revues/{{newmedia._id}}/emprunt" class="btn btn-primary btn-sm"> emprunter</a> 
+				<a ng-if='!newmedia.emprunt.user && newmedia' type='submit' ng-href="/#!/revues/{{newmedia._id}}" class="btn btn-primary btn-sm"> emprunter</a> 
 			</div>
 			<span ng-show='emprunteur'> emprunté par {{emprunteur.name}} </span>
 			<button ng-if='newmedia.emprunt.user' type='submit' ng-click='rendreLivre(newmedia)' class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-book"></i> Rendre</button>

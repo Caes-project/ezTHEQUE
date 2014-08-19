@@ -22,7 +22,6 @@ Livres.register(function(app, auth, database) {
     Livres.menus.add({
         title: 'Livres',
         link: 'livres',
-        roles: ['authenticated'],
         menu: 'main'
     });
 

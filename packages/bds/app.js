@@ -20,7 +20,6 @@ Bds.register(function(app, auth, database) {
     Bds.menus.add({
         title: 'BD',
         link: 'bds',
-        roles: ['authenticated'],
         menu: 'main'
     });
 

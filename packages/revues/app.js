@@ -20,7 +20,6 @@ Revues.register(function(app, auth, database) {
     Revues.menus.add({
         title: 'Revues',
         link: 'revues',
-        roles: ['authenticated'],
         menu: 'main'
     });
 

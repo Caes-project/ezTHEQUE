@@ -24,7 +24,7 @@ module.exports = function(Revues, app, auth, database) {
     app.route('/revues/createRevues')
         .get(auth.requiresLogin, revues.createRevues); 
     app.route('/revues/getRevues')
-        .get(auth.requiresLogin, revues.getRevues);
+        .get(revues.getRevues);
     app.route('/revues/:revueId/emprunt')
         .post(auth.requiresLogin, revues.update);
     app.route('/revues/upload')

@@ -20,7 +20,6 @@ Cds.register(function(app, auth, database) {
     Cds.menus.add({
         title: 'CD',
         link: 'cds',
-        roles: ['authenticated'],
         menu: 'main'
     });
 

@@ -20,7 +20,6 @@ Dvds.register(function(app, auth, database) {
     Dvds.menus.add({
         title: 'Dvd',
         link: 'dvds',
-        roles: ['authenticated'],
         menu: 'main'
     });
 

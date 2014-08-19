@@ -34,11 +34,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     $scope.newAbo = {};
 
     if($scope.global.message_info){
-      $scope.message_info = $scope.global.message_info;
+      message_info($scope.global.message_info);
       delete $scope.global.message_info;
-      $timeout(function(){
-        $scope.message_info =null;
-      }, 15000);
     }
 
     $scope.date = new Date().toISOString().substring(0, 10);

@@ -8,7 +8,7 @@ module.exports = function(Livres, app, auth, database) {
     app.route('/livres/getMaxRef')
         .get(auth.requiresAdmin, livres.getMaxRef);
     app.route('/livres/Settings')
-        .get(auth.requiresAdmin, livres.getSettings(Livres))
+        .get(livres.getSettings(Livres))
         .put(auth.requiresAdmin, livres.putSettings(Livres));
     app.route('/livres/:livreId/emprunt')
         .post(auth.requiresLogin, livres.update);

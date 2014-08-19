@@ -138,11 +138,8 @@ function verifMediaCB(media, type){
  if(media[0]){
    $scope.newmedia = media[0];
    $scope.newmedia.typeMedia = type;
-   if(media[0].emprunt.user === $scope.user._id){
+   if(media[0].emprunt.user){
     $scope.rendreLivre(media[0]);
-    $scope.refMedia = null;
-  }else{
-    $scope.validerEmprunt();
     $scope.refMedia = null;
   }
 }
@@ -244,7 +241,6 @@ function getDVD(type){
 }
 
 $scope.verifInput = function(){
-  console.log('lol');
   $scope.newmedia = null;
   if($scope.refMedia && $scope.refMedia.length > 12){
     getLivre('CB');
@@ -301,7 +297,7 @@ $scope.verifInput = function(){
 
     $scope.rendreLivre = function(media) {
       console.log(media.typeMedia);
-      var emprunteur = media.emprunt.user;
+      var emprunteur = media.emprunt.user._id;
       media.historique.push({
         'user' : emprunteur,
         'date_debut' : media.emprunt.date_debut,
