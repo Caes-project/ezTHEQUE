@@ -414,10 +414,18 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
     diff = Math.floor(diff / (1000 * 60 * 60 * 24));
     var res = {};
     if(diff >= 0){
-      res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+      if($scope.global.isAdmin){
+        res.message = 'Média emprunté par ' +  dvd.emprunt.user.name + ' Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+      }else{
+        res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+      }
       res.retard = 0;
     }else{
-      res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+      if($scope.global.isAdmin){
+        res.message = 'Média emprunté par ' +  dvd.emprunt.user.name + ' Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+      }else{
+        res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+      }
       res.retard = 1;
     }
     return res;
@@ -429,4 +437,5 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
       $scope.ref = dvd.ref + 1;
     });
   };
+
 }]);

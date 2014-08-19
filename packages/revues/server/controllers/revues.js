@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    Revue = mongoose.model('Revue'),
-    ListeRevues = mongoose.model('ListeRevues'),
-    fs = require('fs'),
+ var mongoose = require('mongoose'),
+ Revue = mongoose.model('Revue'),
+ ListeRevues = mongoose.model('ListeRevues'),
+ fs = require('fs'),
     // http = require('http'),
     _ = require('lodash');
 
@@ -14,7 +14,7 @@ var mongoose = require('mongoose'),
 /**
  * Find revue by id
  */
-exports.revue = function(req, res, next, id) {
+ exports.revue = function(req, res, next, id) {
     Revue.load(id, function(err, revue) {
         if (err) return next(err);
         if (!revue) return next(new Error('Failed to load revue ' + id));
@@ -26,7 +26,7 @@ exports.revue = function(req, res, next, id) {
 /**
  * Create a revue
  */
-exports.create = function(req, res) {
+ exports.create = function(req, res) {
     var revue = new Revue(req.body);
     revue.save(function(err) {
         if (err) {
@@ -59,23 +59,23 @@ function saveImageToServer(req, res, revue){
                 }
                 // res.jsonp(revue);
             }
-          /*});*/
-        });
-}
-
-exports.saveImage = function(req, res) {
-    var revue = new Revue(req.body);
-    console.log(revue);
-    revue.emprunt = {
-                        user: null,
-                        date_debut : null,
-                        date_fin : null
-                    };
-    if(req.files.image.originalname !== null){
-        revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
-    }else{
-        revue.lien_image = '/packages/revues/upload/default.jpg';
+            /*});*/
+    });
     }
+
+    exports.saveImage = function(req, res) {
+        var revue = new Revue(req.body);
+        console.log(revue);
+        revue.emprunt = {
+            user: null,
+            date_debut : null,
+            date_fin : null
+        };
+        if(req.files.image.originalname !== null){
+            revue.lien_image = '/packages/revues/upload/' + req.body.ref + '_' +req.body.code_barre+'.'+ req.files.image.extension;
+        }else{
+            revue.lien_image = '/packages/revues/upload/default.jpg';
+        }
         revue.save(function(err) {
             if (err) {
                 console.log(err);
@@ -93,20 +93,20 @@ exports.saveImage = function(req, res) {
                 }
             }
         });     
-};
+    };
 
-exports.edit = function(req, res) {
-    var revue;
-    Revue.load(req.params.revueId, function(err, revue_) {
-        if(err){
-            console.log(err);
-        }else{
-            revue = revue_;
-            revue = _.extend(revue, req.body);
-            if(req.files.image.originalname !== null){
-               revue.lien_image = '/packages/revues/upload/' + revue.ref + '_' +revue.code_barre+'.'+ req.files.image.extension;
-            }
-            revue.save(function(err) {
+    exports.edit = function(req, res) {
+        var revue;
+        Revue.load(req.params.revueId, function(err, revue_) {
+            if(err){
+                console.log(err);
+            }else{
+                revue = revue_;
+                revue = _.extend(revue, req.body);
+                if(req.files.image.originalname !== null){
+                 revue.lien_image = '/packages/revues/upload/' + revue.ref + '_' +revue.code_barre+'.'+ req.files.image.extension;
+             }
+             revue.save(function(err) {
                 if (err) {
                     console.log(err);
                     return res.send(400, {
@@ -125,14 +125,14 @@ exports.edit = function(req, res) {
                     }
                 }
             });
-        }
-    });     
+         }
+     });     
 };
 
 /**
  * Update an revue
  */
-exports.update = function(req, res) {
+ exports.update = function(req, res) {
     if(req.body.emprunt.user && req.revue.emprunt.user || !req.body.emprunt.user && !req.revue.emprunt.user){
         console.log('Error : le revue à déjà un emprunt');
         return res.send(400,'/', {
@@ -159,7 +159,7 @@ exports.update = function(req, res) {
 /**
  * Delete an revue
  */
-exports.destroy = function(req, res) {
+ exports.destroy = function(req, res) {
     var revue = req.revue;
 
     revue.remove(function(err) {
@@ -177,35 +177,23 @@ exports.destroy = function(req, res) {
 /**
  * Show an revue
  */
-exports.show = function(req, res) {
+ exports.show = function(req, res) {
     res.jsonp(req.revue);
 };
 
 /**
  * List of Revues
  */
-exports.all = function(req, res) {
-    if(req.query){
-        Revue.find(req.query).sort({'ref':1/-1}).exec(function(err, revues) {
-            if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                res.jsonp(200, revues);
-            }
-        });
-    }else{
-        Revue.find().sort('-created').exec(function(err, revues) {
-            if (err) {
-                res.render('error', {
-                    status: 500
-                });
-            } else {
-                res.jsonp(200, revues);
-            }
-        });
-    }
+ exports.all = function(req, res) {
+    Revue.find(req.query).sort({'ref':1/-1}).populate('emprunt.user', 'name').exec(function(err, revues) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(200, revues);
+        }
+    });
 };
 
 exports.getRevues = function(req, res) {
@@ -233,10 +221,10 @@ exports.getRevues = function(req, res) {
 };
 
 exports.createRevues = function(req, res){
-     var revue = new ListeRevues(req.query);
-        revue.save(function(err){
-            res.jsonp(200, revue);
-        });
+   var revue = new ListeRevues(req.query);
+   revue.save(function(err){
+    res.jsonp(200, revue);
+});
 };
 
 exports.getMaxRef = function(req, res){
