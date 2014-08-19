@@ -18,7 +18,7 @@ Revues.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Revues.menus.add({
-        title: 'Revue',
+        title: 'Revues',
         link: 'revues',
         roles: ['authenticated'],
         menu: 'main'

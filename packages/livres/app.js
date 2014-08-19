@@ -20,7 +20,7 @@ Livres.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Livres.menus.add({
-        title: 'livres',
+        title: 'Livres',
         link: 'livres',
         roles: ['authenticated'],
         menu: 'main'
