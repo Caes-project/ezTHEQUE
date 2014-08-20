@@ -3,25 +3,30 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-  User = mongoose.model('User'),
-  async = require('async'),
-  config = require('meanio').loadConfig(),
-  crypto = require('crypto'),
-  nodemailer = require('nodemailer'),
-  templates = require('../template');
+ var mongoose = require('mongoose'),
+ User = mongoose.model('User'),
+ Livres = mongoose.model('Livre'),
+ Bds = mongoose.model('Bd'),
+ Cds = mongoose.model('Cd'),
+ Dvds = mongoose.model('Dvd'),
+ Revues = mongoose.model('Revue'),
+ async = require('async'),
+ config = require('meanio').loadConfig(),
+ crypto = require('crypto'),
+ nodemailer = require('nodemailer'),
+ templates = require('../template');
 
 /**
  * Auth callback
  */
-exports.authCallback = function(req, res) {
+ exports.authCallback = function(req, res) {
   res.redirect('/');
 };
 
 /**
  * Show login form
  */
-exports.signin = function(req, res) {
+ exports.signin = function(req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
@@ -31,7 +36,7 @@ exports.signin = function(req, res) {
 /**
  * Logout
  */
-exports.signout = function(req, res) {
+ exports.signout = function(req, res) {
   req.logout();
   res.redirect('/');
 };
@@ -39,14 +44,14 @@ exports.signout = function(req, res) {
 /**
  * Session
  */
-exports.session = function(req, res) {
+ exports.session = function(req, res) {
   res.redirect('/');
 };
 
 /**
  * Create user
  */
-exports.create = function(req, res, next) {
+ exports.create = function(req, res, next) {
   var user = new User(req.body);
 
   user.provider = 'local';
@@ -69,32 +74,32 @@ exports.create = function(req, res, next) {
     if (err) {
       switch (err.code) {
         case 11000:
-          res.status(400).send([{
-            msg: 'Email already taken',
-            param: 'email'
-          }]);
-          break;
+        res.status(400).send([{
+          msg: 'Email already taken',
+          param: 'email'
+        }]);
+        break;
         case 11001:
-          res.status(400).send([{
-            msg: 'Username already taken',
-            param: 'username'
-          }]);
-          break;
+        res.status(400).send([{
+          msg: 'Username already taken',
+          param: 'username'
+        }]);
+        break;
         default:
-          var modelErrors = [];
+        var modelErrors = [];
 
-          if (err.errors) {
+        if (err.errors) {
 
-            for (var x in err.errors) {
-              modelErrors.push({
-                param: x,
-                msg: err.errors[x].message,
-                value: err.errors[x].value
-              });
-            }
-
-            res.status(400).send(modelErrors);
+          for (var x in err.errors) {
+            modelErrors.push({
+              param: x,
+              msg: err.errors[x].message,
+              value: err.errors[x].value
+            });
           }
+
+          res.status(400).send(modelErrors);
+        }
       }
 
       return res.status(400);
@@ -109,31 +114,71 @@ exports.create = function(req, res, next) {
 /**
  * Send User
  */
-exports.me = function(req, res) {
+ exports.me = function(req, res) {
   res.json(req.user || null);
 };
 
+function findAndPopulate (user_mail, callback){
+  console.log(user_mail);
+  User.findOne({
+    email : user_mail
+  })
+  .exec(function(err, user) {
+    var listeEmprunts = [];
+    var emprunts =  user.emprunt;
+    var pushMedia = function(typeMedia, callback2){
+      return function(err, media){
+        if(err) console.log(err);
+        media.typeMedia=typeMedia;
+        listeEmprunts.push(media);
+        callback2(null);
+      };
+    };
+    function getMedia(emprunt, callback2){
+      if(emprunt.type === 'Livres'){
+        Livres.findById(
+         emprunt.id , pushMedia('Livres', callback2));
+      }else if(emprunt.type === 'Magazines'){
+        Revues.findById(
+          emprunt.id , pushMedia('Magazines', callback2));
+      }else if(emprunt.type === 'BD'){
+        Bds.findById(
+         emprunt.id , pushMedia('BD', callback2));
+      }else if(emprunt.type === 'CD'){
+        Cds.findById(
+         emprunt.id , pushMedia('CD', callback2));
+      }else if(emprunt.type === 'DVD'){
+        Dvds.findById(
+          emprunt.id , pushMedia('DVD', callback2));
+      }
+    }    
+    async.map(emprunts, getMedia, function(err, results){
+      if(err) console.log(err);
+      callback(err, user, listeEmprunts);
+    });  
+  });
+}
 /**
  * Find user by id
  */
-exports.user = function(req, res, next, id) {
+ exports.user = function(req, res, next, id) {
   User
-    .findOne({
-      _id: id
-    })
-    .exec(function(err, user) {
-      if (err) return next(err);
-      if (!user) return next(new Error('Failed to load User ' + id));
-      req.profile = user;
-      next();
-    });
+  .findOne({
+    _id: id
+  })
+  .exec(function(err, user) {
+    if (err) return next(err);
+    if (!user) return next(new Error('Failed to load User ' + id));
+    req.profile = user;
+    next();
+  });
 };
 
 /**
  * Resets the password
  */
 
-exports.resetpassword = function(req, res, next) {
+ exports.resetpassword = function(req, res, next) {
   User.findOne({
     resetPasswordToken: req.params.token,
     resetPasswordExpires: {
@@ -173,7 +218,7 @@ exports.resetpassword = function(req, res, next) {
 /**
  * Send reset password email
  */
-function sendMail(mailOptions) {
+ function sendMail(mailOptions) {
   var transport = nodemailer.createTransport('SMTP', config.mailer);
   transport.sendMail(mailOptions, function(err, response) {
     if (err){
@@ -188,25 +233,24 @@ function sendMail(mailOptions) {
 /**
  * Callback for forgot password link
  */
-exports.forgotpassword = function(req, res, next) {
+ exports.forgotpassword = function(req, res, next) {
   async.waterfall([
-
-      function(done) {
-        crypto.randomBytes(20, function(err, buf) {
-          var token = buf.toString('hex');
-          done(err, token);
-        });
-      },
-      function(token, done) {
-        User.findOne({
-            email: req.body.text
-          }, function(err, user) {
-          if (err || !user) return done(true);
-          done(err, user, token);
-        });
-      },
-      function(user, token, done) {
-        user.resetPasswordToken = token;
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({
+        email: req.body.text
+      }, function(err, user) {
+        if (err || !user) return done(true);
+        done(err, user, token);
+      });
+    },
+    function(user, token, done) {
+      user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
         user.save(function(err) {
           done(err, token, user);
@@ -221,6 +265,39 @@ exports.forgotpassword = function(req, res, next) {
         sendMail(mailOptions);
         done(null, true);
       }
+      ],
+      function(err, status) {
+        var response = {
+          message: 'Mail successfully sent',
+          status: 'success'
+        };
+        if (err) {
+          response.message = 'User does not exist';
+          response.status = 'danger';
+        }
+        res.json(response);
+      }
+      );
+};
+
+exports.mailRetard = function(req, res, next){
+  async.waterfall([
+    function(done) {
+      findAndPopulate(
+        req.body.text , function(err, user, listeEmprunts) {
+          if (err || !user) return done(true);
+          done(err, user, listeEmprunts);
+        });
+    },
+    function(user, listeEmprunts, done) {
+      var mailOptions = {
+        to: user.email,
+        from: config.emailFrom
+      };
+      mailOptions = templates.prevenir_retard(user, req,  mailOptions, listeEmprunts);
+      sendMail(mailOptions);
+      done(null, true);
+    }
     ],
     function(err, status) {
       var response = {
@@ -233,5 +310,5 @@ exports.forgotpassword = function(req, res, next) {
       }
       res.json(response);
     }
-  );
+    );
 };

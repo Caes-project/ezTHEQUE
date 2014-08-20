@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 'Revues', 'Cds','Dvds','Bds', '$filter',
-  function($scope,$stateParams, $location, $timeout, Users, Global, Livres, Revues, Cds, Dvds, Bds, $filter) {
+angular.module('mean.system').controller('UsersAdminController', ['$scope', '$stateParams','$location', '$timeout','Users','Global', 'Livres', 'Revues', 'Cds','Dvds','Bds', '$filter', '$http',
+  function($scope,$stateParams, $location, $timeout, Users, Global, Livres, Revues, Cds, Dvds, Bds, $filter, $http) {
 
     $scope.global = Global;
 
@@ -21,10 +21,35 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         case 'DVD' : nbjour = $scope.settings.delay_DVD; break; 
         case 'Magazines' : nbjour = $scope.settings.delay_revue; break; 
       }
-     
+
       var fin = new Date();
       fin.setDate(today.getDate() + nbjour);
       return fin;
+    }
+
+    function message_info(message, type){
+      var res = {};
+      var time = 2;
+      if(type === 'error'){
+        time = 3;
+      }
+      res.message = message;
+      if(type){
+        res.status = type;
+      }
+      if($scope.test){
+        console.log('gros hack pour les tests');
+      }else{
+        $timeout.cancel(timer);
+        // var transition = document.getElementById('message_info');
+        // transition.classList.remove('trans_message');
+        // transition.offsetWidth = transition.offsetWidth;
+        // transition.classList.add('trans_message');
+        $scope.message_info = res;
+        timer = $timeout(function(){
+          $scope.message_info =null;
+        }, 6000*time);
+      }
     }
 
     $scope.listeModif = [];   
@@ -206,31 +231,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
   var timer;
 
-  function message_info(message, type){
-    var res = {};
-    var time = 2;
-    if(type === 'error'){
-     time = 3;
-    }
-    res.message = message;
-    if(type){
-     res.status = type;
-    }
-    if($scope.test){
-      console.log('gros hack pour les tests');
-    }else{
-      $timeout.cancel(timer);
-      // var transition = document.getElementById('message_info');
-      // transition.classList.remove('trans_message');
-      // transition.offsetWidth = transition.offsetWidth;
-      // transition.classList.add('trans_message');
-      $scope.message_info = res;
-      timer = $timeout(function(){
-        $scope.message_info =null;
-      }, 6000*time);
-    }
-  }
-
   $scope.validerEmprunt = function(){
     if($scope.newmedia){
       var media = $scope.newmedia;
@@ -317,145 +317,145 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       });
     });
    }
-  };
+ };
 
-  function verifMediaRef(media, type){
-    if(media[0]){
-      $scope.newmedia = media[0];
-      $scope.newmedia.typeMedia = type;
-    }
+ function verifMediaRef(media, type){
+  if(media[0]){
+    $scope.newmedia = media[0];
+    $scope.newmedia.typeMedia = type;
   }
+}
 
-  function verifMediaCB(media, type){
-   if(media[0]){
-     $scope.newmedia = media[0];
-     $scope.newmedia.typeMedia = type;
-     if(media[0].emprunt.user === $scope.user._id){
-      $scope.rendreLivre(media[0]);
-      $scope.refMedia = null;
-    }else{
-      $scope.validerEmprunt();
-      $scope.refMedia = null;
-    }
+function verifMediaCB(media, type){
+ if(media[0]){
+   $scope.newmedia = media[0];
+   $scope.newmedia.typeMedia = type;
+   if(media[0].emprunt.user === $scope.user._id){
+    $scope.rendreLivre(media[0]);
+    $scope.refMedia = null;
+  }else{
+    $scope.validerEmprunt();
+    $scope.refMedia = null;
   }
-  }
+}
+}
 
-  function getLivre(type){
-    if(type === 'CB'){
-     Livres.query({
-       code_barre : $scope.refMedia
-     },
-     function(livre){
-      verifMediaCB(livre, 'Livres');
-    });
-   }
-   else if (type === 'Ref'){
-     Livres.query({
-      ref: $scope.refMedia
-    },
-    function(livre){
-      verifMediaRef(livre, 'Livres');
-    });
-   }
-  }
+function getLivre(type){
+  if(type === 'CB'){
+   Livres.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'Livres');
+  });
+ }
+ else if (type === 'Ref'){
+   Livres.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'Livres');
+  });
+ }
+}
 
-  function getBd(type){
-    if(type === 'CB'){
-     Bds.query({
-       code_barre : $scope.refMedia
-     },
-     function(livre){
-      verifMediaCB(livre, 'BD');
-    });
-   }
-   else if (type === 'Ref'){
-     Bds.query({
-      ref: $scope.refMedia
-    },
-    function(livre){
-      verifMediaRef(livre, 'BD');
-    });
-   }
-  }
+function getBd(type){
+  if(type === 'CB'){
+   Bds.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'BD');
+  });
+ }
+ else if (type === 'Ref'){
+   Bds.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'BD');
+  });
+ }
+}
 
-  function getRevue(type){
-    if(type === 'CB'){
-     Revues.query({
-       code_barre : $scope.refMedia
-     },
-     function(livre){
-      verifMediaCB(livre, 'Magazines');
-    });
-   }
-   else if (type === 'Ref'){
-     Revues.query({
-      ref: $scope.refMedia
-    },
-    function(livre){
-      verifMediaRef(livre, 'Magazines');
-    });
-   }
-  }
+function getRevue(type){
+  if(type === 'CB'){
+   Revues.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'Magazines');
+  });
+ }
+ else if (type === 'Ref'){
+   Revues.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'Magazines');
+  });
+ }
+}
 
-  function getCD(type){
-    if(type === 'CB'){
-     Cds.query({
-       code_barre : $scope.refMedia
-     },
-     function(livre){
-      verifMediaCB(livre, 'CD');
-    });
-   }
-   else if (type === 'Ref'){
-     Cds.query({
-      ref: $scope.refMedia
-    },
-    function(livre){
-      verifMediaRef(livre, 'CD');
-    });
-   }
-  }
+function getCD(type){
+  if(type === 'CB'){
+   Cds.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'CD');
+  });
+ }
+ else if (type === 'Ref'){
+   Cds.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'CD');
+  });
+ }
+}
 
-  function getDVD(type){
-    if(type === 'CB'){
-     Dvds.query({
-       code_barre : $scope.refMedia
-     },
-     function(livre){
-      verifMediaCB(livre, 'DVD');
-    });
-   }
-   else if (type === 'Ref'){
-     Dvds.query({
-      ref: $scope.refMedia
-    },
-    function(livre){
-      verifMediaRef(livre, 'DVD');
-    });
-   }
-  }
+function getDVD(type){
+  if(type === 'CB'){
+   Dvds.query({
+     code_barre : $scope.refMedia
+   },
+   function(livre){
+    verifMediaCB(livre, 'DVD');
+  });
+ }
+ else if (type === 'Ref'){
+   Dvds.query({
+    ref: $scope.refMedia
+  },
+  function(livre){
+    verifMediaRef(livre, 'DVD');
+  });
+ }
+}
 
-  $scope.verifInput = function(){
+$scope.verifInput = function(){
+  $scope.newmedia = null;
+  if($scope.refMedia && $scope.refMedia.length > 12){
+    getLivre('CB');
+    getBd('CB');
+    getRevue('CB');
+    getCD('CB');
+    getDVD('CB');
+  }	 
+  else if($scope.refMedia && $scope.refMedia.length > 3){
     $scope.newmedia = null;
-    if($scope.refMedia && $scope.refMedia.length > 12){
-      getLivre('CB');
-      getBd('CB');
-      getRevue('CB');
-      getCD('CB');
-      getDVD('CB');
-    }	 
-    else if($scope.refMedia && $scope.refMedia.length > 3){
-      $scope.newmedia = null;
-      getLivre('Ref');
-      getBd('Ref');
-      getRevue('Ref');
-      getCD('Ref');
-      getDVD('Ref');
-    }
-  };
+    getLivre('Ref');
+    getBd('Ref');
+    getRevue('Ref');
+    getCD('Ref');
+    getDVD('Ref');
+  }
+};
 
-  $scope.date_diff = function(media){
-    var today = new Date();
+$scope.date_diff = function(media){
+  var today = new Date();
       //Si pas de date_fin alors on ne calcule pas la différence entre les dates
       if(!media.emprunt.date_fin){
         return 1;
@@ -512,4 +512,16 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       message_info('Abonnement créé !');
     });
    };
-}]);
+
+   $scope.envoieMail = function() {
+      $http.post('/mailRetard', {
+        text: $scope.user.email
+      })
+      .success(function(response) {
+        $scope.response = response;
+      })
+      .error(function(error) {
+        $scope.response = error;
+      });
+    };
+ }]);
