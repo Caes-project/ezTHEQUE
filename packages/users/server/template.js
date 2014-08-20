@@ -13,8 +13,7 @@ module.exports = {
     mailOptions.subject = 'Reset le mot de passe - EZthèque';
     return mailOptions;
   },
-  prevenir_retard : function(user, req, mailOptions,emprunts, message_perso){
-    console.log(emprunts);
+  prevenir_retard : function(user, req, mailOptions,emprunts){
     mailOptions.html = [
       'Bonjour ' + user.name + ',',
       'Vous avez les emprunts suivants en retards'
@@ -24,8 +23,7 @@ module.exports = {
         emprunt.title + ' emprunté le ' + emprunt.emprunt.date_debut.toISOString().substring(0, 10) + ' qu\' il fallait rendre le ' + emprunt.emprunt.date_fin.toISOString().substring(0, 10) + '\n'
         );
     });
-    mailOptions.html.join('\n\n');
-    console.log(mailOptions.html);
+    mailOptions.html = mailOptions.html.join('\n\n');
     mailOptions.subject = 'Vous avez des retards !';
     return mailOptions;
   }

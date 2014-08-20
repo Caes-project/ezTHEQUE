@@ -32,7 +32,7 @@ module.exports = {
   },
   emailFrom: 'test@caes.com', // sender address like ABC <abc@example.com>
   mailer: {
-    host: "smtpout.intra.inist.fr",
+    host: "localhost",
     port: 25
   }
 };
