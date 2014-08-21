@@ -51,35 +51,24 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
     }
 
     $scope.checkActif = function(user) {
-      if ($scope.listeAll) return true;
       var time = 1000 * 60 * 60 * 24;
       var today = new Date();
-      var fin_caution = new Date(user.caution);
-      var fin_paiement = new Date(user.paiement);
       var fin_livre_mag_revue = new Date(user.livre_mag_revue);
       var fin_DVD = new Date(user.DVD);
       var fin_CD = new Date(user.CD);
-      var diff_caution = fin_caution.getTime() - today.getTime();
-      var diff_paiement = fin_paiement.getTime() - today.getTime();
       var diff_livre_mag_revue = fin_livre_mag_revue.getTime() - today.getTime();
       var diff_DVD = fin_DVD.getTime() - today.getTime();
       var diff_CD = fin_CD.getTime() - today.getTime();
-      if (Math.floor(diff_caution / time) >= -30) {
-        return true;
-      }
-      if (Math.floor(diff_paiement / time) >= -30) {
-        return true;
-      }
       if (Math.floor(diff_livre_mag_revue / time) >= -30) {
-        return true;
+        return $scope.listeAll? false : true;
       }
       if (Math.floor(diff_DVD / time) >= -30) {
-        return true;
+        return $scope.listeAll? false : true;
       }
       if (Math.floor(diff_CD / time) >= -30) {
-        return true;
+        return $scope.listeAll? false : true;
       }
-      return false;
+      return $scope.listeAll? true : false;
     };
 
 

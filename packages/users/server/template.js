@@ -13,6 +13,7 @@ module.exports = {
     mailOptions.subject = 'Reset le mot de passe - EZthèque';
     return mailOptions;
   },
+  
   prevenir_retard : function(user, req, mailOptions,emprunts){
     mailOptions.html = [
       'Bonjour ' + user.name + ',',
@@ -26,5 +27,18 @@ module.exports = {
     mailOptions.html = mailOptions.html.join('\n\n');
     mailOptions.subject = 'Vous avez des retards !';
     return mailOptions;
+  },
+
+  envoi_mdp : function(user, mdp, mailOptions){
+    mailOptions.html = [
+      'Bonjour ' + user.name + ',',
+      'Voici votre mot de passe pour accèder à la médiathèque du CAES',
+      '  ' + mdp + '  ',
+      ' Cliquez ici pour vous connecter : http://coloc.caes.cnrs.fr:50020/#!/'
+    ];
+    mailOptions.html = mailOptions.html.join('\n\n');
+    mailOptions.subject = 'Voici votre mot de passe';
+    return mailOptions;
   }
+
 };
