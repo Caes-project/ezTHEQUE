@@ -130,8 +130,16 @@ function findAndPopulate (user_mail, callback){
       return function(err, media){
         if(err) console.log(err);
         media.typeMedia=typeMedia;
-        listeEmprunts.push(media);
-        callback2(null);
+        var today = new Date();
+        var fin = new Date(media.emprunt.date_fin);
+        var diff = fin.getTime()- today.getTime();
+        diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+        if(diff <= 0){
+          listeEmprunts.push(media);
+          callback2(null);
+        }else{
+          callback2(null);
+        }
       };
     };
     function getMedia(emprunt, callback2){
