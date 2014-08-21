@@ -319,6 +319,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       }
     };
 
+    $scope.pas_trouver = 0;
+
     function verifMediaRef(media, type){
       if(media[0]){
         $scope.newmedia = media[0];
@@ -346,7 +348,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           code_barre : $scope.refMedia
         },
         function(livre){
-          verifMediaCB(livre, 'Livres');
+          if(livre){
+            $scope.pas_trouver++;
+            if($scope.pas_trouver === 5){
+              message_info('Aucun livre trouvé avec ce code barre', 'error');
+            }
+            verifMediaCB(livre, 'Livres');
+          }
         });
       }
       else if (type === 'Ref'){
@@ -365,7 +373,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           code_barre : $scope.refMedia
         },
         function(livre){
-          verifMediaCB(livre, 'BD');
+          if(livre){
+            $scope.pas_trouver++;
+            if($scope.pas_trouver === 5){
+              message_info('Aucun livre trouvé avec ce code barre', 'error');
+            }
+            verifMediaCB(livre, 'BD');
+          }
         });
       }
       else if (type === 'Ref'){
@@ -384,7 +398,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           code_barre : $scope.refMedia
         },
         function(livre){
-          verifMediaCB(livre, 'Magazines');
+          if(livre){
+            $scope.pas_trouver++;
+            if($scope.pas_trouver === 5){
+              message_info('Aucun livre trouvé avec ce code barre', 'error');
+            }
+            verifMediaCB(livre, 'Magazines');
+          }
         });
       }
       else if (type === 'Ref'){
@@ -403,7 +423,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           code_barre : $scope.refMedia
         },
         function(livre){
-          verifMediaCB(livre, 'CD');
+          if(livre){
+            $scope.pas_trouver++;
+            if($scope.pas_trouver === 5){
+              message_info('Aucun livre trouvé avec ce code barre', 'error');
+            }
+            verifMediaCB(livre, 'CD');
+          }
         });
       }
       else if (type === 'Ref'){
@@ -422,7 +448,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           code_barre : $scope.refMedia
         },
         function(livre){
-          verifMediaCB(livre, 'DVD');
+          if(livre){
+            $scope.pas_trouver++;
+            if($scope.pas_trouver === 5){
+              message_info('Aucun livre trouvé avec ce code barre', 'error');
+            }
+            verifMediaCB(livre, 'DVD');
+          }
         });
       }
       else if (type === 'Ref'){
@@ -436,6 +468,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     }
 
     $scope.verifInput = function(){
+      $scope.pas_trouver = 0;
       $scope.newmedia = null;
       if($scope.refMedia && $scope.refMedia.length > 12){
         getLivre('CB');
