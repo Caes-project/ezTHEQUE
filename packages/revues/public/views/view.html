@@ -46,7 +46,7 @@
     <br/> 
     <br/>
     <br/>
-    <span class='lato-font'> {{nbAboRevue}} utilisateurs disponible </span>
+    <span class='lato-font'> {{nbAboRevue}}  utilisateurs disponibles </span>
     <ul style='list-style-type:none;'>
       <li ng-repeat="user in usersActifs | orderBy:['name', 'name'] | filter:searchUser">
         <a ng-click='selectUser(user)' href='' ng-bind='user.name'></a>
