@@ -122,7 +122,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
     $scope.remove = function(livre) {
       if (livre) {
-        console.log('ici');
         livre.$remove(function(response) {
           $location.path('livres');
         });
@@ -133,7 +132,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
           }
         }
       } else {
-        console.log('else');
         $scope.livre.$remove(function(response) {
           $location.path('livres');
         });
@@ -177,9 +175,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         $scope.cote = livre.cote;
         $scope.resume = livre.resume;
       });
-      Livres.getSettings(function(settings){
-        $scope.settings = settings.settings;
-      });
     };
 
     $scope.listeUsers = function(){
@@ -192,7 +187,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         Users.me({
           userId: $scope.global.user._id
         }, function(user){
-          console.log(user);
           $scope.users = user;
           $scope.selectedUser = user;
         });
@@ -213,6 +207,9 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
             $scope.user = user;
           });
         }
+      });
+      Livres.getSettings(function(settings){
+        $scope.settings = settings.settings;
       });
     };
 
@@ -313,6 +310,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         $scope.error=false;
         user.$update(function(response){
           livre.$update(function(response) {
+            message_info('média rendu avec succès');
             $location.path('livres/' + response._id);
           });
         });
@@ -376,8 +374,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
     };
 
     $scope.date_diff = function(livre){
-      if(livre.emprunt.date_fin)
-        console.log(livre);
       var today = new Date();
       if(!livre.emprunt.date_fin){
         return 1;

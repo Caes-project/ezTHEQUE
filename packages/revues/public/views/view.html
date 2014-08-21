@@ -32,12 +32,11 @@
      <li><a href='#'> Revue emprunté {{revue.historique.length}} fois</a></li>
    </ul>
    <div>
-    <a href="#" class="btn btn-primary btn-large"> Réserver</a>
+    <!-- <a href="#" class="btn btn-primary btn-large"> Réserver</a> -->
     <a data-ng-hide="revue.emprunt.user || !global.isAdmin || emprunt" ng-click='emprunt = true' class="btn btn-primary btn-large"> Emprunter</a>
     <!-- <a data-ng-hide="livre.emprunt.user || !global.isAdmin || !emprunt" ng-click='validerEmprunt()' class="btn btn-success btn-large"> Valider</a> -->
   </div>
 
-  {{nbAboRevue}}
   <!-- Formulaire pour emprunté un livre -->
   <div ng-show='global.isAdmin && emprunt'>
     <br/>
@@ -47,8 +46,9 @@
     <br/> 
     <br/>
     <br/>
+    <span class='lato-font'> {{nbAboRevue}} utilisateurs disponible </span>
     <ul style='list-style-type:none;'>
-      <li ng-repeat="user in usersActifs | orderBy:['name', 'name'] | filter:searchUser | slice:0:10">
+      <li ng-repeat="user in usersActifs | orderBy:['name', 'name'] | filter:searchUser">
         <a ng-click='selectUser(user)' href='' ng-bind='user.name'></a>
       </li>
     </ul>

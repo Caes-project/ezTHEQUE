@@ -32,7 +32,7 @@
      <li><a href='#'> Livre emprunté {{livre.historique.length}} fois</a></li>
    </ul>
    <div>
-    <a href="#" class="btn btn-primary btn-large"> Réserver</a>
+    <!-- <a href="#" class="btn btn-primary btn-large"> Réserver</a> -->
     <a data-ng-hide="livre.emprunt.user || !global.isAdmin || emprunt" ng-click='emprunt = true' class="btn btn-primary btn-large"> Emprunter</a>
     <!-- <a data-ng-hide="livre.emprunt.user || !global.isAdmin || !emprunt" ng-click='validerEmprunt()' class="btn btn-success btn-large"> Valider</a> -->
   </div>

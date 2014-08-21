@@ -340,6 +340,7 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
       $scope.error=false;
       user.$update(function(response){
         cd.$update(function(response) {
+          message_info('média rendu avec succès');
           $location.path('cds/' + response._id);
         });
       });

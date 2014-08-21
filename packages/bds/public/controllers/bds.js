@@ -257,55 +257,55 @@ $scope.nbAboBD = 0;
 $scope.checkActif = function(user){
   var time = 1000 * 60 * 60 * 24;
   var today = new Date();
-  var fin_livre_mag_bd = new Date(user.livre_mag_bd);
+  var fin_livre_mag_bd = new Date(user.livre_mag_revue);
   var diff_livre_mag_bd = fin_livre_mag_bd.getTime()- today.getTime();
-      // var fin_caution = new Date(user.caution);
-      // var diff_caution = fin_caution.getTime()- today.getTime();
+  // var fin_caution = new Date(user.caution);
+  // var diff_caution = fin_caution.getTime()- today.getTime();
 
-      // if(Math.floor(diff_livre_mag_bd / time) >=-30 && Math.floor(diff_caution / time) >=-30){
-        if(Math.floor(diff_livre_mag_bd / time) >=-30){
-          $scope.nbAboBD++;
-          return true;
-        }
-        return false;
-      };
+  // if(Math.floor(diff_livre_mag_bd / time) >=-30 && Math.floor(diff_caution / time) >=-30){
+    if(Math.floor(diff_livre_mag_bd / time) >=-30){
+      $scope.nbAboBD++;
+      return true;
+    }
+    return false;
+  };
 
-      $scope.selectUser = function(user){
-        $scope.selectedUser = user;
-        $scope.validerEmprunt();
-      };
+  $scope.selectUser = function(user){
+    $scope.selectedUser = user;
+    $scope.validerEmprunt();
+  };
 
-      $scope.validerEmprunt = function(){
-        if(!$scope.selectedUser){
-          message_info('choisissez un utilisateur !', 'error');
-          return 1;
-        }
-        var bd = $scope.bd;
-        var user = $scope.selectedUser;
-        var newEmprunt;
-        bd.emprunt.user = $scope.selectedUser._id;
-        bd.emprunt.date_debut = $scope.date;
-        bd.emprunt.date_fin = incr_date($scope.date, 'BD');
-        newEmprunt = {
-          id : bd._id,
-          date_debut : $scope.date,
-          date_fin : incr_date($scope.date, 'BD'),
-          type: 'BD'
-        };
-        user.emprunt.push(newEmprunt);
-        user.$update(function(response) {
-          bd.$update(function(response) {
-            $location.path('bds/' + response._id);
-            $scope.emprunt = false;
-            $scope.searchUser= null;
-            message_info('Emprunt validé');
-            $scope.user = user;
-          });
-        });
-      };
+  $scope.validerEmprunt = function(){
+    if(!$scope.selectedUser){
+      message_info('choisissez un utilisateur !', 'error');
+      return 1;
+    }
+    var bd = $scope.bd;
+    var user = $scope.selectedUser;
+    var newEmprunt;
+    bd.emprunt.user = $scope.selectedUser._id;
+    bd.emprunt.date_debut = $scope.date;
+    bd.emprunt.date_fin = incr_date($scope.date, 'BD');
+    newEmprunt = {
+      id : bd._id,
+      date_debut : $scope.date,
+      date_fin : incr_date($scope.date, 'BD'),
+      type: 'BD'
+    };
+    user.emprunt.push(newEmprunt);
+    user.$update(function(response) {
+      bd.$update(function(response) {
+        $location.path('bds/' + response._id);
+        $scope.emprunt = false;
+        $scope.searchUser= null;
+        message_info('Emprunt validé');
+        $scope.user = user;
+      });
+    });
+  };
 
-      $scope.rendreBd = function(bd) {
-        var user;
+  $scope.rendreBd = function(bd) {
+    var user;
     // console.log($scope.bd.emprunt.user);
     Users.findById({
       userId: $scope.bd.emprunt.user
@@ -336,6 +336,7 @@ $scope.checkActif = function(user){
       $scope.error=false;
       user.$update(function(response){
         bd.$update(function(response) {
+           message_info('média rendu avec succès');
           $location.path('bds/' + response._id);
         });
       });

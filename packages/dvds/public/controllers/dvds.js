@@ -344,6 +344,7 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
       $scope.error=false;
       user.$update(function(response){
         dvd.$update(function(response) {
+          message_info('média rendu avec succès');
           $location.path('dvds/' + response._id);
         });
       });
