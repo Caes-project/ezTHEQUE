@@ -514,14 +514,16 @@ $scope.date_diff = function(media){
    };
 
    $scope.envoieMail = function() {
-      $http.post('/mailRetard', {
-        text: $scope.user.email
-      })
-      .success(function(response) {
-        $scope.response = response;
-      })
-      .error(function(error) {
-        $scope.response = error;
-      });
+      if(confirm('Voulez vous vraiment envoyer un mail?')){
+        $http.post('/mailRetard', {
+          text: $scope.user.email
+        })
+        .success(function(response) {
+          $scope.response = response;
+        })
+        .error(function(error) {
+          $scope.response = error;
+        });
+      }
     };
  }]);
