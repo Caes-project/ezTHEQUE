@@ -1,6 +1,9 @@
 <section data-ng-controller="IndexController" >
 	
 	<!-- Index de l'admin  -->
+	<div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info ' : !message_info.status,'alert alert-danger ' : message_info.status}" role="alert">
+    {{message_info.message}}
+  </div>
 	<div class='row'>
 		<div ng-show='global.isAdmin'>
 			<form role="form" class="form-inline col-md-4 col-md-offset-3" name='formulaire'>
