@@ -49,7 +49,7 @@
                 <!-- <input type='text' data-ng-model="dewey" id="dewey" name='dewey' placeholder="Dewey" class="form-control" > -->
                 <select class="form-control" ng-model='dewey' name="dewey" size="1" required>
                     <option value='' > Choix genre </option>
-                    <option value="{{genre}}" ng-repeat="genre in genre_liste_livre">{{genre}}</option>
+                    <option value="{{genre}}" ng-repeat="genre in settings.liste_genre_livre">{{genre}}</option>
                 </select>
             </div>
         </div>

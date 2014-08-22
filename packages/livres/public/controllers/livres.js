@@ -405,6 +405,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         console.log(livre);
         $scope.ref = livre.ref + 1;
       });
+      Livres.getSettings(function(settings){
+        $scope.settings = settings.settings;
+        // $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
+      });
     };
   }
 ]);
