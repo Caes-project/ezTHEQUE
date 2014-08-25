@@ -351,14 +351,14 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
       if (diff >= 0) {
         if ($scope.global.isAdmin) {
           res.message = 'Média emprunté par ' + revue.emprunt.user.name + ' Il reste ' + diff + ' jour(s) avant le retour en rayon.';
-        } else {
+        } else if ($scope.global.authenticated) {
           res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.';
         }
         res.retard = 0;
       } else {
         if ($scope.global.isAdmin) {
           res.message = 'Média emprunté par ' + revue.emprunt.user.name + ' Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
-        } else {
+        } else if($scope.global.authenticated) {
           res.message = 'Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
         }
         res.retard = 1;

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean').controller('LivresController', ['$scope', '$http', '$cookies','$timeout', '$stateParams','$location','Users','Global', 'Livres', 
-  function($scope,$http, $cookies, $timeout, $stateParams, $location, Users, Global, Livres) {
+angular.module('mean').controller('LivresController', ['$scope', '$http', '$cookies', '$timeout', '$stateParams', '$location', 'Users', 'Global', 'Livres',
+  function($scope, $http, $cookies, $timeout, $stateParams, $location, Users, Global, Livres) {
     $scope.global = Global;
     $scope.loader = true;
     $scope.suppr = false;
@@ -14,48 +14,58 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
     var timer;
 
-    function message_info(message, type){
+    function message_info(message, type) {
       var res = {};
       var time = 2;
-      if(type === 'error'){
-       time = 3;
+      if (type === 'error') {
+        time = 3;
       }
       res.message = message;
-      if(type){
-       res.status = type;
+      if (type) {
+        res.status = type;
       }
-      if($scope.test){
+      if ($scope.test) {
         console.log('gros hack pour les tests');
-      }else{
+      } else {
         $timeout.cancel(timer);
         // var transition = document.getElementById('message_info');
         // transition.classList.remove('trans_message');
         // transition.offsetWidth = transition.offsetWidth;
         // transition.classList.add('trans_message');
         $scope.message_info = res;
-        timer = $timeout(function(){
-          $scope.message_info =null;
-        }, 6000*time);
+        timer = $timeout(function() {
+          $scope.message_info = null;
+        }, 6000 * time);
       }
     }
 
-    if($cookies.message_info){
+    if ($cookies.message_info) {
       message_info(decodeURI($cookies.message_info));
       delete $cookies.message_info;
     }
-    
-    function incr_date(date_str, typeMedia){
+
+    function incr_date(date_str, typeMedia) {
 
       var today = new Date();
       var nbjour = 7;
       switch (typeMedia) {
-        case 'Livres' : nbjour = $scope.settings.delay_livre; break; 
-        case 'BD' : nbjour = $scope.settings.delay_BD; break; 
-        case 'CD' : nbjour = $scope.settings.delay_CD; break; 
-        case 'DVD' : nbjour = $scope.settings.delay_DVD; break; 
-        case 'Magazines' : nbjour = $scope.settings.delay_revue; break; 
+        case 'Livres':
+          nbjour = $scope.settings.delay_livre;
+          break;
+        case 'BD':
+          nbjour = $scope.settings.delay_BD;
+          break;
+        case 'CD':
+          nbjour = $scope.settings.delay_CD;
+          break;
+        case 'DVD':
+          nbjour = $scope.settings.delay_DVD;
+          break;
+        case 'Magazines':
+          nbjour = $scope.settings.delay_revue;
+          break;
       }
-     
+
       var fin = new Date();
       fin.setDate(today.getDate() + nbjour);
       return fin;
@@ -73,21 +83,21 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
     $scope.create = function(isValid) {
       if (isValid) {
         var livre = new Livres({
-          code_barre : $scope.code_barre_recherche,
+          code_barre: $scope.code_barre_recherche,
           title: this.title,
           auteur: this.auteur,
-          cote : this.cote,
+          cote: this.cote,
           dewey: this.dewey,
           date_acquis: this.date,
           ref: this.ref,
-          resume : this.resume,
+          resume: this.resume,
           lien_image: this.img_google,
-          emprunt : {
-            'user' : null,
-            'date_debut' : null,
-            'date_fin' : null
+          emprunt: {
+            'user': null,
+            'date_debut': null,
+            'date_fin': null
           },
-          historique : []
+          historique: []
         });
         console.log(livre);
         livre.$save(function(response) {
@@ -101,25 +111,25 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         this.dewey = '';
         this.date_acquis = '';
         this.lien_image = '';
-        $scope.ref+=1;
+        $scope.ref += 1;
         this.resume = '';
         $scope.code_barre_recherche = '';
         $scope.img_google = '';
         $scope.data = '';
         $scope.date = new Date().toISOString().substring(0, 10);
-      }else {
+      } else {
         $scope.submitted = true;
       }
     };
 
-    $scope.save = function(){
+    $scope.save = function() {
       $scope.suppr = false;
     };
 
-    $scope.save_suppr = function(){
-      if($scope.livre.emprunt.user){
-        $scope.error=true;
-      }else{
+    $scope.save_suppr = function() {
+      if ($scope.livre.emprunt.user) {
+        $scope.error = true;
+      } else {
         $scope.suppr = true;
       }
     };
@@ -158,7 +168,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       Livres.query(function(livres) {
         $scope.livres = livres;
         $scope.loader = false;
-      }, function(err){
+      }, function(err) {
         $scope.loader = false;
         message_info('Le serveur à échouer à charger les livres', 'error');
         console.log(err);
@@ -173,7 +183,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         $scope.ref = livre.ref;
         $scope.auteur = livre.auteur;
         $scope.title = livre.title;
-        $scope.dewey =  livre.dewey;
+        $scope.dewey = livre.dewey;
         $scope.date_acquis = livre.date_acquis;
         $scope.code_barre_recherche = livre.code_barre;
         $scope.cote = livre.cote;
@@ -181,80 +191,80 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       });
     };
 
-    $scope.listeUsers = function(){
+    $scope.listeUsers = function() {
       $scope.findOne();
-      if($scope.global.isAdmin){
-        Users.query(function(users){
+      if ($scope.global.isAdmin) {
+        Users.query(function(users) {
           $scope.users = users;
         });
-      }else{
+      } else {
         Users.me({
           userId: $scope.global.user._id
-        }, function(user){
+        }, function(user) {
           $scope.users = user;
           $scope.selectedUser = user;
         });
       }
     };
 
-    $scope.getInfoUser = function(){
+    $scope.getInfoUser = function() {
       recupActif();
       Livres.get({
         livreId: $stateParams.livreId
       }, function(livre) {
         $scope.livre = livre;
         console.log(livre);
-        if(livre.emprunt.user){
+        if (livre.emprunt.user) {
           Users.findById({
-            userId : livre.emprunt.user
-          }, function(user){
+            userId: livre.emprunt.user
+          }, function(user) {
             $scope.user = user;
           });
         }
       });
-      Livres.getSettings(function(settings){
+      Livres.getSettings(function(settings) {
         $scope.settings = settings.settings;
       });
     };
 
     $scope.usersActifs = [];
 
-    function recupActif(){
-      Users.query(function(users){
+    function recupActif() {
+      Users.query(function(users) {
         $scope.users = users;
-        $scope.users.forEach(function(user){
-          if($scope.checkActif(user)){
+        $scope.users.forEach(function(user) {
+          if ($scope.checkActif(user)) {
             $scope.usersActifs.push(user);
-          } 
+          }
         });
       });
     }
 
     $scope.nbAboLivre = 0;
 
-    $scope.checkActif = function(user){
+    $scope.checkActif = function(user) {
       var time = 1000 * 60 * 60 * 24;
       var today = new Date();
       var fin_livre_mag_revue = new Date(user.livre_mag_revue);
-      var diff_livre_mag_revue = fin_livre_mag_revue.getTime()- today.getTime();
+      var diff_livre_mag_revue = fin_livre_mag_revue.getTime() - today.getTime();
       // var fin_caution = new Date(user.caution);
       // var diff_caution = fin_caution.getTime()- today.getTime();
 
       // if(Math.floor(diff_livre_mag_revue / time) >=-30 && Math.floor(diff_caution / time) >=-30){
-      if(Math.floor(diff_livre_mag_revue / time) >=-30){
+      if (Math.floor(diff_livre_mag_revue / time) >= -30) {
         $scope.nbAboLivre++;
         return true;
       }
       return false;
     };
 
-    $scope.selectUser = function(user){
+    $scope.selectUser = function(user) {
       $scope.selectedUser = user;
       $scope.validerEmprunt();
     };
 
-    $scope.validerEmprunt = function(){
-      if(!$scope.selectedUser){
+    $scope.validerEmprunt = function() {
+      if (!$scope.selectedUser) {
         message_info('choisissez un utilisateur !', 'error');
         return 1;
       }
@@ -265,9 +275,9 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       livre.emprunt.date_debut = $scope.date;
       livre.emprunt.date_fin = incr_date($scope.date, 'Livres');
       newEmprunt = {
-        id : livre._id,
-        date_debut : $scope.date,
-        date_fin : incr_date($scope.date, 'Livres'),
+        id: livre._id,
+        date_debut: $scope.date,
+        date_fin: incr_date($scope.date, 'Livres'),
         type: 'Livres'
       };
       user.emprunt.push(newEmprunt);
@@ -275,7 +285,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         livre.$update(function(response) {
           $location.path('livres/' + response._id);
           $scope.emprunt = false;
-          $scope.searchUser= null;
+          $scope.searchUser = null;
           message_info('Emprunt validé');
           $scope.user = user;
         });
@@ -286,85 +296,85 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       var user;
       console.log($scope.livre.emprunt.user);
       Users.findById({
-        userId: $scope.livre.emprunt.user
-      },
-      function(user_){
-        user = user_;
-        console.log(user);
-        livre.historique.push({
-          'user' : user._id,
-          'date_debut' : livre.emprunt.date_debut,
-          'date_fin' : new Date().toISOString().substring(0, 10)
-        });
-        user.historique.push({
-          'media' : livre._id,
-          'date_debut' : livre.emprunt.date_debut,
-          'date_fin' : new Date().toISOString().substring(0, 10)
-        });    
-        livre.emprunt = {
-          user: null,
-          date_debut : null,
-          date_fin : null
-        };
-        for(var i=0; i<user.emprunt.length; i++){
-          if(user.emprunt[i].id === $scope.livre._id){
-            user.emprunt.splice(i, 1);
+          userId: $scope.livre.emprunt.user
+        },
+        function(user_) {
+          user = user_;
+          console.log(user);
+          livre.historique.push({
+            'user': user._id,
+            'date_debut': livre.emprunt.date_debut,
+            'date_fin': new Date().toISOString().substring(0, 10)
+          });
+          user.historique.push({
+            'media': livre._id,
+            'date_debut': livre.emprunt.date_debut,
+            'date_fin': new Date().toISOString().substring(0, 10)
+          });
+          livre.emprunt = {
+            user: null,
+            date_debut: null,
+            date_fin: null
+          };
+          for (var i = 0; i < user.emprunt.length; i++) {
+            if (user.emprunt[i].id === $scope.livre._id) {
+              user.emprunt.splice(i, 1);
+            }
           }
-        }
-        $scope.error=false;
-        user.$update(function(response){
-          livre.$update(function(response) {
-            message_info('média rendu avec succès');
-            $location.path('livres/' + response._id);
+          $scope.error = false;
+          user.$update(function(response) {
+            livre.$update(function(response) {
+              message_info('média rendu avec succès');
+              $location.path('livres/' + response._id);
+            });
           });
         });
-      });
     };
 
-    $scope.recup_google = function(){
-      if($scope.code_barre_recherche){
+    $scope.recup_google = function() {
+      if ($scope.code_barre_recherche) {
         $scope.enregistre = false;
         Livres.query({
-          'code_barre' : $scope.code_barre_recherche
-        }, function(livre){
-          if(livre[0]){
+          'code_barre': $scope.code_barre_recherche
+        }, function(livre) {
+          if (livre[0]) {
             message_info('Vous avez déjà un exemplaire de ce livre', 'error');
-          }else{
-            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ $scope.code_barre_recherche).
-            success(function(data, status, headers, config){
+          } else {
+            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:' + $scope.code_barre_recherche).
+            success(function(data, status, headers, config) {
               $scope.data = data;
               //si le livre retourné est unique alors on prérempli les champs.
-              if(!data.items){
+              if (!data.items) {
                 message_info('Aucun livre trouvé !', 'error');
                 $scope.code_barre = $scope.code_barre_recherche;
-              }else if(data.items.length === 1){
-                if(data.items[0].volumeInfo.authors){
+              } else if (data.items.length === 1) {
+                if (data.items[0].volumeInfo.authors) {
                   $scope.auteur = data.items[0].volumeInfo.authors[0];
                 }
-                if(data.items[0].volumeInfo.title){
+                if (data.items[0].volumeInfo.title) {
                   $scope.title = data.items[0].volumeInfo.title;
                 }
                 $scope.code_barre = $scope.code_barre_recherche;
-                if(data.items[0].volumeInfo.imageLinks){
+                if (data.items[0].volumeInfo.imageLinks) {
                   $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                }else{
-                  $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title+' '+data.items[0].volumeInfo.authors[0]).
-                  success(function(data, status, headers, config){
-                    if(data.items[0].volumeInfo.imageLinks){
+                } else {
+                  $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title + ' ' + data.items[0].volumeInfo.authors[0]).
+                  success(function(data, status, headers, config) {
+                    if (data.items[0].volumeInfo.imageLinks) {
                       $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
-                    }else{
+                    } else {
                       message_info('Aucune couverture dans les données renvoyées par Google', 'error');
                     }
                   });
                 }
                 $scope.lien_livre = data.items[0].volumeInfo;
-                if(data.items[0].volumeInfo.description){
+                if (data.items[0].volumeInfo.description) {
                   $scope.resume = data.items[0].volumeInfo.description;
-                }   
-                if(data.items[0].volumeInfo.authors[0].split(' ')){
-                  $scope.cote = data.items[0].volumeInfo.authors[0].split(' ')[1].substring(0,3).toUpperCase();
-                }else{
-                  $scope.cote = data.items[0].volumeInfo.authors[0].substring(0,3).toUpperCase();
+                }
+                if (data.items[0].volumeInfo.authors[0].split(' ')) {
+                  $scope.cote = data.items[0].volumeInfo.authors[0].split(' ')[1].substring(0, 3).toUpperCase();
+                } else {
+                  $scope.cote = data.items[0].volumeInfo.authors[0].substring(0, 3).toUpperCase();
                 }
               }
             }).error(function(data, status, headers, config) {
@@ -372,44 +382,45 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
             });
           }
         });
-      }else{
+      } else {
         message_info('Veuillez entrer un code barre');
       }
     };
 
-    $scope.date_diff = function(livre){
+
+    $scope.date_diff = function(livre) {
       var today = new Date();
-      if(!livre.emprunt.date_fin){
+      if (!livre.emprunt.date_fin) {
         return 1;
       }
       var fin = new Date(livre.emprunt.date_fin);
-      var diff = fin.getTime()- today.getTime();
+      var diff = fin.getTime() - today.getTime();
       diff = Math.floor(diff / (1000 * 60 * 60 * 24));
       var res = {};
-      if(diff >= 0){
-        if($scope.global.isAdmin){
-          res.message = 'Média emprunté par ' +  livre.emprunt.user.name + ' Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
-        }else{
-          res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.'; 
+      if (diff >= 0) {
+        if ($scope.global.isAdmin) {
+          res.message = 'Média emprunté par ' + livre.emprunt.user.name + ' Il reste ' + diff + ' jour(s) avant le retour en rayon.';
+        } else if ($scope.global.authenticated) {
+          res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.';
         }
         res.retard = 0;
-      }else{
-        if($scope.global.isAdmin){
-          res.message = 'Média emprunté par ' +  livre.emprunt.user.name + ' Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
-        }else{
-          res.message = 'Il y a ' + diff*-1 + ' jour(s) de retard sur la date de retour prévu.'; 
+      } else {
+        if ($scope.global.isAdmin) {
+          res.message = 'Média emprunté par ' + livre.emprunt.user.name + ' Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
+        } else if($scope.global.authenticated) {
+          res.message = 'Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
         }
         res.retard = 1;
       }
       return res;
     };
 
-    $scope.Initref = function(){
-      Livres.getMaxRef(function(livre){
+    $scope.Initref = function() {
+      Livres.getMaxRef(function(livre) {
         console.log(livre);
         $scope.ref = livre.ref + 1;
       });
-      Livres.getSettings(function(settings){
+      Livres.getSettings(function(settings) {
         $scope.settings = settings.settings;
         // $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
       });
