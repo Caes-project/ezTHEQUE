@@ -39,6 +39,11 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
     }
   }
 
+  if($cookies.message_info){
+    message_info(decodeURI($cookies.message_info));
+    delete $cookies.message_info;
+  }
+
   Livres.getSettings(function(settings){
     $scope.settings = settings.settings;
   });
