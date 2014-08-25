@@ -64,10 +64,7 @@ angular.module('mean.dvds').config(['$stateProvider',
         })
         .state('dvd by id', {
             url: '/dvds/:dvdId',
-            templateUrl: 'dvds/views/view.html',
-            resolve: {
-                loggedin: checkLoggedin
-            }
+            templateUrl: 'dvds/views/view.html'
         })
         .state('edit dvd', {
             url: '/dvds/:dvdId/edit',

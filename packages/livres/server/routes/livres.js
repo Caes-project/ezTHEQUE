@@ -6,7 +6,7 @@ var livres = require('../controllers/livres');
 module.exports = function(Livres, app, auth, database) {
 
     app.route('/livres/getMaxRef')
-        .get(auth.requiresAdmin, livres.getMaxRef);
+        .get(livres.getMaxRef);
     app.route('/livres/Settings')
         .get(livres.getSettings(Livres))
         .put(auth.requiresAdmin, livres.putSettings(Livres));

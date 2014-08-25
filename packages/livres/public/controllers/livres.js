@@ -214,7 +214,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       }, function(livre) {
         $scope.livre = livre;
         console.log(livre);
-        if (livre.emprunt.user) {
+        if (livre.emprunt.user && $scope.global.isAdmin) {
           Users.findById({
             userId: livre.emprunt.user
           }, function(user) {
@@ -230,14 +230,16 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
     $scope.usersActifs = [];
 
     function recupActif() {
-      Users.query(function(users) {
-        $scope.users = users;
-        $scope.users.forEach(function(user) {
-          if ($scope.checkActif(user)) {
-            $scope.usersActifs.push(user);
-          }
+      if ($scope.global.isAdmin) {
+        Users.query(function(users) {
+          $scope.users = users;
+          $scope.users.forEach(function(user) {
+            if ($scope.checkActif(user)) {
+              $scope.usersActifs.push(user);
+            }
+          });
         });
-      });
+      }
     }
 
     $scope.nbAboLivre = 0;
@@ -407,7 +409,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       } else {
         if ($scope.global.isAdmin) {
           res.message = 'Média emprunté par ' + livre.emprunt.user.name + ' Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
-        } else if($scope.global.authenticated) {
+        } else if ($scope.global.authenticated) {
           res.message = 'Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
         }
         res.retard = 1;

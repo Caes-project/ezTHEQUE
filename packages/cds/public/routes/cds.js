@@ -64,10 +64,7 @@ angular.module('mean.cds').config(['$stateProvider',
         })
         .state('cd by id', {
             url: '/cds/:cdId',
-            templateUrl: 'cds/views/view.html',
-            resolve: {
-                loggedin: checkLoggedin
-            }
+            templateUrl: 'cds/views/view.html'
         })
         .state('edit cd', {
             url: '/cds/:cdId/edit',

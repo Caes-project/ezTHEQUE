@@ -64,10 +64,7 @@ angular.module('mean.revues').config(['$stateProvider',
         })
         .state('revue by id', {
             url: '/revues/:revueId',
-            templateUrl: 'revues/views/view.html',
-            resolve: {
-                loggedin: checkLoggedin
-            }
+            templateUrl: 'revues/views/view.html'
         })
         .state('edit revue', {
             url: '/revues/:revueId/edit',

@@ -244,7 +244,7 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
       }, function(bd) {
         $scope.bd = bd;
         console.log(bd);
-        if (bd.emprunt.user) {
+        if (bd.emprunt.user && $scope.global.isAdmin) {
           Users.findById({
             userId: bd.emprunt.user
           }, function(user) {
@@ -257,14 +257,16 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
     $scope.usersActifs = [];
 
     function recupActif() {
-      Users.query(function(users) {
-        $scope.users = users;
-        $scope.users.forEach(function(user) {
-          if ($scope.checkActif(user)) {
-            $scope.usersActifs.push(user);
-          }
+      if ($scope.global.isAdmin) {
+        Users.query(function(users) {
+          $scope.users = users;
+          $scope.users.forEach(function(user) {
+            if ($scope.checkActif(user)) {
+              $scope.usersActifs.push(user);
+            }
+          });
         });
-      });
+      }
     }
 
     $scope.nbAboBD = 0;
@@ -426,14 +428,14 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
       if (diff >= 0) {
         if ($scope.global.isAdmin) {
           res.message = 'Média emprunté par ' + bd.emprunt.user.name + ' Il reste ' + diff + ' jour(s) avant le retour en rayon.';
-        } else if ($scope.global.authenticated){
+        } else if ($scope.global.authenticated) {
           res.message = 'Il reste ' + diff + ' jour(s) avant le retour en rayon.';
         }
         res.retard = 0;
       } else {
         if ($scope.global.isAdmin) {
           res.message = 'Média emprunté par ' + bd.emprunt.user.name + ' Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
-        } else if ($scope.global.authenticated){
+        } else if ($scope.global.authenticated) {
           res.message = 'Il y a ' + diff * -1 + ' jour(s) de retard sur la date de retour prévu.';
         }
         res.retard = 1;

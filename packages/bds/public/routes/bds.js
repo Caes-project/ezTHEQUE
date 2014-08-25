@@ -64,10 +64,7 @@ angular.module('mean.bds').config(['$stateProvider',
         })
         .state('bd by id', {
             url: '/bds/:bdId',
-            templateUrl: 'bds/views/view.html',
-            resolve: {
-                loggedin: checkLoggedin
-            }
+            templateUrl: 'bds/views/view.html'
         })
         .state('edit bd', {
             url: '/bds/:bdId/edit',

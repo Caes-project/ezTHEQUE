@@ -64,10 +64,7 @@ angular.module('mean').config(['$stateProvider',
         })
         .state('livre by id', {
             url: '/livres/:livreId',
-            templateUrl: 'livres/views/view.html',
-            resolve: {
-                loggedin: checkLoggedin
-            }
+            templateUrl: 'livres/views/view.html'
         })
         .state('edit livre', {
             url: '/livres/:livreId/edit',
