@@ -40,7 +40,7 @@ exports.create = function(req, res) {
   });
 };
 
-function saveImageToServer(req, res, revue, true) {
+function saveImageToServer(req, res, revue, creation) {
   var target_path = __dirname + '/../../upload/' + revue.ref + '_' + revue.code_barre + '.' + req.files.image.extension;
   //ERR 34 file doesn"t find ...
   fs.rename(req.files.image.path, target_path, function(err) {
