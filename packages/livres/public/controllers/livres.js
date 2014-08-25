@@ -39,6 +39,10 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       }
     }
 
+    if($cookies.message_info){
+      message_info(decodeURI($cookies.message_info));
+      delete $cookies.message_info;
+    }
     
     function incr_date(date_str, typeMedia){
 
