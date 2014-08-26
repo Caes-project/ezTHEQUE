@@ -1,27 +1,50 @@
-<section data-ng-controller="DvdsController" data-ng-init="find()" class="sectionDvd well">
-  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/dvds/create">Ajouter un DVD </a></h3>
+<section data-ng-controller="DvdsController" data-ng-init="find()" class="well">
+  <!-- Message de validation  -->
+  <h2 class='lato-font-title' align='center'> Liste des dvds </h2>
+  <br/>
+  <article>
+    <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
+      {{message_info.message}}
+    </div>
+  </article>
   <div class='col-md-4'>
-    <input type='text' ng-model='searchUser' placeholder='Recherche dvd' autofocus class='form-control'>
+    <div class='col-md-9'>
+      <input type='text' ng-model='searchUser' placeholder='Recherche dvd' autofocus class='form-control'>
+    </div>
+    <div class='col-md-3'>
+      <button ng-click='searchUser = null; searchGenre = null; searchTags.value = null' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i>reset</button>
+    </div>
   </div>
-  <br/>
-  <br/>
-  <ul class="unstyled">
-    <li data-ng-repeat="dvd in dvds |  filter:searchUser | slice:0:50" style='position:relative'>
-      <h3>
-        <a data-ng-href="#!/dvds/{{dvd._id}}">{{dvd.title}}</a>
-      </h3> 
-      <div data-ng-hide="!dvd.lien_image">
-        <a href='#!/dvds/{{dvd._id}}'>
-          <img ng-src="{{dvd.lien_image}}" border="0" align="center" width=80 height=130> 
-        </a>
-      </div>
-      <p class='lato-font-title'> {{dvd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{dvd.dewey}} &nbsp Ref. {{dvd.ref}}</p>
-      <p class='lato-font' ng-show="dvd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(dvd).retard}' ng-bind='date_diff(dvd).message'> </p>
-      <ul class='tags_list' ng-show='dvd.tags'>    
-        <li><a href="#"> {{dvd.tags}}</a></li>
-      </ul>
-    </li>
-  </ul>
+  <div class='col-md-3'>
+    <select class="form-control" ng-model='genre' ng-change="searchGenre = genre" ng-options="genre as genre for genre in genre_liste_dvd">
+      <option value='' > Trier par genre </option> 
+    </select>
+  </div>
+  <div class='col-md-3'>
+    <a class='btn btn-primary' data-ng-hide="!isAdmin()" href="/#!/dvds/create">Ajouter un dvd </a>
+  </div>
+  <div class='row'>
+    <p class='lato-font'>Trié par ordre d'arrivé dans la médiathèque</p>
+  </div>
+  <div class='row'>
+    <ul class="unstyled">
+      <li ng-repeat="dvd in dvds | filter:searchUser | filter:searchGenre | filter: checkTags | slice:0:50" style='position:relative'>
+        <h3>
+          <a data-ng-href="#!/dvds/{{dvd._id}}">{{dvd.title}}</a>
+        </h3> 
+        <div data-ng-hide="!dvd.lien_image">
+          <a href='#!/dvds/{{dvd._id}}'>
+            <img ng-src="{{dvd.lien_image}}" border="0" align="center" width=80 height=130> 
+          </a>
+        </div>
+        <p class='lato-font-title'> {{dvd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{dvd.dewey}} &nbsp Ref. {{dvd.ref}}</p>
+        <p class='lato-font' ng-show="dvd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(dvd).retard}' ng-bind='date_diff(dvd).message'> </p>
+        <ul class='tags_list' ng-show='dvd.tags'> 
+          <li><a ng-click="searchTags.value = dvd.tags" >{{dvd.tags}}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
   <div class='row' ng-show='loader' style='text-align:center'>
     <img ng-show='loader' src='/img/loaders/loader.gif' style='height:200px; width:200px;' />
     La page est en cours de chargement ... 

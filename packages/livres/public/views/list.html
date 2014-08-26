@@ -1,33 +1,50 @@
 <section data-ng-controller="LivresController" data-ng-init="find()" class="well">
-  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/livres/create">Ajouter un livre </a></h3>
   <!-- Message de validation  -->
+  <h2 class='lato-font-title' align='center'> Liste des livres </h2>
+  <br/>
   <article>
     <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
       {{message_info.message}}
     </div>
   </article>
   <div class='col-md-4'>
-    <input type='text' ng-model='searchUser' placeholder='Recherche livre' autofocus class='form-control'>
+    <div class='col-md-9'>
+      <input type='text' ng-model='searchUser' placeholder='Recherche livre' autofocus class='form-control'>
+    </div>
+    <div class='col-md-3'>
+      <button ng-click='searchUser = null; searchGenre = null; searchTags.value = null' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i>reset</button>
+    </div>
   </div>
-  <br/>
-  <br/>
-  <ul class="unstyled">
-    <li data-ng-repeat="livre in livres | filter:searchUser | slice:0:50" style='position:relative'>
-      <h3>
-        <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
-      </h3> 
-      <div data-ng-hide="!livre.lien_image">
-        <a href='#!/livres/{{livre._id}}'>
-          <img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> 
-        </a>
-      </div>
-      <p class='lato-font-title'> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</p>
-      <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(livre).retard}' ng-bind='date_diff(livre).message'> </p>
-      <ul class='tags_list' ng-show='livre.tags'>    
-        <li><a href="#"> {{livre.tags}}</a></li>
-      </ul>
-    </li>
-  </ul>
+  <div class='col-md-3'>
+    <select class="form-control" ng-model='genre' ng-change="searchGenre = genre" ng-options="genre as genre for genre in settings.liste_genre_livre">
+      <option value='' > Trier par genre </option> 
+    </select>
+  </div>
+  <div class='col-md-3'>
+    <a class='btn btn-primary' data-ng-hide="!isAdmin()" href="/#!/livres/create">Ajouter un livre </a>
+  </div>
+  <div class='row'>
+    <p class='lato-font'>Trié par ordre d'arrivé dans la médiathèque</p>
+  </div>
+  <div class='row'>
+    <ul class="unstyled">
+      <li ng-repeat="livre in livres | filter:searchUser | filter:searchGenre | filter: checkTags | slice:0:50" style='position:relative'>
+        <h3>
+          <a data-ng-href="#!/livres/{{livre._id}}">{{livre.title}}</a>
+        </h3> 
+        <div data-ng-hide="!livre.lien_image">
+          <a href='#!/livres/{{livre._id}}'>
+            <img ng-src="{{livre.lien_image}}" border="0" align="center" width=80 height=130> 
+          </a>
+        </div>
+        <p class='lato-font-title'> {{livre.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{livre.dewey}} &nbsp Ref. {{livre.ref}}</p>
+        <p class='lato-font' ng-show="livre.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(livre).retard}' ng-bind='date_diff(livre).message'> </p>
+        <ul class='tags_list' ng-show='livre.tags'> 
+          <li><a ng-click="searchTags.value = livre.tags" >{{livre.tags}}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
   <div class='row' ng-show='loader' style='text-align:center'>
     <img ng-show='loader' src='/img/loaders/loader.gif' style='height:200px; width:200px;' />
     La page est en cours de chargement ... 

@@ -1,29 +1,52 @@
-<section data-ng-controller="BdsController" data-ng-init="find()" class="sectionBd well">
-  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/bds/create">Ajouter une bande dessinée </a></h3>
+<section data-ng-controller="BdsController" data-ng-init="find()" class="well">
+  <!-- Message de validation  -->
+  <h2 class='lato-font-title' align='center'> Liste des bds </h2>
+  <br/>
+  <article>
+    <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
+      {{message_info.message}}
+    </div>
+  </article>
   <div class='col-md-4'>
-    <input type='text' ng-model='searchUser' placeholder='Recherche bd' autofocus class='form-control'>
+    <div class='col-md-9'>
+      <input type='text' ng-model='searchUser' placeholder='Recherche bd' autofocus class='form-control'>
+    </div>
+    <div class='col-md-3'>
+      <button ng-click='searchUser = null; searchGenre = null; searchTags.value = null' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i>reset</button>
+    </div>
   </div>
-  <br/>
-  <br/>
-  <ul class="unstyled">
-    <li data-ng-repeat="bd in bds |  filter:searchUser | slice:0:50" style='position:relative'>
-      <h3>
-        <a data-ng-href="#!/bds/{{bd._id}}">{{bd.title}}</a>
-      </h3> 
-      <div data-ng-hide="!bd.lien_image">
-        <a href='#!/bds/{{bd._id}}'>
-          <img ng-src="{{bd.lien_image}}" border="0" align="center" width=80 height=130> 
-        </a>
-      </div>
-      <p class='lato-font-title'> {{bd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{bd.dewey}} &nbsp Ref. {{bd.ref}}</p>
-      <p class='lato-font' ng-show="bd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(bd).retard}' ng-bind='date_diff(bd).message'> </p>
-      <ul class='tags_list' ng-show='bd.tags'>    
-        <li><a href="#"> {{bd.tags}}</a></li>
-      </ul>
-    </li>
-  </ul>
+  <div class='col-md-3'>
+    <select class="form-control" ng-model='genre' ng-change="searchGenre = genre" ng-options="genre as genre for genre in genre_liste_bd">
+      <option value='' > Trier par genre </option> 
+    </select>
+  </div>
+  <div class='col-md-3'>
+    <a class='btn btn-primary' data-ng-hide="!isAdmin()" href="/#!/bds/create">Ajouter un bd </a>
+  </div>
+  <div class='row'>
+    <p class='lato-font'>Trié par ordre d'arrivé dans la médiathèque</p>
+  </div>
+  <div class='row'>
+    <ul class="unstyled">
+      <li ng-repeat="bd in bds | filter:searchUser | filter:searchGenre | filter: checkTags | slice:0:50" style='position:relative'>
+        <h3>
+          <a data-ng-href="#!/bds/{{bd._id}}">{{bd.title}}</a>
+        </h3> 
+        <div data-ng-hide="!bd.lien_image">
+          <a href='#!/bds/{{bd._id}}'>
+            <img ng-src="{{bd.lien_image}}" border="0" align="center" width=80 height=130> 
+          </a>
+        </div>
+        <p class='lato-font-title'> {{bd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{bd.dewey}} &nbsp Ref. {{bd.ref}}</p>
+        <p class='lato-font' ng-show="bd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(bd).retard}' ng-bind='date_diff(bd).message'> </p>
+        <ul class='tags_list' ng-show='bd.tags'> 
+          <li><a ng-click="searchTags.value = bd.tags" >{{bd.tags}}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
   <div class='row' ng-show='loader' style='text-align:center'>
     <img ng-show='loader' src='/img/loaders/loader.gif' style='height:200px; width:200px;' />
     La page est en cours de chargement ... 
-  </div>   
+  </div>    
 </section>

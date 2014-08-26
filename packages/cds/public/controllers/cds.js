@@ -12,6 +12,14 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
 
     $scope.genre_liste_cd = ['Jazz', 'Etranger', 'Français', 'Enfants', 'Classique', 'BO film', 'Blues'];
 
+    $scope.searchTags = {
+      value: null
+    };
+
+    $scope.checkTags = function(media){
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true; 
+    };
+    
     var timer;
 
     function message_info(message, type) {
@@ -248,7 +256,7 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
       }, function(cd) {
         $scope.cd = cd;
         console.log(cd);
-        if (cd.emprunt.user  && $scope.global.isAdmin) {
+        if (cd.emprunt.user && $scope.global.isAdmin) {
           Users.findById({
             userId: cd.emprunt.user
           }, function(user) {

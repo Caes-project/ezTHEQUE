@@ -11,6 +11,13 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
     $scope.date = new Date().toISOString().substring(0, 10);
 
     $scope.genre_liste_bd = ['Aventure', 'Erotique', 'Humour', 'Fantastique', 'Bibliographie', 'Manga', 'Enfants', 'Divers'];
+    $scope.searchTags = {
+      value: null
+    };
+
+    $scope.checkTags = function(media){
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true; 
+    };
 
     var timer;
 

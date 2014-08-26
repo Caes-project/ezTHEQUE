@@ -1,15 +1,34 @@
 <section data-ng-controller="RevuesController" data-ng-init="find()" class="well">
-  <h3 data-ng-hide="!isAdmin()" align="center"><a href="/#!/revues/create">Ajouter un numéro </a></h3>
-  
+  <h2 class='lato-font-title' align='center'> Liste des Revues </h2>
+  <br/>
+  <article>
+    <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info trans_message' : !message_info.status,'alert alert-danger trans_message_error' : message_info.status}" role="alert">
+      {{message_info.message}}
+    </div>
+  </article>
   <div class='col-md-4'>
-    <input type='text' ng-model='searchUser' placeholder='Recherche revue' autofocus class='form-control'>
+    <div class='col-md-9'>
+      <input type='text' ng-model='searchUser' placeholder='Recherche revue' autofocus class='form-control'>
+    </div>
+    <div class='col-md-3'>
+      <button ng-click='searchUser = null; searchGenre = null; searchTags.value = null' class='btn btn-danger'><i class='glyphicon glyphicon-remove'></i>reset</button>
+    </div>
   </div>
-  <br/>
-  <br/>
+  <div class='col-md-3'>
+    <select class="form-control" ng-model='genre' ng-change="searchGenre = genre" ng-options="genre.nom as genre.nom for genre in liste_revues">
+      <option value='' > Trier par revue </option> 
+    </select>
+  </div>
+  <div class='col-md-3'>
+    <a class='btn btn-primary' data-ng-hide="!isAdmin()" href="/#!/revues/create">Ajouter un numéro </a>
+  </div>
+  <div class='row'>
+    <p class='lato-font'>Trié par ordre d'arrivé dans la médiathèque</p>
+  </div>
   <div class='row'>
     <div class='col-md-7'>
       <ul class="unstyled">
-        <li data-ng-repeat="revue in revues | filter:searchUser | slice:0:50" style='position:relative'>
+        <li data-ng-repeat="revue in revues | filter:searchUser  | filter:searchGenre | filter: checkTags | slice:0:50" style='position:relative'>
           <h3>
             <a data-ng-href="#!/revues/{{revue._id}}">{{revue.title}}</a>
           </h3> 

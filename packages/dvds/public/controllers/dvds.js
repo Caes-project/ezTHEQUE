@@ -12,6 +12,14 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
 
     $scope.genre_liste_dvd = ['Animation', 'Aventure/Action', 'Comédie', 'Comédie dramatique', 'Documentaire', 'Fantastique/Horreur', 'Historique/Guerre', 'Musical', 'Policier/Suspense', 'Science Fiction', 'Théatre', 'Western'];
 
+    $scope.searchTags = {
+      value: null
+    };
+
+    $scope.checkTags = function(media) {
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true;
+    };
+
     var timer;
 
     function message_info(message, type) {

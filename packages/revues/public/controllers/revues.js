@@ -14,6 +14,14 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
       $scope.liste_revues = liste_revues;
     });
 
+    $scope.searchTags = {
+      value: null
+    };
+
+    $scope.checkTags = function(media){
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true; 
+    };
+
     var timer;
 
     function message_info(message, type) {

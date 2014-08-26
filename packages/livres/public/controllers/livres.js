@@ -12,6 +12,17 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
 
     $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
 
+    Livres.getSettings(function(settings) {
+      $scope.settings = settings.settings;
+    });
+
+    $scope.searchTags = {
+      value: null
+    };
+
+    $scope.checkTags = function(media){
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true; 
+    };
     var timer;
 
     function message_info(message, type) {
@@ -421,10 +432,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       Livres.getMaxRef(function(livre) {
         console.log(livre);
         $scope.ref = livre.ref + 1;
-      });
-      Livres.getSettings(function(settings) {
-        $scope.settings = settings.settings;
-        // $scope.genre_liste_livre = ['Science-fiction', 'Policier', 'Romans français', 'Romans anglais', 'Romans allemands', 'Romans italiens', 'Romans espagnols', 'Romans, divers', 'Documentaire'];
       });
     };
   }
