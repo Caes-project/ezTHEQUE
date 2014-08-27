@@ -20,8 +20,8 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
       value: null
     };
 
-    $scope.checkTags = function(media){
-      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true; 
+    $scope.checkTags = function(media) {
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true;
     };
     var timer;
 
@@ -351,7 +351,7 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
           'code_barre': $scope.code_barre_recherche
         }, function(livre) {
           if (livre[0]) {
-            message_info('Vous avez déjà un exemplaire de ce livre', 'error');
+            message_info('Vous avez déjà un exemplaire de ce livre enregistré dans la base de données', 'error');
           } else {
             $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:' + $scope.code_barre_recherche).
             success(function(data, status, headers, config) {
@@ -399,7 +399,6 @@ angular.module('mean').controller('LivresController', ['$scope', '$http', '$cook
         message_info('Veuillez entrer un code barre');
       }
     };
-
 
     $scope.date_diff = function(livre) {
       var today = new Date();

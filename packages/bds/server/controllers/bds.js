@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
   Bd = mongoose.model('Bd'),
   fs = require('fs'),
+  request = require('request'),
   // http = require('http'),
   _ = require('lodash');
 
@@ -72,7 +73,10 @@ exports.saveImage = function(req, res) {
     date_debut: null,
     date_fin: null
   };
-  if (req.files.image.originalname !== null) {
+  console.log(req.body);
+  if (req.body.img_google) {
+    bd.lien_image = '/packages/bds/upload/' + req.body.ref + '_' + req.body.code_barre + '.jpg';
+  } else if (req.files.image) {
     bd.lien_image = '/packages/bds/upload/' + req.body.ref + '_' + req.body.code_barre + '.' + req.files.image.extension;
   } else {
     bd.lien_image = '/packages/bds/upload/default.jpg';
@@ -87,6 +91,31 @@ exports.saveImage = function(req, res) {
     } else {
       if (req.files.image.originalname !== null) {
         saveImageToServer(req, res, bd, true);
+      }
+      if (req.body.img_google) {
+        var targetpath = __dirname + '/../../upload/' + req.body.ref + '_' + req.body.code_barre + '.jpg';
+        var file = fs.createWriteStream(targetpath);
+        var options = {
+          method: 'GET',
+          uri: req.body.img_google,
+          headers: {
+            'User-Agent': 'Mozilla/5.0'
+          },
+          jar: true,
+          proxy: process.env.http_proxy || null
+        };
+        request(options)
+          .pipe(file)
+          .on('error', function(err) {
+            console.log(err);
+            fs.unlink(targetpath); // Delete the file async. (But we don't check the result)
+            res.send(500, 'Répertoire d\'upload indisponible');
+          }).on('finish', function() {
+            res.setHeader('Content-Type', 'text/html');
+            res.status(200);
+            res.cookie('message_info', encodeURI('BD créé avec succès !'));
+            res.redirect('/#!/bds/create');
+          });
       } else {
         // res.jsonp(revue);
         res.setHeader('Content-Type', 'text/html');

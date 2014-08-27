@@ -7,10 +7,10 @@
              <div class="form-group">
                  <label class="col-md-3 control-label">Code barre :</label>
                  <div class="col-md-6">
-                    <input class="form-control" type='text' data-ng-model="code_barre_recherche" name='code_barre_recherche' placeholder="code barre" >
+                    <input class="form-control" type='text' data-ng-model="code_barre_recherche" name='code_barre_recherche' placeholder="code barre" required >
                  </div>
                  <div class="col-md-1">
-                     <button type="submit" class="btn btn-info">Chercher</button>
+                     <button type="submit" class="btn btn-info">Chercher sur Google avec le code barre (ISBN)</button>
                  </div>
              </div>
         </form>
@@ -78,34 +78,34 @@
         </div>
     </form>
     <!-- Affichage des résultats de google -->
-        <div class='col-md-5 col-md-offset-1' style='position:relative'>
-            <li data-ng-repeat="livre in data.items">
-                <h3 class='lato-font'> {{livre.volumeInfo.title}} </h3>
-                <br> 
-                <div data-ng-hide="!img_google"><img ng-src="{{img_google}}" border="0" align="center" width=130 height=200> </div>
-            </li>
+    <div class='col-md-5 col-md-offset-1' style='position:relative'>
+        <li data-ng-repeat="livre in data.items">
+            <h3 class='lato-font'> {{livre.volumeInfo.title}} </h3>
+            <br> 
+            <div data-ng-hide="!img_google"><img ng-src="{{img_google}}" border="0" align="center" width=130 height=200> </div>
+        </li>
+    </div>
+    <!-- message info -->
+    <div class='col-md-5 col-md-offset-1' style='position:relative'>
+        <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info ' : !message_info.status,'alert alert-danger' : message_info.status}" role="alert">
+            {{message_info.message}}
         </div>
-        <!-- message info -->
-        <div class='col-md-5 col-md-offset-1' style='position:relative'>
-            <div data-ng-show='message_info' id='message_info' ng-class="{'alert alert-info ' : !message_info.status,'alert alert-danger' : message_info.status}" role="alert">
-                {{message_info.message}}
+    </div>
+    <div ng-show='enregistre'>
+        <form class="form-horizontal col-md-5 col-md-offset-1 " role="form" enctype="multipart/form-data" action="{{'/livres/' + livre._id + '/edit'}}" method="post">
+        <input ng-hide='true' type='text' name='create' id='create' value='true'>
+        <div class="form-group">
+            <label for="image" class="col-md-3 control-label">Modifier couverture</label>
+            <div class="col-md-9">
+                <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
             </div>
         </div>
-        <div ng-show='enregistre'>
-            <form class="form-horizontal col-md-5 col-md-offset-1 " role="form" enctype="multipart/form-data" action="{{'/livres/' + livre._id + '/edit'}}" method="post">
-            <input ng-hide='true' type='text' name='create' id='create' value='true'>
-            <div class="form-group">
-                <label for="image" class="col-md-3 control-label">Modifier couverture</label>
-                <div class="col-md-9">
-                    <input type='file' name='image' data-ng-model="image" id="image" placeholder="image" class="form-control" >
-                </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn btn-info" >Submit</button>
             </div>
-            <div class="form-group">
-                <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn btn-info" >Submit</button>
-                </div>
-            </div>
-            </form>
         </div>
+        </form>
+    </div>
 </div>
 </section>

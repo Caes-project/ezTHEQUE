@@ -15,8 +15,8 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
       value: null
     };
 
-    $scope.checkTags = function(media){
-      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true; 
+    $scope.checkTags = function(media) {
+      return $scope.searchTags.value ? $scope.searchTags.value === media.tags : true;
     };
 
     var timer;
@@ -368,38 +368,41 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
     };
 
     $scope.recup_google = function() {
-      if ($scope.code_barre_recherche) {
+      if ($scope.code_barre) {
         $scope.enregistre = false;
         Bds.query({
-          'code_barre': $scope.code_barre_recherche
+          'code_barre': $scope.code_barre
         }, function(bd) {
-          console.log(bd);
           if (bd[0]) {
-            message_info('Vous avez déjà un exemplaire de ce bd', 'error');
+            message_info('Vous avez déjà un exemplaire de cette bd enregistré dans la base de données', 'error');
           } else {
-            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:' + $scope.code_barre_recherche).
+            $http.get('https://www.googleapis.com/books/v1/volumes?q=isbn:' + $scope.code_barre).
             success(function(data, status, headers, config) {
-              console.log(data);
               $scope.data = data;
               //si le bd retourné est unique alors on prérempli les champs.
               if (!data.items) {
-                message_info('Aucun bd trouvé !', 'error');
-                $scope.code_barre = $scope.code_barre_recherche;
+                message_info('Aucune BD trouvé !', 'error');
+                $scope.code_barre = $scope.code_barre;
               } else if (data.items.length === 1) {
+                console.log(data.items);
                 if (data.items[0].volumeInfo.authors) {
-                  $scope.auteur = data.items[0].volumeInfo.authors[0];
+                  $scope.scenariste = data.items[0].volumeInfo.authors[0];
+                  if(data.items[0].volumeInfo.authors[1]){
+                    $scope.dessinateur = data.items[0].volumeInfo.authors[1];
+                  }
                 }
                 if (data.items[0].volumeInfo.title) {
                   $scope.title = data.items[0].volumeInfo.title;
                 }
-                $scope.code_barre = $scope.code_barre_recherche;
+                if(data.items[0].volumeInfo.subtitle){
+                  $scope.title += ' '+ data.items[0].volumeInfo.subtitle;
+                }
+                $scope.code_barre = $scope.code_barre;
                 if (data.items[0].volumeInfo.imageLinks) {
                   $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
                 } else {
-                  console.log('2');
                   $http.get('https://www.googleapis.com/books/v1/volumes?q=' + data.items[0].volumeInfo.title + ' ' + data.items[0].volumeInfo.authors[0]).
                   success(function(data, status, headers, config) {
-                    console.log(data);
                     if (data.items[0].volumeInfo.imageLinks) {
                       $scope.img_google = data.items[0].volumeInfo.imageLinks.thumbnail;
                     } else {
@@ -407,11 +410,15 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
                     }
                   });
                 }
-                $scope.lien_bd = data.items[0].volumeInfo;
+                $scope.lien_livre = data.items[0].volumeInfo;
                 if (data.items[0].volumeInfo.description) {
                   $scope.resume = data.items[0].volumeInfo.description;
                 }
-                $scope.cote = data.items[0].volumeInfo.authors[0].substring(0, 3).toUpperCase();
+                if (data.items[0].volumeInfo.authors[0].split(' ').length > 1) {
+                  $scope.cote = data.items[0].volumeInfo.authors[0].split(' ')[1].substring(0, 3).toUpperCase();
+                } else {
+                  $scope.cote = data.items[0].volumeInfo.authors[0].substring(0, 3).toUpperCase();
+                }
               }
             }).error(function(data, status, headers, config) {
               message_info('Il semblerai que la connection vers google_book soit impossible pour le moment ...', 'error');
