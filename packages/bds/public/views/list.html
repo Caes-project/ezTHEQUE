@@ -40,7 +40,7 @@
         <p class='lato-font-title'> {{bd.auteur}}&nbsp&nbsp&nbsp&nbsp&nbsp Genre:{{bd.dewey}} &nbsp Ref. {{bd.ref}}</p>
         <p class='lato-font' ng-show="bd.emprunt.date_fin" ng-class='{"lato-font-retard": date_diff(bd).retard}' ng-bind='date_diff(bd).message'> </p>
         <ul class='tags_list' ng-show='bd.tags'> 
-          <li><a ng-click="searchTags.value = bd.tags" >{{bd.tags}}</a></li>
+          <li><a href ng-click="searchTags.value = bd.tags" >{{bd.tags}}</a></li>
         </ul>
       </li>
     </ul>
