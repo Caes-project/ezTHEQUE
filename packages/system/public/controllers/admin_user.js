@@ -323,7 +323,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         $scope.user.historique.push({
           'media': media._id,
           'date_debut': media.emprunt.date_debut,
-          'date_fin': new Date()
+          'date_fin': new Date(),
+          'type' : media.typeMedia
         });
         media.emprunt = {
           user: null,
@@ -371,6 +372,13 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if (media[0]) {
         $scope.newmedia = media[0];
         $scope.newmedia.typeMedia = type;
+        if (media[0].emprunt.user === $scope.user._id) {
+          $scope.rendreLivre(media[0]);
+          $scope.refMedia = null;
+        } else {
+          $scope.validerEmprunt();
+          $scope.refMedia = null;
+        }
       }
     }
 

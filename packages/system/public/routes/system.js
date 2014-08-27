@@ -5,42 +5,69 @@ angular.module('mean.system').config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
+
+    var checkLoggedin = function($q, $timeout, $http, $location) {
+      // Initialize a new promise
+      var deferred = $q.defer();
+
+      // Make an AJAX call to check if the user is logged in
+      $http.get('/loggedin').success(function(user) {
+        // Authenticated
+        if (user !== '0') $timeout(deferred.resolve);
+
+        // Not Authenticated
+        else {
+          $timeout(deferred.reject);
+          $location.url('/login');
+        }
+      });
+
+      return deferred.promise;
+    };
+
     var checkAdmin = function($q, $timeout, $http, $location) {
       // Initialize a new promise
       var deferred = $q.defer();
 
       // Make an AJAX call to check if the user is logged in
       $http.get('/loggedin').success(function(user) {
-          // Authenticated
-          // console.log(user.roles);
-          if (user.roles.indexOf('admin') !== -1) $timeout(deferred.resolve);
+        // Authenticated
+        // console.log(user.roles);
+        if (user.roles.indexOf('admin') !== -1) $timeout(deferred.resolve);
 
-          // Not Authenticated
-          else {
-            $timeout(deferred.reject);
-            $location.url('/login');
-          }
-        });
+        // Not Authenticated
+        else {
+          $timeout(deferred.reject);
+          $location.url('/login');
+        }
+      });
 
       return deferred.promise;
     };
 
-  // states for my app
-  $stateProvider              
-  .state('home', {
-    url: '/',
-    templateUrl: 'system/views/index.html'
-  })
-  .state('admin user', {
-    url: '/admin/users/:userId',
-    templateUrl: 'system/views/admin_user.html',
-    resolve: {
-      loggedin: checkAdmin
-    }
-  });
-}
+    // states for my app
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'system/views/index.html'
+      })
+      .state('admin user', {
+        url: '/admin/users/:userId',
+        templateUrl: 'system/views/admin_user.html',
+        resolve: {
+          loggedin: checkAdmin
+        }
+      })
+      .state('admin user historique', {
+        url: '/admin/users/:userId/historique',
+        templateUrl: 'system/views/historique.html',
+        resolve: {
+          loggedin: checkLoggedin
+        }
+      });
+  }
 ]).config(['$locationProvider',
-function($locationProvider) {
-  $locationProvider.hashPrefix('!');
-}
+  function($locationProvider) {
+    $locationProvider.hashPrefix('!');
+  }
 ]);

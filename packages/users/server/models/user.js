@@ -51,37 +51,37 @@ var validateUniqueUsername = function(value, callback) {
 
 var UserSchema = new Schema({
   name: {
-      type: String,
-      required: true,
-      validate: [validatePresenceOf, 'Le nom doit être renseigné']
+    type: String,
+    required: true,
+    validate: [validatePresenceOf, 'Le nom doit être renseigné']
   },
   email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/.+\@.+\..+/, 'Entrez une adresse mail valide'],
-      validate: [validateUniqueEmail, 'E-mail est déjà utilisé']
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+\@.+\..+/, 'Entrez une adresse mail valide'],
+    validate: [validateUniqueEmail, 'E-mail est déjà utilisé']
   },
   username: {
-      type: String,
-      unique: true,
-      // validate: [validatePresenceOf, 'Username doit être renseigné']
-      validate: [validateUniqueUsername, 'Username est déjà présent']
+    type: String,
+    unique: true,
+    // validate: [validatePresenceOf, 'Username doit être renseigné']
+    validate: [validateUniqueUsername, 'Username est déjà présent']
   },
   roles: {
-      type: Array,
-      default: ['authenticated']
+    type: Array,
+    default: ['authenticated']
   },
   hashed_password: {
-      type: String,
-      validate: [validatePresenceOf, 'Password cannot be blank']
+    type: String,
+    validate: [validatePresenceOf, 'Password cannot be blank']
   },
   provider: {
-      type: String,
-      default: 'local'
+    type: String,
+    default: 'local'
   },
-  id_user :{
-      type: Number
+  id_user: {
+    type: Number
   },
   emprunt: [{
     id: {
@@ -89,7 +89,7 @@ var UserSchema = new Schema({
     },
     date_debut: {
       type: Date
-    }, 
+    },
     date_fin: {
       type: Date
     },
@@ -97,47 +97,50 @@ var UserSchema = new Schema({
       type: String
     }
   }],
-  livre_mag_revue : {
+  livre_mag_revue: {
     type: Date
   },
-  DVD : {
+  DVD: {
     type: Date
   },
-  CD : {
+  CD: {
     type: Date
   },
-  paiement : {
+  paiement: {
     type: Date
   },
-  caution : {
+  caution: {
     type: Date
   },
-  montant_caution : {
-    type :Number
+  montant_caution: {
+    type: Number
   },
-  montant_paiement : {
-    type : Number
+  montant_paiement: {
+    type: Number
   },
-  commentaires : {
-    type : String
+  commentaires: {
+    type: String
   },
-  laboratoire : {
-    type : String
+  laboratoire: {
+    type: String
   },
-  historique: [{        
-      media: {
-          type: Schema.ObjectId
-      },
-      date_debut: {
-          type: Date
-      }, 
-      date_fin: {
-          type: Date
-      }
+  historique: [{
+    media: {
+      type: Schema.ObjectId
+    },
+    date_debut: {
+      type: Date
+    },
+    date_fin: {
+      type: Date
+    },
+    type: {
+      type: String
+    }
   }],
-  date_maj : {
-      type: Date,
-      default : new Date()
+  date_maj: {
+    type: Date,
+    default: new Date()
   },
   salt: String,
   resetPasswordToken: String,
