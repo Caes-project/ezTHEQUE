@@ -15,7 +15,7 @@ angular.module('mean.system').controller('HistoriqueController', ['$scope', '$st
           media.histo= {
             date_debut : emprunt.date_debut,
             date_fin : emprunt.date_fin
-          }
+          };
           $scope.listeHistorique.push(media);
         };
       };
