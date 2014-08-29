@@ -460,6 +460,7 @@ angular.module('mean.bds').controller('BdsController', ['$scope', '$http', '$coo
     $scope.Initref = function() {
       Bds.getMaxRef(function(bd) {
         console.log(bd);
+        $scope.bd = bd;
         $scope.ref = bd.ref + 1;
       });
     };

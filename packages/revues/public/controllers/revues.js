@@ -379,6 +379,7 @@ angular.module('mean.revues').controller('RevuesController', ['$scope', '$http',
     $scope.Initref = function() {
       Revues.getMaxRef(function(revue) {
         console.log(revue);
+        $scope.revue = revue;
         $scope.ref = revue.ref + 1;
       });
     };

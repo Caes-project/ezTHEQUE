@@ -462,6 +462,7 @@ angular.module('mean.dvds').controller('DvdsController', ['$scope', '$http', '$c
     $scope.Initref = function() {
       Dvds.getMaxRef(function(dvd) {
         console.log(dvd);
+        $scope.dvd = dvd;
         $scope.ref = dvd.ref + 1;
       });
     };

@@ -458,6 +458,7 @@ angular.module('mean.cds').controller('CdsController', ['$scope', '$http', '$coo
     $scope.Initref = function() {
       Cds.getMaxRef(function(cd) {
         console.log(cd);
+        $scope.cd = cd;
         $scope.ref = cd.ref + 1;
       });
     };
