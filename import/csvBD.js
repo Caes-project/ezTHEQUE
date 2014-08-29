@@ -1,10 +1,12 @@
 var csv = require('csv');
 var fs = require('fs');
 var cpt = 0;
+fs.unlink('bd.json');
 var BDliste = fs.createReadStream(__dirname + '/user/exp_dump.caes_bd.csv');
 var parser = csv.parse({
     delimiter: ';',
-    columns:  ['titre', 'dessinateur', 'scenariste', 'editeur', 'genre', 'ref', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage']
+    columns:  ['titre', 'dessinateur', 'scenariste', 'editeur', 'genre', 'ref', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage'],
+    relax: true
 });
 var transformer = csv.transform(function(data){
   return data;

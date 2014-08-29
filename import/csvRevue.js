@@ -4,9 +4,11 @@ var cpt = 0;
 var cpt_ref=1;
 var listeRevues=[];
 var BDliste = fs.createReadStream(__dirname + '/user/exp_dump.caes_revues_tries.csv');
+fs.unlink('revue.json');
 var parser = csv.parse({
     delimiter: ',',
-    columns:  ['ref', 'titre', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage']
+    columns:  ['ref', 'titre', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage'],
+    relax: true
 });
 var transformer = csv.transform(function(data){
   return data;

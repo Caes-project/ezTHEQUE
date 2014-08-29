@@ -241,7 +241,7 @@ DvdEmprunt = function(tmp, callback){
       console.log('trouvé dvd');
       console.log(dvd);
       if(!dvd) { return callback()}
-      console.log('old_ref user' + tmp.id_user);
+      console.log('old_ref user ' + tmp.id_user);
       User.findOne({id_user: tmp.id_user}, function(err, user){
         if(err){ 
           throw err;

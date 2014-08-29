@@ -372,13 +372,6 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if (media[0]) {
         $scope.newmedia = media[0];
         $scope.newmedia.typeMedia = type;
-        if (media[0].emprunt.user === $scope.user._id) {
-          $scope.rendreLivre(media[0]);
-          $scope.refMedia = null;
-        } else {
-          $scope.validerEmprunt();
-          $scope.refMedia = null;
-        }
       }
     }
 

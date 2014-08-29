@@ -1,280 +1,282 @@
-1;"ZZZZTartempion";"Lucien";"dominique.lechaudel@free.fr";"admin";"caes";"seac";2013-10-27;"Pour tests";1;2003-03-26;2004-03-26;1;2003-03-26;2008-03-26;1;2003-03-26;2008-03-26;1;2003-03-26;2004-03-26;1;2003-10-28;2008-10-28
-2;"Lechaudel";"Dominique";"lechaudel@inist.fr";"admin";"dominique";"dannevoux";2004-12-01;"INIST - DPMI";1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
-3;"Clement";"Juan";"clement@inist.fr";"admin";"juan";"music";2006-11-13;"INIST - DBD";1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
-4;"0 Vide à utiliser pour tout nvel abonné";"";"";"admin";"videu857";"labonn";2012-11-20;"";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-5;"Bonvallot";"Valerie";"valerie.bonvallot@inist.fr";"admin";"valerie";"mveadliear";2008-12-09;"INIST - DBD - Veille";1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
-6;"Dardaine";"Dolores";"dardaine@inist.fr";"admin";"dolores";"dolpres22";2004-11-30;"INIST - SP";1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
-7;"Couchet";"Pierre";"couchet@inist.fr";"user";"couchet";"vacances";2013-09-13;"INIST - DPMI";1;2002-07-03;2003-07-03;1;2013-09-11;2014-09-11;0;0000-00-00;0000-00-00;1;2002-07-03;2003-07-03;0;2008-08-30;2009-08-30
-8;"Zerouki";"Alain";"zerouki@inist.fr";"user";"zerouki";"vacances";2005-03-11;"INIST - DBD";1;0000-00-00;0000-00-00;1;2005-03-11;2006-03-11;1;2005-03-11;2006-03-11;1;0000-00-00;0000-00-00;1;2005-03-11;2006-03-11
-9;"ZZZZAubier";"Patrick";"patrick.aubier@loria.fr";"user";"aubier";"loria";2014-04-03;"UMR7503 
+1;ZZZZTartempion;Lucien;dominique.lechaudel@free.fr;admin;caes;seac;2013-10-27;Pour tests;1;2003-03-26;2004-03-26;1;2003-03-26;2008-03-26;1;2003-03-26;2008-03-26;1;2003-03-26;2004-03-26;1;2003-10-28;2008-10-28
+2;Lechaudel;Dominique;lechaudel@inist.fr;admin;dominique;dannevoux;2004-12-01;INIST - DPMI;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
+3;Clement;Juan;clement@inist.fr;admin;juan;music;2014-08-29;INIST - DBD;1;0000-00-00;0000-00-00;1;0000-00-00;2016-08-11;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
+4;0 Vide à utiliser pour tout nvel abonné;;;admin;videu857;labonn;2012-11-20;;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+5;Bonvallot;Valerie;valerie.bonvallot@inist.fr;admin;valerie;mveadliear;2008-12-09;INIST - DBD - Veille;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
+6;Dardaine;Dolores;dardaine@inist.fr;admin;dolores;dolpres22;2004-11-30;INIST - SP;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00
+7;Couchet;Pierre;couchet@inist.fr;user;couchet;vacances;2013-09-13;INIST - DPMI;1;2002-07-03;2003-07-03;1;2013-09-11;2014-09-11;0;0000-00-00;0000-00-00;1;2002-07-03;2003-07-03;0;2008-08-30;2009-08-30
+8;Zerouki;Alain;zerouki@inist.fr;user;zerouki;vacances;2005-03-11;INIST - DBD;1;0000-00-00;0000-00-00;1;2005-03-11;2006-03-11;1;2005-03-11;2006-03-11;1;0000-00-00;0000-00-00;1;2005-03-11;2006-03-11
+9;ZZZZAubier;Patrick;patrick.aubier@loria.fr;user;aubier;loria;2014-04-03;"UMR7503 
 Laboratoire lorrain de recherche en informatique et ses applications (LORIA) 
 Bat. Loria,";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-10;"ZZZZRassinoux";"Laurent";"rassinoux@inist.fr";"user";"rassinoux";"vacances";2013-10-27;"INIST - DBD";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-11;"Gillet";"Jacqueline";"gillet@inist.fr";"user";"gillet";"vacances";2014-07-11;"INIST";1;0000-00-00;0000-00-00;1;2014-07-11;2015-07-11;1;2014-07-11;2015-07-11;1;0000-00-00;0000-00-00;1;2014-07-11;2015-07-11
-14;"ZZZZArnaud";"Iwona";"jeanarnaud719@orange.fr";"user";"arnau014";"divona";2014-04-03;"INIST - DBD";1;2002-11-12;2003-11-12;1;2011-01-16;2012-01-16;0;2006-12-19;2007-12-19;1;2002-11-12;2003-11-12;0;0000-00-00;0000-00-00
-19;"Appel";"Nathalie";"nathalie.appel@dr6.cnrs.fr";"user";"appel019";"thalie";2014-01-07;"INIST - DPRE";1;2002-07-03;2003-07-03;1;2014-01-07;2015-01-07;0;2009-11-27;2010-11-27;1;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00
-141;"Lejars";"Catherine";"lejars@inist.fr";"user";"lejar055";"herine";2013-05-24;"INIST - DPRE";1;NULL;NULL;1;2013-05-24;2014-05-24;1;2013-05-24;2014-05-24;1;NULL;NULL;0;2008-02-24;2009-02-24
-21;"Bach";"Carine";"bach@inist.fr";"admin";"bachc021";"carine";2012-05-15;"INIST - DRD";1;0000-00-00;0000-00-00;1;2011-09-13;2012-09-13;1;2011-09-13;2012-09-13;1;0000-00-00;0000-00-00;1;2011-09-03;2012-09-03
-23;"Champale";"Corinne";"corinne.champale@univ-lorraine.fr";"admin";"champale13";"corinne13";2014-02-28;"";1;2002-10-02;2003-10-02;1;2013-11-08;2014-11-08;1;2013-11-08;2014-11-08;1;2002-10-02;2003-10-02;1;2013-11-08;2014-11-08
-24;"Bontemps";"Nathalie";"bontemps@inist.fr";"user";"bonte024";"thalie";2013-05-24;"INIST - DRD";1;2002-12-09;2003-12-09;1;2013-05-24;2014-05-24;0;2011-12-19;2012-12-19;1;0000-00-00;0000-00-00;1;2013-05-24;2014-05-24
-25;"Bonthoux";"Michèle";"bonthoux@inist.fr";"user";"bonth025";"michle";2013-10-25;"INIST - DPMI";1;2002-10-02;2003-10-02;1;2013-10-25;2014-10-25;1;2013-10-25;2014-10-25;1;2002-10-02;2003-10-02;1;2013-10-25;2014-10-25
-27;"Bordet";"Valérie";"bordet@inist.fr";"user";"borde027";"valrie";2013-07-09;"INIST - DPMI";1;2002-06-06;2003-06-06;1;2013-07-09;2014-07-09;1;2013-07-09;2014-07-09;1;2002-06-06;2003-06-06;1;2013-07-09;2014-07-09
-28;"ZZZZChardet";"Thierry";"chardet@inist.fr";"user";"chard028";"hierry";2013-10-27;"INIST - DPMI";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2007-11-09;2008-11-09;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-29;"ZZZZCharoy";"Bernard";"bcharoy@crpg.cnrs-nancy.fr";"user";"charo029";"ernard";2013-10-27;"Retraité CNRS
+10;ZZZZRassinoux;Laurent;rassinoux@inist.fr;user;rassinoux;vacances;2013-10-27;INIST - DBD;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+11;Gillet;Jacqueline;gillet@inist.fr;user;gillet;vacances;2014-07-11;INIST;1;0000-00-00;0000-00-00;1;2014-07-11;2015-07-11;1;2014-07-11;2015-07-11;1;0000-00-00;0000-00-00;1;2014-07-11;2015-07-11
+14;ZZZZArnaud;Iwona;jeanarnaud719@orange.fr;user;arnau014;divona;2014-04-03;INIST - DBD;1;2002-11-12;2003-11-12;1;2011-01-16;2012-01-16;0;2006-12-19;2007-12-19;1;2002-11-12;2003-11-12;0;0000-00-00;0000-00-00
+19;Appel;Nathalie;nathalie.appel@dr6.cnrs.fr;user;appel019;thalie;2014-01-07;INIST - DPRE;1;2002-07-03;2003-07-03;1;2014-01-07;2015-01-07;0;2009-11-27;2010-11-27;1;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00
+141;Lejars;Catherine;lejars@inist.fr;user;lejar055;herine;2013-05-24;INIST - DPRE;1;NULL;NULL;1;2013-05-24;2014-05-24;1;2013-05-24;2014-05-24;1;NULL;NULL;0;2008-02-24;2009-02-24
+21;Bach;Carine;bach@inist.fr;admin;bachc021;carine;2012-05-15;INIST - DRD;1;0000-00-00;0000-00-00;1;2011-09-13;2012-09-13;1;2011-09-13;2012-09-13;1;0000-00-00;0000-00-00;1;2011-09-03;2012-09-03
+23;Champale;Corinne;corinne.champale@univ-lorraine.fr;admin;champale13;corinne13;2014-02-28;;1;2002-10-02;2003-10-02;1;2013-11-08;2014-11-08;1;2013-11-08;2014-11-08;1;2002-10-02;2003-10-02;1;2013-11-08;2014-11-08
+24;Bontemps;Nathalie;bontemps@inist.fr;user;bonte024;thalie;2014-08-26;INIST - DRD;1;2002-12-09;2003-12-09;1;2013-05-24;2015-08-26;0;2011-12-19;2012-12-19;1;0000-00-00;0000-00-00;1;2013-05-24;2015-08-26
+25;Bonthoux;Michèle;bonthoux@inist.fr;user;bonth025;michle;2013-10-25;INIST - DPMI;1;2002-10-02;2003-10-02;1;2013-10-25;2014-10-25;1;2013-10-25;2014-10-25;1;2002-10-02;2003-10-02;1;2013-10-25;2014-10-25
+27;Bordet;Valérie;bordet@inist.fr;user;borde027;valrie;2013-07-09;INIST - DPMI;1;2002-06-06;2003-06-06;1;2013-07-09;2014-07-09;1;2013-07-09;2014-07-09;1;2002-06-06;2003-06-06;1;2013-07-09;2014-07-09
+28;ZZZZChardet;Thierry;chardet@inist.fr;user;chard028;hierry;2013-10-27;INIST - DPMI;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2007-11-09;2008-11-09;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+29;ZZZZCharoy;Bernard;bcharoy@crpg.cnrs-nancy.fr;user;charo029;ernard;2013-10-27;"Retraité CNRS
 UPR2300  
 Centre de recherches petrographiques et géochimiques (CRPG)";1;2002-11-08;2003-11-08;1;2006-09-29;2007-09-29;0;0000-00-00;0000-00-00;1;2002-11-08;2003-11-08;0;0000-00-00;0000-00-00
-31;"Barreaux";"Sabine";"sabine.barreaux@inist.fr";"user";"videu831";"labonn";2013-09-10;"";1;0000-00-00;0000-00-00;1;2013-09-10;2014-09-10;0;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-32;"Debout";"Roselyne";"debout@inist.fr";"admin";"rde";"edr";2004-12-01;"INIST - DRD";1;2002-10-02;2003-10-02;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;2002-10-02;2003-10-02;1;0000-00-00;0000-00-00
-33;"Delvallee";"Thérèse";"delvalle@inist.fr";"user";"delva033";"ethrse";2011-09-16;"INIST - DBD";1;2002-06-06;2003-06-06;1;2011-09-16;2012-09-16;0;2009-02-06;2010-02-06;1;2002-06-06;2003-06-06;0;0000-00-00;0000-00-00
-34;"ZZZZDeschamps";"Philippe";"deschamp@inist.fr";"user";"desch034";"ilippe";2013-10-27;"INIST - DPMI";0;2002-10-02;2003-10-02;0;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00;0;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00
-35;"Devillers";"Marie";"tatamari42@gmail.com";"user";"devil035";"smarie";2014-04-15;"Future retraitée (septembre)";1;2002-10-06;2003-10-06;1;2014-04-15;2015-04-15;0;2009-12-18;2010-12-18;1;2002-10-06;2003-10-06;1;2014-04-15;2015-04-15
-36;"Driou";"Anne";"driou@inist.fr";"user";"driou036";"ouanne";2013-08-20;"INIST - DBD";1;2002-06-06;2003-06-06;1;2013-08-20;2014-08-20;0;2009-09-14;2003-09-14;1;2002-06-06;2003-06-06;0;0000-00-00;0000-00-00
-37;"ZZZZFabry";"Cécilia";"cecilia.fabry@inist.fr";"user";"fabry";"cecilia";2013-10-27;"INIST - DBD - Veille";0;2002-07-03;2003-07-03;0;2002-07-03;2003-07-03;0;2003-04-15;2004-04-15;0;2002-07-03;2003-07-03;0;2003-09-03;2004-09-03
-195;"ZZZZMorel-Pair";"Catherine";"morel@inist.fr";"user";"morel219";"herine";2013-10-27;"";1;NULL;NULL;1;2011-09-23;2012-09-23;1;2011-09-23;2012-09-23;1;NULL;NULL;1;2011-09-23;2012-09-23
-39;"ZZZZFournier";"Catherine";"catherine.fournier@inist.fr";"user";"fourn039";"herine";2013-10-27;"INIST - DBD";1;2002-03-06;2003-03-06;1;2008-01-30;2009-01-30;1;2008-01-30;2009-01-30;1;2002-03-06;2003-03-06;1;2008-01-30;2009-01-30
-40;"Gabriel";"Sylvie";"gabriel@inist.fr";"user";"gabri040";"sylvie";2014-07-29;"INIST - DRD";1;2002-07-03;2003-07-03;1;2014-07-29;2015-07-29;1;2014-07-29;2015-07-29;1;2002-07-03;2003-07-03;1;2014-07-29;2015-07-29
-42;"ZZZZGauthier";"Christophe";"Christophe.Gauthier@maem.uhp-nancy.fr";"user";"gauth042";"stophe";2013-10-27;"UMR7567  
+31;Barreaux;Sabine;sabine.barreaux@inist.fr;user;videu831;labonn;2013-09-10;;1;0000-00-00;0000-00-00;1;2013-09-10;2014-09-10;0;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+32;Debout;Roselyne;debout@inist.fr;admin;rde;edr;2004-12-01;INIST - DRD;1;2002-10-02;2003-10-02;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;2002-10-02;2003-10-02;1;0000-00-00;0000-00-00
+33;Delvallee;Thérèse;delvalle@inist.fr;user;delva033;ethrse;2011-09-16;INIST - DBD;1;2002-06-06;2003-06-06;1;2011-09-16;2012-09-16;0;2009-02-06;2010-02-06;1;2002-06-06;2003-06-06;0;0000-00-00;0000-00-00
+34;ZZZZDeschamps;Philippe;deschamp@inist.fr;user;desch034;ilippe;2013-10-27;INIST - DPMI;0;2002-10-02;2003-10-02;0;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00;0;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00
+35;Devillers;Marie;tatamari42@gmail.com;user;devil035;smarie;2014-04-15;Future retraitée (septembre);1;2002-10-06;2003-10-06;1;2014-04-15;2015-04-15;0;2009-12-18;2010-12-18;1;2002-10-06;2003-10-06;1;2014-04-15;2015-04-15
+36;Driou;Anne;driou@inist.fr;user;driou036;ouanne;2013-08-20;INIST - DBD;1;2002-06-06;2003-06-06;1;2013-08-20;2014-08-20;0;2009-09-14;2003-09-14;1;2002-06-06;2003-06-06;0;0000-00-00;0000-00-00
+37;ZZZZFabry;Cécilia;cecilia.fabry@inist.fr;user;fabry;cecilia;2013-10-27;INIST - DBD - Veille;0;2002-07-03;2003-07-03;0;2002-07-03;2003-07-03;0;2003-04-15;2004-04-15;0;2002-07-03;2003-07-03;0;2003-09-03;2004-09-03
+195;ZZZZMorel-Pair;Catherine;morel@inist.fr;user;morel219;herine;2013-10-27;;1;NULL;NULL;1;2011-09-23;2012-09-23;1;2011-09-23;2012-09-23;1;NULL;NULL;1;2011-09-23;2012-09-23
+39;ZZZZFournier;Catherine;catherine.fournier@inist.fr;user;fourn039;herine;2013-10-27;INIST - DBD;1;2002-03-06;2003-03-06;1;2008-01-30;2009-01-30;1;2008-01-30;2009-01-30;1;2002-03-06;2003-03-06;1;2008-01-30;2009-01-30
+40;Gabriel;Sylvie;gabriel@inist.fr;user;gabri040;sylvie;2014-07-29;INIST - DRD;1;2002-07-03;2003-07-03;1;2014-07-29;2015-07-29;1;2014-07-29;2015-07-29;1;2002-07-03;2003-07-03;1;2014-07-29;2015-07-29
+42;ZZZZGauthier;Christophe;Christophe.Gauthier@maem.uhp-nancy.fr;user;gauth042;stophe;2013-10-27;"UMR7567  
 Maturation des ARN et enzymologie moléculaire
 Université Henri Poincaré (Nancy I)
 bat.";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2002-03-05;2003-03-05;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-43;"ZZZZGinsburger";"Chantal";"ginsburg@cpb.cnrs-nancy.fr";"user";"ginsb043";"hantal";2013-10-27;"UMR7137  
+43;ZZZZGinsburger;Chantal;ginsburg@cpb.cnrs-nancy.fr;user;ginsb043;hantal;2013-10-27;"UMR7137  
 Laboratoire des Interactions Microorganismes - Minéraux - Matière Organique dans les Sols";1;2002-05-21;2003-05-21;1;2004-07-22;2005-07-22;0;0000-00-00;0000-00-00;1;2002-05-21;2003-05-21;0;0000-00-00;0000-00-00
-44;"ZZZZGomez";"Isabelle";"gomez@inist.fr";"user";"gomez";"ange";2013-10-27;"INIST - DBD";1;2002-05-21;2003-05-21;1;2010-04-09;2011-04-09;1;2010-04-09;2011-04-09;1;2002-05-21;2003-05-21;0;0000-00-00;0000-00-00
-46;"ZZZZGrausem";"Jerôme";"grausem@lcpe.cnrs-nancy.fr";"user";"graus046";"mjerme";2013-10-27;"UMR7564  
+44;ZZZZGomez;Isabelle;gomez@inist.fr;user;gomez;ange;2013-10-27;INIST - DBD;1;2002-05-21;2003-05-21;1;2010-04-09;2011-04-09;1;2010-04-09;2011-04-09;1;2002-05-21;2003-05-21;0;0000-00-00;0000-00-00
+46;ZZZZGrausem;Jerôme;grausem@lcpe.cnrs-nancy.fr;user;graus046;mjerme;2013-10-27;"UMR7564  
 Laboratoire de Chimie Physique et Microbiologie pour l\'Environnement (L.C.P.M.E.) 
 405";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2003-09-09;2004-09-09;0;0000-00-00;0000-00-00;0;2004-03-16;2005-03-16
-47;"Haguenauer";"Viviane";"haguenau@inist.fr";"user";"hague047";"iviane";2014-04-04;"INIST - DBD";1;2002-10-24;2003-10-24;1;2014-04-04;2015-04-04;0;2008-03-01;2009-03-01;1;2002-10-24;2003-10-24;1;2014-04-04;2015-04-04
-48;"ZZZZHoel";"Pascaline";"hoel@inist.fr";"user";"hoelp048";"caline";2013-10-27;"INIST - DRD";1;2002-09-06;2003-09-06;1;2007-04-04;2008-04-04;0;2006-03-17;2007-03-17;1;2002-09-06;2003-09-06;0;0000-00-00;0000-00-00
-49;"ZZZZHouel";"Annick";"houel@dr6.cnrs.fr";"user";"houel049";"annick";2013-10-27;"message de désinscription le 08/09/04
+47;Haguenauer;Viviane;haguenau@inist.fr;user;hague047;iviane;2014-04-04;INIST - DBD;1;2002-10-24;2003-10-24;1;2014-04-04;2015-04-04;0;2008-03-01;2009-03-01;1;2002-10-24;2003-10-24;1;2014-04-04;2015-04-04
+48;ZZZZHoel;Pascaline;hoel@inist.fr;user;hoelp048;caline;2013-10-27;INIST - DRD;1;2002-09-06;2003-09-06;1;2007-04-04;2008-04-04;0;2006-03-17;2007-03-17;1;2002-09-06;2003-09-06;0;0000-00-00;0000-00-00
+49;ZZZZHouel;Annick;houel@dr6.cnrs.fr;user;houel049;annick;2013-10-27;"message de désinscription le 08/09/04
 
 MOY600  Délégation Nord-est
 17 rue Notre Dame des Pauvres";0;2002-05-21;2003-05-21;0;2003-05-21;2004-05-21;0;0000-00-00;0000-00-00;0;2002-05-21;2003-05-21;0;0000-00-00;0000-00-00
-50;"Jeannon";"Véronique";"jeannon@inist.fr";"user";"jeann050";"onique";2012-12-18;"INIST - DBD";1;2003-02-11;2004-02-11;1;2011-10-15;2013-06-18;0;2010-10-15;2011-10-15;1;2003-02-11;2004-02-11;1;2011-10-15;2013-06-18
-52;"ZZZZJoussemet";"Robert";"robert.joussemet@ensg.inpl-nancy.fr";"user";"jouss052";"robert";2013-10-27;"UMR7569  
+50;Jeannon;Véronique;jeannon@inist.fr;user;jeann050;onique;2012-12-18;INIST - DBD;1;2003-02-11;2004-02-11;1;2011-10-15;2013-06-18;0;2010-10-15;2011-10-15;1;2003-02-11;2004-02-11;1;2011-10-15;2013-06-18
+52;ZZZZJoussemet;Robert;robert.joussemet@ensg.inpl-nancy.fr;user;jouss052;robert;2013-10-27;"UMR7569  
 Laboratoire environnement et mineralurgie (LEM)
 centre de recherche F Fiessinger
 15 Ave";1;2002-05-22;2003-05-22;1;2011-01-20;2012-01-20;0;0000-00-00;0000-00-00;1;2002-05-22;2003-05-22;0;0000-00-00;0000-00-00
-53;"ZZZZKasprzak";"Nathalie";"kasprzak@inist.fr";"user";"kaspr053";"thalie";2013-10-27;"Message de desinscription le 06/09/2004
+53;ZZZZKasprzak;Nathalie;kasprzak@inist.fr;user;kaspr053;thalie;2013-10-27;"Message de desinscription le 06/09/2004
 
 INIST - DPMI";0;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00;0;2003-06-17;2004-06-17;0;0000-00-00;0000-00-00;0;2003-06-17;2004-06-17
-54;"ZZZZKhayari";"Majid";"khayari@inist.fr";"user";"khaya054";"imajid";2013-10-27;"INIST - DBD";1;2002-10-02;2003-10-02;1;2009-03-03;2010-03-03;0;0000-00-00;0000-00-00;1;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00
-55;"ZZZZKlein";"Sophie";"sophie.klein@lpmi.uhp-nancy.fr";"user";"klein055";"sophie";2013-10-27;"UMR7040  
+54;ZZZZKhayari;Majid;khayari@inist.fr;user;khaya054;imajid;2013-10-27;INIST - DBD;1;2002-10-02;2003-10-02;1;2009-03-03;2010-03-03;0;0000-00-00;0000-00-00;1;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00
+55;ZZZZKlein;Sophie;sophie.klein@lpmi.uhp-nancy.fr;user;klein055;sophie;2013-10-27;"UMR7040  
 Physique des milieux ionisés et applications (LPMI)
 Université Henri Poincaré (Nancy I)";0;2002-10-24;2003-10-24;0;2002-10-24;2003-10-24;0;2002-10-15;2003-10-15;0;2002-10-24;2003-10-24;0;0000-00-00;0000-00-00
-56;"ZZZZKremer";"Patrick";"kremer@inist.fr";"user";"kreme056";"atrick";2013-10-27;"INIST - DPMI";0;0000-00-00;0000-00-00;0;2003-09-02;2004-09-02;0;2003-09-02;2004-09-02;0;0000-00-00;0000-00-00;0;2003-09-02;2004-09-02
-57;"Lafosse";"Yvette";"lafosse@inist.fr";"user";"lafos057";"yvette";2013-09-10;"INIST - SF";1;0000-00-00;0000-00-00;1;2013-09-10;2014-09-10;1;2013-09-10;2014-09-10;1;0000-00-00;0000-00-00;1;2013-09-10;2014-09-10
-58;"Lambert";"Roland";"lambert@inist.fr";"user";"lambe058";"roland";2014-08-05;"INIST - DPMI";0;2002-05-21;2003-05-21;0;2010-10-15;2011-10-15;1;2014-05-04;2015-05-04;0;2002-05-21;2003-05-21;0;2010-10-15;2011-10-15
-59;"ZZZZLe Carlier";"Christian";"christian.le-carlier@ensg.inpl-nancy.fr";"user";"lecar059";"istian";2013-10-27;"UPR2300 
+56;ZZZZKremer;Patrick;kremer@inist.fr;user;kreme056;atrick;2013-10-27;INIST - DPMI;0;0000-00-00;0000-00-00;0;2003-09-02;2004-09-02;0;2003-09-02;2004-09-02;0;0000-00-00;0000-00-00;0;2003-09-02;2004-09-02
+57;Lafosse;Yvette;lafosse@inist.fr;user;lafos057;yvette;2013-09-10;INIST - SF;1;0000-00-00;0000-00-00;1;2013-09-10;2014-09-10;1;2013-09-10;2014-09-10;1;0000-00-00;0000-00-00;1;2013-09-10;2014-09-10
+58;Lambert;Roland;lambert@inist.fr;user;lambe058;roland;2014-08-05;INIST - DPMI;0;2002-05-21;2003-05-21;0;2010-10-15;2011-10-15;1;2014-05-04;2015-05-04;0;2002-05-21;2003-05-21;0;2010-10-15;2011-10-15
+59;ZZZZLe Carlier;Christian;christian.le-carlier@ensg.inpl-nancy.fr;user;lecar059;istian;2013-10-27;"UPR2300 
 Centre de recherches petrographiques et géochimiques (CRPG)";0;2002-02-11;2003-02-11;0;2002-02-11;2003-02-11;0;0000-00-00;0000-00-00;0;2002-02-11;2003-02-11;0;0000-00-00;0000-00-00
-60;"Leblanc";"Sylvie";"leblanc@inist.fr";"user";"lebla060";"sylvie";2013-10-08;"INIST - DBD";1;2003-03-25;2004-03-25;1;2013-10-08;2014-10-08;1;2013-10-08;2014-10-08;1;2003-03-25;2004-03-25;1;2013-10-08;2014-10-08
-61;"ZZZZLecocq";"Fabrice";"lecocq@inist.fr";"user";"lecocq@inist.fr";"dophst";2013-10-27;"INIST - DSI";1;2002-10-24;2003-10-24;1;2008-09-02;2009-09-02;0;0000-00-00;0000-00-00;1;2002-10-24;2003-10-24;0;2005-08-12;2006-08-12
-62;"Mazur";"Florian";"florian.mazur@inist.fr";"user";"mazur";"lorian";2014-01-17;"INIST - DSI";1;0000-00-00;0000-00-00;1;2013-12-01;2014-12-01;1;2013-12-01;2014-12-01;1;0000-00-00;0000-00-00;1;2013-12-01;2014-12-01
-63;"ZZZZMerlet";"Denis";"merlet@cpb.cnrs-nancy.fr";"user";"merle063";"tdenis";2013-10-27;"UMR7137  
+60;Leblanc;Sylvie;leblanc@inist.fr;user;lebla060;sylvie;2013-10-08;INIST - DBD;1;2003-03-25;2004-03-25;1;2013-10-08;2014-10-08;1;2013-10-08;2014-10-08;1;2003-03-25;2004-03-25;1;2013-10-08;2014-10-08
+61;ZZZZLecocq;Fabrice;lecocq@inist.fr;user;lecocq@inist.fr;dophst;2013-10-27;INIST - DSI;1;2002-10-24;2003-10-24;1;2008-09-02;2009-09-02;0;0000-00-00;0000-00-00;1;2002-10-24;2003-10-24;0;2005-08-12;2006-08-12
+62;Mazur;Florian;florian.mazur@inist.fr;user;mazur;lorian;2014-01-17;INIST - DSI;1;0000-00-00;0000-00-00;1;2013-12-01;2014-12-01;1;2013-12-01;2014-12-01;1;0000-00-00;0000-00-00;1;2013-12-01;2014-12-01
+63;ZZZZMerlet;Denis;merlet@cpb.cnrs-nancy.fr;user;merle063;tdenis;2013-10-27;"UMR7137  
 Laboratoire des Interactions Microorganismes - Minéraux - Matière Organique dans les Sols";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2003-01-22;2004-01-22;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-64;"ZZZZMoitessier";"Sandie";"";"user";"moite064";"sandie";2013-10-27;"INIST - AG";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-65;"Moreau";"Luc";"luc.moreau@lpm.u-nancy.fr";"user";"morea065";"eauluc";2012-05-15;"UMR7556  
+64;ZZZZMoitessier;Sandie;;user;moite064;sandie;2013-10-27;INIST - AG;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+65;Moreau;Luc;luc.moreau@lpm.u-nancy.fr;user;morea065;eauluc;2012-05-15;"UMR7556  
 Laboratoire de physique des matériaux
 Université Henri Poincaré (Nancy I)
 BP 239
 54506";1;2002-10-24;2003-10-24;1;2012-01-17;2013-01-17;0;0000-00-00;0000-00-00;1;2002-10-24;2003-10-24;0;0000-00-00;0000-00-00
-66;"ZZZZPerruchaud";"Jean";"jean.perruchaud@dr6.cnrs.fr";"user";"perru066";"udjean";2013-10-27;"INIST - DPMI";1;2002-10-02;2003-10-02;1;2008-11-21;2009-11-21;0;0000-00-00;0000-00-00;1;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00
-67;"1 CLAS (prêt CLAS Strasbourg)";"";"";"user";"videu577";"labonn";2013-12-04;"";1;0000-00-00;0000-00-00;1;2013-12-04;2014-12-04;1;2013-12-04;2014-12-04;1;0000-00-00;0000-00-00;1;2013-12-04;2014-12-04
-68;"ZZZZPitetti";"Rosaria";"pitetti@inist.fr";"user";"pitet068";"osaria";2013-10-27;"INIST - AG";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2002-09-03;2003-09-03;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-69;"Previtali";"Valérie";"prevital@inist.fr";"user";"previ069";"valrie";2014-01-07;"INIST - SP";1;2002-02-11;2003-02-11;1;2014-01-07;2015-01-07;0;2010-06-17;2011-06-17;1;2002-02-11;2003-02-11;0;0000-00-00;0000-00-00
-70;"Remy";"Jean-Luc";"jlremy@orange.fr";"user";"remyj070";"eanluc";2014-04-29;"UMR7503  
+66;ZZZZPerruchaud;Jean;jean.perruchaud@dr6.cnrs.fr;user;perru066;udjean;2013-10-27;INIST - DPMI;1;2002-10-02;2003-10-02;1;2008-11-21;2009-11-21;0;0000-00-00;0000-00-00;1;2002-10-02;2003-10-02;0;0000-00-00;0000-00-00
+67;1 CLAS (prêt CLAS Strasbourg);;;user;videu577;labonn;2013-12-04;;1;0000-00-00;0000-00-00;1;2013-12-04;2014-12-04;1;2013-12-04;2014-12-04;1;0000-00-00;0000-00-00;1;2013-12-04;2014-12-04
+68;ZZZZPitetti;Rosaria;pitetti@inist.fr;user;pitet068;osaria;2013-10-27;INIST - AG;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2002-09-03;2003-09-03;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+69;Previtali;Valérie;prevital@inist.fr;user;previ069;valrie;2014-01-07;INIST - SP;1;2002-02-11;2003-02-11;1;2014-01-07;2015-01-07;0;2010-06-17;2011-06-17;1;2002-02-11;2003-02-11;0;0000-00-00;0000-00-00
+70;Remy;Jean-Luc;jlremy@orange.fr;user;remyj070;eanluc;2014-04-29;"UMR7503  
 Laboratoire lorrain de recherche en informatique et ses applications (LORIA)
 Bat. Loria";1;2002-09-06;2003-09-06;1;2014-04-29;2015-04-29;0;0000-00-00;0000-00-00;1;2002-09-06;2003-09-06;0;0000-00-00;0000-00-00
-71;"ZZZZRobert";"Pascal";"robert@crpg.cnrs-nancy.fr";"user";"rober071";"pascal";2013-10-27;"echeance cd 2003-01-15
+71;ZZZZRobert;Pascal;robert@crpg.cnrs-nancy.fr;user;rober071;pascal;2013-10-27;"echeance cd 2003-01-15
 
 UPR2300 Centre de recherches petrographiques et géochimiques (CRPG)";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2002-01-15;2003-01-15;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-72;"ZZZZRoche";"Ivana";"ivana.roche@inist.fr";"user";"roche072";"eivana";2013-10-27;"INIST - URI";1;2002-06-06;2003-06-06;1;2006-06-06;2007-06-06;1;2005-06-06;2007-06-06;1;2002-06-06;2003-06-06;1;2006-10-27;2007-10-27
-73;"ZZZZRubio";"Marc";"rubio@inist.fr";"user";"rubio073";"iomarc";2013-10-27;"INIST - DBD";0;2002-09-06;2003-09-06;0;2002-09-06;2003-09-06;0;2002-10-04;2003-10-04;0;2002-09-06;2003-09-06;0;0000-00-00;0000-00-00
-74;"ZZZZStock";"Volker";"volker.stock@inist.fr";"user";"stock074";"volker";2013-10-27;"";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2006-11-08;2007-11-08;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-76;"Terrier";"Catherine";"terrier@inist.fr";"user";"terri076";"herine";2013-10-04;"INIST - DRD";1;2002-10-01;2003-10-01;1;2013-10-04;2014-10-04;1;2013-10-04;2014-10-04;1;2002-10-01;2003-10-01;0;2008-06-05;2009-06-05
-77;"0 Vide à utiliser pour tout nvel abonné";"";"";"user";"videu603";"labonn";2012-11-20;"";0;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00
-78;"ZZZZTihay";"Daniel";"tihay@inist.fr";"user";"tihay078";"daniel";2013-10-27;"INIST - DBD
+72;ZZZZRoche;Ivana;ivana.roche@inist.fr;user;roche072;eivana;2013-10-27;INIST - URI;1;2002-06-06;2003-06-06;1;2006-06-06;2007-06-06;1;2005-06-06;2007-06-06;1;2002-06-06;2003-06-06;1;2006-10-27;2007-10-27
+73;ZZZZRubio;Marc;rubio@inist.fr;user;rubio073;iomarc;2013-10-27;INIST - DBD;0;2002-09-06;2003-09-06;0;2002-09-06;2003-09-06;0;2002-10-04;2003-10-04;0;2002-09-06;2003-09-06;0;0000-00-00;0000-00-00
+74;ZZZZStock;Volker;volker.stock@inist.fr;user;stock074;volker;2013-10-27;;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2006-11-08;2007-11-08;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+76;Terrier;Catherine;terrier@inist.fr;user;terri076;herine;2013-10-04;INIST - DRD;1;2002-10-01;2003-10-01;1;2013-10-04;2014-10-04;1;2013-10-04;2014-10-04;1;2002-10-01;2003-10-01;0;2008-06-05;2009-06-05
+77;0 Vide à utiliser pour tout nvel abonné;;;user;videu603;labonn;2012-11-20;;0;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2002-07-03;2003-07-03;0;0000-00-00;0000-00-00
+78;ZZZZTihay;Daniel;tihay@inist.fr;user;tihay078;daniel;2013-10-27;"INIST - DBD
 acces ferme le 20/04/2005 (pas de renouvellement cotisation)";0;0000-00-00;0000-00-00;0;2004-01-13;2005-01-13;0;2004-01-13;2005-01-13;0;0000-00-00;0000-00-00;0;2004-01-13;2005-01-13
-79;"ZZZZVachez";"Dominique";"vachez@inist.fr";"user";"vache079";"inique";2013-10-27;"INIST - DBD
+79;ZZZZVachez;Dominique;vachez@inist.fr;user;vache079;inique;2013-10-27;"INIST - DBD
 Don de 2 CD nov 2004 rajout 3 mois cotis";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2006-03-03;2007-03-03;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-80;"Verdier";"Marie-Pierre";"Marie-Pierre.VERDIER@inist.fr";"user";"verdi080";"pierre";2013-10-27;"INIST - DBD";1;2003-02-21;2004-02-21;1;2013-04-09;2014-04-09;1;2013-04-09;2014-04-09;1;2003-02-21;2004-02-21;0;0000-00-00;0000-00-00
-81;"Colo Vars";"";"";"user";"videu686";"labonn";2014-02-21;"";1;0000-00-00;0000-00-00;1;2014-02-21;2015-02-21;1;2014-02-21;2015-02-21;1;0000-00-00;0000-00-00;1;2014-02-21;2015-02-21
-167;"ZZZZJeanneau";"Laurent";"laurent_jeanneau@yahoo.fr";"user";"jeann785";"aurent";2013-10-27;"";1;NULL;NULL;1;2004-11-23;2005-11-23;1;2004-11-23;2005-11-23;1;NULL;NULL;1;2004-11-23;2005-11-23
-83;"Weil-Miko";"Christine";"weilmiko@inist.fr";"user";"weilm083";"istine";2013-09-27;"INIST - DPRE";1;2002-06-06;2003-06-06;1;2013-08-21;2014-08-21;1;2013-08-21;2014-08-21;1;2002-06-06;2003-06-06;0;2010-08-13;2011-08-13
-85;"ZZZZCornement";"Philippe";"cornement@inist.fr";"user";"corne085";"ilippe";2013-10-27;"INIST - DPMI";1;2002-11-31;2003-11-31;1;2005-01-30;2006-01-30;1;2005-01-30;2006-01-30;1;2002-11-31;2003-11-31;0;0000-00-00;0000-00-00
-86;"ZZZZFournier";"Céline";"celine.fournier@srsmc.uhp-nancy.fr";"user";"fourn086";"rcline";2013-10-27;"UMR7565 
+80;Verdier;Marie-Pierre;Marie-Pierre.VERDIER@inist.fr;user;verdi080;pierre;2013-10-27;INIST - DBD;1;2003-02-21;2004-02-21;1;2013-04-09;2014-04-09;1;2013-04-09;2014-04-09;1;2003-02-21;2004-02-21;0;0000-00-00;0000-00-00
+81;Colo Vars;;;user;videu686;labonn;2014-02-21;;1;0000-00-00;0000-00-00;1;2014-02-21;2015-02-21;1;2014-02-21;2015-02-21;1;0000-00-00;0000-00-00;1;2014-02-21;2015-02-21
+167;ZZZZJeanneau;Laurent;laurent_jeanneau@yahoo.fr;user;jeann785;aurent;2013-10-27;;1;NULL;NULL;1;2004-11-23;2005-11-23;1;2004-11-23;2005-11-23;1;NULL;NULL;1;2004-11-23;2005-11-23
+83;Weil-Miko;Christine;weilmiko@inist.fr;user;weilm083;istine;2013-09-27;INIST - DPRE;1;2002-06-06;2003-06-06;1;2013-08-21;2014-08-21;1;2013-08-21;2014-08-21;1;2002-06-06;2003-06-06;0;2010-08-13;2011-08-13
+85;ZZZZCornement;Philippe;cornement@inist.fr;user;corne085;ilippe;2013-10-27;INIST - DPMI;1;2002-11-31;2003-11-31;1;2005-01-30;2006-01-30;1;2005-01-30;2006-01-30;1;2002-11-31;2003-11-31;0;0000-00-00;0000-00-00
+86;ZZZZFournier;Céline;celine.fournier@srsmc.uhp-nancy.fr;user;fourn086;rcline;2013-10-27;"UMR7565 
 SRSMC (université fac sciences)";1;2003-01-25;2004-01-25;1;2010-06-15;2011-06-15;1;2010-06-15;2011-06-15;1;2003-01-25;2004-01-25;1;2010-06-15;2011-06-15
-87;"ZZZZFrançois";"Claire";"claire.francois@inist.fr";"user";"frano087";"claire";2013-10-27;"INIST - URI";1;2000-10-17;2001-10-17;1;2006-01-31;2007-01-31;1;2006-01-31;2007-01-31;1;2000-10-17;2001-10-17;1;2006-01-31;2007-01-31
-88;"ZZZZBlosch";"Katia";"blosch@inist.fr";"user";"blosc088";"hkatia";2014-04-03;"INIST - DRD";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2010-12-16;2010-12-16;0;0000-00-00;0000-00-00;0;2007-12-16;2008-12-16
-165;"Launay";"Sonia";"launay@inist.fr";"user";"launa127";"ysonia";2013-09-17;"INIST - DRD";1;NULL;NULL;1;2013-09-17;2014-09-17;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2013-09-17;2014-09-17
-90;"ZZZZDrouard";"Françoise";"drouard@inist.fr";"user";"droua090";"anoise";2013-10-27;"INIST - DPRE";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2001-11-13;2002-11-13;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-91;"0 Vide à utiliser pour tout nvel abonné";"";"";"user";"videu239";"labonn";2012-11-20;"INIST - AG";0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-93;"ZZZZMougel";"Jean-Yves";"mougel@inist.fr";"user";"mouge093";"anyves";2013-10-27;"retard !!!
+87;ZZZZFrançois;Claire;claire.francois@inist.fr;user;frano087;claire;2013-10-27;INIST - URI;1;2000-10-17;2001-10-17;1;2006-01-31;2007-01-31;1;2006-01-31;2007-01-31;1;2000-10-17;2001-10-17;1;2006-01-31;2007-01-31
+88;ZZZZBlosch;Katia;blosch@inist.fr;user;blosc088;hkatia;2014-04-03;INIST - DRD;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;2010-12-16;2010-12-16;0;0000-00-00;0000-00-00;0;2007-12-16;2008-12-16
+165;Launay;Sonia;launay@inist.fr;user;launa127;ysonia;2013-09-17;INIST - DRD;1;NULL;NULL;1;2013-09-17;2014-09-17;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2013-09-17;2014-09-17
+90;ZZZZDrouard;Françoise;drouard@inist.fr;user;droua090;anoise;2013-10-27;INIST - DPRE;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;2001-11-13;2002-11-13;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+91;0 Vide à utiliser pour tout nvel abonné;;;user;videu239;labonn;2012-11-20;INIST - AG;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+93;ZZZZMougel;Jean-Yves;mougel@inist.fr;user;mouge093;anyves;2013-10-27;"retard !!!
 
 INIST - SF";0;0000-00-00;0000-00-00;0;1995-11-03;0000-00-00;0;0000-00-00;0000-00-00;0;1995-11-03;0000-00-00;0;0000-00-00;0000-00-00
-97;"ZZZZTaliercio";"Bernard";"taliercio@inist.fr";"user";"taliercio";"bernard";2013-10-27;"INIST - DBD";1;2003-01-21;2004-01-21;1;2009-01-26;2010-01-26;0;0000-00-00;0000-00-00;1;2003-01-21;2004-01-21;0;0000-00-00;0000-00-00
-95;"ZZZZSampite";"Bernard";"sampite@inist.fr";"user";"sampi095";"ernard";2013-10-27;"28/03/03; très en retard de ses cotisations CD malgré plusieurs rappels
+97;ZZZZTaliercio;Bernard;taliercio@inist.fr;user;taliercio;bernard;2013-10-27;INIST - DBD;1;2003-01-21;2004-01-21;1;2009-01-26;2010-01-26;0;0000-00-00;0000-00-00;1;2003-01-21;2004-01-21;0;0000-00-00;0000-00-00
+95;ZZZZSampite;Bernard;sampite@inist.fr;user;sampi095;ernard;2013-10-27;"28/03/03; très en retard de ses cotisations CD malgré plusieurs rappels
 
 INIST - DBD";0;2001-01-13;2002-01-13;0;2001-01-13;2002-01-13;0;2001-11-28;2002-11-28;0;2001-01-13;2002-01-13;0;0000-00-00;0000-00-00
-96;"Tarek";"Mounir";"mounir.tarek@univ-lorraine.fr";"user";"mouni537";"rtarek";2013-12-17;"";1;2001-03-06;2003-03-06;1;2013-12-10;2014-12-10;1;2013-12-10;2014-12-10;1;2001-03-06;2003-03-06;1;2013-12-10;2014-12-10
-103;"ZZZZChevrier";"Catherine";"catherine.chevrier@dr6.cnrs.fr";"user";"chevr103";"herine";2013-10-27;"";1;0000-00-00;0000-00-00;1;2011-06-17;2012-06-17;1;2011-06-17;2012-06-17;1;0000-00-00;0000-00-00;1;2011-06-17;2012-06-17
-102;"ZZZZSchneider";"Stéphane";"stephane.schneider@inist.fr";"user";"schne102";"tphane";2013-10-27;"INIST - DPMI";1;2003-03-04;2004-03-04;0;2008-04-04;2009-04-04;1;2008-04-04;2009-04-04;1;2003-03-04;2004-03-04;1;2008-04-04;2009-04-04
-104;"ZZZZGresillaud";"Sylvie";"sylvie.gresillaud@inist.fr";"user";"gresillaud";"sylvie";2013-10-27;"INIST - SEE";0;0000-00-00;0000-00-00;1;2008-01-18;2009-01-18;1;2008-01-18;2009-01-18;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-105;"ZZZZHild";"Pascal";"phild@crpg.cnrs-nancy.fr";"user";"videu905";"iliser";2013-10-27;"";0;2003-02-07;2004-02-07;0;2003-02-07;2004-02-07;0;2003-02-07;2004-02-07;0;2003-02-07;2004-02-07;1;2011-12-20;2012-12-20
-109;"ZZZZOmetz";"Fabienne";"ometz@inist.fr";"user";"ometz109";"bienne";2013-10-27;"INIST - URI";0;2003-03-04;2004-03-04;0;2003-03-04;2004-03-04;0;2003-03-04;2004-03-04;0;2003-03-04;2004-03-04;0;0000-00-00;0000-00-00
-107;"ZZZZBenichoux";"Brigitte";"benichoux@inist.fr";"user";"benic107";"igitte";2014-04-03;"INIST - SF";1;2003-02-03;2004-02-03;1;2010-06-04;2011-06-04;0;2003-12-19;2004-12-19;1;2003-02-03;2004-02-03;0;0000-00-00;0000-00-00
-110;"ZZZZVedovotto";"Nathalie";"vedovott@inist.fr";"user";"vedov110";"thalie";2013-10-27;"INIST - DBD";0;2003-03-11;2004-03-11;0;2003-03-11;2004-03-11;0;2003-03-11;2004-03-11;0;2003-03-11;2004-03-11;0;0000-00-00;0000-00-00
-111;"ZZZZChretien";"Chantal";"chretiec@inist.fr";"user";"chret111";"hantal";2013-10-27;"INIST - DRD";1;2003-03-11;2004-03-11;1;2007-11-30;2008-11-30;0;2005-08-13;2006-08-13;1;2003-03-11;2004-03-11;0;2004-08-13;2005-08-13
-112;"ZZZZWoimbee";"Jean-Claude";"woimbe@ensg.inpl-nancy.fr";"user";"woimb293";"eodile";2013-10-27;"jean-claude.woimbee@ensg.u-nancy.fr
+96;Tarek;Mounir;mounir.tarek@univ-lorraine.fr;user;mouni537;rtarek;2013-12-17;;1;2001-03-06;2003-03-06;1;2013-12-10;2014-12-10;1;2013-12-10;2014-12-10;1;2001-03-06;2003-03-06;1;2013-12-10;2014-12-10
+103;ZZZZChevrier;Catherine;catherine.chevrier@dr6.cnrs.fr;user;chevr103;herine;2013-10-27;;1;0000-00-00;0000-00-00;1;2011-06-17;2012-06-17;1;2011-06-17;2012-06-17;1;0000-00-00;0000-00-00;1;2011-06-17;2012-06-17
+102;ZZZZSchneider;Stéphane;stephane.schneider@inist.fr;user;schne102;tphane;2013-10-27;INIST - DPMI;1;2003-03-04;2004-03-04;0;2008-04-04;2009-04-04;1;2008-04-04;2009-04-04;1;2003-03-04;2004-03-04;1;2008-04-04;2009-04-04
+104;ZZZZGresillaud;Sylvie;sylvie.gresillaud@inist.fr;user;gresillaud;sylvie;2013-10-27;INIST - SEE;0;0000-00-00;0000-00-00;1;2008-01-18;2009-01-18;1;2008-01-18;2009-01-18;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
+105;ZZZZHild;Pascal;phild@crpg.cnrs-nancy.fr;user;videu905;iliser;2013-10-27;;0;2003-02-07;2004-02-07;0;2003-02-07;2004-02-07;0;2003-02-07;2004-02-07;0;2003-02-07;2004-02-07;1;2011-12-20;2012-12-20
+109;ZZZZOmetz;Fabienne;ometz@inist.fr;user;ometz109;bienne;2013-10-27;INIST - URI;0;2003-03-04;2004-03-04;0;2003-03-04;2004-03-04;0;2003-03-04;2004-03-04;0;2003-03-04;2004-03-04;0;0000-00-00;0000-00-00
+107;ZZZZBenichoux;Brigitte;benichoux@inist.fr;user;benic107;igitte;2014-04-03;INIST - SF;1;2003-02-03;2004-02-03;1;2010-06-04;2011-06-04;0;2003-12-19;2004-12-19;1;2003-02-03;2004-02-03;0;0000-00-00;0000-00-00
+110;ZZZZVedovotto;Nathalie;vedovott@inist.fr;user;vedov110;thalie;2013-10-27;INIST - DBD;0;2003-03-11;2004-03-11;0;2003-03-11;2004-03-11;0;2003-03-11;2004-03-11;0;2003-03-11;2004-03-11;0;0000-00-00;0000-00-00
+111;ZZZZChretien;Chantal;chretiec@inist.fr;user;chret111;hantal;2013-10-27;INIST - DRD;1;2003-03-11;2004-03-11;1;2007-11-30;2008-11-30;0;2005-08-13;2006-08-13;1;2003-03-11;2004-03-11;0;2004-08-13;2005-08-13
+112;ZZZZWoimbee;Jean-Claude;woimbe@ensg.inpl-nancy.fr;user;woimb293;eodile;2013-10-27;"jean-claude.woimbee@ensg.u-nancy.fr
 
 UMR7569  
 Laboratoire environnement et mineralurgie (LEM)
 c";1;0000-00-00;0000-00-00;1;2007-05-11;2008-05-11;0;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00
-113;"ZZZZCiolek-Figiel";"Anne";"anne.ciolek-figiel@inist.fr";"user";"ciole912";"elanne";2013-10-27;"INIST - DRD";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2005-04-15;2006-04-15;0;NULL;NULL;0;0000-00-00;0000-00-00
-115;"Fourneret";"Philippe";"philippe.fourneret@inist.fr";"user";"fourn851";"ilippe";2014-08-05;"Mise à jour par Dom voir avec ML
+113;ZZZZCiolek-Figiel;Anne;anne.ciolek-figiel@inist.fr;user;ciole912;elanne;2013-10-27;INIST - DRD;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2005-04-15;2006-04-15;0;NULL;NULL;0;0000-00-00;0000-00-00
+115;Fourneret;Philippe;philippe.fourneret@inist.fr;user;fourn851;ilippe;2014-08-05;"Mise à jour par Dom voir avec ML
 INIST - DPMI";1;NULL;NULL;1;2014-01-28;2015-01-28;1;2014-01-28;2015-01-28;1;NULL;NULL;0;2014-01-28;2015-01-28
-158;"Didelot";"Isabelle";"isabelle.didelot@inist.fr";"user";"didelot";"ididelot";2013-06-27;"-";1;NULL;NULL;1;2013-06-27;2014-06-27;0;2007-11-23;2008-11-23;1;NULL;NULL;0;2007-11-23;2008-11-23
-255;"Badolato";"Anne-Marie";"anne-marie.badolato@inist.fr";"user";"badol590";"emarie";2014-02-14;"";1;NULL;NULL;1;2014-02-14;2015-02-14;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2014-02-14;2015-02-14
-120;"ZZZZBlotas";"Elise";"blotas@inist.fr";"user";"blota909";"sabeth";2014-04-03;"INIST - DBD";1;NULL;NULL;1;2005-06-22;2006-06-22;0;2004-06-22;2005-06-22;1;NULL;NULL;0;2004-06-22;2005-06-22
-160;"Nominé";"Jean-François";"nomine@inist.fr";"user";"nomin348";"ranois";2014-06-17;"INIST - DPRE";1;NULL;NULL;1;2009-12-18;2010-12-18;1;2008-09-12;2009-09-12;1;NULL;NULL;0;0000-00-00;0000-00-00
-116;"ZZZZLesieur";"Pierre";"pierre.lesieur@lesoc.uhp-nancy.fr";"user";"lesie386";"lviane";2013-10-27;"UMR7565  
+158;Didelot;Isabelle;isabelle.didelot@inist.fr;user;didelot;ididelot;2013-06-27;-;1;NULL;NULL;1;2013-06-27;2014-06-27;0;2007-11-23;2008-11-23;1;NULL;NULL;0;2007-11-23;2008-11-23
+255;Badolato;Anne-Marie;anne-marie.badolato@inist.fr;user;badol590;emarie;2014-02-14;;1;NULL;NULL;1;2014-02-14;2015-02-14;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2014-02-14;2015-02-14
+120;ZZZZBlotas;Elise;blotas@inist.fr;user;blota909;sabeth;2014-04-03;INIST - DBD;1;NULL;NULL;1;2005-06-22;2006-06-22;0;2004-06-22;2005-06-22;1;NULL;NULL;0;2004-06-22;2005-06-22
+160;Nominé;Jean-François;nomine@inist.fr;user;nomin348;ranois;2014-06-17;INIST - DPRE;1;NULL;NULL;1;2009-12-18;2010-12-18;1;2008-09-12;2009-09-12;1;NULL;NULL;0;0000-00-00;0000-00-00
+116;ZZZZLesieur;Pierre;pierre.lesieur@lesoc.uhp-nancy.fr;user;lesie386;lviane;2013-10-27;"UMR7565  
 Structure et Réactivité des Systèmes Moléculaires Complexes
 Domaine Scient. Victor Grign";0;NULL;NULL;0;2003-05-27;2004-05-27;1;2005-03-18;2006-03-18;0;NULL;NULL;1;2005-03-18;2006-03-18
-121;"ZZZZFaure";"Pierre";"pierre.faure@g2r.uhp-nancy.fr";"user";"faure778";"pierre";2013-10-27;"UMR7566  
+121;ZZZZFaure;Pierre;pierre.faure@g2r.uhp-nancy.fr;user;faure778;pierre;2013-10-27;"UMR7566  
 Géologie et gestion des ressources minérales et énergétiques (G2R)  
 Université Henri Po";1;NULL;NULL;1;2004-06-24;2005-06-24;1;2004-06-24;2005-06-24;1;NULL;NULL;1;2004-06-24;2005-06-24
-123;"ZZZZHoudry";"Philippe";"houdry@inist.fr";"user";"houdr911";"ilippe";2013-10-27;"don de 2 DVD
+123;ZZZZHoudry;Philippe;houdry@inist.fr;user;houdr911;ilippe;2013-10-27;"don de 2 DVD
 INIST - Veille";0;NULL;NULL;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;0;2003-07-04;2004-09-04
-125;"ZZZZViot";"Pascale";"pascale.viot@inist.fr";"user";"sjour131";"ascale";2013-10-27;"INIST - SF";1;NULL;NULL;1;2011-11-10;2012-11-10;0;2003-08-08;2004-08-08;1;NULL;NULL;1;2011-11-10;2012-11-10
-126;"ZZZZAudisio";"Jean-Luc";"";"user";"audis049";"eanluc";2014-04-03;"INIST - DRD";0;NULL;NULL;0;2003-09-04;2004-09-04;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
-127;"Reszetko";"Véronique";"reszetko@inist.fr";"user";"resze556";"onique";2014-04-22;"INIST - DBD";1;NULL;NULL;1;2014-04-22;2015-04-22;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-128;"ZZZZRingot";"Patrice";"ringot@inist.fr";"user";"ringo717";"atrice";2013-10-27;"INIST - DPMI";0;NULL;NULL;0;2006-08-24;2007-08-24;1;2007-12-14;2008-12-14;0;NULL;NULL;1;2007-12-14;2008-12-14
-129;"ZZZZBombardier";"Patrick";"patrick.bombardier@lcpme.cnrs-nancyc.cnrs-nancy-fr";"user";"bomar714";"atrick";2014-04-03;"UMR7564
+126;ZZZZAudisio;Jean-Luc;;user;audis049;eanluc;2014-04-03;INIST - DRD;0;NULL;NULL;0;2003-09-04;2004-09-04;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
+127;Reszetko;Véronique;reszetko@inist.fr;user;resze556;onique;2014-04-22;INIST - DBD;1;NULL;NULL;1;2014-04-22;2015-04-22;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+128;ZZZZRingot;Patrice;ringot@inist.fr;user;ringo717;atrice;2013-10-27;INIST - DPMI;0;NULL;NULL;0;2006-08-24;2007-08-24;1;2007-12-14;2008-12-14;0;NULL;NULL;1;2007-12-14;2008-12-14
+129;ZZZZBombardier;Patrick;patrick.bombardier@lcpme.cnrs-nancyc.cnrs-nancy-fr;user;bomar714;atrick;2014-04-03;"UMR7564
 Laboratoire de Chimie Physique et Microbiologie pour l\'Environnement (L.C.P.M.E.) 
 405 Ru";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2004-09-23;2005-09-23;0;NULL;NULL;0;0000-00-00;0000-00-00
-130;"Steiner";"Monique";"monique.steiner@inist.fr";"user";"steiner";"msteiner";2014-08-04;"INIST";1;NULL;NULL;1;2014-07-29;2015-07-29;0;2003-11-07;2004-11-07;1;NULL;NULL;0;2008-09-16;2009-09-16
-133;"ZZZZClement";"Brigitte";"clementb@inist.fr";"user";"cleme865";"rgitte";2013-10-27;"INIST - DRD";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2005-12-02;2006-12-02;0;NULL;NULL;0;0000-00-00;0000-00-00
-132;"ZZZZGautier";"Patricia";"gautier@inist.fr";"user";"gauti210";"tricia";2013-10-27;"INIST - URI";1;NULL;NULL;1;2004-11-21;2005-11-21;1;2004-11-21;2005-11-21;1;NULL;NULL;0;2003-11-21;2004-11-21
-135;"ZZZZGregoire";"Catherine";"gregoire@inist.fr";"user";"grego665";"herine";2013-10-27;"INIST - Vacataire";0;NULL;NULL;0;0000-00-00;0000-00-00;0;2004-01-23;2004-06-23;0;NULL;NULL;0;0000-00-00;0000-00-00
-136;"ZZZZAleon";"Jérome";"aleon@crpg.cnrs-nancy.fr";"user";"aleon014";"njrome";2013-10-22;"Parti aux USA en juin 2005";0;NULL;NULL;0;2004-02-03;2005-02-03;0;2004-02-03;2005-02-03;0;NULL;NULL;0;2004-02-03;2005-02-03
-142;"Sevin";"Laure";"sevin@crpg.cnrs-nancy";"user";"sevin461";"nlaure";2005-04-20;"UPR2300  
+130;Steiner;Monique;monique.steiner@inist.fr;user;steiner;msteiner;2014-08-04;INIST;1;NULL;NULL;1;2014-07-29;2015-07-29;0;2003-11-07;2004-11-07;1;NULL;NULL;0;2008-09-16;2009-09-16
+133;ZZZZClement;Brigitte;clementb@inist.fr;user;cleme865;rgitte;2013-10-27;INIST - DRD;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2005-12-02;2006-12-02;0;NULL;NULL;0;0000-00-00;0000-00-00
+132;ZZZZGautier;Patricia;gautier@inist.fr;user;gauti210;tricia;2013-10-27;INIST - URI;1;NULL;NULL;1;2004-11-21;2005-11-21;1;2004-11-21;2005-11-21;1;NULL;NULL;0;2003-11-21;2004-11-21
+135;ZZZZGregoire;Catherine;gregoire@inist.fr;user;grego665;herine;2013-10-27;INIST - Vacataire;0;NULL;NULL;0;0000-00-00;0000-00-00;0;2004-01-23;2004-06-23;0;NULL;NULL;0;0000-00-00;0000-00-00
+136;ZZZZAleon;Jérome;aleon@crpg.cnrs-nancy.fr;user;aleon014;njrome;2013-10-22;Parti aux USA en juin 2005;0;NULL;NULL;0;2004-02-03;2005-02-03;0;2004-02-03;2005-02-03;0;NULL;NULL;0;2004-02-03;2005-02-03
+142;Sevin;Laure;sevin@crpg.cnrs-nancy;user;sevin461;nlaure;2005-04-20;"UPR2300  
 Centre de recherches petrographiques et géochimiques (CRPG)
 15 Rue Notre Dame des Pauvre";0;NULL;NULL;0;2004-03-05;2005-03-05;0;2004-03-05;2005-03-05;0;NULL;NULL;0;0000-00-00;0000-00-00
-139;"ZZZZAvril";"Sandrine";"avril@inist.fr";"user";"avril652";"ndrine";2014-04-03;"INIST - DPRE";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2006-04-11;2007-04-11;0;NULL;NULL;1;2006-04-11;2007-04-11
-140;"ZZZZVilla";"Brigitte";"villab@inist.fr";"user";"villa555";"igitte";2013-10-27;"INIST - DPRE";0;NULL;NULL;0;2008-03-28;2009-03-28;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2008-09-30;2009-09-30
-143;"ZZZZBrien";"Valerie";"Valérie.Brien@lpmi.uhp-nancy.fr";"user";"brien240";"alerie";2013-10-27;"UMR7040  
+139;ZZZZAvril;Sandrine;avril@inist.fr;user;avril652;ndrine;2014-04-03;INIST - DPRE;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2006-04-11;2007-04-11;0;NULL;NULL;1;2006-04-11;2007-04-11
+140;ZZZZVilla;Brigitte;villab@inist.fr;user;villa555;igitte;2013-10-27;INIST - DPRE;0;NULL;NULL;0;2008-03-28;2009-03-28;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2008-09-30;2009-09-30
+143;ZZZZBrien;Valerie;Valérie.Brien@lpmi.uhp-nancy.fr;user;brien240;alerie;2013-10-27;"UMR7040  
 Physique des milieux ionisés et applications (LPMI)
 Université Henri Poincaré (Nancy I)";0;NULL;NULL;0;2004-03-05;2005-03-05;0;2004-03-05;2005-03-05;0;NULL;NULL;0;0000-00-00;0000-00-00
-150;"Roussel";"Clotilde";"roussel@inist.fr";"user";"rouss217";"otilde";2013-01-17;"INIST - DRD
+150;Roussel;Clotilde;roussel@inist.fr;user;rouss217;otilde;2013-01-17;"INIST - DRD
 renouvellement cotisation en janvier 2007";1;NULL;NULL;1;2012-05-09;2013-05-09;0;2009-02-05;2011-02-04;1;NULL;NULL;1;2013-01-17;2014-01-17
-146;"ZZZZLemiere";"Pascal";"pascal.lemiere@free.fr";"user";"lemie008";"pascal";2013-10-27;"Pascal.Lemiere@lesoc.uhp-nancy.fr
+146;ZZZZLemiere;Pascal;pascal.lemiere@free.fr;user;lemie008;pascal;2013-10-27;"Pascal.Lemiere@lesoc.uhp-nancy.fr
 
 UMR7565  
 Structure et Réactivité des Systèmes Moléculaires Co";1;NULL;NULL;1;2010-03-24;2011-03-24;1;2010-03-24;2011-03-24;1;NULL;NULL;1;2010-03-24;2011-03-24
-148;"ZZZZClavey";"Lisiane";"clavey@inist.fr";"user";"clave382";"isiane";2013-10-27;"INIST
+148;ZZZZClavey;Lisiane;clavey@inist.fr;user;clave382;isiane;2013-10-27;"INIST
 acces ferme le 20/04/2005 (pas de renouvellement cotisation)";0;NULL;NULL;0;0000-00-00;0000-00-00;0;2004-03-12;2005-03-12;0;NULL;NULL;0;0000-00-00;0000-00-00
-152;"ZZZZLannuzel";"Frederic";"fredericlannuzel@yahoo.fr";"user";"lannu505";"ederic";2013-10-27;"";1;NULL;NULL;1;2005-03-16;2006-03-16;1;2005-03-16;2006-03-16;1;NULL;NULL;0;0000-00-00;0000-00-00
-155;"ZZZZDolmaire";"Carole";"dolmaire@crpg.cnrs-nancy.fr";"user";"dolma534";"carole";2013-10-27;"UPR2300  
+152;ZZZZLannuzel;Frederic;fredericlannuzel@yahoo.fr;user;lannu505;ederic;2013-10-27;;1;NULL;NULL;1;2005-03-16;2006-03-16;1;2005-03-16;2006-03-16;1;NULL;NULL;0;0000-00-00;0000-00-00
+155;ZZZZDolmaire;Carole;dolmaire@crpg.cnrs-nancy.fr;user;dolma534;carole;2013-10-27;"UPR2300  
 Centre de recherches petrographiques et géochimiques (CRPG)
 15 Rue Notre Dame des Pauvre";0;NULL;NULL;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;0;2004-03-19;2005-03-19
-192;"ZZZZNiederlender";"Claude";"claude.niederlender@inist.fr";"user";"nierl403";"claude";2013-10-27;"";1;NULL;NULL;1;2009-10-20;2010-10-20;0;2008-09-30;2009-09-30;1;NULL;NULL;0;0000-00-00;0000-00-00
-156;"Paillassard";"Pierrette";"Pierrette.PAILLASSARD@inist.fr";"admin";"paill648";"rrette";2014-03-11;"INIST - DRD";1;NULL;NULL;1;2013-08-20;2014-08-20;1;2013-08-20;2014-08-20;1;NULL;NULL;1;2013-08-20;2014-08-20
-157;"Begin";"Jean-Claude";"begin@ensaia.inpl-nancy.fr";"user";"bginj817";"claude";2014-01-07;"2 avenue de la foret de haye
+192;ZZZZNiederlender;Claude;claude.niederlender@inist.fr;user;nierl403;claude;2013-10-27;;1;NULL;NULL;1;2009-10-20;2010-10-20;0;2008-09-30;2009-09-30;1;NULL;NULL;0;0000-00-00;0000-00-00
+156;Paillassard;Pierrette;Pierrette.PAILLASSARD@inist.fr;admin;paill648;rrette;2014-03-11;INIST - DRD;1;NULL;NULL;1;2013-08-20;2014-08-20;1;2013-08-20;2014-08-20;1;NULL;NULL;1;2013-08-20;2014-08-20
+157;Begin;Jean-Claude;begin@ensaia.inpl-nancy.fr;user;bginj817;claude;2014-01-07;"2 avenue de la foret de haye
 54500 VANDOEUVRE LES NANCY";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2014-01-07;2015-01-07;0;NULL;NULL;0;2004-05-11;2005-05-11
-159;"ZZZZGritti";"Annie";"gritti@ciril.fr";"user";"gritt577";"iannie";2013-10-27;"";0;NULL;NULL;0;2004-06-22;2005-06-22;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-161;"ZZZZLandi";"Bruno";"landi@inist.fr";"user";"landi645";"ibruno";2013-10-27;"INIST - DPMI";1;NULL;NULL;1;2004-07-30;2006-07-30;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2004-07-30;2006-07-30
-162;"ZZZZBlanchard";"Christine";"chrisbl.crpg-cnrs.fr";"user";"blanc342";"istine";2014-04-03;"UPR2300  
+159;ZZZZGritti;Annie;gritti@ciril.fr;user;gritt577;iannie;2013-10-27;;0;NULL;NULL;0;2004-06-22;2005-06-22;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+161;ZZZZLandi;Bruno;landi@inist.fr;user;landi645;ibruno;2013-10-27;INIST - DPMI;1;NULL;NULL;1;2004-07-30;2006-07-30;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2004-07-30;2006-07-30
+162;ZZZZBlanchard;Christine;chrisbl.crpg-cnrs.fr;user;blanc342;istine;2014-04-03;"UPR2300  
 Centre de recherches petrographiques et géochimiques (CRPG) 
 15 Rue Notre Dame des Pauvr";0;NULL;NULL;0;0000-00-00;0000-00-00;0;2004-10-05;2005-10-05;0;NULL;NULL;0;0000-00-00;0000-00-00
-163;"Colin";"Magali";"magali.colin@inist.fr";"user";"colin081";"magali";2012-02-02;"INIST - DIFFUSION";1;NULL;NULL;1;2011-09-28;2012-09-28;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-164;"Lamy";"Florence";"florence.lamy@inist.fr";"admin";"lamyf884";"florence";2005-09-09;"INIST - DRD";1;NULL;NULL;1;2004-10-25;2005-10-25;1;2004-10-25;2005-10-25;1;NULL;NULL;1;2004-10-25;2005-10-25
-166;"Walle";"Ludovic";"walle@inist.fr";"user";"walle675";"udovic";2013-09-06;"INIST - DPMI";1;NULL;NULL;1;2013-09-06;2014-09-06;0;2006-12-08;2007-12-08;1;NULL;NULL;0;0000-00-00;0000-00-00
-168;"ZZZZVaute";"Laurent";"l.vaute@brgm.fr";"user";"vaute035";"aurent";2013-10-27;"Exterieur - BRGM";1;NULL;NULL;1;2004-11-30;2005-11-30;1;2004-11-30;2005-11-30;1;NULL;NULL;1;2004-11-30;2005-11-30
-169;"ZZZZJadelot";"Christiane";"Christiane.Jadelot@atilf.fr";"user";"jadel391";"stiane";2013-10-27;"UMR7118, ATILF
+163;Colin;Magali;magali.colin@inist.fr;user;colin081;magali;2012-02-02;INIST - DIFFUSION;1;NULL;NULL;1;2011-09-28;2012-09-28;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+164;Lamy;Florence;florence.lamy@inist.fr;admin;lamyf884;florence;2005-09-09;INIST - DRD;1;NULL;NULL;1;2004-10-25;2005-10-25;1;2004-10-25;2005-10-25;1;NULL;NULL;1;2004-10-25;2005-10-25
+166;Walle;Ludovic;walle@inist.fr;user;walle675;udovic;2013-09-06;INIST - DPMI;1;NULL;NULL;1;2013-09-06;2014-09-06;0;2006-12-08;2007-12-08;1;NULL;NULL;0;0000-00-00;0000-00-00
+168;ZZZZVaute;Laurent;l.vaute@brgm.fr;user;vaute035;aurent;2013-10-27;Exterieur - BRGM;1;NULL;NULL;1;2004-11-30;2005-11-30;1;2004-11-30;2005-11-30;1;NULL;NULL;1;2004-11-30;2005-11-30
+169;ZZZZJadelot;Christiane;Christiane.Jadelot@atilf.fr;user;jadel391;stiane;2013-10-27;"UMR7118, ATILF
 44 Av de la Libération
 BP 30687
 54063 NANCY CEDEX";1;NULL;NULL;1;2005-12-16;2006-12-16;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-170;"ZZZZCreusot";"Hélène";"creusot@inist.fr";"user";"hlnec878";"reusot";2013-10-27;"";1;NULL;NULL;1;2006-09-12;2007-09-12;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2006-09-12;2007-09-12
-171;"ZZZZSery";"Pierre";"sery.pierre@voila.fr";"user";"serie601";"pierre";2013-10-27;"CDD au CNRS 
+170;ZZZZCreusot;Hélène;creusot@inist.fr;user;hlnec878;reusot;2013-10-27;;1;NULL;NULL;1;2006-09-12;2007-09-12;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2006-09-12;2007-09-12
+171;ZZZZSery;Pierre;sery.pierre@voila.fr;user;serie601;pierre;2013-10-27;"CDD au CNRS 
 Adhesion 4 euros pour 6 mois
 enrgtrt admi a completer, mail de rappel le 20/04/05";1;NULL;NULL;1;2005-04-08;2005-10-08;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-184;"ZZZZHansen";"Catherine";"catherine.hansen@free.fr";"user";"hanse719";"herine";2013-10-27;"";1;NULL;NULL;1;2011-02-22;2012-02-22;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-208;"ZZZZMorale";"Enza";"enza.morale@inist.fr";"user";"moral725";"leenza";2013-10-27;"";0;NULL;NULL;0;2007-03-13;2008-03-13;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
-200;"ZZZZMarchal";"Sylvie";"sylvie.marchal@inist.fr";"user";"march483";"sylvie";2013-10-27;"";0;NULL;NULL;0;2008-01-26;2009-01-26;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
-172;"Deriaz";"Erwan";"erwan.deriaz@univ-lorraine.fr";"user";"videu015";"labonn";2013-03-12;"Institut Jean Lamour Nancy";1;NULL;NULL;1;2013-03-12;2014-03-12;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-174;"ZZZZTintanet";"Cedric";"cedric.tintanet@inist.fr";"user";"tinta464";"cedric";2013-10-27;"";1;NULL;NULL;1;2005-06-24;2006-06-24;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2005-06-24;2006-06-24
-176;"ZZZZPierron";"Christelle";"christelle.pierron@inist.fr";"user";"pierr294";"stelle";2013-10-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2006-09-12;2007-09-12;0;NULL;NULL;0;0000-00-00;0000-00-00
-175;"ZZZZFleurot";"Karine";"karine.fleurot@maem.uhp-nancy.fr";"user";"fleur138";"karine";2013-10-27;"";1;NULL;NULL;1;2005-06-24;2006-06-24;1;2005-06-24;2006-06-24;1;NULL;NULL;0;0000-00-00;0000-00-00
-177;"ZZZZThouvenin";"Nicolas";"nicolas.thouvenin@inist.fr";"user";"thouv854";"icolas";2013-10-27;"";1;NULL;NULL;1;2006-09-07;2007-09-07;1;2006-09-07;2007-09-07;1;NULL;NULL;0;0000-00-00;0000-00-00
-178;"ZZZZSanchis";"Monique";"sanchis@inist.fr";"user";"sanch141";"onique";2013-10-27;"";1;NULL;NULL;1;2007-10-21;2008-10-21;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-180;"ZZZZRassemusse";"Christiane";"rassemusse@dr6.cnrs.fr";"user";"rasse609";"stiane";2013-10-27;"";1;NULL;NULL;1;2009-12-12;2010-12-12;0;0000-00-00;0000-00-00;1;NULL;NULL;0;2007-11-30;2008-11-30
-182;"ZZZZPresle";"Nathalie";"cpresle.archi@wanadoo.fr";"user";"presl472";"thalie";2013-10-27;"";1;NULL;NULL;1;2005-10-17;2006-10-17;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2005-10-17;2006-10-17
-183;"ZZZZWolstroff";"Viviane";"wolstroff@inist.fr";"user";"wolst946";"iviane";2013-10-27;"";1;NULL;NULL;1;2010-10-28;2011-10-28;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-185;"ZZZZGrange";"Florence";"florence.grange@inist.fr";"user";"grang814";"orence";2013-10-27;"";0;NULL;NULL;0;2010-03-19;2011-03-19;1;2011-04-22;2012-04-22;0;NULL;NULL;1;2011-04-22;2012-04-22
-186;"ZZZZDuchenne";"Marie-Christine";"marie-christine.duchenne@univ-nancy2.fr";"user";"duche814";"istine";2013-10-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2010-02-05;2011-02-05;0;NULL;NULL;1;2010-02-05;2011-02-05
-187;"DETHINE";"Emilie";"emilie.dethine@dr6.cnrs.fr";"user";"videu099";"labonn";2013-10-22;"";1;NULL;NULL;1;2013-10-22;2014-10-22;1;2013-10-22;2014-10-22;1;NULL;NULL;1;2013-10-22;2014-10-22
-188;"Druon";"Jacqueline";"jacqueline.druont@lcpme.cnrs-nancy.fr";"user";"druon295";"ueline";2013-04-05;"";0;NULL;NULL;1;2013-04-05;2014-04-05;0;2007-04-24;2008-04-24;0;NULL;NULL;0;2006-02-03;2007-02-03
-189;"ZZZZBolarin";"Cécile";"cecile.anx@free.fr";"user";"bolar805";"nccile";2014-04-03;"";1;NULL;NULL;1;2006-02-17;2006-08-17;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-190;"ZZZZMaqua";"Christophe";"christophe.maqua@ensem.inpl-nancy.fr";"user";"maqua142";"stophe";2013-10-27;"";1;NULL;NULL;1;2006-03-17;2007-03-17;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-191;"ZZZZPetitjean";"Alexandra";"alexandra.petitjean@inist.fr";"user";"petit242";"xandra";2013-10-27;"";1;NULL;NULL;1;2007-04-20;2008-04-20;0;2007-04-20;2008-04-20;1;NULL;NULL;0;2007-04-20;2008-04-20
-193;"DESTOCKAGE";"CD et autres";"";"user";"desto139";"ockage";2011-06-28;"Connaissance des arts septembre 2005 => ML";1;NULL;NULL;1;0000-00-00;0000-00-00;1;2006-09-29;2009-09-29;1;NULL;NULL;1;0000-00-00;0000-00-00
-194;"ZZZZGully";"Stéphane";"stephane.gully@inist.fr";"user";"gully075";"tphane";2013-10-27;"";1;NULL;NULL;1;2006-10-13;2007-10-13;1;2006-10-13;2007-10-13;1;NULL;NULL;0;0000-00-00;0000-00-00
-196;"MARTIMPRE";"Gerbepal";"";"user";"marti793";"rbepal";2006-11-17;"";1;NULL;NULL;1;2006-11-17;2007-11-17;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-197;"ZZZZThuret";"Aline";"thuret@inist.fr";"user";"thure958";"taline";2013-10-27;"";1;NULL;NULL;1;2008-12-16;2009-12-16;0;2007-10-31;2008-10-31;1;NULL;NULL;1;2008-12-16;2009-12-16
-198;"ZZZZWeinhard";"Laurent";"Laurent.Weinhard@loria.fr";"user";"weinh697";"aurent";2013-10-27;"";1;NULL;NULL;1;2006-11-27;2007-11-27;1;2006-11-27;2007-11-27;1;NULL;NULL;0;0000-00-00;0000-00-00
-199;"RELIURE/ Réparation";"";"";"user";"reliu607";"ration";2011-12-23;"";1;NULL;NULL;1;2006-12-12;2011-12-12;1;2006-12-12;2011-12-12;1;NULL;NULL;1;2006-12-12;2011-12-12
-202;"Hameau";"Thèrèse";"therese.hameau@inist.fr";"user";"hamea758";"uthrse";2013-04-30;"";1;NULL;NULL;1;2013-04-30;2014-04-30;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-204;"Grand";"Laurence";"grand@inist.fr";"user";"grandcaes";"laurence";2013-08-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;0;2007-02-23;2008-02-23;0;NULL;NULL;1;2013-08-27;2014-08-27
-205;"Panes";"Laurent";"laurent.panes@inist.fr";"user";"panes065";"aurent";2014-06-17;"";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2014-06-17;2015-06-17;0;NULL;NULL;1;2014-06-17;2015-06-17
-206;"ZZZZChartier";"Florence";"florence.chartier@dr6.cnrs.fr";"user";"chart818";"orence";2013-10-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2008-02-27;2009-02-27;0;NULL;NULL;0;0000-00-00;0000-00-00
-207;"ZZZZBouvot";"Anne Lise";"anne-lise.bouvot@cnrs-dir.fr";"user";"bouvo682";"nelise";2013-10-27;"";1;NULL;NULL;1;2008-04-27;2009-04-27;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-209;"ZZZZOrange";"Colette";"colette.orange@inist.fr";"user";"orang520";"olette";2013-10-27;"";1;NULL;NULL;1;2007-04-29;2008-04-29;1;2007-04-29;2008-04-29;1;NULL;NULL;0;0000-00-00;0000-00-00
-210;"ZZZZBouden";"Nordine";"nbouden@crpg.cnrs-nancy.fr";"user";"boude106";"ordine";2013-10-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2008-06-05;2009-06-05
-211;"ZZZZChaffaut";"Jean-Marc";"jm.chaffaut@cegetel.net";"user";"chaff049";"anmarc";2013-10-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2007-06-05;2008-06-05
-212;"Zasadzinski A relancer";"Alain";"alain.zasadzinski@inist.fr";"user";"zasad712";"ialain";2014-04-03;"";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2007-06-05;2008-06-05;0;NULL;NULL;0;0000-00-00;0000-00-00
-213;"ZZZZHenrot";"Martine";"martine.henrot@inist.fr";"user";"henro538";"artine";2013-10-27;"";1;NULL;NULL;1;2009-07-10;2010-07-10;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2009-07-10;2010-07-10
-214;"ZZZZDissoubray";"Joëlle";"dissoubray.m.j@orange.fr";"user";"disss546";"joëlle";2013-10-27;"";1;NULL;NULL;1;2007-07-13;2008-07-13;1;2007-07-13;2008-07-13;1;NULL;NULL;1;2007-07-13;2008-07-13
-231;"Molat";"Isabelle";"isabelle.molat@inist.fr";"user";"molat361";"abelle";2013-11-19;"";1;NULL;NULL;1;2013-10-22;2014-10-23;0;2010-10-23;2014-10-22;1;NULL;NULL;0;0000-00-00;0000-00-00
-234;"Rodriguez";"Mercedes";"rodriguez@inist.fr";"user";"rodri387";"rcedes";2013-10-29;"";1;NULL;NULL;1;2013-10-22;2014-10-22;0;2008-12-19;2009-12-19;1;NULL;NULL;1;2013-10-22;2014-10-22
-215;"ZZZZGunet";"Catherine";"catgunet@wanadoo.fr";"user";"gunet125";"herine";2013-10-27;"";1;NULL;NULL;1;2012-09-28;2013-09-28;0;2011-01-28;2012-01-28;1;NULL;NULL;0;2011-01-28;2012-01-28
-216;"ZZZZDraelants";"Isabelle";"isabelle.draelants@univ-nancy2.fr";"user";"drael487";"abelle";2013-10-27;"";1;NULL;NULL;1;2008-01-25;2009-01-25;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2008-01-25;2009-01-25
-217;"Pelletier";"Manuel";"manuel.pelletier@univ-lorraine.fr";"user";"pelle154";"manuel";2014-04-04;"";1;NULL;NULL;1;2014-04-04;2015-04-04;1;2014-04-04;2015-04-04;1;NULL;NULL;1;2014-04-04;2015-04-04
-218;"Masson";"Emilie";"emilie.masson@cil.cnrs.fr";"user";"masso341";"emilie";2013-05-21;"";1;NULL;NULL;1;2013-05-02;2014-05-02;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-219;"ZZZZLu";"Yuan";"yuan.lu@lpm.u-nancy.fr";"user";"luyua713";"luyuan";2013-10-27;"";1;NULL;NULL;1;2008-03-04;2009-03-04;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2008-03-04;2009-03-04
-222;"Souhar";"Youssef";"youssef.souhar@ensem.inpl-nancy.fr";"user";"souha223";"oussef";2009-02-13;"";1;NULL;NULL;1;2009-02-13;2010-02-13;1;2009-02-13;2010-02-13;1;NULL;NULL;1;2009-02-13;2010-02-13
-223;"ZZZZSchmitt";"Chantal";"laurent.schmitt@inist.fr";"user";"schmi419";"hantal";2013-10-27;"";1;NULL;NULL;1;2008-02-19;2009-02-19;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-226;"ZZZZMarin";"Jérome";"jermarin@crpg.cnrs-nancy.fr";"user";"marin072";"njrome";2013-10-27;"";0;NULL;NULL;0;0000-00-00;0000-00-00;1;2009-04-24;2010-04-24;0;NULL;NULL;0;0000-00-00;0000-00-00
-225;"Cloquet";"Christophe";"cloquet@crpg.cnrs-nancy.fr";"user";"cloqu538";"stophe";2014-05-16;"";1;NULL;NULL;1;2014-05-16;2015-05-16;1;2014-05-16;2015-05-16;1;NULL;NULL;1;2014-05-16;2015-05-16
-227;"ZZZZTamburini";"Valérie";"valerie.tamburini@mines.inpl-nancy.fr";"user";"tambu852";"valrie";2013-10-27;"";1;NULL;NULL;1;2008-05-20;2009-05-20;1;2008-05-20;2009-05-20;1;NULL;NULL;1;2008-05-20;2009-05-20
-228;"ZZZZLefort";"Anne";"anne.lefort@inist.fr";"user";"lefor070";"rtanne";2013-10-27;"";1;NULL;NULL;1;2008-06-17;2009-06-17;1;2008-06-17;2009-06-17;1;NULL;NULL;1;2008-06-17;2009-06-17
-229;"ZZZZErrico";"Lydia";"lydia.errico@inist.fr";"user";"erric780";"olydia";2013-10-27;"";1;NULL;NULL;1;2011-10-22;2012-10-22;1;2011-10-22;2012-10-22;1;NULL;NULL;1;2011-10-22;2012-10-22
-230;"ZZZZCarciofi";"Estelle";"estelle.carciofi@inist.fr";"admin";"carciofi";"caes2008";2013-10-27;"";1;NULL;NULL;1;2009-02-27;2050-02-27;1;2009-02-27;2050-02-27;1;NULL;NULL;1;2009-02-27;2050-02-27
-239;"ZZZZFener";"Patricia";"patricia.fener@inist.fr";"user";"fener257";"tricia";2013-10-27;"";1;NULL;NULL;1;2009-05-12;2010-05-12;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-232;"xxxBlard";"Pierre";"blard@crpg.cnrs-nancy.fr";"user";"blard038";"pierre";2013-12-13;"";0;NULL;NULL;0;2008-11-25;2009-11-25;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2008-11-25;2009-11-25
-233;"ZZZZTortera";"Hélène";"helene.tortera@dr6.cnrs.fr";"user";"asupp747";"primer";2013-10-27;"";1;NULL;NULL;1;2011-08-09;2012-08-09;1;2011-08-09;2012-08-09;1;NULL;NULL;1;2011-08-09;2012-08-09
-235;"ZZZZAndre";"Myriam";"myriam.andre@inist.fr";"user";"andre022";"myriam";2013-10-22;"";1;NULL;NULL;1;2009-02-06;2010-02-06;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-236;"Hedin";"Séverine";"severine.hedin@dr6.cnrs.fr";"admin";"hedin991";"verine";2014-03-11;"";1;NULL;NULL;1;2012-03-03;2013-03-03;1;2012-03-03;2013-03-03;1;NULL;NULL;1;2012-03-03;2013-03-03
-237;"ZZZZRemy";"Anne";"anne-florence.remy@dr6.cnrs.fr";"user";"remya388";"myanne";2013-10-27;"";1;NULL;NULL;1;2009-03-13;2010-03-13;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-238;"ZZZZKremer";"Marounia";"marounia.kremer@inist.fr";"user";"kreme696";"rounia";2013-10-27;"";1;NULL;NULL;1;2009-03-20;2010-03-20;1;2009-03-20;2010-03-20;1;NULL;NULL;1;2009-03-20;2010-03-20
-240;"Tisserand-Bedri";"Françoise";"francoise.tisserand-bedri@inist.fr";"user";"tisse055";"anoise";2012-09-04;"";1;NULL;NULL;1;2012-07-26;2013-07-26;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-241;"Sowinski";"Claire";"claire.sowinski@inist.fr";"admin";"sowin107";"claire";2013-03-12;"INIST";1;NULL;NULL;1;2010-09-22;2011-09-22;1;2010-09-22;2011-09-22;1;NULL;NULL;1;2010-09-22;2011-09-22
-242;"ZZZZMorel";"Brigitte";"brigitte.morel@inist.fr";"user";"asupp150";"primer";2013-10-27;"INIST";1;NULL;NULL;1;2011-06-14;2012-06-14;1;2011-06-14;2012-06-14;1;NULL;NULL;1;2011-06-14;2012-06-14
-243;"Cosserat";"Françoise";"francoise.cosserat@inist.fr";"user";"cosse368";"anoise";2014-07-29;"";1;NULL;NULL;1;2014-07-29;2015-07-29;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2014-07-29;2015-07-29
-244;"Antarctique";"";"";"user";"antar434";"ctique";2010-09-28;"";0;NULL;NULL;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
-245;"PILON";"Documents jetés";"";"user";"asupp405";"primer";2011-07-06;"";1;NULL;NULL;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;NULL;NULL;1;0000-00-00;0000-00-00
-246;"ZZZZDe Salabert";"Camille";"camille.de-salabert@inist.fr";"user";"desal003";"amille";2013-10-27;"";1;NULL;NULL;1;2010-10-29;2011-10-29;1;2010-10-29;2011-10-29;1;NULL;NULL;1;2010-10-29;2011-10-29
-247;"Parmentier";"François";"francois.parmentier@inist.fr";"user";"asupp899";"primer";2012-08-21;"";1;NULL;NULL;1;2012-08-21;2013-08-21;0;2012-08-21;2013-08-21;1;NULL;NULL;0;2012-08-21;2013-08-21
-249;"Collin";"Magalie";"magalie.collin@inist.fr";"user";"colli129";"agalie";2012-03-02;"";1;NULL;NULL;1;2012-03-02;2013-03-02;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2011-06-24;2012-07-19
-248;"Brunet";"Pierre";"pierre.brunet@ijl.nancy-universite.fr";"user";"brune619";"pierre";2012-04-06;"";1;NULL;NULL;1;2012-04-06;2013-04-06;1;2012-04-06;2013-04-06;1;NULL;NULL;1;2012-04-06;2013-04-06
-250;"Nieto";"Jessica";"jessica.nieto@dr6.cnrs.fr";"user";"jessi385";"canieto";2014-05-13;"";1;NULL;NULL;1;2014-05-13;2015-05-13;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-251;"ZZZZWeber";"Paul";"paul.weber@inist.fr";"user";"weber350";"erpaul";2013-10-27;"";1;NULL;NULL;1;2011-01-14;2012-01-14;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
-252;"ZZZZDehez";"François";"fdehez@uhp-nancy.fr";"user";"dehez833";"ranois";2013-10-27;"";1;NULL;NULL;1;2011-01-28;2012-01-28;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-253;"ZZZZHarmand";"Delphine";"delphine.harmand@inist.fr";"user";"asupp333";"primer";2013-10-27;"";1;NULL;NULL;1;2011-06-14;2012-06-14;1;2011-06-14;2012-06-14;1;NULL;NULL;1;2011-06-14;2012-06-14
-254;"ZZZZTucsnak";"Zenaïda";"zenaida.tucsnak@inist.fr";"user";"tucsn321";"enaïda";2013-10-27;"";1;NULL;NULL;1;2011-03-04;2012-03-04;1;2011-03-04;2012-03-04;1;NULL;NULL;1;2011-03-04;2012-03-04
-256;"Kauffmann";"Isabelle";"isabelle.kauffmann@inist.fr";"user";"kauff945";"abelle";2013-04-30;"";1;NULL;NULL;1;2013-04-30;2014-04-30;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-257;"Berard";"Raymond";"raymond.berard@inist.fr";"user";"berar941";"raymond";2014-04-04;"";1;NULL;NULL;1;2013-08-06;2014-08-06;0;2013-08-06;2014-08-06;1;NULL;NULL;1;2013-08-06;2014-08-06
-266;"Creusot";"Hélène";"helene.creusot@inist.fr";"user";"creus228";"othlne";2014-07-08;"";1;NULL;NULL;1;2014-07-08;2015-07-08;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2014-07-08;2015-07-08
-260;"soro";"marc";"marc.soro@univ-lorraine.fr";"user";"SOROM";"Marc";2013-12-13;"";1;NULL;NULL;1;2013-12-10;2014-12-10;1;2013-12-10;2014-12-10;1;NULL;NULL;1;2013-12-10;2014-12-10
-261;"Viot";"Pascale";"pascale.viot@inist.fr";"user";"viotp355";"ascale";2014-01-10;"";1;NULL;NULL;1;2013-12-20;2014-12-20;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2013-12-20;2014-12-20
-262;"DESTOCKAGE LIVRES AVRIL 2014";"";"";"user";"desto432";"eavril";2014-04-22;"";1;NULL;NULL;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-263;"Antonot";"Nathalie";"nathalie.antonot@inist.fr";"user";"anton616";"thalie";2014-04-29;"";1;NULL;NULL;1;2014-04-29;2015-04-29;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
-265;"BRILLARD";"Thomas";"thomb45@gmail.com";"admin";"tbrillard";"caes2014";2014-07-28;"";1;NULL;NULL;1;2014-06-06;2015-06-06;1;2014-06-06;2015-06-06;0;NULL;NULL;1;2014-06-06;2015-06-06
+184;ZZZZHansen;Catherine;catherine.hansen@free.fr;user;hanse719;herine;2013-10-27;;1;NULL;NULL;1;2011-02-22;2012-02-22;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+208;ZZZZMorale;Enza;enza.morale@inist.fr;user;moral725;leenza;2013-10-27;;0;NULL;NULL;0;2007-03-13;2008-03-13;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
+200;ZZZZMarchal;Sylvie;sylvie.marchal@inist.fr;user;march483;sylvie;2013-10-27;;0;NULL;NULL;0;2008-01-26;2009-01-26;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
+172;Deriaz;Erwan;erwan.deriaz@univ-lorraine.fr;user;videu015;labonn;2013-03-12;Institut Jean Lamour Nancy;1;NULL;NULL;1;2013-03-12;2014-03-12;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+174;ZZZZTintanet;Cedric;cedric.tintanet@inist.fr;user;tinta464;cedric;2013-10-27;;1;NULL;NULL;1;2005-06-24;2006-06-24;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2005-06-24;2006-06-24
+176;ZZZZPierron;Christelle;christelle.pierron@inist.fr;user;pierr294;stelle;2013-10-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2006-09-12;2007-09-12;0;NULL;NULL;0;0000-00-00;0000-00-00
+175;ZZZZFleurot;Karine;karine.fleurot@maem.uhp-nancy.fr;user;fleur138;karine;2013-10-27;;1;NULL;NULL;1;2005-06-24;2006-06-24;1;2005-06-24;2006-06-24;1;NULL;NULL;0;0000-00-00;0000-00-00
+177;ZZZZThouvenin;Nicolas;nicolas.thouvenin@inist.fr;user;thouv854;icolas;2013-10-27;;1;NULL;NULL;1;2006-09-07;2007-09-07;1;2006-09-07;2007-09-07;1;NULL;NULL;0;0000-00-00;0000-00-00
+178;ZZZZSanchis;Monique;sanchis@inist.fr;user;sanch141;onique;2013-10-27;;1;NULL;NULL;1;2007-10-21;2008-10-21;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+180;ZZZZRassemusse;Christiane;rassemusse@dr6.cnrs.fr;user;rasse609;stiane;2013-10-27;;1;NULL;NULL;1;2009-12-12;2010-12-12;0;0000-00-00;0000-00-00;1;NULL;NULL;0;2007-11-30;2008-11-30
+182;ZZZZPresle;Nathalie;cpresle.archi@wanadoo.fr;user;presl472;thalie;2013-10-27;;1;NULL;NULL;1;2005-10-17;2006-10-17;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2005-10-17;2006-10-17
+183;ZZZZWolstroff;Viviane;wolstroff@inist.fr;user;wolst946;iviane;2013-10-27;;1;NULL;NULL;1;2010-10-28;2011-10-28;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+185;ZZZZGrange;Florence;florence.grange@inist.fr;user;grang814;orence;2013-10-27;;0;NULL;NULL;0;2010-03-19;2011-03-19;1;2011-04-22;2012-04-22;0;NULL;NULL;1;2011-04-22;2012-04-22
+186;ZZZZDuchenne;Marie-Christine;marie-christine.duchenne@univ-nancy2.fr;user;duche814;istine;2013-10-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2010-02-05;2011-02-05;0;NULL;NULL;1;2010-02-05;2011-02-05
+187;DETHINE;Emilie;emilie.dethine@dr6.cnrs.fr;user;videu099;labonn;2013-10-22;;1;NULL;NULL;1;2013-10-22;2014-10-22;1;2013-10-22;2014-10-22;1;NULL;NULL;1;2013-10-22;2014-10-22
+188;Druon;Jacqueline;jacqueline.druont@lcpme.cnrs-nancy.fr;user;druon295;ueline;2013-04-05;;0;NULL;NULL;1;2013-04-05;2014-04-05;0;2007-04-24;2008-04-24;0;NULL;NULL;0;2006-02-03;2007-02-03
+189;ZZZZBolarin;Cécile;cecile.anx@free.fr;user;bolar805;nccile;2014-04-03;;1;NULL;NULL;1;2006-02-17;2006-08-17;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+190;ZZZZMaqua;Christophe;christophe.maqua@ensem.inpl-nancy.fr;user;maqua142;stophe;2013-10-27;;1;NULL;NULL;1;2006-03-17;2007-03-17;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+191;ZZZZPetitjean;Alexandra;alexandra.petitjean@inist.fr;user;petit242;xandra;2013-10-27;;1;NULL;NULL;1;2007-04-20;2008-04-20;0;2007-04-20;2008-04-20;1;NULL;NULL;0;2007-04-20;2008-04-20
+193;DESTOCKAGE;CD et autres;;user;desto139;ockage;2011-06-28;Connaissance des arts septembre 2005 => ML;1;NULL;NULL;1;0000-00-00;0000-00-00;1;2006-09-29;2009-09-29;1;NULL;NULL;1;0000-00-00;0000-00-00
+194;ZZZZGully;Stéphane;stephane.gully@inist.fr;user;gully075;tphane;2013-10-27;;1;NULL;NULL;1;2006-10-13;2007-10-13;1;2006-10-13;2007-10-13;1;NULL;NULL;0;0000-00-00;0000-00-00
+196;MARTIMPRE;Gerbepal;;user;marti793;rbepal;2006-11-17;;1;NULL;NULL;1;2006-11-17;2007-11-17;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+197;ZZZZThuret;Aline;thuret@inist.fr;user;thure958;taline;2013-10-27;;1;NULL;NULL;1;2008-12-16;2009-12-16;0;2007-10-31;2008-10-31;1;NULL;NULL;1;2008-12-16;2009-12-16
+198;ZZZZWeinhard;Laurent;Laurent.Weinhard@loria.fr;user;weinh697;aurent;2013-10-27;;1;NULL;NULL;1;2006-11-27;2007-11-27;1;2006-11-27;2007-11-27;1;NULL;NULL;0;0000-00-00;0000-00-00
+199;RELIURE/ Réparation;;;user;reliu607;ration;2011-12-23;;1;NULL;NULL;1;2006-12-12;2011-12-12;1;2006-12-12;2011-12-12;1;NULL;NULL;1;2006-12-12;2011-12-12
+202;Hameau;Thèrèse;therese.hameau@inist.fr;user;hamea758;uthrse;2013-04-30;;1;NULL;NULL;1;2013-04-30;2014-04-30;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+204;Grand;Laurence;grand@inist.fr;user;grandcaes;laurence;2013-08-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;0;2007-02-23;2008-02-23;0;NULL;NULL;1;2013-08-27;2014-08-27
+205;Panes;Laurent;laurent.panes@inist.fr;user;panes065;aurent;2014-06-17;;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2014-06-17;2015-06-17;0;NULL;NULL;1;2014-06-17;2015-06-17
+206;ZZZZChartier;Florence;florence.chartier@dr6.cnrs.fr;user;chart818;orence;2013-10-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2008-02-27;2009-02-27;0;NULL;NULL;0;0000-00-00;0000-00-00
+207;ZZZZBouvot;Anne Lise;anne-lise.bouvot@cnrs-dir.fr;user;bouvo682;nelise;2013-10-27;;1;NULL;NULL;1;2008-04-27;2009-04-27;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+209;ZZZZOrange;Colette;colette.orange@inist.fr;user;orang520;olette;2013-10-27;;1;NULL;NULL;1;2007-04-29;2008-04-29;1;2007-04-29;2008-04-29;1;NULL;NULL;0;0000-00-00;0000-00-00
+210;ZZZZBouden;Nordine;nbouden@crpg.cnrs-nancy.fr;user;boude106;ordine;2013-10-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2008-06-05;2009-06-05
+211;ZZZZChaffaut;Jean-Marc;jm.chaffaut@cegetel.net;user;chaff049;anmarc;2013-10-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2007-06-05;2008-06-05
+212;Zasadzinski A relancer;Alain;alain.zasadzinski@inist.fr;user;zasad712;ialain;2014-04-03;;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2007-06-05;2008-06-05;0;NULL;NULL;0;0000-00-00;0000-00-00
+213;ZZZZHenrot;Martine;martine.henrot@inist.fr;user;henro538;artine;2013-10-27;;1;NULL;NULL;1;2009-07-10;2010-07-10;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2009-07-10;2010-07-10
+214;ZZZZDissoubray;Joëlle;dissoubray.m.j@orange.fr;user;disss546;joëlle;2013-10-27;;1;NULL;NULL;1;2007-07-13;2008-07-13;1;2007-07-13;2008-07-13;1;NULL;NULL;1;2007-07-13;2008-07-13
+231;Molat;Isabelle;isabelle.molat@inist.fr;user;molat361;abelle;2013-11-19;;1;NULL;NULL;1;2013-10-22;2014-10-23;0;2010-10-23;2014-10-22;1;NULL;NULL;0;0000-00-00;0000-00-00
+234;Rodriguez;Mercedes;rodriguez@inist.fr;user;rodri387;rcedes;2013-10-29;;1;NULL;NULL;1;2013-10-22;2014-10-22;0;2008-12-19;2009-12-19;1;NULL;NULL;1;2013-10-22;2014-10-22
+215;ZZZZGunet;Catherine;catgunet@wanadoo.fr;user;gunet125;herine;2013-10-27;;1;NULL;NULL;1;2012-09-28;2013-09-28;0;2011-01-28;2012-01-28;1;NULL;NULL;0;2011-01-28;2012-01-28
+216;ZZZZDraelants;Isabelle;isabelle.draelants@univ-nancy2.fr;user;drael487;abelle;2013-10-27;;1;NULL;NULL;1;2008-01-25;2009-01-25;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2008-01-25;2009-01-25
+217;Pelletier;Manuel;manuel.pelletier@univ-lorraine.fr;user;pelle154;manuel;2014-04-04;;1;NULL;NULL;1;2014-04-04;2015-04-04;1;2014-04-04;2015-04-04;1;NULL;NULL;1;2014-04-04;2015-04-04
+218;Masson;Emilie;emilie.masson@cil.cnrs.fr;user;masso341;emilie;2013-05-21;;1;NULL;NULL;1;2013-05-02;2014-05-02;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+219;ZZZZLu;Yuan;yuan.lu@lpm.u-nancy.fr;user;luyua713;luyuan;2013-10-27;;1;NULL;NULL;1;2008-03-04;2009-03-04;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2008-03-04;2009-03-04
+222;Souhar;Youssef;youssef.souhar@ensem.inpl-nancy.fr;user;souha223;oussef;2009-02-13;;1;NULL;NULL;1;2009-02-13;2010-02-13;1;2009-02-13;2010-02-13;1;NULL;NULL;1;2009-02-13;2010-02-13
+223;ZZZZSchmitt;Chantal;laurent.schmitt@inist.fr;user;schmi419;hantal;2013-10-27;;1;NULL;NULL;1;2008-02-19;2009-02-19;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+226;ZZZZMarin;Jérome;jermarin@crpg.cnrs-nancy.fr;user;marin072;njrome;2013-10-27;;0;NULL;NULL;0;0000-00-00;0000-00-00;1;2009-04-24;2010-04-24;0;NULL;NULL;0;0000-00-00;0000-00-00
+225;Cloquet;Christophe;cloquet@crpg.cnrs-nancy.fr;user;cloqu538;stophe;2014-05-16;;1;NULL;NULL;1;2014-05-16;2015-05-16;1;2014-05-16;2015-05-16;1;NULL;NULL;1;2014-05-16;2015-05-16
+227;ZZZZTamburini;Valérie;valerie.tamburini@mines.inpl-nancy.fr;user;tambu852;valrie;2013-10-27;;1;NULL;NULL;1;2008-05-20;2009-05-20;1;2008-05-20;2009-05-20;1;NULL;NULL;1;2008-05-20;2009-05-20
+228;ZZZZLefort;Anne;anne.lefort@inist.fr;user;lefor070;rtanne;2013-10-27;;1;NULL;NULL;1;2008-06-17;2009-06-17;1;2008-06-17;2009-06-17;1;NULL;NULL;1;2008-06-17;2009-06-17
+229;ZZZZErrico;Lydia;lydia.errico@inist.fr;user;erric780;olydia;2013-10-27;;1;NULL;NULL;1;2011-10-22;2012-10-22;1;2011-10-22;2012-10-22;1;NULL;NULL;1;2011-10-22;2012-10-22
+230;ZZZZCarciofi;Estelle;estelle.carciofi@inist.fr;admin;carciofi;caes2008;2013-10-27;;1;NULL;NULL;1;2009-02-27;2050-02-27;1;2009-02-27;2050-02-27;1;NULL;NULL;1;2009-02-27;2050-02-27
+239;ZZZZFener;Patricia;patricia.fener@inist.fr;user;fener257;tricia;2013-10-27;;1;NULL;NULL;1;2009-05-12;2010-05-12;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+232;xxxBlard;Pierre;blard@crpg.cnrs-nancy.fr;user;blard038;pierre;2013-12-13;;0;NULL;NULL;0;2008-11-25;2009-11-25;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2008-11-25;2009-11-25
+233;ZZZZTortera;Hélène;helene.tortera@dr6.cnrs.fr;user;asupp747;primer;2013-10-27;;1;NULL;NULL;1;2011-08-09;2012-08-09;1;2011-08-09;2012-08-09;1;NULL;NULL;1;2011-08-09;2012-08-09
+235;ZZZZAndre;Myriam;myriam.andre@inist.fr;user;andre022;myriam;2013-10-22;;1;NULL;NULL;1;2009-02-06;2010-02-06;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+236;Hedin;Séverine;severine.hedin@dr6.cnrs.fr;admin;hedin991;verine;2014-03-11;;1;NULL;NULL;1;2012-03-03;2013-03-03;1;2012-03-03;2013-03-03;1;NULL;NULL;1;2012-03-03;2013-03-03
+237;ZZZZRemy;Anne;anne-florence.remy@dr6.cnrs.fr;user;remya388;myanne;2013-10-27;;1;NULL;NULL;1;2009-03-13;2010-03-13;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+238;ZZZZKremer;Marounia;marounia.kremer@inist.fr;user;kreme696;rounia;2013-10-27;;1;NULL;NULL;1;2009-03-20;2010-03-20;1;2009-03-20;2010-03-20;1;NULL;NULL;1;2009-03-20;2010-03-20
+240;Tisserand-Bedri;Françoise;francoise.tisserand-bedri@inist.fr;user;tisse055;anoise;2012-09-04;;1;NULL;NULL;1;2012-07-26;2013-07-26;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+241;Sowinski;Claire;claire.sowinski@inist.fr;admin;sowin107;claire;2013-03-12;INIST;1;NULL;NULL;1;2010-09-22;2011-09-22;1;2010-09-22;2011-09-22;1;NULL;NULL;1;2010-09-22;2011-09-22
+242;ZZZZMorel;Brigitte;brigitte.morel@inist.fr;user;asupp150;primer;2013-10-27;INIST;1;NULL;NULL;1;2011-06-14;2012-06-14;1;2011-06-14;2012-06-14;1;NULL;NULL;1;2011-06-14;2012-06-14
+243;Cosserat;Françoise;francoise.cosserat@inist.fr;user;cosse368;anoise;2014-07-29;;1;NULL;NULL;1;2014-07-29;2015-07-29;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2014-07-29;2015-07-29
+244;Antarctique;;;user;antar434;ctique;2010-09-28;;0;NULL;NULL;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
+245;PILON;Documents jetés;;user;asupp405;primer;2011-07-06;;1;NULL;NULL;1;0000-00-00;0000-00-00;1;0000-00-00;0000-00-00;1;NULL;NULL;1;0000-00-00;0000-00-00
+246;ZZZZDe Salabert;Camille;camille.de-salabert@inist.fr;user;desal003;amille;2013-10-27;;1;NULL;NULL;1;2010-10-29;2011-10-29;1;2010-10-29;2011-10-29;1;NULL;NULL;1;2010-10-29;2011-10-29
+247;Parmentier;François;francois.parmentier@inist.fr;user;asupp899;primer;2012-08-21;;1;NULL;NULL;1;2012-08-21;2013-08-21;0;2012-08-21;2013-08-21;1;NULL;NULL;0;2012-08-21;2013-08-21
+249;Collin;Magalie;magalie.collin@inist.fr;user;colli129;agalie;2012-03-02;;1;NULL;NULL;1;2012-03-02;2013-03-02;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2011-06-24;2012-07-19
+248;Brunet;Pierre;pierre.brunet@ijl.nancy-universite.fr;user;brune619;pierre;2012-04-06;;1;NULL;NULL;1;2012-04-06;2013-04-06;1;2012-04-06;2013-04-06;1;NULL;NULL;1;2012-04-06;2013-04-06
+250;Nieto;Jessica;jessica.nieto@dr6.cnrs.fr;user;jessi385;canieto;2014-05-13;;1;NULL;NULL;1;2014-05-13;2015-05-13;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+251;ZZZZWeber;Paul;paul.weber@inist.fr;user;weber350;erpaul;2013-10-27;;1;NULL;NULL;1;2011-01-14;2012-01-14;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
+252;ZZZZDehez;François;fdehez@uhp-nancy.fr;user;dehez833;ranois;2013-10-27;;1;NULL;NULL;1;2011-01-28;2012-01-28;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+253;ZZZZHarmand;Delphine;delphine.harmand@inist.fr;user;asupp333;primer;2013-10-27;;1;NULL;NULL;1;2011-06-14;2012-06-14;1;2011-06-14;2012-06-14;1;NULL;NULL;1;2011-06-14;2012-06-14
+254;ZZZZTucsnak;Zenaïda;zenaida.tucsnak@inist.fr;user;tucsn321;enaïda;2013-10-27;;1;NULL;NULL;1;2011-03-04;2012-03-04;1;2011-03-04;2012-03-04;1;NULL;NULL;1;2011-03-04;2012-03-04
+256;Kauffmann;Isabelle;isabelle.kauffmann@inist.fr;user;kauff945;abelle;2013-04-30;;1;NULL;NULL;1;2013-04-30;2014-04-30;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+257;Berard;Raymond;raymond.berard@inist.fr;user;berar941;raymond;2014-04-04;;1;NULL;NULL;1;2013-08-06;2014-08-06;0;2013-08-06;2014-08-06;1;NULL;NULL;1;2013-08-06;2014-08-06
+258;Bib Darney;;valerie.bonvallot@inist.fr;user;mptdarney;mpt88;2013-08-28;;1;NULL;NULL;1;2013-08-28;2014-08-28;1;2013-08-28;2014-08-28;1;NULL;NULL;1;2013-08-28;2014-08-28
+266;Creusot;Hélène;helene.creusot@inist.fr;user;creus228;othlne;2014-07-08;;1;NULL;NULL;1;2014-07-08;2015-07-08;0;0000-00-00;0000-00-00;0;NULL;NULL;1;2014-07-08;2015-07-08
+259;ZZZTtarek;;mounir.tarek@univ-lorraine.fr;user;mounir;mounir;2014-02-21;;1;NULL;NULL;1;2013-12-10;2014-12-10;1;2013-12-10;2014-12-10;1;NULL;NULL;1;2013-12-10;2014-12-10
+260;soro;marc;marc.soro@univ-lorraine.fr;user;SOROM;Marc;2013-12-13;;1;NULL;NULL;1;2013-12-10;2014-12-10;1;2013-12-10;2014-12-10;1;NULL;NULL;1;2013-12-10;2014-12-10
+261;Viot;Pascale;pascale.viot@inist.fr;user;viotp355;ascale;2014-01-10;;1;NULL;NULL;1;2013-12-20;2014-12-20;0;0000-00-00;0000-00-00;1;NULL;NULL;1;2013-12-20;2014-12-20
+262;DESTOCKAGE LIVRES AVRIL 2014;;;user;desto432;eavril;2014-04-22;;1;NULL;NULL;1;0000-00-00;0000-00-00;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+263;Antonot;Nathalie;nathalie.antonot@inist.fr;user;anton616;thalie;2014-04-29;;1;NULL;NULL;1;2014-04-29;2015-04-29;0;0000-00-00;0000-00-00;1;NULL;NULL;0;0000-00-00;0000-00-00
+264;Antonot;Nathalie;nathalie.antonot@inist.fr;user;anton616;thalie;2014-04-29;;0;NULL;NULL;0;2014-04-29;2015-04-29;0;0000-00-00;0000-00-00;0;NULL;NULL;0;0000-00-00;0000-00-00
+265;BRILLARD;Thomas;thomb45@gmail.com;admin;tbrillard;caes2014;2014-07-28;;1;NULL;NULL;1;2014-06-06;2015-06-06;1;2014-06-06;2015-06-06;0;NULL;NULL;1;2014-06-06;2015-06-06

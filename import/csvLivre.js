@@ -1,10 +1,12 @@
 var csv = require('csv');
 var fs = require('fs');
 var cpt = 0;
-var Livreliste = fs.createReadStream(__dirname + '/user/exp_dump.caes_livres.csv');
+var Livreliste = fs.createReadStream(__dirname + '/user/exp_dump.caes_livres.csv');*
+fs.unlink('Livre.json');
 var parser = csv.parse({
     delimiter: ';',
-    columns:  ['ref', 'auteur', 'titre', 'genre', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage']
+    columns:  ['ref', 'auteur', 'titre', 'genre', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage'],
+    relax: true
 });
 var transformer = csv.transform(function(data){
   return data;

@@ -2,9 +2,11 @@ var csv = require('csv');
 var fs = require('fs');
 var cpt = 0;
 var BDliste = fs.createReadStream(__dirname + '/user/exp_dump.caes_cd.csv');
+fs.unlink('cd.json');
 var parser = csv.parse({
     delimiter: ';',
-    columns:  ['ref', 'auteur', 'titre', 'editeur', 'interpretes', 'qqch', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage']
+    columns:  ['ref', 'auteur', 'titre', 'editeur', 'interpretes', 'qqch', 'date_achat', 'lien_image', 'mis_hs', 'rayonnage'],
+    relax: true
 });
 var transformer = csv.transform(function(data){
   return data;

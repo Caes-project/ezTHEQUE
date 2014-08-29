@@ -2,6 +2,7 @@ var csv = require('csv');
 var fs = require('fs');
 var crypto = require('crypto');
 var userListe = fs.createReadStream(__dirname + '/user/exp_dump.caes_user.csv');
+fs.unlink('user.json');
 var parser = csv.parse({
     delimiter: ';',
     columns:  ['id_user', 'nom', 'prenom', 'email', 'group', 'username', 'mdp', 'date_maj', 'commentaire', 'BD_1', 'date_i_BD', 'date_fin_BD', 'Livres_1', 'date_i_Livres', 'date_fin_Livres' , 'CD_1', 'date_i_CD', 'date_fin_CD', 'mag_1', 'date_i_mag', 'date_fin_mag', 'DVD_1', 'date_i_DVD', 'date_fin_DVD']                                          
@@ -10,7 +11,6 @@ var parser = csv.parse({
 var transformer = csv.transform(function(data){
   return data;
 });
-
 userListe.pipe(parser).pipe(transformer);
 // parser.on('readable', function(){
 //   while(data = parser.read()){
@@ -28,6 +28,7 @@ transformer.on('error', function(err){
 var cpt = 0;
 transformer.on('readable', function(){
   //console.log('transformer');
+
   while(data = transformer.read()){
 
     if(data.username == null || data.username.length == 0){
