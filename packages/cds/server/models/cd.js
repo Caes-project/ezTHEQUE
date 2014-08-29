@@ -84,7 +84,10 @@ var CdSchema = new Schema({
             type: Date
         }
     }],
-    rayonnage: {
+    resume : {
+        type: String
+    },
+    tags: {
         type: String,
         required : false
     }
