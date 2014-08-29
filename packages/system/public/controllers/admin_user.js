@@ -257,11 +257,11 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     }
 
     function isAboMedia(user, media) {
-      if ((media.typeMedia === 'BD' || media.typeMedia === 'Livres' || media.typeMedia === 'Magazines') && user.livre_mag_revue && user.caution) {
+      if ((media.typeMedia === 'BD' || media.typeMedia === 'Livres' || media.typeMedia === 'Magazines') && user.livre_mag_revue) {
         return true;
-      } else if (media.typeMedia === 'DVD' && user.DVD && user.caution) {
+      } else if (media.typeMedia === 'DVD' && user.DVD) {
         return true;
-      } else if (media.typeMedia === 'CD' && user.CD && user.caution) {
+      } else if (media.typeMedia === 'CD' && user.CD) {
         return true;
       }
       return false;
