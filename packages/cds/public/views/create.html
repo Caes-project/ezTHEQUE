@@ -43,9 +43,9 @@
         <div class="form-group">
             <label for="dewey" class="col-md-3 control-label">Genre</label>
             <div class="col-md-9">
-                <select class="form-control" ng-model='dewey' name="dewey" size="1" required>
+                <select class="form-control" ng-model='dewey' name="dewey" size="1" required>{{settings}}
                     <option value='' > Choix genre </option>
-                    <option value="{{genre}}" ng-repeat="genre in genre_liste_cd">{{genre}}</option>
+                    <option value="{{genre}}" ng-repeat="genre in settings.liste_genre_cd">{{genre}}</option>
                 </select>
             </div>
         </div>

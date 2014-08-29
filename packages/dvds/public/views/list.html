@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class='col-md-3'>
-    <select class="form-control" ng-model='genre' ng-change="searchGenre = genre" ng-options="genre as genre for genre in genre_liste_dvd">
+    <select class="form-control" ng-model='genre' ng-change="searchGenre = genre" ng-options="genre as genre for genre in settings.liste_genre_dvd">
       <option value='' > Trier par genre </option> 
     </select>
   </div>
