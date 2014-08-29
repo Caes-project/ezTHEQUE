@@ -37,7 +37,7 @@ exports.exportMongo = function(req, res){
   child_process.execFile(__dirname + '/exportMongo.sh', function(err, stdout, stderr){
     console.log(err);
     console.log(stderr);
-    res.redirect('/');
+    res.redirect('/#!/admin/administration');
   });
 };
 
