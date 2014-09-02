@@ -312,7 +312,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
 
     $scope.rendreLivre = function(media) {
       console.log(media.typeMedia);
-      if (media.emprunt.user !== $scope.user._id) {
+      if (media.emprunt.user._id !== $scope.user._id) {
         console.log('TODO gros message d\'erreur');
       } else {
         media.historique.push({
@@ -379,7 +379,11 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
       if (media[0]) {
         $scope.newmedia = media[0];
         $scope.newmedia.typeMedia = type;
-        if (media[0].emprunt.user === $scope.user._id) {
+        console.log('media[0].emprunt.user');
+        console.log(media[0].emprunt.user);
+        console.log('$scope.user._id');
+        console.log($scope.user._id);
+        if (media[0].emprunt.user && media[0].emprunt.user._id === $scope.user._id) {
           $scope.rendreLivre(media[0]);
           $scope.refMedia = null;
         } else {

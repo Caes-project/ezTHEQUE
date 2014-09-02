@@ -23,32 +23,32 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
       });
     }
 
-    var timer;
+    // var timer;
 
-    function message_info(message, type) {
-      var res = {};
-      var time = 2;
-      if (type === 'error') {
-        time = 3;
-      }
-      res.message = message;
-      if (type) {
-        res.status = type;
-      }
-      if ($scope.test) {
-        console.log('gros hack pour les tests');
-      } else {
-        $timeout.cancel(timer);
-        // var transition = document.getElementById('message_info');
-        // transition.classList.remove('trans_message');
-        // transition.offsetWidth = transition.offsetWidth;
-        // transition.classList.add('trans_message');
-        $scope.message_info = res;
-        timer = $timeout(function() {
-          $scope.message_info = null;
-        }, 6000 * time);
-      }
-    }
+    // function message_info(message, type) {
+    //   var res = {};
+    //   var time = 2;
+    //   if (type === 'error') {
+    //     time = 3;
+    //   }
+    //   res.message = message;
+    //   if (type) {
+    //     res.status = type;
+    //   }
+    //   if ($scope.test) {
+    //     console.log('gros hack pour les tests');
+    //   } else {
+    //     $timeout.cancel(timer);
+    //     // var transition = document.getElementById('message_info');
+    //     // transition.classList.remove('trans_message');
+    //     // transition.offsetWidth = transition.offsetWidth;
+    //     // transition.classList.add('trans_message');
+    //     $scope.message_info = res;
+    //     timer = $timeout(function() {
+    //       $scope.message_info = null;
+    //     }, 6000 * time);
+    //   }
+    // }
 
     $scope.checkActif = function(user) {
       var time = 1000 * 60 * 60 * 24;
@@ -167,10 +167,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
           },
           function(livre) {
             if (livre) {
-              $scope.pas_trouver++;
-              if ($scope.pas_trouver === 5) {
-                message_info('Aucun livre trouvé avec ce code barre', 'error');
-              }
               verifMediaCB(livre, 'Livres');
             }
           });
@@ -191,10 +187,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
           },
           function(livre) {
             if (livre) {
-              $scope.pas_trouver++;
-              if ($scope.pas_trouver === 5) {
-                message_info('Aucun livre trouvé avec ce code barre', 'error');
-              }
               verifMediaCB(livre, 'BD');
             }
           });
@@ -215,10 +207,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
           },
           function(livre) {
             if (livre) {
-              $scope.pas_trouver++;
-              if ($scope.pas_trouver === 5) {
-                message_info('Aucun livre trouvé avec ce code barre', 'error');
-              }
               verifMediaCB(livre, 'Magazines');
             }
           });
@@ -239,10 +227,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
           },
           function(livre) {
             if (livre) {
-              $scope.pas_trouver++;
-              if ($scope.pas_trouver === 5) {
-                message_info('Aucun livre trouvé avec ce code barre', 'error');
-              }
               verifMediaCB(livre, 'CD');
             }
           });
@@ -263,10 +247,6 @@ angular.module('mean.system').controller('IndexController', ['$scope', '$statePa
           },
           function(livre) {
             if (livre) {
-              $scope.pas_trouver++;
-              if ($scope.pas_trouver === 5) {
-                message_info('Aucun livre trouvé avec ce code barre', 'error');
-              }
               verifMediaCB(livre, 'DVD');
             }
           });
