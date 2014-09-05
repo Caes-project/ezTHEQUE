@@ -311,8 +311,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     };
 
     $scope.rendreLivre = function(media) {
-      console.log(media.typeMedia);
-      if (media.emprunt.user._id !== $scope.user._id) {
+
+      if (media.emprunt.user._id !== $scope.user._id && media.emprunt.user !== $scope.user._id) {
         console.log('TODO gros message d\'erreur');
       } else {
         media.historique.push({
@@ -324,7 +324,7 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
           'media': media._id,
           'date_debut': media.emprunt.date_debut,
           'date_fin': new Date(),
-          'type' : media.typeMedia
+          'type': media.typeMedia
         });
         media.emprunt = {
           user: null,
@@ -596,12 +596,12 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
         $http.post('/mailRetard', {
           text: $scope.user.email
         })
-        .success(function(response) {
-          $scope.response = response;
-        })
-        .error(function(error) {
-          $scope.response = error;
-        });
+          .success(function(response) {
+            $scope.response = response;
+          })
+          .error(function(error) {
+            $scope.response = error;
+          });
       }
     };
   }
