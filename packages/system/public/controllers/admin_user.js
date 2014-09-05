@@ -311,7 +311,8 @@ angular.module('mean.system').controller('UsersAdminController', ['$scope', '$st
     };
 
     $scope.rendreLivre = function(media) {
-
+      console.log(media.emprunt.user);
+      console.log($scope.user._id);
       if (media.emprunt.user._id !== $scope.user._id && media.emprunt.user !== $scope.user._id) {
         console.log('TODO gros message d\'erreur');
       } else {
